@@ -12,6 +12,8 @@ public interface OnFragmentTransactionListener {
 
     void AddFragment(Fragment fragment);
 
+    void AddFragment(Fragment fragment, boolean instead);
+
     void AddFragment_Up(Fragment fragment);
 
     void ReplaceFragment(Fragment fragment);

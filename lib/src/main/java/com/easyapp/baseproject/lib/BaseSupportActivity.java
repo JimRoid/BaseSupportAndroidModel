@@ -16,15 +16,19 @@ public abstract class BaseSupportActivity extends AppCompatActivity implements O
         this.container = container;
     }
 
-
     @Override
     public void AddFragment(Fragment fragment) {
+        AddFragment(fragment, false);
+    }
+
+    @Override
+    public void AddFragment(Fragment fragment, boolean instead) {
         if (container == 0) {
             Toast.makeText(this, "Please Set container ID", Toast.LENGTH_SHORT).show();
             return;
         }
         Fragment originalFragment = fragmentManager.findFragmentById(container);
-        if (!fragment.getClass().equals(originalFragment.getClass())) {
+        if (!fragment.getClass().equals(originalFragment.getClass()) || instead) {
             fragmentManager.beginTransaction().setCustomAnimations(R.anim.enter_from_right, R.anim.exit_to_right, R.anim.enter_from_left, R.anim.exit_to_left).replace(container, fragment, "main").addToBackStack("main_interface").commitAllowingStateLoss();
         }
         OnAddFragment();
@@ -32,11 +36,23 @@ public abstract class BaseSupportActivity extends AppCompatActivity implements O
 
     @Override
     public void AddFragment_Up(Fragment fragment) {
-        fragmentManager.beginTransaction().setCustomAnimations(R.anim.slide_out_up, R.anim.slide_in_up, R.anim.slide_out_up, R.anim.slide_in_up).add(container, fragment, "main").addToBackStack("main_interface").commitAllowingStateLoss();
+        if (container == 0) {
+            Toast.makeText(this, "Please Set container ID", Toast.LENGTH_SHORT).show();
+            return;
+        }
+        Fragment originalFragment = fragmentManager.findFragmentById(container);
+        if (!fragment.getClass().equals(originalFragment.getClass())) {
+            fragmentManager.beginTransaction().setCustomAnimations(R.anim.slide_out_up, R.anim.slide_in_up, R.anim.slide_out_up, R.anim.slide_in_up).add(container, fragment, "main").addToBackStack("main_interface").commitAllowingStateLoss();
+        }
+        OnAddFragment();
     }
 
     @Override
     public void ReplaceFragment(Fragment fragment) {
+        if (container == 0) {
+            Toast.makeText(this, "Please Set container ID", Toast.LENGTH_SHORT).show();
+            return;
+        }
         PopAllBackStack();
         fragmentManager.beginTransaction().setCustomAnimations(R.anim.enter_from_right, R.anim.exit_to_right, R.anim.enter_from_left, R.anim.exit_to_left).replace(container, fragment, "main").disallowAddToBackStack().commitAllowingStateLoss();
         OnReplaceFragment();
