@@ -42,7 +42,7 @@ dependencies {
     compile 'com.android.support:appcompat-v7:22.2.1'
 }
 
-def repo = new File(rootDir, "repository")
+def repo = new File(rootDir, "")
 
 apply plugin: 'maven'
 
@@ -52,7 +52,7 @@ uploadArchives {
             repository url: "file://${repo.absolutePath}"
             pom.version = '1.0.0'             // version
             pom.groupId = 'com.easyapp.baseproject.lib'    // グループ名
-            pom.artifactId = 'baseproject' // ライブラリ名
+            pom.artifactId = 'BaseSupport' // ライブラリ名
         }
     }
 }

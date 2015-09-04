@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <metadata>
   <groupId>com.easyapp.baseproject.lib</groupId>
-  <artifactId>baseproject</artifactId>
+  <artifactId>BaseSupport</artifactId>
   <version>1.0.0</version>
   <versioning>
     <versions>
       <version>1.0.0</version>
     </versions>
-    <lastUpdated>20150904084049</lastUpdated>
+    <lastUpdated>20150904085503</lastUpdated>
   </versioning>
 </metadata>
