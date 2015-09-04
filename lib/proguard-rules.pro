@@ -23,6 +23,9 @@
 -dontpreverify
 -dontwarn android.support.**
 
+-keep public class * extends android.app.Fragment
+
+-keep public class * extends android.support.v4.app.Fragment
 
 -keep public class * extends android.app.Activity
 
