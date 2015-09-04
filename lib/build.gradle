@@ -20,7 +20,7 @@ android {
         minSdkVersion 9
         targetSdkVersion 22
         versionCode 1
-        versionName "1.0"
+        versionName "1.0.0"
     }
 
     compileOptions {
@@ -35,21 +35,24 @@ android {
     }
 }
 
-task clearJar(type: Delete) {
-    delete 'build/outputs/BaseSupport.jar'
-}
-
-task makeJar(type: Copy) {
-    from('build/intermediates/bundles/release/')
-    into('build/outputs/')
-    include('classes.jar')
-    rename ('classes.jar', 'BaseSupport.jar')
-}
-
-makeJar.dependsOn(clearJar, build)
 
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
     compile 'com.android.support:support-v4:22.2.1'
     compile 'com.android.support:appcompat-v7:22.2.1'
+}
+
+def repo = new File(rootDir, "repository")
+
+apply plugin: 'maven'
+
+uploadArchives {
+    repositories {
+        mavenDeployer {
+            repository url: "file://${repo.absolutePath}"
+            pom.version = '1.0.0'             // version
+            pom.groupId = 'com.easyapp.baseproject.lib'    // グループ名
+            pom.artifactId = 'baseproject' // ライブラリ名
+        }
+    }
 }
