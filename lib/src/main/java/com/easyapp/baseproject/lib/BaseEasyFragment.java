@@ -9,7 +9,7 @@ import android.widget.Toast;
 /**
  * 簡單可支援fragment 切換的base
  */
-public abstract class BaseSupportFragment extends Fragment {
+public abstract class BaseEasyFragment extends Fragment {
     private Toast toast;
     protected OnFragmentTransactionListener onFragmentTransactionListener;
 
