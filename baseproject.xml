@@ -1,0 +1,349 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="baseproject" default="all">
+  
+  
+  <property file="baseproject.properties"/>
+  <!-- Uncomment the following property if no tests compilation is needed -->
+  <!-- 
+  <property name="skip.tests" value="true"/>
+   -->
+  
+  <!-- Compiler options -->
+  
+  <property name="compiler.debug" value="on"/>
+  <property name="compiler.generate.no.warnings" value="off"/>
+  <property name="compiler.args" value=""/>
+  <property name="compiler.max.memory" value="700m"/>
+  <patternset id="ignored.files">
+    <exclude name="**/*.hprof/**"/>
+    <exclude name="**/*.pyc/**"/>
+    <exclude name="**/*.pyo/**"/>
+    <exclude name="**/*.rbc/**"/>
+    <exclude name="**/*~/**"/>
+    <exclude name="**/.DS_Store/**"/>
+    <exclude name="**/.bundle/**"/>
+    <exclude name="**/.git/**"/>
+    <exclude name="**/.hg/**"/>
+    <exclude name="**/.svn/**"/>
+    <exclude name="**/.tox/**"/>
+    <exclude name="**/CVS/**"/>
+    <exclude name="**/RCS/**"/>
+    <exclude name="**/SCCS/**"/>
+    <exclude name="**/__pycache__/**"/>
+    <exclude name="**/_svn/**"/>
+    <exclude name="**/rcs/**"/>
+    <exclude name="**/vssver.scc/**"/>
+    <exclude name="**/vssver2.scc/**"/>
+  </patternset>
+  <patternset id="library.patterns">
+    <include name="*.war"/>
+    <include name="*.ear"/>
+    <include name="*.apk"/>
+    <include name="*.zip"/>
+    <include name="*.swc"/>
+    <include name="*.ane"/>
+    <include name="*.egg"/>
+    <include name="*.jar"/>
+  </patternset>
+  <patternset id="compiler.resources">
+    <exclude name="**/?*.java"/>
+    <exclude name="**/?*.form"/>
+    <exclude name="**/?*.class"/>
+    <exclude name="**/?*.groovy"/>
+    <exclude name="**/?*.scala"/>
+    <exclude name="**/?*.flex"/>
+    <exclude name="**/?*.kt"/>
+    <exclude name="**/?*.clj"/>
+  </patternset>
+  
+  <!-- JDK definitions -->
+  
+  <property name="jdk.bin.jdk" value="${jdk.home.jdk}/bin"/>
+  <path id="jdk.classpath.jdk">
+    <fileset dir="${jdk.home.jdk}">
+      <include name="lib/ant-javafx.jar"/>
+      <include name="lib/dt.jar"/>
+      <include name="lib/javafx-mx.jar"/>
+      <include name="lib/jconsole.jar"/>
+      <include name="lib/sa-jdi.jar"/>
+      <include name="lib/tools.jar"/>
+      <include name="jre/lib/charsets.jar"/>
+      <include name="jre/lib/deploy.jar"/>
+      <include name="jre/lib/htmlconverter.jar"/>
+      <include name="jre/lib/javaws.jar"/>
+      <include name="jre/lib/jce.jar"/>
+      <include name="jre/lib/jfr.jar"/>
+      <include name="jre/lib/jfxswt.jar"/>
+      <include name="jre/lib/jsse.jar"/>
+      <include name="jre/lib/management-agent.jar"/>
+      <include name="jre/lib/plugin.jar"/>
+      <include name="jre/lib/resources.jar"/>
+      <include name="jre/lib/rt.jar"/>
+      <include name="jre/lib/ext/cldrdata.jar"/>
+      <include name="jre/lib/ext/dnsns.jar"/>
+      <include name="jre/lib/ext/jfxrt.jar"/>
+      <include name="jre/lib/ext/localedata.jar"/>
+      <include name="jre/lib/ext/nashorn.jar"/>
+      <include name="jre/lib/ext/sunec.jar"/>
+      <include name="jre/lib/ext/sunjce_provider.jar"/>
+      <include name="jre/lib/ext/sunpkcs11.jar"/>
+      <include name="jre/lib/ext/zipfs.jar"/>
+    </fileset>
+  </path>
+  
+  <property name="jdk.bin.android_api_23_platform" value="${jdk.home.android_api_23_platform}/../../../../../Library/Java/JavaVirtualMachines/jdk1.8.0_05.jdk/Contents/Home/bin"/>
+  <path id="jdk.classpath.android_api_23_platform">
+    <fileset dir="${jdk.home.android_api_23_platform}">
+      <include name="platforms/android-23/android.jar"/>
+      <include name="platforms/android-23/data/res"/>
+    </fileset>
+  </path>
+  
+  <property name="project.jdk.home" value="${jdk.home.jdk}"/>
+  <property name="project.jdk.bin" value="${jdk.bin.jdk}"/>
+  <property name="project.jdk.classpath" value="jdk.classpath.jdk"/>
+  
+  
+  <!-- Project Libraries -->
+  
+  <path id="library.appcompat-v7-22.2.1.classpath">
+    <pathelement location="${basedir}/lib/build/intermediates/exploded-aar/com.android.support/appcompat-v7/22.2.1/res"/>
+    <pathelement location="${basedir}/lib/build/intermediates/exploded-aar/com.android.support/appcompat-v7/22.2.1/classes.jar"/>
+  </path>
+  
+  <path id="library.support-annotations-22.2.1.classpath">
+    <pathelement location="${basedir}/../../../adt-bundle-mac-x86_64-20140624/sdk/extras/android/m2repository/com/android/support/support-annotations/22.2.1/support-annotations-22.2.1.jar"/>
+  </path>
+  
+  <path id="library.support-v4-22.2.1.classpath">
+    <pathelement location="${basedir}/lib/build/intermediates/exploded-aar/com.android.support/support-v4/22.2.1/res"/>
+    <pathelement location="${basedir}/lib/build/intermediates/exploded-aar/com.android.support/support-v4/22.2.1/classes.jar"/>
+    <pathelement location="${basedir}/lib/build/intermediates/exploded-aar/com.android.support/support-v4/22.2.1/libs/internal_impl-22.2.1.jar"/>
+  </path>
+  <!-- Register Custom Compiler Taskdefs -->
+  <property name="javac2.home" value="${idea.home}/lib"/>
+  <path id="javac2.classpath">
+    <pathelement location="${javac2.home}/javac2.jar"/>
+    <pathelement location="${javac2.home}/jdom.jar"/>
+    <pathelement location="${javac2.home}/asm-all.jar"/>
+    <pathelement location="${javac2.home}/jgoodies-forms.jar"/>
+  </path>
+  <target name="register.custom.compilers">
+    <taskdef name="javac2" classname="com.intellij.ant.Javac2" classpathref="javac2.classpath"/>
+    <taskdef name="instrumentIdeaExtensions" classname="com.intellij.ant.InstrumentIdeaExtensions" classpathref="javac2.classpath"/>
+  </target>
+  
+  <!-- Modules -->
+  
+  
+  <!-- Module BaseProject -->
+  
+  <dirname property="module.baseproject.basedir" file="${ant.file}"/>
+  
+  
+  <property name="module.jdk.home.baseproject" value="${project.jdk.home}"/>
+  <property name="module.jdk.bin.baseproject" value="${project.jdk.bin}"/>
+  <property name="module.jdk.classpath.baseproject" value="${project.jdk.classpath}"/>
+  
+  <property name="compiler.args.baseproject" value="-encoding UTF-8 -source 1.7 ${compiler.args}"/>
+  
+  <property name="baseproject.output.dir" value="${module.baseproject.basedir}/build/classes/production/BaseProject"/>
+  <property name="baseproject.testoutput.dir" value="${module.baseproject.basedir}/build/classes/test/BaseProject"/>
+  
+  <path id="baseproject.module.bootclasspath">
+    <!-- Paths to be included in compilation bootclasspath -->
+  </path>
+  
+  <path id="baseproject.module.production.classpath">
+    <path refid="${module.jdk.classpath.baseproject}"/>
+  </path>
+  
+  <path id="baseproject.runtime.production.module.classpath">
+    <pathelement location="${baseproject.output.dir}"/>
+  </path>
+  
+  <path id="baseproject.module.classpath">
+    <path refid="${module.jdk.classpath.baseproject}"/>
+    <pathelement location="${baseproject.output.dir}"/>
+  </path>
+  
+  <path id="baseproject.runtime.module.classpath">
+    <pathelement location="${baseproject.testoutput.dir}"/>
+    <pathelement location="${baseproject.output.dir}"/>
+  </path>
+  
+  
+  <patternset id="excluded.from.module.baseproject">
+    <patternset refid="ignored.files"/>
+  </patternset>
+  
+  <patternset id="excluded.from.compilation.baseproject">
+    <patternset refid="excluded.from.module.baseproject"/>
+  </patternset>
+  
+  
+  <target name="compile.module.baseproject" depends="compile.module.baseproject.production,compile.module.baseproject.tests" description="Compile module BaseProject"/>
+  
+  <target name="compile.module.baseproject.production" depends="register.custom.compilers" description="Compile module BaseProject; production classes"/>
+  
+  <target name="compile.module.baseproject.tests" depends="register.custom.compilers,compile.module.baseproject.production" description="compile module BaseProject; test classes" unless="skip.tests"/>
+  
+  <target name="clean.module.baseproject" description="cleanup module">
+    <delete dir="${baseproject.output.dir}"/>
+    <delete dir="${baseproject.testoutput.dir}"/>
+  </target>
+  
+  
+  <!-- Module lib -->
+  
+  <dirname property="module.lib.basedir" file="${ant.file}"/>
+  
+  
+  <property name="module.jdk.home.lib" value="${jdk.home.android_api_23_platform}"/>
+  <property name="module.jdk.bin.lib" value="${jdk.bin.android_api_23_platform}"/>
+  <property name="module.jdk.classpath.lib" value="jdk.classpath.android_api_23_platform"/>
+  
+  <property name="compiler.args.lib" value="-encoding UTF-8 -source 1.7 ${compiler.args}"/>
+  
+  <property name="lib.output.dir" value="${module.lib.basedir}/lib/build/intermediates/classes/debug"/>
+  <property name="lib.testoutput.dir" value="${module.lib.basedir}/lib/build/intermediates/classes/test/debug"/>
+  
+  <path id="lib.module.bootclasspath">
+    <!-- Paths to be included in compilation bootclasspath -->
+  </path>
+  
+  <path id="lib.module.production.classpath">
+    <path refid="${module.jdk.classpath.lib}"/>
+    <path refid="library.support-v4-22.2.1.classpath"/>
+    <path refid="library.support-annotations-22.2.1.classpath"/>
+    <path refid="library.appcompat-v7-22.2.1.classpath"/>
+  </path>
+  
+  <path id="lib.runtime.production.module.classpath">
+    <pathelement location="${lib.output.dir}"/>
+    <path refid="library.support-v4-22.2.1.classpath"/>
+    <path refid="library.support-annotations-22.2.1.classpath"/>
+    <path refid="library.appcompat-v7-22.2.1.classpath"/>
+  </path>
+  
+  <path id="lib.module.classpath">
+    <path refid="${module.jdk.classpath.lib}"/>
+    <pathelement location="${lib.output.dir}"/>
+    <path refid="library.support-v4-22.2.1.classpath"/>
+    <path refid="library.support-annotations-22.2.1.classpath"/>
+    <path refid="library.appcompat-v7-22.2.1.classpath"/>
+  </path>
+  
+  <path id="lib.runtime.module.classpath">
+    <pathelement location="${lib.testoutput.dir}"/>
+    <pathelement location="${lib.output.dir}"/>
+    <path refid="library.support-v4-22.2.1.classpath"/>
+    <path refid="library.support-annotations-22.2.1.classpath"/>
+    <path refid="library.appcompat-v7-22.2.1.classpath"/>
+  </path>
+  
+  
+  <patternset id="excluded.from.module.lib">
+    <patternset refid="ignored.files"/>
+  </patternset>
+  
+  <patternset id="excluded.from.compilation.lib">
+    <patternset refid="excluded.from.module.lib"/>
+  </patternset>
+  
+  <path id="lib.module.sourcepath">
+    <dirset dir="${module.lib.basedir}/lib">
+      <include name="build/generated/source/r/debug"/>
+      <include name="build/generated/source/aidl/debug"/>
+      <include name="build/generated/source/buildConfig/debug"/>
+      <include name="build/generated/source/rs/debug"/>
+      <include name="build/generated/res/rs/debug"/>
+      <include name="src/main/res"/>
+      <include name="src/main/java"/>
+    </dirset>
+  </path>
+  
+  <path id="lib.module.test.sourcepath">
+    <dirset dir="${module.lib.basedir}/lib">
+      <include name="src/androidTest/java"/>
+    </dirset>
+  </path>
+  
+  
+  <target name="compile.module.lib" depends="compile.module.lib.production,compile.module.lib.tests" description="Compile module lib"/>
+  
+  <target name="compile.module.lib.production" depends="register.custom.compilers" description="Compile module lib; production classes">
+    <mkdir dir="${lib.output.dir}"/>
+    <javac2 destdir="${lib.output.dir}" debug="${compiler.debug}" nowarn="${compiler.generate.no.warnings}" memorymaximumsize="${compiler.max.memory}" fork="true" executable="${module.jdk.bin.lib}/javac">
+      <compilerarg line="${compiler.args.lib}"/>
+      <bootclasspath refid="lib.module.bootclasspath"/>
+      <classpath refid="lib.module.production.classpath"/>
+      <src refid="lib.module.sourcepath"/>
+      <patternset refid="excluded.from.compilation.lib"/>
+    </javac2>
+    
+    <copy todir="${lib.output.dir}">
+      <fileset dir="${module.lib.basedir}/lib/build/generated/source/r/debug">
+        <patternset refid="compiler.resources"/>
+        <type type="file"/>
+      </fileset>
+      <fileset dir="${module.lib.basedir}/lib/build/generated/source/aidl/debug">
+        <patternset refid="compiler.resources"/>
+        <type type="file"/>
+      </fileset>
+      <fileset dir="${module.lib.basedir}/lib/build/generated/source/buildConfig/debug">
+        <patternset refid="compiler.resources"/>
+        <type type="file"/>
+      </fileset>
+      <fileset dir="${module.lib.basedir}/lib/build/generated/source/rs/debug">
+        <patternset refid="compiler.resources"/>
+        <type type="file"/>
+      </fileset>
+      <fileset dir="${module.lib.basedir}/lib/build/generated/res/rs/debug">
+        <patternset refid="compiler.resources"/>
+        <type type="file"/>
+      </fileset>
+      <fileset dir="${module.lib.basedir}/lib/src/main/res">
+        <patternset refid="compiler.resources"/>
+        <type type="file"/>
+      </fileset>
+      <fileset dir="${module.lib.basedir}/lib/src/main/java">
+        <patternset refid="compiler.resources"/>
+        <type type="file"/>
+      </fileset>
+    </copy>
+  </target>
+  
+  <target name="compile.module.lib.tests" depends="register.custom.compilers,compile.module.lib.production" description="compile module lib; test classes" unless="skip.tests">
+    <mkdir dir="${lib.testoutput.dir}"/>
+    <javac2 destdir="${lib.testoutput.dir}" debug="${compiler.debug}" nowarn="${compiler.generate.no.warnings}" memorymaximumsize="${compiler.max.memory}" fork="true" executable="${module.jdk.bin.lib}/javac">
+      <compilerarg line="${compiler.args.lib}"/>
+      <bootclasspath refid="lib.module.bootclasspath"/>
+      <classpath refid="lib.module.classpath"/>
+      <src refid="lib.module.test.sourcepath"/>
+      <patternset refid="excluded.from.compilation.lib"/>
+    </javac2>
+    
+    <copy todir="${lib.testoutput.dir}">
+      <fileset dir="${module.lib.basedir}/lib/src/androidTest/java">
+        <patternset refid="compiler.resources"/>
+        <type type="file"/>
+      </fileset>
+    </copy>
+  </target>
+  
+  <target name="clean.module.lib" description="cleanup module">
+    <delete dir="${lib.output.dir}"/>
+    <delete dir="${lib.testoutput.dir}"/>
+  </target>
+  
+  <target name="init" description="Build initialization">
+    <!-- Perform any build initialization in this target -->
+  </target>
+  
+  <target name="clean" depends="clean.module.baseproject, clean.module.lib" description="cleanup all"/>
+  
+  <target name="build.modules" depends="init, clean, compile.module.baseproject, compile.module.lib" description="build all modules"/>
+  
+  <target name="all" depends="build.modules" description="build all"/>
+</project>

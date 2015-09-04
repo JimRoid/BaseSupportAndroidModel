@@ -29,11 +29,24 @@ android {
     }
     buildTypes {
         release {
-            minifyEnabled false
+            minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
 }
+
+task clearJar(type: Delete) {
+    delete 'build/outputs/BaseSupport.jar'
+}
+
+task makeJar(type: Copy) {
+    from('build/intermediates/bundles/release/')
+    into('build/outputs/')
+    include('classes.jar')
+    rename ('classes.jar', 'BaseSupport.jar')
+}
+
+makeJar.dependsOn(clearJar, build)
 
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
