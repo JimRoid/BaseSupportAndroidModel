@@ -17,6 +17,6 @@ dependencies {
 </pre>
 ### Simple ###
 * extends BaseSupportActivity
-* extends BaseSupportFragment
+* extends BaseEasyFragment
  
 
