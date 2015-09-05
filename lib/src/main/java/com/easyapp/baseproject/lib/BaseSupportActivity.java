@@ -15,12 +15,6 @@ public abstract class BaseSupportActivity extends AppCompatActivity implements O
     protected int container = 0;
     protected FragmentManager fragmentManager = getSupportFragmentManager();
 
-    @Override
-    protected void onPause() {
-        hideKeyboard();
-        super.onPause();
-    }
-
     protected void hideKeyboard() {
         InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
         if (imm.isActive()) {
