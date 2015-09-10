@@ -25,8 +25,12 @@
 -dontwarn com.easyapp.baseproject.lib.**
 
 
+
+
+
 -keep class com.easyapp.baseproject.lib.RecycleView.BaseRecycleViewAdapter.** {*;}
 
+-keepattributes Exceptions,InnerClasses,...
 -keep public class com.easyapp.baseproject.lib.RecycleView.BaseRecycleViewAdapter {*;}
 -keep public class com.easyapp.baseproject.lib.RecycleView.BaseRecycleViewAdapter$* {*;}
 
