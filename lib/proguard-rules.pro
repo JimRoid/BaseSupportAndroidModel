@@ -23,6 +23,8 @@
 -dontpreverify
 -dontwarn android.support.**
 -dontwarn com.easyapp.baseproject.lib.**
+-keep class android.support.v7.** { *; }
+-keep interface android.support.v7.** { *; }
 
 -keep class com.easyapp.baseproject.lib.RecycleView.BaseRecycleViewAdapter.** {*;}
 
@@ -30,12 +32,6 @@
 -keep public class com.easyapp.baseproject.lib.RecycleView.BaseRecycleViewAdapter$ViewHolder{*;}
 -keep public class com.easyapp.baseproject.lib.RecycleView.BaseRecycleViewAdapter$FooterViewHolder{*;}
 -keep public class com.easyapp.baseproject.lib.RecycleView.BaseRecycleViewAdapter$HeaderViewHolder{*;}
-
--keep public class * extends android.support.v7.widget.RecyclerView
-
--keep public class * extends android.support.v7.widget.RecyclerView.Adapter
-
--keep public class * extends android.support.v7.widget.RecyclerView.ViewHolder
 
 -keep interface com.easyapp.baseproject.lib.OnFragmentTransactionListener { *;}
 
