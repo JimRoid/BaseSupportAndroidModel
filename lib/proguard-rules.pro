@@ -23,6 +23,7 @@
 -dontpreverify
 -dontwarn android.support.**
 
+
 -keep class android.support.v7.widget.RecyclerView { *; }
 
 -keep public class * extends android.support.v7.widget.RecyclerView
