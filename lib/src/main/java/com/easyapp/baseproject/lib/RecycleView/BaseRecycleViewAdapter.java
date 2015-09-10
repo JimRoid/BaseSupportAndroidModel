@@ -6,6 +6,8 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ProgressBar;
+import android.widget.TextView;
 
 import com.easyapp.baseproject.lib.R;
 import com.easyapp.baseproject.lib.util.JDevice;
@@ -16,7 +18,7 @@ import java.util.List;
 /**
  * Created by easyapp_jim on 15/9/9.
  */
-public abstract class BaseRecycleViewAdapter extends RecyclerView.Adapter<ViewHolder> {
+public abstract class BaseRecycleViewAdapter extends RecyclerView.Adapter<BaseRecycleViewAdapter.ViewHolder> {
 
     public static final int STATE_EMPTY_ITEM = 0;
     public static final int STATE_LOAD_MORE = 1;
@@ -186,5 +188,34 @@ public abstract class BaseRecycleViewAdapter extends RecyclerView.Adapter<ViewHo
 
     public void setState(int state) {
         this.state = state;
+    }
+
+    public static class ViewHolder extends RecyclerView.ViewHolder {
+        public int viewType;
+
+        public ViewHolder(int viewType, View itemView) {
+            super(itemView);
+            this.viewType = viewType;
+        }
+
+    }
+
+    public static class FooterViewHolder extends ViewHolder {
+        public ProgressBar progressBar;
+        public TextView textView;
+        public View LoadMore;
+
+        public FooterViewHolder(int viewType, View itemView) {
+            super(viewType, itemView);
+            LoadMore = itemView;
+            progressBar = (ProgressBar) itemView.findViewById(R.id.progressbar);
+            textView = (TextView) itemView.findViewById(R.id.hint);
+        }
+    }
+
+    public static class HeaderViewHolder extends ViewHolder{
+        public HeaderViewHolder(int viewType, View itemView) {
+            super(viewType, itemView);
+        }
     }
 }

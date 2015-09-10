@@ -23,9 +23,9 @@
 -dontpreverify
 -dontwarn android.support.**
 
--keep class com.easyapp.baseproject.lib.RecycleView.ViewHolder { *; }
--keep class com.easyapp.baseproject.lib.RecycleView.HeaderViewHolder { *; }
--keep class com.easyapp.baseproject.lib.RecycleView.FooterViewHolder { *; }
+-keep class com.easyapp.baseproject.lib.RecycleView.BaseRecycleViewAdapter.ViewHolder { *; }
+-keep class com.easyapp.baseproject.lib.RecycleView.BaseRecycleViewAdapter.HeaderViewHolder { *; }
+-keep class com.easyapp.baseproject.lib.RecycleView.BaseRecycleViewAdapter.FooterViewHolder { *; }
 -keep class com.easyapp.baseproject.lib.RecycleView.BaseRecycleViewAdapter { *; }
 
 -keep public class * extends android.support.v7.widget.RecyclerView
