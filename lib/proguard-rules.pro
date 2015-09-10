@@ -27,6 +27,14 @@
 
 -keep class com.easyapp.baseproject.lib.RecycleView.BaseRecycleViewAdapter.** {*;}
 
+-keep public class com.easyapp.baseproject.lib.RecycleView.BaseRecycleViewAdapter {*;}
+
+-keep public class com.easyapp.baseproject.lib.RecycleView.BaseRecycleViewAdapter.FooterViewHolder {*;}
+
+-keep public class com.easyapp.baseproject.lib.RecycleView.BaseRecycleViewAdapter.HeaderViewHolder {*;}
+
+-keep public class com.easyapp.baseproject.lib.RecycleView.BaseRecycleViewAdapter.ViewHolder {*;}
+
 -keep public class * extends android.support.v7.widget.RecyclerView
 
 -keep public class * extends android.support.v7.widget.RecyclerView.Adapter
