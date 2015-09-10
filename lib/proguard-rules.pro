@@ -24,9 +24,23 @@
 -dontwarn android.support.**
 
 -keep class android.support.v7.widget.RecyclerView { *; }
--keep class android.support.v7.widget.RecyclerView { *; }
+
+-keep public class * extends android.support.v7.widget.RecyclerView
+
+-keep public class * extends android.support.v7.widget.RecyclerView.Adapter
+
+-keep public class * extends android.support.v7.widget.RecyclerView.ViewHolder
+
+-keep interface com.easyapp.baseproject.lib.OnFragmentTransactionListener { *;}
+
+-keep interface com.easyapp.baseproject.lib.RecycleView.OnClick { *;}
+
+-keep interface com.easyapp.baseproject.lib.RecycleView.OnLongClick { *;}
+
 -keep class com.easyapp.baseproject.lib.BaseEasyFragment { *; }
+
 -keep class com.easyapp.baseproject.lib.BaseSupportActivity { *; }
+
 -keep public class * extends android.app.Fragment
 
 -keep public class * extends android.support.v4.app.Fragment
