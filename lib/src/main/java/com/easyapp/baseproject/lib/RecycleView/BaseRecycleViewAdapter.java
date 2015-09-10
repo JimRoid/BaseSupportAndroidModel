@@ -39,12 +39,51 @@ public class BaseRecycleViewAdapter extends RecyclerView.Adapter<BaseRecycleView
 
     protected List data;
     protected JDevice jDevice;
+    protected Context context;
 
     public BaseRecycleViewAdapter(Context context) {
+        this.context = context;
         _loadmoreText = R.string.loading;
         _loadFinishText = R.string.loading_no_more;
         data = new ArrayList();
         jDevice = new JDevice(context);
+    }
+
+    public void addData(List data) {
+        this.data.addAll(data);
+        notifyDataSetChanged();
+    }
+
+    public List getData() {
+        if (data == null) data = new ArrayList();
+
+        return data;
+    }
+
+    public void addItem(int pos, Object obj) {
+        getData();
+        data.add(pos, obj);
+        notifyDataSetChanged();
+    }
+
+    public void addItem(Object obj) {
+        getData();
+        data.add(obj);
+        notifyDataSetChanged();
+    }
+
+    public void removeItem(Object obj) {
+        if (data != null) {
+            data.remove(obj);
+            notifyDataSetChanged();
+        }
+    }
+
+    public void removeItem(int pos) {
+        if (data != null) {
+            data.remove(pos);
+            notifyDataSetChanged();
+        }
     }
 
     @Override
@@ -110,8 +149,7 @@ public class BaseRecycleViewAdapter extends RecyclerView.Adapter<BaseRecycleView
         return vh;
     }
 
-    @Override
-    public void onBindViewHolder(ViewHolder holder, int position) {
+    protected void onBaseBindViewHolder(ViewHolder holder, int position) {
         if ((getItemViewType(position) == TYPE_HEADER && position == 0)
                 || holder instanceof HeaderViewHolder) {
             onBindHeadViewHolder(holder, position);
@@ -121,6 +159,11 @@ public class BaseRecycleViewAdapter extends RecyclerView.Adapter<BaseRecycleView
         } else {
             onBindItemViewHolder(holder, position);
         }
+    }
+
+    @Override
+    public void onBindViewHolder(ViewHolder holder, int position) {
+        onBaseBindViewHolder(holder, position);
     }
 
     protected void onBindHeadViewHolder(ViewHolder holder, int position) {
