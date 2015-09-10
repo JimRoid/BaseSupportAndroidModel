@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- common configure -->
+    <color name="text_color_hint">#9A9A9A</color>
+
+    <!-- common background -->
+    <color name="list_item_background_normal">#ffffffff</color>
+
+</resources>

@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- common configure-->
+    <dimen name="text_size">16sp</dimen>
+
+    <!-- common space -->
+    <dimen name="space_10">10.0dip</dimen>
+</resources>
