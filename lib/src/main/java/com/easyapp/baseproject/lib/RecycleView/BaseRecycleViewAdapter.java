@@ -18,7 +18,7 @@ import java.util.List;
 /**
  * Created by easyapp_jim on 15/9/9.
  */
-public abstract class BaseRecycleViewAdapter extends RecyclerView.Adapter<BaseRecycleViewAdapter.ViewHolder> {
+public class BaseRecycleViewAdapter extends RecyclerView.Adapter<BaseRecycleViewAdapter.ViewHolder> {
 
     public static final int STATE_EMPTY_ITEM = 0;
     public static final int STATE_LOAD_MORE = 1;
@@ -171,9 +171,14 @@ public abstract class BaseRecycleViewAdapter extends RecyclerView.Adapter<BaseRe
         }
     }
 
-    protected abstract View onCreateItemView(ViewGroup parent, int viewType);
+    protected View onCreateItemView(ViewGroup parent, int viewType) {
+        return new View(parent.getContext());
+    }
 
-    protected abstract ViewHolder onCreateItemViewHolder(View view, int viewType);
+
+    protected ViewHolder onCreateItemViewHolder(View view, int viewType) {
+        return new ViewHolder(viewType, view);
+    }
 
     protected LayoutInflater getLayoutInflater(Context context) {
         if (mInflater == null)
@@ -213,7 +218,7 @@ public abstract class BaseRecycleViewAdapter extends RecyclerView.Adapter<BaseRe
         }
     }
 
-    public static class HeaderViewHolder extends ViewHolder{
+    public static class HeaderViewHolder extends ViewHolder {
         public HeaderViewHolder(int viewType, View itemView) {
             super(viewType, itemView);
         }
