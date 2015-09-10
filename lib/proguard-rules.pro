@@ -23,6 +23,8 @@
 -dontpreverify
 -dontwarn android.support.**
 
+-keep class android.support.v7.widget.RecyclerView { *; }
+-keep class android.support.v7.widget.RecyclerView { *; }
 -keep class com.easyapp.baseproject.lib.BaseEasyFragment { *; }
 -keep class com.easyapp.baseproject.lib.BaseSupportActivity { *; }
 -keep public class * extends android.app.Fragment
