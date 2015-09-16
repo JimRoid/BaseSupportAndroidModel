@@ -6,9 +6,15 @@ import android.text.TextUtils;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.UUID;
 
+/**
+ * Created by easyapp_jim on 15/8/21.
+ */
 public class Preference_DB {
     private String package_name = "";
+    private final String FIRST = "FIRST";
+    private final String USER_UUID = "USER_UUID";
     private final String LOGIN = "LOGIN";
     private final String TOKEN = "TOKEN";
     private SharedPreferences sharedPreferences;
@@ -16,16 +22,25 @@ public class Preference_DB {
     public Preference_DB(Context context) {
         package_name = context.getPackageName();
         sharedPreferences = context.getSharedPreferences(package_name, context.MODE_PRIVATE);
+        if (isFirst()) {
+            GenUUID();
+        }
+    }
+
+    private void GenUUID() {
+        UUID uuid = UUID.randomUUID();
+        String randomUUIDString = uuid.toString();
+        sharedPreferences.edit().putString(USER_UUID, randomUUIDString).apply();
+        sharedPreferences.edit().putBoolean(FIRST, false).apply();
+    }
+
+    public String getUUID() {
+        return sharedPreferences.getString(USER_UUID, "");
     }
 
     public void Login(String token) {
         sharedPreferences.edit().putBoolean(LOGIN, true).apply();
         sharedPreferences.edit().putString(TOKEN, token).apply();
-    }
-
-    public void Logout() {
-        sharedPreferences.edit().remove(LOGIN).apply();
-        sharedPreferences.edit().remove(TOKEN).apply();
     }
 
 
@@ -35,6 +50,10 @@ public class Preference_DB {
 
     public boolean isLogin() {
         return sharedPreferences.getBoolean(LOGIN, false);
+    }
+
+    public boolean isFirst() {
+        return sharedPreferences.getBoolean(FIRST, true);
     }
 
     public boolean putString(String key, String value) {
