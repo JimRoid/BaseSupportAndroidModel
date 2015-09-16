@@ -39,6 +39,8 @@
 
 -keep interface com.easyapp.baseproject.lib.RecycleView.OnLongClick { *;}
 
+-keep class com.easyapp.baseproject.lib.Preference_DB { *; }
+
 -keep class com.easyapp.baseproject.lib.BaseEasyFragment { *; }
 
 -keep class com.easyapp.baseproject.lib.BaseSupportActivity { *; }
