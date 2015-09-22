@@ -18,7 +18,7 @@ import java.util.List;
 /**
  * Created by easyapp_jim on 15/9/9.
  */
-public abstract class BaseRecycleViewAdapter extends RecyclerView.Adapter<BaseRecycleViewAdapter.ViewHolder> {
+public abstract class BaseRecycleViewAdapter extends RecyclerView.Adapter<BaseRecycleViewAdapter.ItemHolder> {
 
     public static final int STATE_EMPTY_ITEM = 0;
     public static final int STATE_LOAD_MORE = 1;
@@ -132,8 +132,8 @@ public abstract class BaseRecycleViewAdapter extends RecyclerView.Adapter<BaseRe
     }
 
     @Override
-    public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        ViewHolder vh;
+    public ItemHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+        ItemHolder vh;
         if (viewType == TYPE_FOOTER) {
             View v = getLayoutInflater(parent.getContext())
                     .inflate(R.layout.recycle_foot, null);
@@ -149,7 +149,7 @@ public abstract class BaseRecycleViewAdapter extends RecyclerView.Adapter<BaseRe
         return vh;
     }
 
-    protected void onBaseBindViewHolder(ViewHolder holder, int position) {
+    protected void onBaseBindViewHolder(ItemHolder holder, int position) {
         if ((getItemViewType(position) == TYPE_HEADER && position == 0)
                 || holder instanceof HeaderViewHolder) {
             onBindHeadViewHolder(holder, position);
@@ -162,15 +162,15 @@ public abstract class BaseRecycleViewAdapter extends RecyclerView.Adapter<BaseRe
     }
 
     @Override
-    public void onBindViewHolder(ViewHolder holder, int position) {
+    public void onBindViewHolder(ItemHolder holder, int position) {
         onBaseBindViewHolder(holder, position);
     }
 
-    protected abstract void onBindHeadViewHolder(ViewHolder holder, int position);
+    protected abstract void onBindHeadViewHolder(ItemHolder holder, int position);
 
-    protected abstract void onBindItemViewHolder(ViewHolder holder, int position);
+    protected abstract void onBindItemViewHolder(ItemHolder holder, int position);
 
-    protected void onBindFootViewHolder(ViewHolder holder, int position) {
+    protected void onBindFootViewHolder(ItemHolder holder, int position) {
         FooterViewHolder vh = (FooterViewHolder) holder;
         if (!loadMoreHasBg()) vh.LoadMore.setBackground(null);
 
@@ -215,8 +215,10 @@ public abstract class BaseRecycleViewAdapter extends RecyclerView.Adapter<BaseRe
     }
 
 
-    protected ViewHolder onCreateItemViewHolder(View view, int viewType) {
-        return new ViewHolder(viewType, view);
+    protected ItemHolder onCreateItemViewHolder(View view, int viewType) {
+        return new ItemHolder(viewType, view){
+
+        };
     }
 
     protected LayoutInflater getLayoutInflater(Context context) {
@@ -243,13 +245,8 @@ public abstract class BaseRecycleViewAdapter extends RecyclerView.Adapter<BaseRe
         }
     }
 
-    public static class ViewHolder extends ItemHolder{
-        public ViewHolder(int viewType, View itemView) {
-            super(viewType, itemView);
-        }
-    }
 
-    public static class FooterViewHolder extends ViewHolder {
+    public static class FooterViewHolder extends ItemHolder {
         public ProgressBar progressBar;
         public TextView textView;
         public View LoadMore;
@@ -262,7 +259,7 @@ public abstract class BaseRecycleViewAdapter extends RecyclerView.Adapter<BaseRe
         }
     }
 
-    public static class HeaderViewHolder extends ViewHolder {
+    public static class HeaderViewHolder extends ItemHolder {
         public HeaderViewHolder(int viewType, View itemView) {
             super(viewType, itemView);
         }
