@@ -12,7 +12,7 @@ repositories {
 </pre>
 <pre>
 dependencies {
-    compile 'com.easyapp.baseproject.lib:BaseSupport:1.0.6.6'
+    compile 'com.easyapp.baseproject.lib:BaseSupport:1.0.6.7'
 }
 </pre>
 ### Simple ###
