@@ -17,10 +17,10 @@ android {
     buildToolsVersion "22.0.1"
 
     defaultConfig {
-        minSdkVersion 9
+        minSdkVersion 16
         targetSdkVersion 22
         versionCode 1
-        versionName "1.0.6.7"
+        versionName "1.0.6.8"
     }
 
     compileOptions {
@@ -52,7 +52,7 @@ uploadArchives {
     repositories {
         mavenDeployer {
             repository url: "file://${repo.absolutePath}"
-            pom.version = '1.0.6.7'             // version
+            pom.version = '1.0.6.8'             // version
             pom.groupId = 'com.easyapp.baseproject.lib'    // グループ名
             pom.artifactId = 'BaseSupport' // ライブラリ名
         }

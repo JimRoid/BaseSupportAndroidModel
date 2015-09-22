@@ -18,7 +18,7 @@ import java.util.List;
 /**
  * Created by easyapp_jim on 15/9/9.
  */
-public class BaseRecycleViewAdapter extends RecyclerView.Adapter<BaseRecycleViewAdapter.ViewHolder> {
+public abstract class BaseRecycleViewAdapter extends RecyclerView.Adapter<BaseRecycleViewAdapter.ViewHolder> {
 
     public static final int STATE_EMPTY_ITEM = 0;
     public static final int STATE_LOAD_MORE = 1;
@@ -166,13 +166,9 @@ public class BaseRecycleViewAdapter extends RecyclerView.Adapter<BaseRecycleView
         onBaseBindViewHolder(holder, position);
     }
 
-    protected void onBindHeadViewHolder(ViewHolder holder, int position) {
-        //需要被繼承重構
-    }
+    protected abstract void onBindHeadViewHolder(ViewHolder holder, int position);
 
-    protected void onBindItemViewHolder(ViewHolder holder, int position) {
-        //需要被繼承重構
-    }
+    protected abstract void onBindItemViewHolder(ViewHolder holder, int position);
 
     protected void onBindFootViewHolder(ViewHolder holder, int position) {
         FooterViewHolder vh = (FooterViewHolder) holder;
