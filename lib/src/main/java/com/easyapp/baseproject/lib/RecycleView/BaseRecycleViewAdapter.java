@@ -234,14 +234,19 @@ public abstract class BaseRecycleViewAdapter extends RecyclerView.Adapter<BaseRe
         this.state = state;
     }
 
-    public static class ViewHolder extends RecyclerView.ViewHolder {
+    public static abstract class ItemHolder extends RecyclerView.ViewHolder {
         public int viewType;
 
-        public ViewHolder(int viewType, View itemView) {
+        public ItemHolder(int viewType, View itemView) {
             super(itemView);
             this.viewType = viewType;
         }
+    }
 
+    public static class ViewHolder extends ItemHolder{
+        public ViewHolder(int viewType, View itemView) {
+            super(viewType, itemView);
+        }
     }
 
     public static class FooterViewHolder extends ViewHolder {
