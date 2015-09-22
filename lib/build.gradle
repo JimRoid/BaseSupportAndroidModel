@@ -18,9 +18,9 @@ android {
 
     defaultConfig {
         minSdkVersion 16
-        targetSdkVersion 22
-        versionCode 1
-        versionName "1.0.7"
+        targetSdkVersion 23
+        versionCode 2
+        versionName "1.0.7.1"
     }
 
     compileOptions {
@@ -30,7 +30,7 @@ android {
     buildTypes {
 
         release {
-            minifyEnabled true
+            minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
@@ -39,9 +39,11 @@ android {
 
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
-    compile 'com.android.support:support-v4:22.2.1'
-    compile 'com.android.support:appcompat-v7:22.2.1'
-    compile 'com.android.support:recyclerview-v7:22.2.1'
+    compile 'com.android.support:support-v4:23.0.1'
+    compile 'com.android.support:appcompat-v7:23.0.1'
+    compile 'com.android.support:recyclerview-v7:23.0.1'
+    compile 'com.loopj.android:android-async-http:1.4.9'
+    compile 'com.orhanobut:logger:1.10'
 }
 
 def repo = new File(rootDir, "")
@@ -52,7 +54,7 @@ uploadArchives {
     repositories {
         mavenDeployer {
             repository url: "file://${repo.absolutePath}"
-            pom.version = '1.0.7'             // version
+            pom.version = '1.0.7.1'             // version
             pom.groupId = 'com.easyapp.baseproject.lib'    // グループ名
             pom.artifactId = 'BaseSupport' // ライブラリ名
         }
