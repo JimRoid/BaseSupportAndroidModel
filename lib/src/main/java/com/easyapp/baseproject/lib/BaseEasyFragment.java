@@ -3,13 +3,14 @@ package com.easyapp.baseproject.lib;
 import android.app.Activity;
 import android.content.Context;
 import android.support.v4.app.Fragment;
+import android.support.v7.app.AppCompatActivity;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Toast;
 
 /**
  * 簡單可支援fragment 切換的base
  */
-public class BaseEasyFragment extends Fragment {
+public abstract class BaseEasyFragment extends Fragment {
     private Toast toast;
     protected OnFragmentTransactionListener onFragmentTransactionListener;
 
@@ -38,16 +39,36 @@ public class BaseEasyFragment extends Fragment {
         }
     }
 
+    protected void setTitle(CharSequence charSequence) {
+        ((AppCompatActivity) getActivity()).getSupportActionBar().setTitle(charSequence);
+    }
+
+    protected void setTitle(int res) {
+        ((AppCompatActivity) getActivity()).getSupportActionBar().setTitle(res);
+    }
+
     protected void AddFragment(Fragment fragment) {
         onFragmentTransactionListener.AddFragment(fragment);
+    }
+
+    protected void AddFragment(Fragment fragment, int container) {
+        onFragmentTransactionListener.AddFragment(fragment, container);
     }
 
     protected void AddFragment_Up(Fragment fragment) {
         onFragmentTransactionListener.AddFragment_Up(fragment);
     }
 
+    protected void AddFragment_Up(Fragment fragment, int container) {
+        onFragmentTransactionListener.AddFragment_Up(fragment, container);
+    }
+
     protected void ReplaceFragment(Fragment fragment) {
         onFragmentTransactionListener.ReplaceFragment(fragment);
+    }
+
+    protected void ReplaceFragment(Fragment fragment, int container) {
+        onFragmentTransactionListener.ReplaceFragment(fragment, container);
     }
 
     protected void PopBackStack() {

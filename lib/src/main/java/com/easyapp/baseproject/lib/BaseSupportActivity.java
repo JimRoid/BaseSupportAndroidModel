@@ -32,7 +32,21 @@ public abstract class BaseSupportActivity extends AppCompatActivity implements O
     }
 
     @Override
+    public void AddFragment(Fragment fragment, int container) {
+        AddFragment(fragment, container, false);
+    }
+
+    @Override
     public void AddFragment(Fragment fragment, boolean instead) {
+        if (container == 0) {
+            Toast.makeText(this, "Please Set container ID", Toast.LENGTH_SHORT).show();
+            return;
+        }
+        AddFragment(fragment, container, instead);
+    }
+
+    @Override
+    public void AddFragment(Fragment fragment, int container, boolean instead) {
         if (container == 0) {
             Toast.makeText(this, "Please Set container ID", Toast.LENGTH_SHORT).show();
             return;
@@ -46,6 +60,11 @@ public abstract class BaseSupportActivity extends AppCompatActivity implements O
 
     @Override
     public void AddFragment_Up(Fragment fragment) {
+        AddFragment_Up(fragment, container);
+    }
+
+    @Override
+    public void AddFragment_Up(Fragment fragment, int container) {
         if (container == 0) {
             Toast.makeText(this, "Please Set container ID", Toast.LENGTH_SHORT).show();
             return;
@@ -57,8 +76,14 @@ public abstract class BaseSupportActivity extends AppCompatActivity implements O
         OnAddFragment();
     }
 
+
     @Override
     public void ReplaceFragment(Fragment fragment) {
+        ReplaceFragment(fragment, container);
+    }
+
+    @Override
+    public void ReplaceFragment(Fragment fragment, int container) {
         if (container == 0) {
             Toast.makeText(this, "Please Set container ID", Toast.LENGTH_SHORT).show();
             return;

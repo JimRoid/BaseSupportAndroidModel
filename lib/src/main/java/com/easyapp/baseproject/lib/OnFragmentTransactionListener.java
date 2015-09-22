@@ -12,11 +12,19 @@ public interface OnFragmentTransactionListener {
 
     void AddFragment(Fragment fragment);
 
+    void AddFragment(Fragment fragment, int container);
+
     void AddFragment(Fragment fragment, boolean instead);
+
+    void AddFragment(Fragment fragment, int container, boolean instead);
 
     void AddFragment_Up(Fragment fragment);
 
+    void AddFragment_Up(Fragment fragment, int container);
+
     void ReplaceFragment(Fragment fragment);
+
+    void ReplaceFragment(Fragment fragment, int container);
 
     void PopBackStack();
 
