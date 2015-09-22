@@ -30,6 +30,7 @@
 
 -keep public class com.easyapp.baseproject.lib.RecycleView.BaseRecycleViewAdapter {*;}
 -keep public class com.easyapp.baseproject.lib.RecycleView.BaseRecycleViewAdapter$ViewHolder{*;}
+-keep public class com.easyapp.baseproject.lib.RecycleView.BaseRecycleViewAdapter$ItemHolder{*;}
 -keep public class com.easyapp.baseproject.lib.RecycleView.BaseRecycleViewAdapter$FooterViewHolder{*;}
 -keep public class com.easyapp.baseproject.lib.RecycleView.BaseRecycleViewAdapter$HeaderViewHolder{*;}
 
