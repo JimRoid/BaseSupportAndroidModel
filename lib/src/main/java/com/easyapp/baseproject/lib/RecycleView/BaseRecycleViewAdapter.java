@@ -18,7 +18,7 @@ import java.util.List;
 /**
  * Created by easyapp_jim on 15/9/9.
  */
-public abstract class BaseRecycleViewAdapter extends RecyclerView.Adapter<BaseRecycleViewAdapter.ItemHolder> {
+public abstract class BaseRecycleViewAdapter<VH extends BaseRecycleViewAdapter.ItemHolder> extends RecyclerView.Adapter<BaseRecycleViewAdapter.ItemHolder> {
 
     public static final int STATE_EMPTY_ITEM = 0;
     public static final int STATE_LOAD_MORE = 1;
@@ -216,7 +216,7 @@ public abstract class BaseRecycleViewAdapter extends RecyclerView.Adapter<BaseRe
 
 
     protected ItemHolder onCreateItemViewHolder(View view, int viewType) {
-        return new ItemHolder(viewType, view){
+        return new ItemHolder(viewType, view) {
 
         };
     }
