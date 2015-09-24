@@ -86,6 +86,13 @@ public abstract class BaseRecycleViewAdapter<VH extends BaseRecycleViewAdapter.I
         }
     }
 
+    public void clear(){
+        if (data != null) {
+            data.clear();
+            notifyDataSetChanged();
+        }
+    }
+
     @Override
     public int getItemCount() {
         int size = getDataSize();
