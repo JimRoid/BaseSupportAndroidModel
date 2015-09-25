@@ -92,6 +92,9 @@ public class NetworkTool {
     }
 
     protected void POST(String route, StringEntity stringEntity, String content_type, AsyncResponseHandler responseHandler) {
+        if (!route.startsWith("http"))
+            route = baseUrl + route;
+
         asyncHttpClient.post(mContext, route, stringEntity, content_type, DefaultHttpResponseHandler(responseHandler));
     }
 
@@ -99,12 +102,15 @@ public class NetworkTool {
         return new AsyncHttpResponseHandler() {
             @Override
             public void onSuccess(int statusCode, Header[] headers, byte[] responseBody) {
-                Logger.d(responseBody.toString());
+                String response = new String(responseBody);
+                Logger.d(response);
                 responseHandler.Success(statusCode, headers, responseBody);
             }
 
             @Override
             public void onFailure(int statusCode, Header[] headers, byte[] responseBody, Throwable error) {
+                String response = new String(responseBody);
+                Logger.d(response);
                 responseHandler.Fail(statusCode, headers, responseBody);
             }
         };
