@@ -5,6 +5,7 @@ import android.content.Context;
 import android.widget.Toast;
 
 import com.loopj.android.http.AsyncHttpClient;
+import com.loopj.android.http.AsyncHttpResponseHandler;
 import com.loopj.android.http.JsonHttpResponseHandler;
 import com.loopj.android.http.RequestParams;
 import com.orhanobut.logger.Logger;
@@ -13,6 +14,7 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 
 import cz.msebera.android.httpclient.Header;
+import cz.msebera.android.httpclient.entity.StringEntity;
 
 /**
  * Created by easyapp_jim on 15/3/19.
@@ -37,7 +39,7 @@ public class NetworkTool {
     }
 
 
-    public void GetRandomChinese(int limit, int n, ResponseHandler responseHandler) {
+    public void GetRandomChinese(int limit, int n, JResponseHandler responseHandler) {
         String route = "http://more.handlino.com/sentences.json?limit=" + limit + "&n=" + n;
         get(route, responseHandler);
     }
@@ -54,7 +56,7 @@ public class NetworkTool {
         asyncHttpClient.addHeader(header, value);
     }
 
-    protected void get(String route, RequestParams params, ResponseHandler responseHandler) {
+    protected void get(String route, RequestParams params, JResponseHandler responseHandler) {
         if (!route.startsWith("http"))
             route = baseUrl + route;
 
@@ -63,7 +65,7 @@ public class NetworkTool {
         asyncHttpClient.get(mContext, route, params, DefaultjsonHttpResponseHandler(responseHandler));
     }
 
-    protected void get(String route, ResponseHandler responseHandler) {
+    protected void get(String route, JResponseHandler responseHandler) {
         if (!route.startsWith("http"))
             route = baseUrl + route;
 
@@ -71,11 +73,11 @@ public class NetworkTool {
         asyncHttpClient.get(mContext, route, DefaultjsonHttpResponseHandler(responseHandler));
     }
 
-    protected void post(String route, RequestParams params, ResponseHandler responseHandler) {
-        post(route, params, false, responseHandler);
+    protected void POST(String route, RequestParams params, JResponseHandler responseHandler) {
+        POST(route, params, false, responseHandler);
     }
 
-    protected void post(String route, RequestParams params, boolean isLogin, ResponseHandler responseHandler) {
+    protected void POST(String route, RequestParams params, boolean isLogin, JResponseHandler responseHandler) {
         if (!route.startsWith("http"))
             route = baseUrl + route;
 
@@ -84,8 +86,31 @@ public class NetworkTool {
         asyncHttpClient.post(mContext, route, params, DefaultjsonHttpResponseHandler(responseHandler));
     }
 
+    protected void POST(String route, StringEntity stringEntity, AsyncResponseHandler responseHandler) {
+        String content_type = "text/plain charset=utf-8";
+        POST(route, stringEntity, content_type, responseHandler);
+    }
 
-    protected JsonHttpResponseHandler DefaultjsonHttpResponseHandler(final ResponseHandler responseHandler) {
+    protected void POST(String route, StringEntity stringEntity, String content_type, AsyncResponseHandler responseHandler) {
+        asyncHttpClient.post(mContext, route, stringEntity, content_type, DefaultHttpResponseHandler(responseHandler));
+    }
+
+    protected AsyncHttpResponseHandler DefaultHttpResponseHandler(final AsyncResponseHandler responseHandler) {
+        return new AsyncHttpResponseHandler() {
+            @Override
+            public void onSuccess(int statusCode, Header[] headers, byte[] responseBody) {
+                Logger.d(responseBody.toString());
+                responseHandler.Success(statusCode, headers, responseBody);
+            }
+
+            @Override
+            public void onFailure(int statusCode, Header[] headers, byte[] responseBody, Throwable error) {
+                responseHandler.Fail(statusCode, headers, responseBody);
+            }
+        };
+    }
+
+    protected JsonHttpResponseHandler DefaultjsonHttpResponseHandler(final JResponseHandler responseHandler) {
         JsonHttpResponseHandler jsonHttpResponseHandler = new JsonHttpResponseHandler() {
             @Override
             public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
@@ -122,10 +147,16 @@ public class NetworkTool {
         return jsonHttpResponseHandler;
     }
 
-    public interface ResponseHandler {
+    public interface JResponseHandler {
         void Success(int StatusCode, JSONObject response);
 
         void Fail(int status, String reason);
+    }
+
+    public interface AsyncResponseHandler {
+        void Success(int statusCode, Header[] headers, byte[] responseBody);
+
+        void Fail(int statusCode, Header[] headers, byte[] responseBody);
     }
 
     protected void Logger(String message) {
