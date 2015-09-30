@@ -95,6 +95,7 @@ public class NetworkTool {
         if (!route.startsWith("http"))
             route = baseUrl + route;
 
+        Logger.d(stringEntity.toString());
         asyncHttpClient.post(mContext, route, stringEntity, content_type, DefaultHttpResponseHandler(responseHandler));
     }
 
