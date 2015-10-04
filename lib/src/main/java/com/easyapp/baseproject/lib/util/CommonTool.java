@@ -1,4 +1,4 @@
-package com.easyapp.baseproject.lib;
+package com.easyapp.baseproject.lib.util;
 
 import android.app.Activity;
 import android.content.Intent;
