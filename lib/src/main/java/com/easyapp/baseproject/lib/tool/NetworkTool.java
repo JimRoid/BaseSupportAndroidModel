@@ -63,6 +63,7 @@ public class NetworkTool {
 
     protected void get(String route, RequestParams params, JResponseHandler responseHandler) {
         if (!isNetworkConnected(activity)) {
+            responseHandler.NoNetwork();
             showNetworkCheck();
             return;
         }
@@ -77,6 +78,7 @@ public class NetworkTool {
 
     protected void get(String route, JResponseHandler responseHandler) {
         if (!isNetworkConnected(activity)) {
+            responseHandler.NoNetwork();
             showNetworkCheck();
             return;
         }
@@ -94,6 +96,7 @@ public class NetworkTool {
 
     protected void POST(String route, RequestParams params, boolean isLogin, JResponseHandler responseHandler) {
         if (!isNetworkConnected(activity)) {
+            responseHandler.NoNetwork();
             showNetworkCheck();
             return;
         }
@@ -113,6 +116,7 @@ public class NetworkTool {
 
     protected void POST(String route, StringEntity stringEntity, String content_type, AsyncResponseHandler responseHandler) {
         if (!isNetworkConnected(activity)) {
+            responseHandler.NoNetwork();
             showNetworkCheck();
             return;
         }
@@ -182,22 +186,22 @@ public class NetworkTool {
         void Success(int StatusCode, JSONObject response);
 
         void Fail(int status, String reason);
+
+        void NoNetwork();
     }
 
     public interface AsyncResponseHandler {
         void Success(int statusCode, Header[] headers, byte[] responseBody);
 
         void Fail(int statusCode, Header[] headers, byte[] responseBody);
+
+        void NoNetwork();
     }
 
     protected void Logger(String message) {
         if (isShowLog) {
             Logger.d(message);
         }
-    }
-
-    public interface NetworkFail {
-        void showCheckDialog();
     }
 
     protected void showNetworkCheck() {
