@@ -1,7 +1,6 @@
 package com.easyapp.baseproject.lib;
 
 import android.content.Context;
-import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
@@ -12,15 +11,14 @@ import android.widget.Toast;
  * * 簡單可支援fragment 切換的base
  */
 public abstract class BaseSupportActivity extends AppCompatActivity implements OnFragmentTransactionListener {
+    protected final static String fade = "fade";
+    protected final static String slide = "slide";
+    protected final static String push = "push";
+
+
     private Toast toast;
     protected int container = 0;
     protected FragmentManager fragmentManager = getSupportFragmentManager();
-
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-
-    }
 
     protected void hideKeyboard() {
         InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
@@ -28,6 +26,7 @@ public abstract class BaseSupportActivity extends AppCompatActivity implements O
             imm.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(), 0);
         }
     }
+
 
     protected void setContainer(int container) {
         this.container = container;
@@ -66,6 +65,12 @@ public abstract class BaseSupportActivity extends AppCompatActivity implements O
     }
 
     @Override
+    public void AddFragment_Fade(Fragment fragment, int container) {
+        fragmentManager.beginTransaction().setCustomAnimations(R.anim.fade_in, R.anim.fade_out).replace(container, fragment, "main").addToBackStack("main_interface").commitAllowingStateLoss();
+        OnAddFragment();
+    }
+
+    @Override
     public void AddFragment_Up(Fragment fragment) {
         AddFragment_Up(fragment, container);
     }
@@ -99,6 +104,7 @@ public abstract class BaseSupportActivity extends AppCompatActivity implements O
         fragmentManager.beginTransaction().setCustomAnimations(R.anim.enter_from_right, R.anim.exit_to_right, R.anim.enter_from_left, R.anim.exit_to_left).replace(container, fragment, "main").disallowAddToBackStack().commitAllowingStateLoss();
         OnReplaceFragment();
     }
+
 
     @Override
     public void PopBackStack() {

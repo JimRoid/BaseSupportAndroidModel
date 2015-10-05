@@ -18,6 +18,8 @@ public interface OnFragmentTransactionListener {
 
     void AddFragment(Fragment fragment, int container, boolean instead);
 
+    void AddFragment_Fade(Fragment fragment, int container);
+
     void AddFragment_Up(Fragment fragment);
 
     void AddFragment_Up(Fragment fragment, int container);
