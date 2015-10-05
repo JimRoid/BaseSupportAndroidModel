@@ -66,7 +66,7 @@ public abstract class BaseSupportActivity extends AppCompatActivity implements O
 
     @Override
     public void AddFragment_Fade(Fragment fragment, int container) {
-        fragmentManager.beginTransaction().setCustomAnimations(R.anim.zoom_in, R.anim.zoom_out).replace(container, fragment, "main").addToBackStack("main_interface").commitAllowingStateLoss();
+        fragmentManager.beginTransaction().setCustomAnimations(R.anim.zoom_in, R.anim.zoom_out, R.anim.zoom_in, R.anim.zoom_out).replace(container, fragment, "main").addToBackStack("main_interface").commitAllowingStateLoss();
         OnAddFragment();
     }
 
