@@ -1,9 +1,15 @@
 package com.easyapp.baseproject.lib.tool;
 
 
+import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.widget.Toast;
 
+import com.easyapp.baseproject.lib.R;
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.AsyncHttpResponseHandler;
 import com.loopj.android.http.JsonHttpResponseHandler;
@@ -21,10 +27,9 @@ import cz.msebera.android.httpclient.entity.StringEntity;
  */
 public class NetworkTool {
     public static final String SUCCESS_CODE = "status";
-    protected Context mContext;
+    protected Activity activity;
     protected static AsyncHttpClient asyncHttpClient;
     protected boolean isShowLog = true;
-
 
     protected String baseUrl = "";
 
@@ -33,8 +38,8 @@ public class NetworkTool {
     }
 
 
-    public NetworkTool(Context context, String baseUrl) {
-        mContext = context;
+    public NetworkTool(Activity context, String baseUrl) {
+        activity = context;
         this.baseUrl = baseUrl;
     }
 
@@ -57,20 +62,30 @@ public class NetworkTool {
     }
 
     protected void get(String route, RequestParams params, JResponseHandler responseHandler) {
+        if (!isNetworkConnected(activity)) {
+            showNetworkCheck();
+            return;
+        }
+
         if (!route.startsWith("http"))
             route = baseUrl + route;
 
         Logger("route" + route);
         Logger("params: " + params);
-        asyncHttpClient.get(mContext, route, params, DefaultjsonHttpResponseHandler(responseHandler));
+        asyncHttpClient.get(activity, route, params, DefaultjsonHttpResponseHandler(responseHandler));
     }
 
     protected void get(String route, JResponseHandler responseHandler) {
+        if (!isNetworkConnected(activity)) {
+            showNetworkCheck();
+            return;
+        }
+
         if (!route.startsWith("http"))
             route = baseUrl + route;
 
         Logger("route: " + route);
-        asyncHttpClient.get(mContext, route, DefaultjsonHttpResponseHandler(responseHandler));
+        asyncHttpClient.get(activity, route, DefaultjsonHttpResponseHandler(responseHandler));
     }
 
     protected void POST(String route, RequestParams params, JResponseHandler responseHandler) {
@@ -78,12 +93,17 @@ public class NetworkTool {
     }
 
     protected void POST(String route, RequestParams params, boolean isLogin, JResponseHandler responseHandler) {
+        if (!isNetworkConnected(activity)) {
+            showNetworkCheck();
+            return;
+        }
+
         if (!route.startsWith("http"))
             route = baseUrl + route;
 
         Logger("route: " + route);
         Logger("params: " + params);
-        asyncHttpClient.post(mContext, route, params, DefaultjsonHttpResponseHandler(responseHandler));
+        asyncHttpClient.post(activity, route, params, DefaultjsonHttpResponseHandler(responseHandler));
     }
 
     protected void POST(String route, StringEntity stringEntity, AsyncResponseHandler responseHandler) {
@@ -92,10 +112,15 @@ public class NetworkTool {
     }
 
     protected void POST(String route, StringEntity stringEntity, String content_type, AsyncResponseHandler responseHandler) {
+        if (!isNetworkConnected(activity)) {
+            showNetworkCheck();
+            return;
+        }
+
         if (!route.startsWith("http"))
             route = baseUrl + route;
 
-        asyncHttpClient.post(mContext, route, stringEntity, content_type, DefaultHttpResponseHandler(responseHandler));
+        asyncHttpClient.post(activity, route, stringEntity, content_type, DefaultHttpResponseHandler(responseHandler));
     }
 
     protected AsyncHttpResponseHandler DefaultHttpResponseHandler(final AsyncResponseHandler responseHandler) {
@@ -128,7 +153,7 @@ public class NetworkTool {
             @Override
             public void onFailure(int statusCode, Header[] headers, Throwable throwable, JSONObject errorResponse) {
                 super.onFailure(statusCode, headers, throwable, errorResponse);
-                Toast.makeText(mContext, "更新失敗請檢查網路", Toast.LENGTH_SHORT).show();
+                Toast.makeText(activity, "更新失敗請檢查網路", Toast.LENGTH_SHORT).show();
                 if (null != errorResponse) {
                     responseHandler.Fail(statusCode, errorResponse.toString());
                 } else {
@@ -139,14 +164,14 @@ public class NetworkTool {
             @Override
             public void onFailure(int statusCode, Header[] headers, Throwable throwable, JSONArray errorResponse) {
                 super.onFailure(statusCode, headers, throwable, errorResponse);
-                Toast.makeText(mContext, "更新失敗請檢查網路", Toast.LENGTH_SHORT).show();
+                Toast.makeText(activity, "更新失敗請檢查網路", Toast.LENGTH_SHORT).show();
                 responseHandler.Fail(statusCode, "");
             }
 
             @Override
             public void onFailure(int statusCode, Header[] headers, String responseString, Throwable throwable) {
                 super.onFailure(statusCode, headers, responseString, throwable);
-                Toast.makeText(mContext, "更新失敗請檢查網路", Toast.LENGTH_SHORT).show();
+                Toast.makeText(activity, "更新失敗請檢查網路", Toast.LENGTH_SHORT).show();
                 responseHandler.Fail(statusCode, responseString);
             }
         };
@@ -168,6 +193,34 @@ public class NetworkTool {
     protected void Logger(String message) {
         if (isShowLog) {
             Logger.d(message);
+        }
+    }
+
+    public interface NetworkFail {
+        void showCheckDialog();
+    }
+
+    protected void showNetworkCheck() {
+        AlertDialog mAltDialog = new AlertDialog.Builder(activity, AlertDialog.THEME_DEVICE_DEFAULT_LIGHT)
+                .setTitle(R.string.network_message_title)
+                .setMessage(R.string.network_message_content)
+                .setPositiveButton("確定", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+                    }
+                }).create();
+        mAltDialog.show();
+    }
+
+    public static boolean isNetworkConnected(Context context) {
+        ConnectivityManager cm = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo network = cm.getActiveNetworkInfo();
+
+        if (network == null || !network.isConnected()) {
+            return false;
+        } else {
+            return network.isAvailable();
         }
     }
 
