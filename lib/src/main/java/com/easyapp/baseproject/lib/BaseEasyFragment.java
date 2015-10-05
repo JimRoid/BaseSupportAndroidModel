@@ -56,7 +56,7 @@ public abstract class BaseEasyFragment extends Fragment {
     }
 
     protected void AddFragment_Fade(Fragment fragment, int container) {
-        onFragmentTransactionListener.AddFragment_Fade(fragment, container);
+        onFragmentTransactionListener.AddFragment_Zoom(fragment, container);
     }
 
     protected void AddFragment_Up(Fragment fragment) {
