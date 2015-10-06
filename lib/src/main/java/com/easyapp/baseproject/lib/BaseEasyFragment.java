@@ -51,6 +51,10 @@ public abstract class BaseEasyFragment extends Fragment {
         onFragmentTransactionListener.AddFragment(fragment);
     }
 
+    protected void AddFragment(Fragment fragment, String anim) {
+        onFragmentTransactionListener.AddFragment(fragment, anim);
+    }
+
     protected void AddFragment(Fragment fragment, int container) {
         onFragmentTransactionListener.AddFragment(fragment, container);
     }
@@ -73,6 +77,14 @@ public abstract class BaseEasyFragment extends Fragment {
 
     protected void ReplaceFragment(Fragment fragment, int container) {
         onFragmentTransactionListener.ReplaceFragment(fragment, container);
+    }
+
+    protected void ReplaceFragment(Fragment fragment, String anim) {
+        onFragmentTransactionListener.ReplaceFragment(fragment, anim);
+    }
+
+    protected void ReplaceFragment(Fragment fragment, int container, String anim) {
+        onFragmentTransactionListener.ReplaceFragment(fragment, container, anim);
     }
 
     protected void PopBackStack() {

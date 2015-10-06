@@ -3,6 +3,7 @@ package com.easyapp.baseproject.lib;
 import android.content.Context;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Toast;
@@ -11,9 +12,9 @@ import android.widget.Toast;
  * * 簡單可支援fragment 切換的base
  */
 public abstract class BaseSupportActivity extends AppCompatActivity implements OnFragmentTransactionListener {
-    protected final static String fade = "fade";
-    protected final static String slide = "slide";
-    protected final static String push = "push";
+    protected final static String FADE = "FADE";
+    protected final static String SLIDE = "SLIDE";
+    protected final static String PUSH = "PUSH";
 
 
     private Toast toast;
@@ -39,7 +40,7 @@ public abstract class BaseSupportActivity extends AppCompatActivity implements O
 
     @Override
     public void AddFragment(Fragment fragment, int container) {
-        AddFragment(fragment, container, false);
+        AddFragment(fragment, container, SLIDE, false);
     }
 
     @Override
@@ -48,18 +49,34 @@ public abstract class BaseSupportActivity extends AppCompatActivity implements O
             Toast.makeText(this, "Please Set container ID", Toast.LENGTH_SHORT).show();
             return;
         }
-        AddFragment(fragment, container, instead);
+        AddFragment(fragment, container, SLIDE, instead);
     }
 
     @Override
-    public void AddFragment(Fragment fragment, int container, boolean instead) {
+    public void AddFragment(Fragment fragment, String anim) {
+        AddFragment(fragment, container, anim, false);
+    }
+
+    @Override
+    public void AddFragment(Fragment fragment, int container, String anim, boolean instead) {
         if (container == 0) {
             Toast.makeText(this, "Please Set container ID", Toast.LENGTH_SHORT).show();
             return;
         }
         Fragment originalFragment = fragmentManager.findFragmentById(container);
         if (!fragment.getClass().equals(originalFragment.getClass()) || instead) {
-            fragmentManager.beginTransaction().setCustomAnimations(R.anim.enter_from_right, R.anim.exit_to_right, R.anim.enter_from_left, R.anim.exit_to_left).replace(container, fragment, "main").addToBackStack("main_interface").commitAllowingStateLoss();
+
+            FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+            if (anim.equals(SLIDE)) {
+                fragmentTransaction.setCustomAnimations(R.anim.enter_from_right, R.anim.exit_to_right, R.anim.enter_from_left, R.anim.exit_to_left);
+            } else if (anim.equals(PUSH)) {
+                fragmentTransaction.setCustomAnimations(R.anim.slide_out_up, R.anim.slide_in_up, R.anim.slide_out_up, R.anim.slide_in_up);
+            } else if (anim.equals(FADE)) {
+                fragmentTransaction.setCustomAnimations(R.anim.zoom_in, 0, 0, R.anim.zoom_out);
+            } else if (anim.equals("")) {
+
+            }
+            fragmentTransaction.replace(container, fragment, "main").addToBackStack("main_interface").commitAllowingStateLoss();
         }
         OnAddFragment();
     }
@@ -91,17 +108,37 @@ public abstract class BaseSupportActivity extends AppCompatActivity implements O
 
     @Override
     public void ReplaceFragment(Fragment fragment) {
-        ReplaceFragment(fragment, container);
+        ReplaceFragment(fragment, container, SLIDE);
+    }
+
+    @Override
+    public void ReplaceFragment(Fragment fragment, String anim) {
+        ReplaceFragment(fragment, container, anim);
     }
 
     @Override
     public void ReplaceFragment(Fragment fragment, int container) {
+        ReplaceFragment(fragment, container, SLIDE);
+    }
+
+    @Override
+    public void ReplaceFragment(Fragment fragment, int container, String anim) {
         if (container == 0) {
             Toast.makeText(this, "Please Set container ID", Toast.LENGTH_SHORT).show();
             return;
         }
         PopAllBackStack();
-        fragmentManager.beginTransaction().setCustomAnimations(R.anim.enter_from_right, R.anim.exit_to_right, R.anim.enter_from_left, R.anim.exit_to_left).replace(container, fragment, "main").disallowAddToBackStack().commitAllowingStateLoss();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        if (anim.equals(SLIDE)) {
+            fragmentTransaction.setCustomAnimations(R.anim.enter_from_right, R.anim.exit_to_right, R.anim.enter_from_left, R.anim.exit_to_left);
+        } else if (anim.equals(PUSH)) {
+            fragmentTransaction.setCustomAnimations(R.anim.slide_out_up, R.anim.slide_in_up, R.anim.slide_out_up, R.anim.slide_in_up);
+        } else if (anim.equals(FADE)) {
+            fragmentTransaction.setCustomAnimations(R.anim.zoom_in, 0, 0, R.anim.zoom_out);
+        } else if (anim.equals("")) {
+
+        }
+        fragmentTransaction.replace(container, fragment, "main").disallowAddToBackStack().commitAllowingStateLoss();
         OnReplaceFragment();
     }
 
