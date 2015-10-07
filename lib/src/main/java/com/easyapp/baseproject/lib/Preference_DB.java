@@ -27,6 +27,10 @@ public class Preference_DB {
         }
     }
 
+    public void clear(){
+        sharedPreferences.edit().clear().apply();
+    }
+
     private void GenUUID() {
         UUID uuid = UUID.randomUUID();
         String randomUUIDString = uuid.toString();
