@@ -7,16 +7,15 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
-import android.widget.Toast;
 
 import com.easyapp.baseproject.lib.R;
+import com.easyapp.baseproject.lib.tool.response.ResponseHandler;
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.AsyncHttpResponseHandler;
 import com.loopj.android.http.JsonHttpResponseHandler;
 import com.loopj.android.http.RequestParams;
 import com.orhanobut.logger.Logger;
 
-import org.json.JSONArray;
 import org.json.JSONObject;
 
 import cz.msebera.android.httpclient.Header;
@@ -32,6 +31,7 @@ public class NetworkTool {
     protected boolean isShowLog = true;
 
     protected String baseUrl = "";
+    private AlertDialog alertDialog;
 
     static {
         asyncHttpClient = new AsyncHttpClient();
@@ -41,10 +41,20 @@ public class NetworkTool {
     public NetworkTool(Activity context, String baseUrl) {
         activity = context;
         this.baseUrl = baseUrl;
+
+        alertDialog = new AlertDialog.Builder(activity, AlertDialog.THEME_DEVICE_DEFAULT_LIGHT)
+                .setTitle(R.string.network_message_title)
+                .setMessage(R.string.network_message_content)
+                .setPositiveButton("確定", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+                    }
+                }).create();
     }
 
 
-    public void GetRandomChinese(int limit, int n, JResponseHandler responseHandler) {
+    public void GetRandomChinese(int limit, int n, ResponseHandler responseHandler) {
         String route = "http://more.handlino.com/sentences.json?limit=" + limit + "&n=" + n;
         get(route, responseHandler);
     }
@@ -61,7 +71,7 @@ public class NetworkTool {
         asyncHttpClient.addHeader(header, value);
     }
 
-    protected void get(String route, RequestParams params, JResponseHandler responseHandler) {
+    protected void get(String route, RequestParams params, ResponseHandler responseHandler) {
         if (!isNetworkConnected(activity)) {
             responseHandler.NoNetwork();
             showNetworkCheck();
@@ -73,10 +83,10 @@ public class NetworkTool {
 
         Logger("route" + route);
         Logger("params: " + params);
-        asyncHttpClient.get(activity, route, params, DefaultjsonHttpResponseHandler(responseHandler));
+        asyncHttpClient.get(activity, route, params, Default_jsonHttpResponseHandler(responseHandler));
     }
 
-    protected void get(String route, JResponseHandler responseHandler) {
+    protected void get(String route, ResponseHandler responseHandler) {
         if (!isNetworkConnected(activity)) {
             responseHandler.NoNetwork();
             showNetworkCheck();
@@ -87,14 +97,14 @@ public class NetworkTool {
             route = baseUrl + route;
 
         Logger("route: " + route);
-        asyncHttpClient.get(activity, route, DefaultjsonHttpResponseHandler(responseHandler));
+        asyncHttpClient.get(activity, route, Default_jsonHttpResponseHandler(responseHandler));
     }
 
-    protected void POST(String route, RequestParams params, JResponseHandler responseHandler) {
+    protected void POST(String route, RequestParams params, ResponseHandler responseHandler) {
         POST(route, params, false, responseHandler);
     }
 
-    protected void POST(String route, RequestParams params, boolean isLogin, JResponseHandler responseHandler) {
+    protected void POST(String route, RequestParams params, boolean isLogin, ResponseHandler responseHandler) {
         if (!isNetworkConnected(activity)) {
             responseHandler.NoNetwork();
             showNetworkCheck();
@@ -106,15 +116,15 @@ public class NetworkTool {
 
         Logger("route: " + route);
         Logger("params: " + params);
-        asyncHttpClient.post(activity, route, params, DefaultjsonHttpResponseHandler(responseHandler));
+        asyncHttpClient.post(activity, route, params, Default_jsonHttpResponseHandler(responseHandler));
     }
 
-    protected void POST(String route, StringEntity stringEntity, AsyncResponseHandler responseHandler) {
+    protected void POST(String route, StringEntity stringEntity, ResponseHandler responseHandler) {
         String content_type = "text/plain charset=utf-8";
         POST(route, stringEntity, content_type, responseHandler);
     }
 
-    protected void POST(String route, StringEntity stringEntity, String content_type, AsyncResponseHandler responseHandler) {
+    protected void POST(String route, StringEntity stringEntity, String content_type, ResponseHandler responseHandler) {
         if (!isNetworkConnected(activity)) {
             responseHandler.NoNetwork();
             showNetworkCheck();
@@ -127,7 +137,7 @@ public class NetworkTool {
         asyncHttpClient.post(activity, route, stringEntity, content_type, DefaultHttpResponseHandler(responseHandler));
     }
 
-    protected AsyncHttpResponseHandler DefaultHttpResponseHandler(final AsyncResponseHandler responseHandler) {
+    protected AsyncHttpResponseHandler DefaultHttpResponseHandler(final ResponseHandler responseHandler) {
         return new AsyncHttpResponseHandler() {
             @Override
             public void onSuccess(int statusCode, Header[] headers, byte[] responseBody) {
@@ -140,63 +150,21 @@ public class NetworkTool {
             public void onFailure(int statusCode, Header[] headers, byte[] responseBody, Throwable error) {
                 String response = new String(responseBody);
                 Logger.d(response);
-                responseHandler.Fail(statusCode, headers, responseBody);
             }
         };
     }
 
-    protected JsonHttpResponseHandler DefaultjsonHttpResponseHandler(final JResponseHandler responseHandler) {
-        JsonHttpResponseHandler jsonHttpResponseHandler = new JsonHttpResponseHandler() {
+    protected JsonHttpResponseHandler Default_jsonHttpResponseHandler(final ResponseHandler responseHandler) {
+        return new JsonHttpResponseHandler() {
             @Override
             public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
                 super.onSuccess(statusCode, headers, response);
                 Logger.d(response.toString());
                 responseHandler.Success(statusCode, response);
             }
-
-            @Override
-            public void onFailure(int statusCode, Header[] headers, Throwable throwable, JSONObject errorResponse) {
-                super.onFailure(statusCode, headers, throwable, errorResponse);
-                Toast.makeText(activity, "更新失敗請檢查網路", Toast.LENGTH_SHORT).show();
-                if (null != errorResponse) {
-                    responseHandler.Fail(statusCode, errorResponse.toString());
-                } else {
-                    responseHandler.Fail(statusCode, "");
-                }
-            }
-
-            @Override
-            public void onFailure(int statusCode, Header[] headers, Throwable throwable, JSONArray errorResponse) {
-                super.onFailure(statusCode, headers, throwable, errorResponse);
-                Toast.makeText(activity, "更新失敗請檢查網路", Toast.LENGTH_SHORT).show();
-                responseHandler.Fail(statusCode, "");
-            }
-
-            @Override
-            public void onFailure(int statusCode, Header[] headers, String responseString, Throwable throwable) {
-                super.onFailure(statusCode, headers, responseString, throwable);
-                Toast.makeText(activity, "更新失敗請檢查網路", Toast.LENGTH_SHORT).show();
-                responseHandler.Fail(statusCode, responseString);
-            }
         };
-        return jsonHttpResponseHandler;
     }
 
-    public interface JResponseHandler {
-        void Success(int StatusCode, JSONObject response);
-
-        void Fail(int status, String reason);
-
-        void NoNetwork();
-    }
-
-    public interface AsyncResponseHandler {
-        void Success(int statusCode, Header[] headers, byte[] responseBody);
-
-        void Fail(int statusCode, Header[] headers, byte[] responseBody);
-
-        void NoNetwork();
-    }
 
     protected void Logger(String message) {
         if (isShowLog) {
@@ -205,16 +173,9 @@ public class NetworkTool {
     }
 
     protected void showNetworkCheck() {
-        AlertDialog mAltDialog = new AlertDialog.Builder(activity, AlertDialog.THEME_DEVICE_DEFAULT_LIGHT)
-                .setTitle(R.string.network_message_title)
-                .setMessage(R.string.network_message_content)
-                .setPositiveButton("確定", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        dialog.dismiss();
-                    }
-                }).create();
-        mAltDialog.show();
+        if (!alertDialog.isShowing()) {
+            alertDialog.show();
+        }
     }
 
     public static boolean isNetworkConnected(Context context) {
