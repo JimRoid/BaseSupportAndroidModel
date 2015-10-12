@@ -9,17 +9,22 @@ import cz.msebera.android.httpclient.Header;
  */
 public class ResponseHandler implements JResponseHandler, AsyncResponseHandler {
     @Override
-    public void Success(int StatusCode, JSONObject response) {
-
-    }
-
-    @Override
     public void NoNetwork() {
 
     }
 
     @Override
+    public void Success(int StatusCode, JSONObject response) {
+
+    }
+
+    @Override
     public void Success(int statusCode, Header[] headers, byte[] responseBody) {
+
+    }
+
+    @Override
+    public void Failure(int statusCode, Header[] headers, byte[] responseBody, Throwable error) {
 
     }
 }

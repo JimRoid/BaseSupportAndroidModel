@@ -56,7 +56,7 @@ public class NetworkTool {
 
     public void GetRandomChinese(int limit, int n, ResponseHandler responseHandler) {
         String route = "http://more.handlino.com/sentences.json?limit=" + limit + "&n=" + n;
-        get(route, responseHandler);
+        GET(route, responseHandler);
     }
 
     protected void removeAllHeaders() {
@@ -71,7 +71,7 @@ public class NetworkTool {
         asyncHttpClient.addHeader(header, value);
     }
 
-    protected void get(String route, RequestParams params, ResponseHandler responseHandler) {
+    protected void GET(String route, RequestParams params, ResponseHandler responseHandler) {
         if (!isNetworkConnected(activity)) {
             responseHandler.NoNetwork();
             showNetworkCheck();
@@ -86,7 +86,7 @@ public class NetworkTool {
         asyncHttpClient.get(activity, route, params, Default_jsonHttpResponseHandler(responseHandler));
     }
 
-    protected void get(String route, ResponseHandler responseHandler) {
+    protected void GET(String route, ResponseHandler responseHandler) {
         if (!isNetworkConnected(activity)) {
             responseHandler.NoNetwork();
             showNetworkCheck();
@@ -150,6 +150,7 @@ public class NetworkTool {
             public void onFailure(int statusCode, Header[] headers, byte[] responseBody, Throwable error) {
                 String response = new String(responseBody);
                 Logger.d(response);
+                responseHandler.Failure(statusCode, headers, responseBody, error);
             }
         };
     }
@@ -161,6 +162,12 @@ public class NetworkTool {
                 super.onSuccess(statusCode, headers, response);
                 Logger.d(response.toString());
                 responseHandler.Success(statusCode, response);
+            }
+
+            @Override
+            public void onFailure(int statusCode, Header[] headers, String responseString, Throwable throwable) {
+                super.onFailure(statusCode, headers, responseString, throwable);
+                responseHandler.Failure(statusCode, headers, responseString.getBytes(), throwable);
             }
         };
     }
@@ -176,6 +183,28 @@ public class NetworkTool {
         if (!alertDialog.isShowing()) {
             alertDialog.show();
         }
+    }
+
+    public boolean isWifi() {
+        //WIFI
+        ConnectivityManager cm = (ConnectivityManager) activity.getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo wifiNetwork = cm.getNetworkInfo(ConnectivityManager.TYPE_WIFI);
+        if (wifiNetwork != null && wifiNetwork.isConnected()) {
+            return true;
+        }
+
+
+        return false;
+    }
+
+    public boolean isMobile() {
+        //MOBILE
+        ConnectivityManager cm = (ConnectivityManager) activity.getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo mobileNetwork = cm.getNetworkInfo(ConnectivityManager.TYPE_MOBILE);
+        if (mobileNetwork != null && mobileNetwork.isConnected()) {
+            return true;
+        }
+        return false;
     }
 
     public static boolean isNetworkConnected(Context context) {
