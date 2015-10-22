@@ -1,14 +1,13 @@
 package com.easyapp.baseproject.lib.tool;
 
 import android.app.Activity;
-import android.content.Intent;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
-import android.net.Uri;
 import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.Display;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Set;
@@ -28,17 +27,17 @@ public class CommonTool {
     }
 
     /**
-     * 開啟網頁
-     * @param activity
-     * @param url
+     * 取得副檔名
+     *
+     * @param file
+     * @return
      */
-    public static void OpenUrl(Activity activity, String url) {
-        if (!url.startsWith("http://") && !url.startsWith("https://"))
-            url = "http://" + url;
-
-        Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
-        activity.startActivity(browserIntent);
+    public static String getExtension(File file) {
+        int startIndex = file.getName().lastIndexOf(46) + 1;
+        int endIndex = file.getName().length();
+        return file.getName().substring(startIndex, endIndex);
     }
+
 
     public static float getScreenWidth(Activity activity) {
         Display display = activity.getWindowManager().getDefaultDisplay();

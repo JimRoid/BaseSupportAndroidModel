@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.net.Uri;
 
 import com.easyapp.baseproject.lib.TouchViewActivity;
+import com.easyapp.baseproject.lib.tool.CommonTool;
 
 import java.io.File;
 
@@ -13,6 +14,17 @@ import java.io.File;
  * Created by easyapp_jim on 2015/10/19.
  */
 public class OpenData {
+
+    public static void OpenUnKnowData(Activity activity, File file) {
+        if (file.exists()) {
+            String subname = CommonTool.getExtension(file);
+            Uri path = Uri.fromFile(file);
+            Intent intent = new Intent(Intent.ACTION_VIEW);
+            intent.setDataAndType(path, "application/" + subname);
+            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            StartActivity(activity, intent);
+        }
+    }
 
     public static void OpenUrl(Activity activity, String url) {
         if (!url.startsWith("http://") && !url.startsWith("https://"))

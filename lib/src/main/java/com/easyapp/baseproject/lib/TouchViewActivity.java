@@ -9,6 +9,7 @@ import android.support.v7.app.AppCompatActivity;
 import com.easyapp.baseproject.lib.View.TouchImageView;
 import com.easyapp.baseproject.lib.asyncTool.DownloadImageTask;
 import com.easyapp.baseproject.lib.util.Common;
+import com.orhanobut.logger.Logger;
 
 import java.io.File;
 
@@ -38,6 +39,7 @@ public class TouchViewActivity extends AppCompatActivity {
         } else if (path.contains("file")) {
             File file = new File(path);
             if (file.exists()) {
+                Logger.d(path);
                 Bitmap bitmap = BitmapFactory.decodeFile(path);
                 touchImageView.setImageBitmap(bitmap);
             }
