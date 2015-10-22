@@ -19,8 +19,8 @@ android {
     defaultConfig {
         minSdkVersion 16
         targetSdkVersion 23
-        versionCode 24
-        versionName "1.0.9.5"
+        versionCode 25
+        versionName "1.0.9.6"
     }
 
     compileOptions {
@@ -54,7 +54,7 @@ uploadArchives {
     repositories {
         mavenDeployer {
             repository url: "file://${repo.absolutePath}"
-            pom.version = '1.0.9.5'             // version
+            pom.version = '1.0.9.6'             // version
             pom.groupId = 'com.easyapp.baseproject.lib'    // グループ名
             pom.artifactId = 'BaseSupport' // ライブラリ名
         }
