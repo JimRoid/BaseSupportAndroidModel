@@ -148,9 +148,11 @@ public class NetworkTool {
 
             @Override
             public void onFailure(int statusCode, Header[] headers, byte[] responseBody, Throwable error) {
-                String response = new String(responseBody);
-                Logger.d(response);
-                responseHandler.Failure(statusCode, headers, responseBody, error);
+                if (responseBody.length > 0) {
+                    String response = new String(responseBody);
+                    Logger.d(response);
+                    responseHandler.Failure(statusCode, headers, responseBody, error);
+                }
             }
         };
     }
