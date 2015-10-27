@@ -53,6 +53,10 @@ public class NetworkTool {
                 }).create();
     }
 
+    public void setDialog(AlertDialog alertDialog) {
+        this.alertDialog = alertDialog;
+    }
+
 
     public void GetRandomChinese(int limit, int n, ResponseHandler responseHandler) {
         String route = "http://more.handlino.com/sentences.json?limit=" + limit + "&n=" + n;
