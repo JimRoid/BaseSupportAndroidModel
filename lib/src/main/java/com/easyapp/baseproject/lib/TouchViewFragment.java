@@ -42,22 +42,26 @@ public class TouchViewFragment extends BaseEasyFragment {
     protected void getExtraIntent() {
         Bundle bundle = getArguments();
         String path = bundle.getString(Common.PATH);
-        Logger.d(path);
 
-        if (path.contains("http")) {
-            new DownloadImageTask(touchImageView)
-                    .execute(path);
-        } else if (path.contains("/storage")) {
-            File file = new File(path);
-            if (file.exists()) {
-                Logger.d(path);
-                Bitmap bitmap = BitmapFactory.decodeFile(path);
-                touchImageView.setImageBitmap(bitmap);
+        if (path != null) {
+            if (path.contains("http")) {
+                new DownloadImageTask(touchImageView)
+                        .execute(path);
+            } else if (path.contains("/storage")) {
+                File file = new File(path);
+                if (file.exists()) {
+                    Logger.d(path);
+                    Bitmap bitmap = BitmapFactory.decodeFile(path);
+                    touchImageView.setImageBitmap(bitmap);
+                }
+            } else if (path.contains("/9j/")) {
+                byte[] decodedString = Base64Tool.decodeBase64(path);
+                Bitmap decodedByte = BitmapFactory.decodeByteArray(decodedString, 0, decodedString.length);
+                touchImageView.setImageBitmap(decodedByte);
+            } else if (path.equals(Common.RESOURCE)) {
+                int res_id = bundle.getInt(Common.RESOURCE);
+                touchImageView.setImageResource(res_id);
             }
-        } else {
-            byte[] decodedString = Base64Tool.decodeBase64(path);
-            Bitmap decodedByte = BitmapFactory.decodeByteArray(decodedString, 0, decodedString.length);
-            touchImageView.setImageBitmap(decodedByte);
         }
     }
 

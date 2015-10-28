@@ -5,4 +5,5 @@ package com.easyapp.baseproject.lib.util;
  */
 public class Common {
     public final static String PATH = "PATH";
+    public final static String RESOURCE = "RESOURCE";
 }
