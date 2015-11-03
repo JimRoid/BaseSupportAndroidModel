@@ -4,11 +4,9 @@ package com.easyapp.baseproject.lib.tool;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 
-import com.easyapp.baseproject.lib.R;
 import com.easyapp.baseproject.lib.tool.response.ResponseHandler;
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.AsyncHttpResponseHandler;
@@ -42,15 +40,15 @@ public class NetworkTool {
         activity = context;
         this.baseUrl = baseUrl;
 
-        alertDialog = new AlertDialog.Builder(activity, AlertDialog.THEME_DEVICE_DEFAULT_LIGHT)
-                .setTitle(R.string.network_message_title)
-                .setMessage(R.string.network_message_content)
-                .setPositiveButton("確定", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        dialog.dismiss();
-                    }
-                }).create();
+//        alertDialog = new AlertDialog.Builder(activity, AlertDialog.THEME_DEVICE_DEFAULT_LIGHT)
+//                .setTitle(R.string.network_message_title)
+//                .setMessage(R.string.network_message_content)
+//                .setPositiveButton("確定", new DialogInterface.OnClickListener() {
+//                    @Override
+//                    public void onClick(DialogInterface dialog, int which) {
+//                        dialog.dismiss();
+//                    }
+//                }).create();
     }
 
     public void setDialog(AlertDialog alertDialog) {
@@ -186,8 +184,10 @@ public class NetworkTool {
     }
 
     protected void showNetworkCheck() {
-        if (!alertDialog.isShowing()) {
-            alertDialog.show();
+        if (alertDialog != null) {
+            if (!alertDialog.isShowing()) {
+                alertDialog.show();
+            }
         }
     }
 
