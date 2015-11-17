@@ -27,7 +27,7 @@ public class Preference_DB {
         }
     }
 
-    public void clear(){
+    public void clear() {
         sharedPreferences.edit().clear().apply();
     }
 
@@ -80,24 +80,45 @@ public class Preference_DB {
         return sharedPreferences.edit().putFloat(key, value).commit();
     }
 
+    public String getStringValue(String key, String value) {
+        return sharedPreferences.getString(key, value);
+    }
+
+
     public String getStringValue(String key) {
-        return sharedPreferences.getString(key, "");
+        return getStringValue(key, "");
+    }
+
+    public boolean getBooleanValue(String key, boolean value) {
+        return sharedPreferences.getBoolean(key, value);
     }
 
     public boolean getBooleanValue(String key) {
-        return sharedPreferences.getBoolean(key, false);
+        return getBooleanValue(key, false);
     }
 
-    public int getIngValue(String key) {
-        return sharedPreferences.getInt(key, 0);
+    public int getIntValue(String key, int value) {
+        return sharedPreferences.getInt(key, value);
+    }
+
+    public int getIntValue(String key) {
+        return getIntValue(key, 0);
+    }
+
+    public long getLongValue(String key, long value) {
+        return sharedPreferences.getLong(key, value);
     }
 
     public long getLongValue(String key) {
-        return sharedPreferences.getLong(key, 0);
+        return getLongValue(key, 0);
+    }
+
+    public float getFloatValue(String key, float value) {
+        return sharedPreferences.getFloat(key, value);
     }
 
     public float getFloatValue(String key) {
-        return sharedPreferences.getFloat(key, (float) 0.0);
+        return getFloatValue(key,0f);
     }
 
     public void putList(String key, ArrayList<String> strings) {
