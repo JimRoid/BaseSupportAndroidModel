@@ -24,10 +24,9 @@ import cz.msebera.android.httpclient.entity.StringEntity;
  */
 public class NetworkTool {
     public static final String SUCCESS_CODE = "status";
-    protected Activity activity;
+    protected Context context;
     protected static AsyncHttpClient asyncHttpClient;
     protected boolean isShowLog = true;
-
     protected String baseUrl = "";
     private AlertDialog alertDialog;
 
@@ -35,20 +34,14 @@ public class NetworkTool {
         asyncHttpClient = new AsyncHttpClient();
     }
 
+    public NetworkTool(Context context, String baseUrl) {
+        this.context = context;
+        this.baseUrl = baseUrl;
+    }
 
     public NetworkTool(Activity context, String baseUrl) {
-        activity = context;
+        this.context = context;
         this.baseUrl = baseUrl;
-
-//        alertDialog = new AlertDialog.Builder(activity, AlertDialog.THEME_DEVICE_DEFAULT_LIGHT)
-//                .setTitle(R.string.network_message_title)
-//                .setMessage(R.string.network_message_content)
-//                .setPositiveButton("確定", new DialogInterface.OnClickListener() {
-//                    @Override
-//                    public void onClick(DialogInterface dialog, int which) {
-//                        dialog.dismiss();
-//                    }
-//                }).create();
     }
 
     public void setDialog(AlertDialog alertDialog) {
@@ -74,7 +67,7 @@ public class NetworkTool {
     }
 
     protected void GET(String route, RequestParams params, ResponseHandler responseHandler) {
-        if (!isNetworkConnected(activity)) {
+        if (!isNetworkConnected(context)) {
             responseHandler.NoNetwork();
             showNetworkCheck();
             return;
@@ -85,11 +78,11 @@ public class NetworkTool {
 
         Logger("route" + route);
         Logger("params: " + params);
-        asyncHttpClient.get(activity, route, params, Default_jsonHttpResponseHandler(responseHandler));
+        asyncHttpClient.get(context, route, params, Default_jsonHttpResponseHandler(responseHandler));
     }
 
     protected void GET(String route, ResponseHandler responseHandler) {
-        if (!isNetworkConnected(activity)) {
+        if (!isNetworkConnected(context)) {
             responseHandler.NoNetwork();
             showNetworkCheck();
             return;
@@ -99,7 +92,7 @@ public class NetworkTool {
             route = baseUrl + route;
 
         Logger("route: " + route);
-        asyncHttpClient.get(activity, route, Default_jsonHttpResponseHandler(responseHandler));
+        asyncHttpClient.get(context, route, Default_jsonHttpResponseHandler(responseHandler));
     }
 
     protected void POST(String route, RequestParams params, ResponseHandler responseHandler) {
@@ -107,7 +100,7 @@ public class NetworkTool {
     }
 
     protected void POST(String route, RequestParams params, boolean isLogin, ResponseHandler responseHandler) {
-        if (!isNetworkConnected(activity)) {
+        if (!isNetworkConnected(context)) {
             responseHandler.NoNetwork();
             showNetworkCheck();
             return;
@@ -118,7 +111,7 @@ public class NetworkTool {
 
         Logger("route: " + route);
         Logger("params: " + params);
-        asyncHttpClient.post(activity, route, params, Default_jsonHttpResponseHandler(responseHandler));
+        asyncHttpClient.post(context, route, params, Default_jsonHttpResponseHandler(responseHandler));
     }
 
     protected void POST(String route, StringEntity stringEntity, ResponseHandler responseHandler) {
@@ -127,7 +120,7 @@ public class NetworkTool {
     }
 
     protected void POST(String route, StringEntity stringEntity, String content_type, ResponseHandler responseHandler) {
-        if (!isNetworkConnected(activity)) {
+        if (!isNetworkConnected(context)) {
             responseHandler.NoNetwork();
             showNetworkCheck();
             return;
@@ -136,7 +129,7 @@ public class NetworkTool {
         if (!route.startsWith("http"))
             route = baseUrl + route;
 
-        asyncHttpClient.post(activity, route, stringEntity, content_type, DefaultHttpResponseHandler(responseHandler));
+        asyncHttpClient.post(context, route, stringEntity, content_type, DefaultHttpResponseHandler(responseHandler));
     }
 
     protected AsyncHttpResponseHandler DefaultHttpResponseHandler(final ResponseHandler responseHandler) {
@@ -195,7 +188,7 @@ public class NetworkTool {
 
     public boolean isWifi() {
         //WIFI
-        ConnectivityManager cm = (ConnectivityManager) activity.getSystemService(Context.CONNECTIVITY_SERVICE);
+        ConnectivityManager cm = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
         NetworkInfo wifiNetwork = cm.getNetworkInfo(ConnectivityManager.TYPE_WIFI);
         if (wifiNetwork != null && wifiNetwork.isConnected()) {
             return true;
@@ -207,7 +200,7 @@ public class NetworkTool {
 
     public boolean isMobile() {
         //MOBILE
-        ConnectivityManager cm = (ConnectivityManager) activity.getSystemService(Context.CONNECTIVITY_SERVICE);
+        ConnectivityManager cm = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
         NetworkInfo mobileNetwork = cm.getNetworkInfo(ConnectivityManager.TYPE_MOBILE);
         if (mobileNetwork != null && mobileNetwork.isConnected()) {
             return true;
