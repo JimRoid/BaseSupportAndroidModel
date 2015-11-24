@@ -89,9 +89,9 @@ public class CommonTool {
         return metrics.densityDpi;
     }
 
-    public static int getTimeStamp() {
-        java.util.Date date = new java.util.Date();
-        return (int) new java.sql.Timestamp(date.getTime()).getTime();
+    public static long getTimeStamp() {
+        long epoch = System.currentTimeMillis()/1000;
+        return epoch;
     }
 
     public static boolean isNumeric(String str) {
