@@ -137,7 +137,7 @@ public class NetworkTool {
             @Override
             public void onSuccess(int statusCode, Header[] headers, byte[] responseBody) {
                 String response = new String(responseBody);
-                Logger.d(response);
+                Logger(response);
                 responseHandler.Success(statusCode, headers, responseBody);
             }
 
@@ -146,7 +146,7 @@ public class NetworkTool {
                 if (responseBody != null) {
                     if (responseBody.length > 0) {
                         String response = new String(responseBody);
-                        Logger.d(response);
+                        Logger(response);
                         responseHandler.Failure(statusCode, headers, responseBody, error);
                     }
                 }
@@ -159,7 +159,7 @@ public class NetworkTool {
             @Override
             public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
                 super.onSuccess(statusCode, headers, response);
-                Logger.d(response.toString());
+                Logger(response.toString());
                 responseHandler.Success(statusCode, response);
             }
 
