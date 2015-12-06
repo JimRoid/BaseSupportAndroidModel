@@ -25,23 +25,22 @@ import cz.msebera.android.httpclient.entity.StringEntity;
 public class NetworkTool {
     public static final String SUCCESS_CODE = "status";
     protected Context context;
-    protected static AsyncHttpClient asyncHttpClient;
+    protected  AsyncHttpClient asyncHttpClient;
     protected boolean isShowLog = true;
     protected String baseUrl = "";
     private AlertDialog alertDialog;
 
-    static {
-        asyncHttpClient = new AsyncHttpClient();
-    }
 
     public NetworkTool(Context context, String baseUrl) {
         this.context = context;
         this.baseUrl = baseUrl;
+        asyncHttpClient = new AsyncHttpClient();
     }
 
     public NetworkTool(Activity context, String baseUrl) {
         this.context = context;
         this.baseUrl = baseUrl;
+        asyncHttpClient = new AsyncHttpClient();
     }
 
     public void setDialog(AlertDialog alertDialog) {
