@@ -14,6 +14,7 @@ import com.loopj.android.http.JsonHttpResponseHandler;
 import com.loopj.android.http.RequestParams;
 import com.orhanobut.logger.Logger;
 
+import org.json.JSONArray;
 import org.json.JSONObject;
 
 import cz.msebera.android.httpclient.Header;
@@ -25,7 +26,7 @@ import cz.msebera.android.httpclient.entity.StringEntity;
 public class NetworkTool {
     public static final String SUCCESS_CODE = "status";
     protected Context context;
-    protected  AsyncHttpClient asyncHttpClient;
+    protected AsyncHttpClient asyncHttpClient;
     protected boolean isShowLog = true;
     protected String baseUrl = "";
     private AlertDialog alertDialog;
@@ -166,6 +167,18 @@ public class NetworkTool {
             public void onFailure(int statusCode, Header[] headers, String responseString, Throwable throwable) {
                 super.onFailure(statusCode, headers, responseString, throwable);
                 responseHandler.Failure(statusCode, headers, responseString.getBytes(), throwable);
+            }
+
+            @Override
+            public void onFailure(int statusCode, Header[] headers, Throwable throwable, JSONObject errorResponse) {
+                super.onFailure(statusCode, headers, throwable, errorResponse);
+                responseHandler.Failure(statusCode, headers, null, throwable);
+            }
+
+            @Override
+            public void onFailure(int statusCode, Header[] headers, Throwable throwable, JSONArray errorResponse) {
+                super.onFailure(statusCode, headers, throwable, errorResponse);
+                responseHandler.Failure(statusCode, headers, null, throwable);
             }
         };
     }
