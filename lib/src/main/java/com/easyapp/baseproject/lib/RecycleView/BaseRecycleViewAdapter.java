@@ -179,7 +179,7 @@ public abstract class BaseRecycleViewAdapter<VH extends BaseRecycleViewAdapter.I
 
     protected void onBindFootViewHolder(ItemHolder holder, int position) {
         FooterViewHolder vh = (FooterViewHolder) holder;
-        if (!loadMoreHasBg()) vh.LoadMore.setBackground(null);
+        if (!loadMoreHasBg()) vh.LoadMore.setBackgroundResource(0);
 
         switch (getState()) {
             case STATE_LOAD_MORE:
@@ -192,7 +192,6 @@ public abstract class BaseRecycleViewAdapter<VH extends BaseRecycleViewAdapter.I
                 vh.LoadMore.setVisibility(View.GONE);
                 vh.progressBar.setVisibility(View.GONE);
                 vh.textView.setVisibility(View.GONE);
-//                vh.textView.setText(_loadFinishText);
                 break;
             case STATE_EMPTY_ITEM:
                 vh.LoadMore.setVisibility(View.GONE);
