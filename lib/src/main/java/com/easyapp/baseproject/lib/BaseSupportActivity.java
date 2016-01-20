@@ -14,6 +14,7 @@ import android.widget.Toast;
 public abstract class BaseSupportActivity extends AppCompatActivity implements OnFragmentTransactionListener {
     protected final static String FADE = "FADE";
     protected final static String SLIDE = "SLIDE";
+    protected final static String SLIDE_POP = "SLIDE_POP";
     protected final static String PUSH = "PUSH";
 
 
@@ -131,6 +132,8 @@ public abstract class BaseSupportActivity extends AppCompatActivity implements O
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
         if (anim.equals(SLIDE)) {
             fragmentTransaction.setCustomAnimations(R.anim.enter_from_right, R.anim.exit_to_right, R.anim.enter_from_left, R.anim.exit_to_left);
+        } else if (anim.equals(SLIDE_POP)) {
+            fragmentTransaction.setCustomAnimations(R.anim.enter_from_left, R.anim.exit_to_left, R.anim.enter_from_right, R.anim.exit_to_right );
         } else if (anim.equals(PUSH)) {
             fragmentTransaction.setCustomAnimations(R.anim.slide_out_up, R.anim.slide_in_up, R.anim.slide_out_up, R.anim.slide_in_up);
         } else if (anim.equals(FADE)) {
