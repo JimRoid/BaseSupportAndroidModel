@@ -39,7 +39,7 @@ public class TouchViewActivity extends AppCompatActivity {
         String path = intent.getStringExtra("PATH");
 
         if (path.contains("http")) {
-            Glide.with(this).load(path).into(touchImageView);
+            Glide.with(this).load(path).dontAnimate().into(touchImageView);
         } else if (path.contains("/storage")) {
             File file = new File(path);
             if (file.exists()) {

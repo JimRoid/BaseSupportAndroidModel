@@ -7,8 +7,8 @@ android {
     defaultConfig {
         minSdkVersion 10
         targetSdkVersion 23
-        versionCode 43
-        versionName "1.5"
+        versionCode 45
+        versionName "1.6.1"
     }
 
     buildTypes {
@@ -22,9 +22,9 @@ android {
 
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
-    compile 'com.android.support:support-v4:23.1.1'
-    compile 'com.android.support:appcompat-v7:23.1.1'
-    compile 'com.github.bumptech.glide:glide:3.6.0'
+    compile 'com.android.support:support-v4:23.2.0'
+    compile 'com.android.support:appcompat-v7:23.2.0'
+    compile 'com.github.bumptech.glide:glide:3.7.0'
 }
 
 def repo = new File(rootDir, "")
@@ -35,7 +35,7 @@ uploadArchives {
     repositories {
         mavenDeployer {
             repository url: "file://${repo.absolutePath}"
-            pom.version = '1.5'             // version
+            pom.version = '1.6.1'             // version
             pom.groupId = 'com.easyapp.baseproject.lib'    // グループ名
             pom.artifactId = 'BaseSupport' // ライブラリ名
         }
