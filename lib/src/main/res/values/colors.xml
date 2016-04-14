@@ -2,8 +2,16 @@
 <resources>
     <!-- common configure -->
     <color name="text_color_hint">#9A9A9A</color>
-
+    <!-- common toolbar -->
+    <color name="toolbar_color">#2196f3</color>
+    <color name="toolbar_title_color">#fff</color>
     <!-- common background -->
-    <color name="list_item_background_normal">#ffffffff</color>
+    <color name="list_item_background_normal">#ffffff</color>
+
+
+    <!--commmon colors-->
+    <color name="black">#000000</color>
+    <color name="white">#FFFFFF</color>
+    <color name="light_blue">#6BBEE5</color>
 
 </resources>

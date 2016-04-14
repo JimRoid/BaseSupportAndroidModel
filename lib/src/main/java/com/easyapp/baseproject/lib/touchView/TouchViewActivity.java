@@ -1,4 +1,4 @@
-package com.easyapp.baseproject.lib;
+package com.easyapp.baseproject.lib.touchView;
 
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -10,6 +10,7 @@ import android.view.ViewGroup;
 import android.widget.FrameLayout;
 
 import com.bumptech.glide.Glide;
+import com.easyapp.baseproject.lib.Base64Tool;
 
 import java.io.File;
 

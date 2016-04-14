@@ -1,11 +1,11 @@
-package com.easyapp.baseproject.lib;
+package com.easyapp.baseproject.lib.callback;
 
 import android.support.v4.app.Fragment;
 
 /**
  * Created by easyapp_jim on 15/9/3.
  */
-public interface OnFragmentTransactionListener {
+public interface iFragmentTransactionListener {
     void OnAddFragment();
 
     void OnReplaceFragment();

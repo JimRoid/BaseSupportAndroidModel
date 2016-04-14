@@ -2,4 +2,12 @@
     <!-- Default screen margins, per the Android Design guidelines. -->
     <dimen name="activity_horizontal_margin">16dp</dimen>
     <dimen name="activity_vertical_margin">16dp</dimen>
+
+    <dimen name="navdrawer_width">270dp</dimen>
+
+    <!-- common configure-->
+    <dimen name="text_size">16sp</dimen>
+
+    <!-- common space -->
+    <dimen name="space_10">10.0dip</dimen>
 </resources>

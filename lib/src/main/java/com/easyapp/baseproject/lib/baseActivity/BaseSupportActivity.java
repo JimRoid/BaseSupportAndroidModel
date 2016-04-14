@@ -1,17 +1,18 @@
-package com.easyapp.baseproject.lib;
+package com.easyapp.baseproject.lib.baseActivity;
 
-import android.content.Context;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
-import android.support.v7.app.AppCompatActivity;
-import android.view.inputmethod.InputMethodManager;
 import android.widget.Toast;
 
+import com.easyapp.baseproject.lib.callback.iFragmentTransactionListener;
+import com.easyapp.baseproject.lib.R;
+
 /**
- * * 簡單可支援fragment 切換的base
+ * * 簡單可支援fragment 切換的 activity
  */
-public abstract class BaseSupportActivity extends AppCompatActivity implements OnFragmentTransactionListener {
+public abstract class baseSupportActivity extends baseActivity implements iFragmentTransactionListener {
+
     protected final static String FADE = "FADE";
     protected final static String SLIDE = "SLIDE";
     protected final static String SLIDE_POP = "SLIDE_POP";
@@ -21,13 +22,6 @@ public abstract class BaseSupportActivity extends AppCompatActivity implements O
     private Toast toast;
     protected int container = 0;
     protected FragmentManager fragmentManager = getSupportFragmentManager();
-
-    protected void hideKeyboard() {
-        InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
-        if (imm.isActive()) {
-            imm.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(), 0);
-        }
-    }
 
 
     protected void setContainer(int container) {
@@ -66,7 +60,6 @@ public abstract class BaseSupportActivity extends AppCompatActivity implements O
         }
         Fragment originalFragment = fragmentManager.findFragmentById(container);
         if (!fragment.getClass().equals(originalFragment.getClass()) || instead) {
-
             FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
             if (anim.equals(SLIDE)) {
                 fragmentTransaction.setCustomAnimations(R.anim.enter_from_right, R.anim.exit_to_right, R.anim.enter_from_left, R.anim.exit_to_left);
@@ -133,7 +126,7 @@ public abstract class BaseSupportActivity extends AppCompatActivity implements O
         if (anim.equals(SLIDE)) {
             fragmentTransaction.setCustomAnimations(R.anim.enter_from_right, R.anim.exit_to_right, R.anim.enter_from_left, R.anim.exit_to_left);
         } else if (anim.equals(SLIDE_POP)) {
-            fragmentTransaction.setCustomAnimations(R.anim.enter_from_left, R.anim.exit_to_left, R.anim.enter_from_right, R.anim.exit_to_right );
+            fragmentTransaction.setCustomAnimations(R.anim.enter_from_left, R.anim.exit_to_left, R.anim.enter_from_right, R.anim.exit_to_right);
         } else if (anim.equals(PUSH)) {
             fragmentTransaction.setCustomAnimations(R.anim.slide_out_up, R.anim.slide_in_up, R.anim.slide_out_up, R.anim.slide_in_up);
         } else if (anim.equals(FADE)) {
@@ -176,10 +169,6 @@ public abstract class BaseSupportActivity extends AppCompatActivity implements O
     @Override
     public void OnReplaceFragment() {
         //..切換 fragment後要執行的動作
-    }
-
-    protected void SetBarTitle(CharSequence content) {
-        getSupportActionBar().setTitle(content);
     }
 
     /**

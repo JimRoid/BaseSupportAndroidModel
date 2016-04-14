@@ -1,4 +1,4 @@
-package com.easyapp.baseproject.lib;
+package com.easyapp.baseproject.lib.touchView;
 
 
 import android.annotation.TargetApi;

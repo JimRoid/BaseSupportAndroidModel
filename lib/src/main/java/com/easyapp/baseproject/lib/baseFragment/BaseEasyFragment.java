@@ -1,50 +1,28 @@
-package com.easyapp.baseproject.lib;
+package com.easyapp.baseproject.lib.baseFragment;
 
 import android.content.Context;
 import android.support.v4.app.Fragment;
-import android.support.v7.app.AppCompatActivity;
-import android.view.inputmethod.InputMethodManager;
-import android.widget.Toast;
+
+import com.easyapp.baseproject.lib.callback.iFragmentTransactionListener;
 
 /**
  * 簡單可支援fragment 切換的base
  */
-public abstract class BaseEasyFragment extends Fragment {
-    private Toast toast;
-    protected OnFragmentTransactionListener onFragmentTransactionListener;
+public abstract class baseEasyFragment extends Fragment {
+
+    protected iFragmentTransactionListener onFragmentTransactionListener;
 
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
         try {
-            onFragmentTransactionListener = (OnFragmentTransactionListener) context;
+            onFragmentTransactionListener = (iFragmentTransactionListener) context;
         } catch (ClassCastException e) {
             throw new ClassCastException(context.toString()
                     + " must implement OnHeadlineSelectedListener");
         }
     }
 
-    @Override
-    public void onPause() {
-        hideKeyboard();
-        super.onPause();
-    }
-
-
-    protected void hideKeyboard() {
-        InputMethodManager imm = (InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
-        if (imm.isActive()) {
-            imm.hideSoftInputFromWindow(getView().getWindowToken(), 0);
-        }
-    }
-
-    protected void setTitle(CharSequence charSequence) {
-        ((AppCompatActivity) getActivity()).getSupportActionBar().setTitle(charSequence);
-    }
-
-    protected void setTitle(int res) {
-        ((AppCompatActivity) getActivity()).getSupportActionBar().setTitle(res);
-    }
 
     protected void AddFragment(Fragment fragment) {
         onFragmentTransactionListener.AddFragment(fragment);
@@ -98,25 +76,5 @@ public abstract class BaseEasyFragment extends Fragment {
         onFragmentTransactionListener.PopAllBackStack();
     }
 
-    /**
-     * 可關閉的 Toast
-     *
-     * @param content
-     */
-    protected void showToast(CharSequence content) {
-        showToast(content, false);
-    }
 
-    /**
-     * 可關閉的 Toast
-     *
-     * @param content
-     */
-    protected void showToast(CharSequence content, boolean isLong) {
-        if (toast != null) {
-            toast.cancel();
-        }
-        toast = Toast.makeText(getActivity(), content, isLong ? Toast.LENGTH_SHORT : Toast.LENGTH_LONG);
-        toast.show();
-    }
 }

@@ -9,7 +9,7 @@ import java.io.IOException;
 import java.io.InputStream;
 
 /**
- * Created by easyapp_jim on 2015/10/22.
+ * base 64 加解密工具
  */
 public class Base64Tool {
 
@@ -38,12 +38,16 @@ public class Base64Tool {
             e.printStackTrace();
         }
         bytes = output.toByteArray();
-        String returnbase = "data:image/jpeg;base64," + Base64.encodeToString(bytes, Base64.DEFAULT);
-        return returnbase;
+        return "data:image/jpeg;base64," + Base64.encodeToString(bytes, Base64.DEFAULT);
     }
 
+    /**
+     * 對base 64 進行解碼
+     *
+     * @param base64
+     * @return
+     */
     public static byte[] decodeBase64(String base64) {
-        byte[] bytes = Base64.decode(base64, Base64.DEFAULT);
-        return bytes;
+        return Base64.decode(base64, Base64.DEFAULT);
     }
 }

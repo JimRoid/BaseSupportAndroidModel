@@ -34,17 +34,15 @@
 -keep public class com.easyapp.baseproject.lib.RecycleView.BaseRecycleViewAdapter$FooterViewHolder{*;}
 -keep public class com.easyapp.baseproject.lib.RecycleView.BaseRecycleViewAdapter$HeaderViewHolder{*;}
 
--keep interface com.easyapp.baseproject.lib.OnFragmentTransactionListener { *;}
+-keep interface com.easyapp.baseproject.lib.callback.iFragmentTransactionListener { *;}
 
 -keep interface com.easyapp.baseproject.lib.RecycleView.OnClick { *;}
 
 -keep interface com.easyapp.baseproject.lib.RecycleView.OnLongClick { *;}
 
--keep class com.easyapp.baseproject.lib.Preference_DB { *; }
+-keep class com.easyapp.baseproject.lib.baseFragment.baseEasyFragment { *; }
 
--keep class com.easyapp.baseproject.lib.BaseEasyFragment { *; }
-
--keep class com.easyapp.baseproject.lib.BaseSupportActivity { *; }
+-keep class com.easyapp.baseproject.lib.baseActivity.baseSupportActivity { *; }
 
 -keep public class * extends android.app.Fragment
 
@@ -88,7 +86,3 @@
     public static <fields>;
 }
 
--keepclassmembers class * {
-    @android.webkit.JavascriptInterface
-    <methods>;
-}
