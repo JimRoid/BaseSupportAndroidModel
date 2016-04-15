@@ -23,8 +23,12 @@
         <item name="android:minWidth">48dp</item>
         <item name="android:minHeight">48dp</item>
         <item name="android:layout_margin">3dp</item>
-        <item name="android:elevation">1dp</item>
-        <item name="android:translationZ">1dp</item>
         <item name="android:background">@drawable/menu_background</item>
+    </style>
+
+    <style name="SpotsDialogDefault" parent="@android:style/Theme.Dialog">
+        <item name="DialogTitleAppearance">@android:style/TextAppearance.Medium</item>
+        <item name="DialogTitleText">Loading…</item>
+        <item name="DialogSpotCount">5</item>
     </style>
 </resources>

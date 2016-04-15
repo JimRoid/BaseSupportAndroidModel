@@ -10,4 +10,10 @@
 
     <!-- common space -->
     <dimen name="space_10">10.0dip</dimen>
+
+    <!--dialog dimen-->
+    <dimen name="spot_size">6dp</dimen>
+    <dimen name="title_margin">10dp</dimen>
+    <dimen name="progress_margin">24dp</dimen>
+    <dimen name="progress_width">250dp</dimen>
 </resources>

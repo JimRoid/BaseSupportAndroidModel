@@ -1,13 +1,55 @@
 package com.easyapp.baseproject.lib.baseActivity;
 
+import android.app.AlertDialog;
 import android.content.Context;
+import android.os.Bundle;
+import android.os.Handler;
+import android.support.annotation.Nullable;
+
 import android.support.v7.app.AppCompatActivity;
 import android.view.inputmethod.InputMethodManager;
+
+import com.easyapp.baseproject.lib.customview.loadDialog.SpotsDialog;
 
 /**
  * 提供一些基本方法的activity
  */
 public abstract class BaseActivity extends AppCompatActivity {
+    private AlertDialog alertDialog;
+
+    @Override
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        alertDialog = new SpotsDialog(this);
+    }
+
+    /**
+     * 顯示讀取的進度動畫dialog
+     */
+    protected void showLoading() {
+        if (!alertDialog.isShowing()) {
+            alertDialog.show();
+            Handler handler = new Handler();
+            handler.postDelayed(new Runnable() {
+
+                @Override
+                public void run() {
+                    if (alertDialog != null && alertDialog.isShowing()) {
+                        alertDialog.dismiss();
+                    }
+                }
+            }, 10000);
+        }
+    }
+
+    /**
+     * 關閉dialog
+     */
+    protected void cancelLoading() {
+        if (alertDialog != null) {
+            alertDialog.dismiss();
+        }
+    }
 
     /**
      * 隱藏鍵盤

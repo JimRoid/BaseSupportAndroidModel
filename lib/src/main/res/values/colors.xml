@@ -14,4 +14,7 @@
     <color name="white">#FFFFFF</color>
     <color name="light_blue">#6BBEE5</color>
 
+    <!--dialog default color-->
+    <color name="spots_dialog_color">#ff0099cc</color>
+
 </resources>
