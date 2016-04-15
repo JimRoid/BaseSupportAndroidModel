@@ -7,7 +7,7 @@ import android.view.inputmethod.InputMethodManager;
 /**
  * 提供一些基本方法的activity
  */
-public abstract class baseActivity extends AppCompatActivity {
+public abstract class BaseActivity extends AppCompatActivity {
 
     /**
      * 隱藏鍵盤

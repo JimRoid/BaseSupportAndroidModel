@@ -8,7 +8,7 @@
 
     <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:id="@+id/fl_drawer_right"
-        android:layout_width="@dimen/navdrawer_width"
+        android:layout_width="@dimen/drawer_width"
         android:layout_height="match_parent"
         android:layout_gravity="right|end"
         android:background="@color/white"
@@ -18,7 +18,7 @@
 
     <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:id="@+id/fl_drawer_left"
-        android:layout_width="@dimen/navdrawer_width"
+        android:layout_width="@dimen/drawer_width"
         android:layout_height="match_parent"
         android:layout_gravity="left|start"
         android:background="@color/white"

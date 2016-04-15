@@ -6,16 +6,11 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.Toast;
 
 /**
- * Created by easyapp_jim on 2016/4/13.
+ * 基本fragment
  */
-public abstract class baseFragment extends Fragment {
+public abstract class BaseFragment extends Fragment {
     private Toast toast;
 
-    @Override
-    public void onPause() {
-        super.onPause();
-        hideKeyboard();
-    }
 
     /**
      * 可關閉的 Toast

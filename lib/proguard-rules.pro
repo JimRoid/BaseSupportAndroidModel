@@ -40,9 +40,9 @@
 
 -keep interface com.easyapp.baseproject.lib.RecycleView.OnLongClick { *;}
 
--keep class com.easyapp.baseproject.lib.baseFragment.baseEasyFragment { *; }
+-keep class com.easyapp.baseproject.lib.baseFragment.BaseEasyFragment { *; }
 
--keep class com.easyapp.baseproject.lib.baseActivity.baseSupportActivity { *; }
+-keep class com.easyapp.baseproject.lib.baseActivity.BaseSupportActivity { *; }
 
 -keep public class * extends android.app.Fragment
 

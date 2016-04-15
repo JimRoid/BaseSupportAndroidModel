@@ -9,7 +9,7 @@ import com.easyapp.baseproject.lib.callback.iDrawerCallback;
 /**
  * 基本的側邊欄activity
  */
-public abstract class baseDrawerMainActivity extends baseMainActivity implements iDrawerCallback {
+public abstract class BaseDrawerMainActivity extends BaseMainActivity implements iDrawerCallback {
 
     protected DrawerLayout drawerLayout;
 
@@ -22,6 +22,8 @@ public abstract class baseDrawerMainActivity extends baseMainActivity implements
         initDrawer();
         initial();
     }
+
+
 
     protected void initDrawer() {
         drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);

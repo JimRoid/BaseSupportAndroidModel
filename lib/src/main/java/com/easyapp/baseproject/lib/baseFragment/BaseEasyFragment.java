@@ -8,7 +8,7 @@ import com.easyapp.baseproject.lib.callback.iFragmentTransactionListener;
 /**
  * 簡單可支援fragment 切換的base
  */
-public abstract class baseEasyFragment extends Fragment {
+public abstract class BaseEasyFragment extends Fragment {
 
     protected iFragmentTransactionListener onFragmentTransactionListener;
 

@@ -12,7 +12,7 @@ import com.easyapp.baseproject.lib.callback.iToolbarCallback;
 /**
  * 提供一般 基本 toolbar main activity layout
  */
-public abstract class baseMainActivity extends baseSupportActivity implements iToolbarCallback {
+public abstract class BaseMainActivity extends BaseSupportActivity implements iToolbarCallback {
     protected Toolbar toolbar;
     protected TextView tv_title;
     protected LinearLayout fl_right, fl_left;
@@ -87,20 +87,20 @@ public abstract class baseMainActivity extends baseSupportActivity implements iT
     }
 
     @Override
-    public void setLeft(View[] view) {
+    public void setLeft(View[] views) {
         fl_left.removeAllViews();
         fl_left.setVisibility(View.VISIBLE);
-        for (int i = view.length - 1; i >= 0; i--) {
-            fl_left.addView(view[i]);
+        for (int i = views.length - 1; i >= 0; i--) {
+            fl_left.addView(views[i]);
         }
     }
 
     @Override
-    public void setRight(View[] view) {
+    public void setRight(View[] views) {
         fl_right.removeAllViews();
         fl_right.setVisibility(View.VISIBLE);
-        for (int i = view.length - 1; i >= 0; i--) {
-            fl_right.addView(view[i]);
+        for (int i = views.length - 1; i >= 0; i--) {
+            fl_right.addView(views[i]);
         }
     }
 

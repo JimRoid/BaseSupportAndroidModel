@@ -7,11 +7,13 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.easyapp.baseproject.lib.baseFragment.BaseToolbarFragment;
+
 
 /**
  * A simple {@link Fragment} subclass.
  */
-public class SampleFragment extends Fragment {
+public class SampleFragment extends BaseToolbarFragment {
 
 
     @Override
