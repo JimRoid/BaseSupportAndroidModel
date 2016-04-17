@@ -1,5 +1,6 @@
 package com.easyapp.baseproject.lib.callback;
 
+import android.os.Bundle;
 import android.support.v4.app.Fragment;
 
 /**
@@ -9,6 +10,8 @@ public interface iFragmentTransactionListener {
     void OnAddFragment();
 
     void OnReplaceFragment();
+
+    void AddFragment(Fragment fragment, Bundle bundle);
 
     void AddFragment(Fragment fragment);
 
@@ -26,11 +29,15 @@ public interface iFragmentTransactionListener {
 
     void AddFragment_Up(Fragment fragment, int container);
 
+    void ReplaceFragment(Fragment fragment, Bundle bundle);
+
     void ReplaceFragment(Fragment fragment);
 
     void ReplaceFragment(Fragment fragment, int container);
 
     void ReplaceFragment(Fragment fragment, String anim);
+
+    void ReplaceFragment(Fragment fragment, String anim, Bundle bundle);
 
     void ReplaceFragment(Fragment fragment, int container, String anim);
 

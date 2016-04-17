@@ -1,6 +1,7 @@
 package com.easyapp.baseproject.lib.baseFragment;
 
 import android.content.Context;
+import android.os.Bundle;
 import android.support.v4.app.Fragment;
 
 import com.easyapp.baseproject.lib.callback.iFragmentTransactionListener;
@@ -23,6 +24,9 @@ public abstract class BaseEasyFragment extends BaseFragment {
         }
     }
 
+    protected void AddFragment(Fragment fragment, Bundle bundle) {
+        onFragmentTransactionListener.AddFragment(fragment, bundle);
+    }
 
     protected void AddFragment(Fragment fragment) {
         onFragmentTransactionListener.AddFragment(fragment);
@@ -48,6 +52,10 @@ public abstract class BaseEasyFragment extends BaseFragment {
         onFragmentTransactionListener.AddFragment_Up(fragment, container);
     }
 
+    protected void ReplaceFragment(Fragment fragment, Bundle bundle) {
+        onFragmentTransactionListener.ReplaceFragment(fragment, bundle);
+    }
+
     protected void ReplaceFragment(Fragment fragment) {
         onFragmentTransactionListener.ReplaceFragment(fragment);
     }
@@ -58,6 +66,10 @@ public abstract class BaseEasyFragment extends BaseFragment {
 
     protected void ReplaceFragment(Fragment fragment, String anim) {
         onFragmentTransactionListener.ReplaceFragment(fragment, anim);
+    }
+
+    protected void ReplaceFragment(Fragment fragment, String anim, Bundle bundle) {
+        onFragmentTransactionListener.ReplaceFragment(fragment, anim, bundle);
     }
 
     protected void ReplaceFragment(Fragment fragment, int container, String anim) {

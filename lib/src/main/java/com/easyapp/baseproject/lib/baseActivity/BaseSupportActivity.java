@@ -1,5 +1,6 @@
 package com.easyapp.baseproject.lib.baseActivity;
 
+import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
@@ -26,6 +27,12 @@ public abstract class BaseSupportActivity extends BaseActivity implements iFragm
 
     protected void setContainer(int container) {
         this.container = container;
+    }
+
+    @Override
+    public void AddFragment(Fragment fragment, Bundle bundle) {
+        fragment.setArguments(bundle);
+        AddFragment(fragment);
     }
 
     @Override
@@ -99,6 +106,11 @@ public abstract class BaseSupportActivity extends BaseActivity implements iFragm
         OnAddFragment();
     }
 
+    @Override
+    public void ReplaceFragment(Fragment fragment, Bundle bundle) {
+        fragment.setArguments(bundle);
+        ReplaceFragment(fragment);
+    }
 
     @Override
     public void ReplaceFragment(Fragment fragment) {
@@ -107,6 +119,12 @@ public abstract class BaseSupportActivity extends BaseActivity implements iFragm
 
     @Override
     public void ReplaceFragment(Fragment fragment, String anim) {
+        ReplaceFragment(fragment, container, anim);
+    }
+
+    @Override
+    public void ReplaceFragment(Fragment fragment, String anim, Bundle bundle) {
+        fragment.setArguments(bundle);
         ReplaceFragment(fragment, container, anim);
     }
 
