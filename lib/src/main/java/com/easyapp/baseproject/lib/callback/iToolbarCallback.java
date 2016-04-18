@@ -21,4 +21,9 @@ public interface iToolbarCallback {
 
     void showBack(boolean value);
 
+    void hideToolbar();
+
+    void showToolbar();
+
+
 }

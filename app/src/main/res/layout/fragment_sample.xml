@@ -19,6 +19,24 @@
             android:layout_height="wrap_content"
             android:onClick="openDrawerActivity"
             android:text="打開側欄activity" />
+
+        <Button
+            android:id="@+id/bt_showtoolbar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="showtoolbar" />
+
+        <Button
+            android:id="@+id/bt_hidetoolbar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="hidetoolbar" />
+
+        <Button
+            android:id="@+id/bt_loading"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Loading" />
     </LinearLayout>
 
 </FrameLayout>

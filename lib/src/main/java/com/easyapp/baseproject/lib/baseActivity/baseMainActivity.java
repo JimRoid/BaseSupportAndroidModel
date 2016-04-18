@@ -2,7 +2,9 @@ package com.easyapp.baseproject.lib.baseActivity;
 
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.util.TypedValue;
 import android.view.View;
+import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -16,6 +18,7 @@ public abstract class BaseMainActivity extends BaseSupportActivity implements iT
     protected Toolbar toolbar;
     protected TextView tv_title;
     protected LinearLayout fl_right, fl_left;
+    private FrameLayout container;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,11 +42,33 @@ public abstract class BaseMainActivity extends BaseSupportActivity implements iT
             }
         });
 
+        container = (FrameLayout) findViewById(R.id.container);
+
         tv_title = (TextView) toolbar.findViewById(R.id.tv_title);
         fl_right = (LinearLayout) toolbar.findViewById(R.id.fl_right);
         fl_left = (LinearLayout) toolbar.findViewById(R.id.fl_left);
     }
 
+    @Override
+    public void hideToolbar() {
+        getSupportActionBar().hide();
+        FrameLayout.LayoutParams layoutParams = (FrameLayout.LayoutParams) container.getLayoutParams();
+        layoutParams.setMargins(0, 0, 0, 0);
+        container.setLayoutParams(layoutParams);
+    }
+
+    @Override
+    public void showToolbar() {
+        getSupportActionBar().show();
+        TypedValue tv = new TypedValue();
+        int actionBarHeight;
+        if (getTheme().resolveAttribute(android.R.attr.actionBarSize, tv, true)) {
+            actionBarHeight = TypedValue.complexToDimensionPixelSize(tv.data, getResources().getDisplayMetrics());
+            FrameLayout.LayoutParams layoutParams = (FrameLayout.LayoutParams) container.getLayoutParams();
+            layoutParams.setMargins(0, actionBarHeight, 0, 0);
+            container.setLayoutParams(layoutParams);
+        }
+    }
 
     @Override
     public void setTitle(CharSequence title) {
@@ -103,8 +128,6 @@ public abstract class BaseMainActivity extends BaseSupportActivity implements iT
             fl_right.addView(views[i]);
         }
     }
-
-
 
 
 }

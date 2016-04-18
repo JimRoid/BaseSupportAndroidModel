@@ -23,43 +23,51 @@ public class BaseToolbarFragment extends BaseEasyFragment {
         }
     }
 
+    protected void hideToolbar() {
+        toolbar_callback.hideToolbar();
+    }
 
-    public void setTitle(CharSequence title) {
+    protected void showToolbar() {
+        toolbar_callback.showToolbar();
+    }
+
+
+    protected void setTitle(CharSequence title) {
         getActivity().setTitle(title);
     }
 
 
-    public void setTitle(int titleId) {
+    protected void setTitle(int titleId) {
         getActivity().setTitle(titleId);
     }
 
-    public void showBack(boolean value) {
+    protected void showBack(boolean value) {
         toolbar_callback.showBack(value);
     }
 
-    public void cancelRight() {
+    protected void cancelRight() {
         toolbar_callback.cancelRight();
     }
 
-    public void cancelLeft() {
+    protected void cancelLeft() {
         toolbar_callback.cancelLeft();
     }
 
-    public void setLeft(View view) {
+    protected void setLeft(View view) {
         toolbar_callback.setLeft(view);
     }
 
 
-    public void setRight(View view) {
+    protected void setRight(View view) {
         toolbar_callback.setRight(view);
     }
 
 
-    public void setLeft(View[] views) {
+    protected void setLeft(View[] views) {
         toolbar_callback.setLeft(views);
     }
 
-    public void setRight(View[] views) {
+    protected void setRight(View[] views) {
         toolbar_callback.setRight(views);
     }
 }
