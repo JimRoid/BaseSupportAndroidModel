@@ -15,12 +15,15 @@ import com.easyapp.baseproject.lib.baseFragment.BaseToolbarFragment;
  */
 public class SampleFragment extends BaseToolbarFragment {
 
+    private View view;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_sample, container, false);
+        view = inflater.inflate(R.layout.fragment_sample, container, false);
+
+        showLoading();
+        return view;
     }
 
 }

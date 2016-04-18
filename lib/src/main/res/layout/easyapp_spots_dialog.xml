@@ -13,7 +13,7 @@
         android:text="?attr/DialogTitleText"
         android:textAppearance="?attr/DialogTitleAppearance" />
 
-    <dmax.dialog.ProgressLayout
+    <com.easyapp.baseproject.lib.customview.loadDialog.ProgressLayout
         android:id="@+id/dmax_spots_progress"
         android:layout_width="@dimen/progress_width"
         android:layout_height="wrap_content"
