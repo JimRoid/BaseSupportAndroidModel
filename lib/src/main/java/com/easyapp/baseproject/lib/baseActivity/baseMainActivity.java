@@ -23,10 +23,14 @@ public abstract class BaseMainActivity extends BaseSupportActivity implements iT
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.easyapp_base_main);
+        setContentView(getLayoutId());
         setContainer(R.id.container);
         initView();
         initial();
+    }
+
+    protected int getLayoutId(){
+        return R.layout.easyapp_base_main;
     }
 
     protected abstract void initial();

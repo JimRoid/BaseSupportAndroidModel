@@ -1,11 +1,11 @@
 package com.easyapp.baseproject.lib.baseActivity;
 
-import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.DrawerLayout;
 
 import com.easyapp.baseproject.lib.R;
 import com.easyapp.baseproject.lib.callback.iDrawerCallback;
+import com.orhanobut.logger.Logger;
 
 /**
  * 基本的側邊欄activity
@@ -14,22 +14,17 @@ public abstract class BaseDrawerMainActivity extends BaseMainActivity implements
 
     protected DrawerLayout drawerLayout;
 
+
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        initial();
+    protected int getLayoutId() {
+        return R.layout.easyapp_base_drawer_main;
     }
 
     @Override
-    protected void initial() {
-        initDrawer();
-        initial_create();
-    }
-
-    protected abstract void initial_create();
-
-    protected void initDrawer() {
+    protected void initView() {
+        super.initView();
         drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
+        Logger.d("drawerLayout initView");
     }
 
 

@@ -9,6 +9,8 @@ public class MainDrawerActivity extends BaseDrawerMainActivity {
 
     @Override
     protected void initial() {
-
+        setDrawerLock();
     }
+
+
 }
