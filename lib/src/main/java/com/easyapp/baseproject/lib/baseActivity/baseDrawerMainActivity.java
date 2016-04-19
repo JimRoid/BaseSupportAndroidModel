@@ -20,16 +20,19 @@ public abstract class BaseDrawerMainActivity extends BaseMainActivity implements
         setContentView(R.layout.easyapp_base_drawer_main);
         setContainer(R.id.container);
         initView();
-        initDrawer();
         initial();
     }
 
+    @Override
+    protected void initView() {
+        super.initView();
+        initDrawer();
+    }
 
     protected void initDrawer() {
         drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
     }
 
-    protected abstract void initial();
 
     @Override
     public void addLeftDrawer(Fragment fragment) {
