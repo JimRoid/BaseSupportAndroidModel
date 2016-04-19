@@ -35,7 +35,7 @@ public abstract class BaseDrawerMainActivity extends BaseMainActivity implements
 
     @Override
     public void addRightDrawer(Fragment fragment) {
-        getSupportFragmentManager().beginTransaction().replace(R.id.fl_drawer_left, fragment, "left").commitAllowingStateLoss();
+        getSupportFragmentManager().beginTransaction().replace(R.id.fl_drawer_right, fragment, "left").commitAllowingStateLoss();
     }
 
     @Override
