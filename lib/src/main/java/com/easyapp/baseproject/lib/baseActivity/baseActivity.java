@@ -27,18 +27,27 @@ public abstract class BaseActivity extends AppCompatActivity {
      * 顯示讀取的進度動畫dialog
      */
     protected void showLoading() {
+        showLoading(false);
+    }
+
+    /**
+     * 顯示讀取的進度動畫dialog
+     */
+    protected void showLoading(boolean notautodismiss) {
         if (!alertDialog.isShowing()) {
             alertDialog.show();
-            Handler handler = new Handler();
-            handler.postDelayed(new Runnable() {
+            if (!notautodismiss) {
+                Handler handler = new Handler();
+                handler.postDelayed(new Runnable() {
 
-                @Override
-                public void run() {
-                    if (alertDialog != null && alertDialog.isShowing()) {
-                        alertDialog.dismiss();
+                    @Override
+                    public void run() {
+                        if (alertDialog != null && alertDialog.isShowing()) {
+                            alertDialog.dismiss();
+                        }
                     }
-                }
-            }, 10000);
+                }, 10000);
+            }
         }
     }
 
