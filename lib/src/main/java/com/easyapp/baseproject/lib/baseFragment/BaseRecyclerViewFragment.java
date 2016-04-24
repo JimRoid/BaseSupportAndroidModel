@@ -31,8 +31,8 @@ public abstract class BaseRecyclerViewFragment extends BaseDrawerFragment {
     }
 
     private void initData(){
-        baseRecycleViewAdapter = new BaseRecyclerViewAdapter() {
-        }
+//        baseRecycleViewAdapter = new BaseRecyclerViewAdapter() {
+//        };
     }
 
 

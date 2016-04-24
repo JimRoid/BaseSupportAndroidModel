@@ -1,26 +1,52 @@
 ## BaseSupportAndroidModel ##
 
-* 提供可簡單繼承的activity 及 fragment
+* 提供可快速進行迭代開發的模組，加速頁面的開發
+* 目前功能
+    快速建置toolbar畫面
+    快速建置側邊欄畫面
+    可迅速切換畫面，自帶返回頁面堆棧
+    自帶loading畫面
+    快速開啟網頁、圖片、可放大縮小之圖片
+* feature
+    登入畫面
+    列表介面
 
 ### install gradle ###
 
-    repositories {
+``` 
+repositories {
     maven {
             url "https://api.bitbucket.org/1.0/repositories/easyapp/android_module_baseproject/raw/master/"
             credentials {
                 username 'Jimroid'
                 password 'Kincaid123'
             }
-        }
+    }
 }
+```
 
 
-    dependencies {
+```
+dependencies {
     compile 'com.easyapp.baseproject.lib:BaseSupport:2.1.2'
 }
+```
 
-### Simple ###
-* extends BaseSupportActivity
-* extends BaseEasyFragment
+### 範例 ###
+* 提供基本的toolbar activity
+
+```
+    class Activity extends BaseMainActivity{
+    
+    }
+```
+
+* 提供基本側邊欄 activity
+
+```
+   class Activity extends BaseDrawerMainActivity{
+   
+   }
+```
  
 
