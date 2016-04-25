@@ -31,14 +31,12 @@ public class BaseToolbarFragment extends BaseEasyFragment {
         toolbar_callback.showToolbar();
     }
 
-
     protected void setTitle(CharSequence title) {
-        getActivity().setTitle(title);
+        toolbar_callback.setTitle(title);
     }
 
-
     protected void setTitle(int titleId) {
-        getActivity().setTitle(titleId);
+        toolbar_callback.setTitle(titleId);
     }
 
     protected void showBack(boolean value) {

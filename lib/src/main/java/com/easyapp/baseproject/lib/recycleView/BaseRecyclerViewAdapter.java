@@ -7,8 +7,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.easyapp.baseproject.lib.R;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -90,15 +88,10 @@ public abstract class BaseRecyclerViewAdapter<VH extends BaseRecyclerViewAdapter
     @Override
     public int getItemCount() {
         int size = getDataSize();
-        if (hasFooter()) size += 1;
-
-        if (hasHeader()) size += 1;
-
         return size;
     }
 
     public Object getItem(int position) {
-        if (hasHeader()) position -= 1;
         return getData().get(position);
     }
 
@@ -114,24 +107,15 @@ public abstract class BaseRecyclerViewAdapter<VH extends BaseRecyclerViewAdapter
     @Override
     public ItemHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         ItemHolder vh;
-        if (viewType == TYPE_FOOTER) {
-            View v = getLayoutInflater(parent.getContext())
-                    .inflate(R.layout.recycle_foot, null);
-            vh = new FooterViewHolder(viewType, v);
-        } else if (viewType == TYPE_HEADER) {
-            if (mHeaderView == null)
-                throw new RuntimeException("Header view is null");
-            vh = onCreateHeadViewHolder(mHeaderView, viewType);
-        } else {
-            final View itemView = onCreateItemView(parent, viewType);
-            vh = onCreateItemViewHolder(itemView, viewType);
-        }
+        final View itemView = onCreateItemView(parent, viewType);
+        vh = onCreateItemViewHolder(itemView, viewType);
+
         return vh;
     }
 
     @Override
     public void onBindViewHolder(ItemHolder holder, int position) {
-        onBaseBindViewHolder(holder, position);
+//        onBaseBindViewHolder(holder, position);
     }
 
     protected abstract void onBindHeadViewHolder(ItemHolder holder, int position);
@@ -146,10 +130,6 @@ public abstract class BaseRecyclerViewAdapter<VH extends BaseRecyclerViewAdapter
 
     protected ItemHolder onCreateItemViewHolder(View view, int viewType) {
         return new ItemHolder(viewType, view) {
-            @Override
-            protected void bind(Object item, int position, OnItemClick onItemClick) {
-
-            }
         };
     }
 

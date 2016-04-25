@@ -25,5 +25,7 @@ public interface iToolbarCallback {
 
     void showToolbar();
 
+    void setTitle(CharSequence sequence);
 
+    void setTitle(int title_id);
 }
