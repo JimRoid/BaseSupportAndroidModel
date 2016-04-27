@@ -34,7 +34,6 @@ public class FragmentTouchView extends Fragment {
         layoutParams.gravity = Gravity.CENTER;
         frameLayout.setLayoutParams(layoutParams);
         touchImageView = new TouchImageView(getActivity());
-        touchImageView.setImageResource(R.drawable.ic_camera);
         frameLayout.setBackgroundColor(getResources().getColor(android.R.color.background_dark));
         frameLayout.addView(touchImageView);
         getExtraIntent();
@@ -45,12 +44,12 @@ public class FragmentTouchView extends Fragment {
         Bundle bundle = getArguments();
         String path = bundle.getString("PATH");
         if (path == null) {
-            touchImageView.setImageResource(R.drawable.ic_camera);
+            touchImageView.setImageResource(R.drawable.img_empty340);
             return;
         }
 
         if (path.contains("http")) {
-            Glide.with(this).load(path).error(R.drawable.ic_camera).into(touchImageView);
+            Glide.with(this).load(path).error(R.drawable.img_empty340).into(touchImageView);
         } else if (path.contains("/storage")) {
             File file = new File(path);
             if (file.exists()) {
