@@ -13,6 +13,7 @@ import android.widget.FrameLayout;
 
 import com.bumptech.glide.Glide;
 import com.easyapp.baseproject.lib.Base64Tool;
+import com.easyapp.baseproject.lib.R;
 
 import java.io.File;
 
@@ -33,6 +34,7 @@ public class FragmentTouchView extends Fragment {
         layoutParams.gravity = Gravity.CENTER;
         frameLayout.setLayoutParams(layoutParams);
         touchImageView = new TouchImageView(getActivity());
+        touchImageView.setImageResource(R.drawable.ic_camera);
         frameLayout.setBackgroundColor(getResources().getColor(android.R.color.background_dark));
         frameLayout.addView(touchImageView);
         getExtraIntent();
@@ -42,9 +44,13 @@ public class FragmentTouchView extends Fragment {
     protected void getExtraIntent() {
         Bundle bundle = getArguments();
         String path = bundle.getString("PATH");
+        if (path == null) {
+            touchImageView.setImageResource(R.drawable.ic_camera);
+            return;
+        }
 
         if (path.contains("http")) {
-            Glide.with(this).load(path).dontAnimate().into(touchImageView);
+            Glide.with(this).load(path).error(R.drawable.ic_camera).into(touchImageView);
         } else if (path.contains("/storage")) {
             File file = new File(path);
             if (file.exists()) {

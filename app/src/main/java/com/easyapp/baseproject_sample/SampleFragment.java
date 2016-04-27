@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.easyapp.baseproject.lib.OpenData;
 import com.easyapp.baseproject.lib.baseFragment.BaseToolbarFragment;
 
 
@@ -35,6 +36,9 @@ public class SampleFragment extends BaseToolbarFragment implements View.OnClickL
 
         View bt_loading = view.findViewById(R.id.bt_loading);
         bt_loading.setOnClickListener(this);
+
+        View bt_touchview = view.findViewById(R.id.bt_touchview);
+        bt_touchview.setOnClickListener(this);
     }
 
     @Override
@@ -49,6 +53,10 @@ public class SampleFragment extends BaseToolbarFragment implements View.OnClickL
                 break;
             case R.id.bt_loading:
                 showLoading();
+                break;
+            case R.id.bt_touchview:
+                String[] d = {"https://pixabay.com/static/uploads/photo/2015/10/01/21/39/background-image-967820_960_720.jpg"};
+                OpenData.OpenTouchImage(getActivity(), d);
                 break;
         }
     }

@@ -105,9 +105,10 @@ public class OpenData {
      * @param activity
      * @param path
      */
-    public static void OpenTouchImage(Activity activity, String path[]) {
+    public static void OpenTouchImage(Activity activity, String path[], int position) {
         Intent intent = new Intent(activity, TouchViewActivity.class);
         intent.putExtra("PATH", path);
+        intent.putExtra("POSITION", position);
         StartActivity(activity, intent);
     }
 

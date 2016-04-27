@@ -42,6 +42,8 @@ public class TouchViewActivity extends AppCompatActivity {
                 getSupportFragmentManager(), pages);
 
         viewPager.setAdapter(adapter);
+        int position = getIntent().getIntExtra("POSITION",0);
+        viewPager.setCurrentItem(position);
     }
 
 
