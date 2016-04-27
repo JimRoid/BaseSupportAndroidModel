@@ -98,13 +98,14 @@ public class OpenData {
 
     }
 
+
     /**
      * 開啟可放大縮小圖片
      *
      * @param activity
      * @param path
      */
-    public static void OpenTouchImage(Activity activity, String path) {
+    public static void OpenTouchImage(Activity activity, String path[]) {
         Intent intent = new Intent(activity, TouchViewActivity.class);
         intent.putExtra("PATH", path);
         StartActivity(activity, intent);

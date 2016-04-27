@@ -9,7 +9,7 @@ android {
         minSdkVersion 14
         targetSdkVersion 23
         versionCode 60
-        versionName "2.1.4"
+        versionName "2.1.5"
     }
 
     buildTypes {
@@ -28,6 +28,8 @@ dependencies {
     compile 'com.android.support:recyclerview-v7:23.3.0'
     compile 'com.github.bumptech.glide:glide:3.7.0'
     compile 'com.orhanobut:logger:1.10'
+    //Optional: see how to use the utility.
+    compile 'com.ogaclejapan.smarttablayout:utils-v4:1.6.0@aar'
 }
 
 def repo = new File(rootDir, "")
@@ -36,7 +38,7 @@ uploadArchives {
     repositories {
         mavenDeployer {
             repository url: "file://${repo.absolutePath}"
-            pom.version = '2.1.4'             // version
+            pom.version = '2.1.5'             // version
             pom.groupId = 'com.easyapp.baseproject.lib'    // グループ名
             pom.artifactId = 'BaseSupport' // ライブラリ名
         }

@@ -1,57 +1,47 @@
 package com.easyapp.baseproject.lib.touchView;
 
-import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.os.Bundle;
+import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
-import android.view.Gravity;
-import android.view.ViewGroup;
-import android.widget.FrameLayout;
 
-import com.bumptech.glide.Glide;
-import com.easyapp.baseproject.lib.Base64Tool;
-
-import java.io.File;
+import com.easyapp.baseproject.lib.R;
+import com.ogaclejapan.smarttablayout.utils.v4.FragmentPagerItem;
+import com.ogaclejapan.smarttablayout.utils.v4.FragmentPagerItemAdapter;
+import com.ogaclejapan.smarttablayout.utils.v4.FragmentPagerItems;
 
 /**
- * Created by easyapp_jim on 2015/10/22.
+ * 顯示可滑動 touch view
  */
 public class TouchViewActivity extends AppCompatActivity {
-    private TouchImageView touchImageView;
+    private ViewPager viewPager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setTheme(android.R.style.Theme_Black_NoTitleBar_Fullscreen);
-        FrameLayout frameLayout = new FrameLayout(this);
-        FrameLayout.LayoutParams layoutParams = new FrameLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
-        layoutParams.gravity = Gravity.CENTER;
-        frameLayout.setLayoutParams(layoutParams);
-        touchImageView = new TouchImageView(this);
-        frameLayout.setBackgroundColor(getResources().getColor(android.R.color.background_dark));
-        frameLayout.addView(touchImageView);
-        setContentView(frameLayout);
-        getExtraIntent();
+        setContentView(R.layout.easyapp_pager_touchview);
+        initView();
     }
 
-    protected void getExtraIntent() {
-        Intent intent = getIntent();
-        String path = intent.getStringExtra("PATH");
+    private void initView() {
+        viewPager = (ViewPager) findViewById(R.id.easyapp_viewpager);
+        initData();
+    }
 
-        if (path.contains("http")) {
-            Glide.with(this).load(path).dontAnimate().into(touchImageView);
-        } else if (path.contains("/storage")) {
-            File file = new File(path);
-            if (file.exists()) {
-                Bitmap bitmap = BitmapFactory.decodeFile(path);
-                touchImageView.setImageBitmap(bitmap);
-            }
-        } else {
-            byte[] decodedString = Base64Tool.decodeBase64(path);
-            Bitmap decodedByte = BitmapFactory.decodeByteArray(decodedString, 0, decodedString.length);
-            touchImageView.setImageBitmap(decodedByte);
+    private void initData() {
+        String[] data = getIntent().getStringArrayExtra("PATH");
+
+        FragmentPagerItems pages = new FragmentPagerItems(this);
+        for (String resource : data) {
+            Bundle bundle = new Bundle();
+            bundle.putString("PATH", resource);
+            pages.add(FragmentPagerItem.of("", FragmentTouchView.class, bundle));
         }
+
+        FragmentPagerItemAdapter adapter = new FragmentPagerItemAdapter(
+                getSupportFragmentManager(), pages);
+
+        viewPager.setAdapter(adapter);
     }
 
 
