@@ -1,7 +1,7 @@
 package com.easyapp.baseproject.lib.callback;
 
 /**
- * Created by easyapp_jim on 2016/4/13.
+ * 基本callback
  */
 public interface iCallback {
 
@@ -10,4 +10,10 @@ public interface iCallback {
     void callback(String value);
 
     void callback(Object object);
+
+    void onSuccess();
+
+    void onFail();
+
+    void onComplete();
 }

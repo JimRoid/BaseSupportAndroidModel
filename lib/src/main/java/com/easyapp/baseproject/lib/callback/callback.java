@@ -18,4 +18,19 @@ public class Callback implements iCallback {
     public void callback(Object object) {
 
     }
+
+    @Override
+    public void onSuccess() {
+
+    }
+
+    @Override
+    public void onFail() {
+
+    }
+
+    @Override
+    public void onComplete() {
+
+    }
 }
