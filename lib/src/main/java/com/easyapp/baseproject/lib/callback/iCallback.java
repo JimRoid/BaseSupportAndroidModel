@@ -16,4 +16,6 @@ public interface iCallback {
     void onFail();
 
     void onComplete();
+
+    void onComplete(String value);
 }

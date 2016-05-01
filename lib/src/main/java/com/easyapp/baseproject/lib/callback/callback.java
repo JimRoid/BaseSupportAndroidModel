@@ -33,4 +33,9 @@ public class Callback implements iCallback {
     public void onComplete() {
 
     }
+
+    @Override
+    public void onComplete(String value) {
+
+    }
 }
