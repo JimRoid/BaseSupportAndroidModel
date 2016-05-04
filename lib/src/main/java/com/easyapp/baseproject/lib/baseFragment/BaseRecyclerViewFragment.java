@@ -20,7 +20,7 @@ import java.util.List;
 /**
  * 基本的列表fragment
  */
-public abstract class BaseRecyclerViewFragment extends BaseToolbarFragment implements SwipeRefreshLayout.OnRefreshListener {
+public abstract class BaseRecyclerViewFragment extends BaseDrawerFragment implements SwipeRefreshLayout.OnRefreshListener {
 
     private View view;
     private SwipeRefreshLayout easyapp_swiperefresh_layout;

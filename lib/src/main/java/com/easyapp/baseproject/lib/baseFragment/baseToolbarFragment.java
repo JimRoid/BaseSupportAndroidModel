@@ -24,48 +24,81 @@ public class BaseToolbarFragment extends BaseEasyFragment {
     }
 
     protected void hideToolbar() {
+        if (toolbar_callback == null) {
+            return;
+        }
         toolbar_callback.hideToolbar();
     }
 
     protected void showToolbar() {
+        if (toolbar_callback == null) {
+            return;
+        }
         toolbar_callback.showToolbar();
     }
 
     protected void setTitle(CharSequence title) {
+        if (toolbar_callback == null) {
+            return;
+        }
         toolbar_callback.setTitle(title);
     }
 
     protected void setTitle(int titleId) {
+        if (toolbar_callback == null) {
+            return;
+        }
         toolbar_callback.setTitle(titleId);
     }
 
     protected void showBack(boolean value) {
+        if (toolbar_callback == null) {
+            return;
+        }
         toolbar_callback.showBack(value);
     }
 
     protected void cancelRight() {
+        if (toolbar_callback == null) {
+            return;
+        }
         toolbar_callback.cancelRight();
     }
 
     protected void cancelLeft() {
+        if (toolbar_callback == null) {
+            return;
+        }
         toolbar_callback.cancelLeft();
     }
 
     protected void setLeft(View view) {
+        if (toolbar_callback == null) {
+            return;
+        }
         toolbar_callback.setLeft(view);
     }
 
 
     protected void setRight(View view) {
+        if (toolbar_callback == null) {
+            return;
+        }
         toolbar_callback.setRight(view);
     }
 
 
     protected void setLeft(View[] views) {
+        if (toolbar_callback == null) {
+            return;
+        }
         toolbar_callback.setLeft(views);
     }
 
     protected void setRight(View[] views) {
+        if (toolbar_callback == null) {
+            return;
+        }
         toolbar_callback.setRight(views);
     }
 }
