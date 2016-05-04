@@ -10,7 +10,8 @@ public class MainActivity extends BaseMainActivity {
     @Override
     protected void initial() {
         setTitle("BaseProject Sample");
-        ReplaceFragment(new SampleFragment());
+//        ReplaceFragment(new SampleFragment());
+        ReplaceFragment(new FragmentNews());
     }
 
     public void openDrawerActivity(View view) {

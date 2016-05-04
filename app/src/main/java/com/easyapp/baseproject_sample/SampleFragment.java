@@ -56,7 +56,7 @@ public class SampleFragment extends BaseToolbarFragment implements View.OnClickL
                 break;
             case R.id.bt_touchview:
                 String[] d = {"https://pixabay.com/static/uploads/photo/2015/10/01/21/39/background-image-967820_960_720.jpg"};
-                OpenData.OpenTouchImage(getActivity(), d);
+                OpenData.OpenTouchImage(getActivity(), d, 0);
                 break;
         }
     }

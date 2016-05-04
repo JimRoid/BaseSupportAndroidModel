@@ -2,10 +2,7 @@
     <string name="app_name">BaseProject</string>
 
     <!-- common text -->
-    <string name="loading">Loading</string>
-    <string name="loading_no_more">No More</string>
-    <string name="loading_error">Network Error</string>
-    <string name="loading_no_network">Not Find Network</string>
+    <string name="not_found">目前沒有資料</string>
 
     <!-- network tool -->
     <string name="network_message_title">網路</string>

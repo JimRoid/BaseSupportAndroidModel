@@ -5,7 +5,6 @@ import android.support.v4.widget.DrawerLayout;
 
 import com.easyapp.baseproject.lib.R;
 import com.easyapp.baseproject.lib.callback.iDrawerCallback;
-import com.orhanobut.logger.Logger;
 
 /**
  * 基本的側邊欄activity
@@ -13,7 +12,6 @@ import com.orhanobut.logger.Logger;
 public abstract class BaseDrawerMainActivity extends BaseMainActivity implements iDrawerCallback {
 
     protected DrawerLayout drawerLayout;
-
 
     @Override
     protected int getLayoutId() {
@@ -24,7 +22,6 @@ public abstract class BaseDrawerMainActivity extends BaseMainActivity implements
     protected void initView() {
         super.initView();
         drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
-        Logger.d("drawerLayout initView");
     }
 
 
