@@ -86,9 +86,11 @@ public abstract class BaseRecyclerViewFragment extends BaseDrawerFragment implem
             public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
                 View contactView;
                 RecyclerView.ViewHolder viewHolder;
-                if (viewType == BaseRecyclerViewAdapter.VIEWTYPEHEADER) {
+                if (viewType == BaseRecyclerViewAdapter.VIEWTYPEHEADER && getHeaderView() == null) {
                     contactView = LayoutInflater.from(context).inflate(getRecycleViewHolderHeaderLayout(), parent, false);
                     viewHolder = getHeaderItemHolder(contactView);
+                } else if (viewType == BaseRecyclerViewAdapter.VIEWTYPEHEADER && getHeaderView() == null) {
+                    viewHolder = getHeaderItemHolder(getHeaderView());
                 } else {
                     contactView = LayoutInflater.from(context).inflate(getRecycleViewHolderLayout(), parent, false);
                     viewHolder = getItemHolder(contactView);
@@ -107,6 +109,23 @@ public abstract class BaseRecyclerViewFragment extends BaseDrawerFragment implem
             }
         };
         recyclerView.setAdapter(baseRecycleViewAdapter);
+    }
+
+    /**
+     * 設定header view
+     *
+     * @param headerView
+     */
+    protected void setHeaderView(View headerView) {
+        baseRecycleViewAdapter.setHeaderView(headerView);
+    }
+
+    /**
+     * @return
+     */
+    @Nullable
+    protected View getHeaderView() {
+        return baseRecycleViewAdapter.getHeaderView();
     }
 
     /**
