@@ -12,19 +12,16 @@ public abstract class BaseDrawerFragment extends BaseToolbarFragment {
 
     private iDrawerCallback drawerCallback;
 
-    @Override
-    public void onAttach(Context context) {
-        super.onAttach(context);
+    protected void setDrawerCallback(Context context){
         try {
             drawerCallback = (iDrawerCallback) context;
         } catch (ClassCastException e) {
             throw new ClassCastException(context.toString()
                     + " must implement OnHeadlineSelectedListener");
         }
-
     }
 
-    public void addLeftDrawer(Fragment fragment) {
+    protected void addLeftDrawer(Fragment fragment) {
         if (drawerCallback == null) {
             return;
         }
@@ -32,35 +29,35 @@ public abstract class BaseDrawerFragment extends BaseToolbarFragment {
 
     }
 
-    public void addRightDrawer(Fragment fragment) {
+    protected void addRightDrawer(Fragment fragment) {
         if (drawerCallback == null) {
             return;
         }
         drawerCallback.addRightDrawer(fragment);
     }
 
-    public void setDrawerLock() {
+    protected void setDrawerLock() {
         if (drawerCallback == null) {
             return;
         }
         drawerCallback.setDrawerLock();
     }
 
-    public void setDrawerUnLock() {
+    protected void setDrawerUnLock() {
         if (drawerCallback == null) {
             return;
         }
         drawerCallback.setDrawerUnLock();
     }
 
-    public void openDrawer(int gravity) {
+    protected void openDrawer(int gravity) {
         if (drawerCallback == null) {
             return;
         }
         drawerCallback.openDrawer(gravity);
     }
 
-    public void closeDrawer(int gravity) {
+    protected void closeDrawer(int gravity) {
         if (drawerCallback == null) {
             return;
         }

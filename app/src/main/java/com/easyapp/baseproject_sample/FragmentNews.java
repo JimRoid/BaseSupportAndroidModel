@@ -28,6 +28,9 @@ public class FragmentNews extends BaseRecyclerViewFragment {
 
     @Override
     protected void init() {
+//        setFabSrc(1);
+//        setFabVisible(false);
+//        setFabBackground();
         Gson gson = new Gson();
         String json = RawTool.getRawString(getActivity(), R.raw.proj);
         try {

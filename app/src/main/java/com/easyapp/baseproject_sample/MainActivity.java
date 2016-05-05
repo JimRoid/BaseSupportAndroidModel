@@ -3,9 +3,9 @@ package com.easyapp.baseproject_sample;
 import android.content.Intent;
 import android.view.View;
 
-import com.easyapp.baseproject.lib.baseActivity.BaseMainActivity;
+import com.easyapp.baseproject.lib.baseActivity.BaseDrawerMainActivity;
 
-public class MainActivity extends BaseMainActivity {
+public class MainActivity extends BaseDrawerMainActivity {
 
     @Override
     protected void initial() {
@@ -13,6 +13,8 @@ public class MainActivity extends BaseMainActivity {
 //        ReplaceFragment(new SampleFragment());
         ReplaceFragment(new FragmentNews());
     }
+
+
 
     public void openDrawerActivity(View view) {
         Intent intent = new Intent();

@@ -1,7 +1,9 @@
 package com.easyapp.baseproject.lib.baseFragment;
 
+import android.content.res.ColorStateList;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -27,9 +29,11 @@ public abstract class BaseRecyclerViewFragment extends BaseDrawerFragment implem
     private RecyclerView recyclerView;
     private View emptyView;
     private ProgressBar easyapp_pb;
+    private FloatingActionButton fab;
 
     private BaseRecyclerViewAdapter baseRecycleViewAdapter;
 
+    private boolean fabVisible = true;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -41,6 +45,7 @@ public abstract class BaseRecyclerViewFragment extends BaseDrawerFragment implem
     }
 
     private void initView() {
+        fab = (FloatingActionButton) view.findViewById(R.id.fab);
         emptyView = view.findViewById(R.id.easyapp_empty_view);
         easyapp_pb = (ProgressBar) view.findViewById(R.id.easyapp_pb);
         easyapp_pb.getIndeterminateDrawable().setColorFilter(
@@ -57,6 +62,18 @@ public abstract class BaseRecyclerViewFragment extends BaseDrawerFragment implem
 
     private void initData() {
         EndlessRecyclerOnScrollListener endlessRecyclerOnScrollListener = new EndlessRecyclerOnScrollListener() {
+            @Override
+            public void onScrolledUp() {
+                super.onScrolledUp();
+                showFab();
+            }
+
+            @Override
+            public void onScrolledDown() {
+                super.onScrolledDown();
+                hideFab();
+            }
+
             @Override
             public void onScrolledToBottom() {
                 if (easyapp_pb.getVisibility() == View.GONE) {
@@ -94,19 +111,55 @@ public abstract class BaseRecyclerViewFragment extends BaseDrawerFragment implem
         recyclerView.setAdapter(baseRecycleViewAdapter);
     }
 
-    protected abstract void init();
-
-
-    private void cancelProgress() {
-        easyapp_pb.setVisibility(View.GONE);
-    }
-
-    private void showProgress() {
-        easyapp_pb.setVisibility(View.VISIBLE);
+    /**
+     * 設定float action button image resource
+     *
+     * @param res
+     */
+    protected void setFabSrc(int res) {
+        fab.setImageResource(res);
     }
 
     /**
-     * 設定data
+     * 設定float action button 背景顏色
+     */
+    protected void setFabBackground(int color) {
+        fab.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(color)));
+    }
+
+    /**
+     * 設定頁面的初始化
+     */
+    protected abstract void init();
+
+    /**
+     * 設定float action 是否要顯示
+     *
+     * @param fabVisible
+     */
+    protected void setFabVisible(boolean fabVisible) {
+        this.fabVisible = fabVisible;
+        if (fabVisible) {
+            fab.setVisibility(View.VISIBLE);
+        } else {
+            fab.setVisibility(View.GONE);
+        }
+    }
+
+    protected void showFab() {
+        if (fabVisible) {
+            fab.show();
+        }
+    }
+
+    protected void hideFab() {
+        if (fabVisible) {
+            fab.hide();
+        }
+    }
+
+    /**
+     * 設定data 並清除原本的檔案
      *
      * @param arrayList
      */
@@ -170,17 +223,33 @@ public abstract class BaseRecyclerViewFragment extends BaseDrawerFragment implem
      */
     protected abstract BaseRecyclerViewAdapter.ItemHolder getHeaderItemHolder(View contactView);
 
-    protected abstract <T> void getBindViewHolder(RecyclerView.ViewHolder holder, T obj);
+    protected abstract void getBindViewHolder(RecyclerView.ViewHolder holder, Object obj);
 
-    protected abstract <T> void getBindHeaderViewHolder(RecyclerView.ViewHolder holder, T obj);
+    protected abstract void getBindHeaderViewHolder(RecyclerView.ViewHolder holder, Object obj);
 
-    protected void setEmptyView(){
+    protected void setEmptyView() {
         if (baseRecycleViewAdapter.getData().size() == 0) {
 //            recyclerView.setVisibility(View.GONE);
             emptyView.setVisibility(View.VISIBLE);
-        }else{
+        } else {
 //            recyclerView.setVisibility(View.VISIBLE);
             emptyView.setVisibility(View.GONE);
         }
     }
+
+    /**
+     * 關閉讀取進度條
+     */
+    private void cancelProgress() {
+        easyapp_pb.setVisibility(View.GONE);
+    }
+
+
+    /**
+     * 顯示讀取進度條
+     */
+    private void showProgress() {
+        easyapp_pb.setVisibility(View.VISIBLE);
+    }
+
 }

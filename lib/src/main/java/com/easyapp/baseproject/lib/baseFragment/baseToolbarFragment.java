@@ -12,9 +12,7 @@ public class BaseToolbarFragment extends BaseEasyFragment {
 
     protected iToolbarCallback toolbar_callback;
 
-    @Override
-    public void onAttach(Context context) {
-        super.onAttach(context);
+    protected void setToolbar_callback(Context context){
         try {
             toolbar_callback = (iToolbarCallback) context;
         } catch (ClassCastException e) {
