@@ -84,6 +84,11 @@ public abstract class BaseRecyclerViewFragment extends BaseDrawerFragment implem
         };
         baseRecycleViewAdapter = new BaseRecyclerViewAdapter(getActivity(), endlessRecyclerOnScrollListener) {
             @Override
+            protected void setOnCreateAdapter() {
+                setOnRecycleAdapter();
+            }
+
+            @Override
             public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
                 View contactView;
                 RecyclerView.ViewHolder viewHolder;
@@ -212,6 +217,8 @@ public abstract class BaseRecyclerViewFragment extends BaseDrawerFragment implem
         baseRecycleViewAdapter.notifyDataSetChanged();
 
     }
+
+    protected abstract void setOnRecycleAdapter();
 
     protected abstract int setGridLayoutSpanCount();
 

@@ -25,7 +25,10 @@ public abstract class BaseRecyclerViewAdapter<VH extends BaseRecyclerViewAdapter
         this.context = context;
         data = new ArrayList();
         this.recyclerOnScrollListener = recyclerOnScrollListener;
+        setOnCreateAdapter();
     }
+
+    protected abstract void setOnCreateAdapter();
 
     @Override
     public void onAttachedToRecyclerView(RecyclerView recyclerView) {
