@@ -14,6 +14,7 @@ import java.util.List;
 public abstract class BaseRecyclerViewAdapter<VH extends BaseRecyclerViewAdapter.ItemHolder> extends RecyclerView.Adapter<BaseRecyclerViewAdapter.ItemHolder> {
 
     public final static int VIEWTYPEHEADER = 0;
+    public final static int VIEWTYPECONTENT = 1;
     protected List data;
     protected Context context;
     protected EndlessRecyclerOnScrollListener recyclerOnScrollListener;
@@ -97,7 +98,10 @@ public abstract class BaseRecyclerViewAdapter<VH extends BaseRecyclerViewAdapter
 
     @Override
     public int getItemViewType(int position) {
-        return position;
+        if (position == 0) {
+            return VIEWTYPEHEADER;
+        }
+        return VIEWTYPECONTENT;
     }
 
     public static abstract class ItemHolder extends RecyclerView.ViewHolder {

@@ -12,7 +12,7 @@ import android.view.ViewGroup;
 import android.widget.FrameLayout;
 
 import com.bumptech.glide.Glide;
-import com.easyapp.baseproject.lib.Base64Tool;
+import com.easyapp.baseproject.lib.tool.Base64Tool;
 import com.easyapp.baseproject.lib.R;
 
 import java.io.File;

@@ -15,7 +15,6 @@ import android.widget.ProgressBar;
 import com.easyapp.baseproject.lib.R;
 import com.easyapp.baseproject.lib.recycleView.BaseRecyclerViewAdapter;
 import com.easyapp.baseproject.lib.recycleView.EndlessRecyclerOnScrollListener;
-import com.orhanobut.logger.Logger;
 
 import java.util.List;
 
@@ -77,7 +76,6 @@ public abstract class BaseRecyclerViewFragment extends BaseDrawerFragment implem
             @Override
             public void onScrolledToBottom() {
                 if (easyapp_pb.getVisibility() == View.GONE) {
-                    Logger.d("onScrolledToBottom");
                     showProgress();
                     onLoadMore();
                 }
@@ -88,7 +86,6 @@ public abstract class BaseRecyclerViewFragment extends BaseDrawerFragment implem
             public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
                 View contactView;
                 RecyclerView.ViewHolder viewHolder;
-                Logger.d("viewType:" + viewType);
                 if (viewType == BaseRecyclerViewAdapter.VIEWTYPEHEADER) {
                     contactView = LayoutInflater.from(context).inflate(getRecycleViewHolderHeaderLayout(), parent, false);
                     viewHolder = getHeaderItemHolder(contactView);
@@ -102,7 +99,7 @@ public abstract class BaseRecyclerViewFragment extends BaseDrawerFragment implem
 
             @Override
             public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
-                if (position == 0) {
+                if (holder.getItemViewType() == VIEWTYPEHEADER) {
                     getBindHeaderViewHolder(holder, getItem(position));
                 } else {
                     getBindViewHolder(holder, getItem(position));
@@ -126,6 +123,15 @@ public abstract class BaseRecyclerViewFragment extends BaseDrawerFragment implem
      */
     protected void setFabBackground(int color) {
         fab.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(color)));
+    }
+
+    /**
+     * 設定float action 點擊時的動作
+     *
+     * @param fabOnClickListener
+     */
+    protected void setFabOnClickListener(View.OnClickListener fabOnClickListener) {
+        fab.setOnClickListener(fabOnClickListener);
     }
 
     /**

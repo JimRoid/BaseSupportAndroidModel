@@ -47,7 +47,7 @@ public class FragmentNews extends BaseRecyclerViewFragment {
 
     @Override
     protected int setGridLayoutSpanCount() {
-        return 1;
+        return 2;
     }
 
     @Override
@@ -63,14 +63,13 @@ public class FragmentNews extends BaseRecyclerViewFragment {
                     JSONArray jsonArray = jsonObject.optJSONArray("data");
                     ItemNews[] itemNewses = gson.fromJson(jsonArray.toString(), ItemNews[].class);
                     List<ItemNews> newses = CollectionTool.arrayToList(itemNewses);
-                    Logger.d("newses" + newses.size());
                     count++;
                     addData(newses);
                 } catch (JSONException e) {
 
                 }
             }
-        }, 5000);
+        }, 200);
     }
 
     @Override

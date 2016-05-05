@@ -1,4 +1,4 @@
-package com.easyapp.baseproject.lib;
+package com.easyapp.baseproject.lib.tool;
 
 import android.util.Base64;
 
