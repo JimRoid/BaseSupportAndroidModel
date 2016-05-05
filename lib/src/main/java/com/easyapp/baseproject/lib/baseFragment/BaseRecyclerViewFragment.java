@@ -15,6 +15,7 @@ import android.widget.ProgressBar;
 import com.easyapp.baseproject.lib.R;
 import com.easyapp.baseproject.lib.recycleView.BaseRecyclerViewAdapter;
 import com.easyapp.baseproject.lib.recycleView.EndlessRecyclerOnScrollListener;
+import com.orhanobut.logger.Logger;
 
 import java.util.List;
 
@@ -89,7 +90,8 @@ public abstract class BaseRecyclerViewFragment extends BaseDrawerFragment implem
                 if (viewType == BaseRecyclerViewAdapter.VIEWTYPEHEADER && getHeaderView() == null) {
                     contactView = LayoutInflater.from(context).inflate(getRecycleViewHolderHeaderLayout(), parent, false);
                     viewHolder = getHeaderItemHolder(contactView);
-                } else if (viewType == BaseRecyclerViewAdapter.VIEWTYPEHEADER && getHeaderView() == null) {
+                } else if (viewType == BaseRecyclerViewAdapter.VIEWTYPEHEADER && getHeaderView() != null) {
+                    Logger.d("get header view != null");
                     viewHolder = getHeaderItemHolder(getHeaderView());
                 } else {
                     contactView = LayoutInflater.from(context).inflate(getRecycleViewHolderLayout(), parent, false);
