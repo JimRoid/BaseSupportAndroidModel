@@ -88,6 +88,7 @@ public abstract class BaseRecyclerViewFragment extends BaseDrawerFragment implem
             public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
                 View contactView;
                 RecyclerView.ViewHolder viewHolder;
+                Logger.d("viewType:" + viewType);
                 if (viewType == BaseRecyclerViewAdapter.VIEWTYPEHEADER) {
                     contactView = LayoutInflater.from(context).inflate(getRecycleViewHolderHeaderLayout(), parent, false);
                     viewHolder = getHeaderItemHolder(contactView);

@@ -95,6 +95,11 @@ public abstract class BaseRecyclerViewAdapter<VH extends BaseRecyclerViewAdapter
         return data.size();
     }
 
+    @Override
+    public int getItemViewType(int position) {
+        return position;
+    }
+
     public static abstract class ItemHolder extends RecyclerView.ViewHolder {
         public ItemHolder(View itemView) {
             super(itemView);
