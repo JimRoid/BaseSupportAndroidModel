@@ -10,11 +10,11 @@ import com.easyapp.baseproject.lib.callback.iToolbarCallback;
  */
 public class BaseToolbarFragment extends BaseEasyFragment {
 
-    protected iToolbarCallback toolbar_callback;
+    protected iToolbarCallback toolbarCallback;
 
-    protected void setToolbar_callback(Context context){
+    protected void setToolbarCallback(Context context){
         try {
-            toolbar_callback = (iToolbarCallback) context;
+            toolbarCallback = (iToolbarCallback) context;
         } catch (ClassCastException e) {
             throw new ClassCastException(context.toString()
                     + " must implement OnHeadlineSelectedListener");
@@ -22,81 +22,81 @@ public class BaseToolbarFragment extends BaseEasyFragment {
     }
 
     protected void hideToolbar() {
-        if (toolbar_callback == null) {
+        if (toolbarCallback == null) {
             return;
         }
-        toolbar_callback.hideToolbar();
+        toolbarCallback.hideToolbar();
     }
 
     protected void showToolbar() {
-        if (toolbar_callback == null) {
+        if (toolbarCallback == null) {
             return;
         }
-        toolbar_callback.showToolbar();
+        toolbarCallback.showToolbar();
     }
 
     protected void setTitle(CharSequence title) {
-        if (toolbar_callback == null) {
+        if (toolbarCallback == null) {
             return;
         }
-        toolbar_callback.setTitle(title);
+        toolbarCallback.setTitle(title);
     }
 
     protected void setTitle(int titleId) {
-        if (toolbar_callback == null) {
+        if (toolbarCallback == null) {
             return;
         }
-        toolbar_callback.setTitle(titleId);
+        toolbarCallback.setTitle(titleId);
     }
 
     protected void showBack(boolean value) {
-        if (toolbar_callback == null) {
+        if (toolbarCallback == null) {
             return;
         }
-        toolbar_callback.showBack(value);
+        toolbarCallback.showBack(value);
     }
 
     protected void cancelRight() {
-        if (toolbar_callback == null) {
+        if (toolbarCallback == null) {
             return;
         }
-        toolbar_callback.cancelRight();
+        toolbarCallback.cancelRight();
     }
 
     protected void cancelLeft() {
-        if (toolbar_callback == null) {
+        if (toolbarCallback == null) {
             return;
         }
-        toolbar_callback.cancelLeft();
+        toolbarCallback.cancelLeft();
     }
 
     protected void setLeft(View view) {
-        if (toolbar_callback == null) {
+        if (toolbarCallback == null) {
             return;
         }
-        toolbar_callback.setLeft(view);
+        toolbarCallback.setLeft(view);
     }
 
 
     protected void setRight(View view) {
-        if (toolbar_callback == null) {
+        if (toolbarCallback == null) {
             return;
         }
-        toolbar_callback.setRight(view);
+        toolbarCallback.setRight(view);
     }
 
 
     protected void setLeft(View[] views) {
-        if (toolbar_callback == null) {
+        if (toolbarCallback == null) {
             return;
         }
-        toolbar_callback.setLeft(views);
+        toolbarCallback.setLeft(views);
     }
 
     protected void setRight(View[] views) {
-        if (toolbar_callback == null) {
+        if (toolbarCallback == null) {
             return;
         }
-        toolbar_callback.setRight(views);
+        toolbarCallback.setRight(views);
     }
 }
