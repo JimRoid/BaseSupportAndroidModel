@@ -27,6 +27,11 @@ public class FragmentNews extends BaseRecyclerViewFragment {
     int count = 0;
 
     @Override
+    protected void setOnRecycleAdapter() {
+
+    }
+
+    @Override
     protected void init() {
 //        setFabSrc(1);
 //        setFabVisible(false);

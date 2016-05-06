@@ -44,7 +44,10 @@ public abstract class BaseRecyclerViewFragment extends BaseDrawerFragment implem
         return view;
     }
 
-    private void initView() {
+    /**
+     * 初始化view;
+     */
+    protected void initView() {
         fab = (FloatingActionButton) view.findViewById(R.id.fab);
         emptyView = view.findViewById(R.id.easyapp_empty_view);
         easyapp_pb = (ProgressBar) view.findViewById(R.id.easyapp_pb);
@@ -60,7 +63,7 @@ public abstract class BaseRecyclerViewFragment extends BaseDrawerFragment implem
         recyclerView.setLayoutManager(gridLayoutManager);
     }
 
-    private void initData() {
+    protected void initData() {
         EndlessRecyclerOnScrollListener endlessRecyclerOnScrollListener = new EndlessRecyclerOnScrollListener() {
             @Override
             public void onScrolledUp() {
