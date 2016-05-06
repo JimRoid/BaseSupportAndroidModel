@@ -24,16 +24,16 @@ import java.util.List;
  */
 public abstract class BaseRecyclerViewFragment extends BaseDrawerFragment implements SwipeRefreshLayout.OnRefreshListener {
 
-    private View view;
-    private SwipeRefreshLayout easyapp_swiperefresh_layout;
-    private RecyclerView recyclerView;
-    private View emptyView;
-    private ProgressBar easyapp_pb;
-    private FloatingActionButton fab;
+    protected View view;
+    protected SwipeRefreshLayout easyapp_swiperefresh_layout;
+    protected RecyclerView recyclerView;
+    protected View emptyView;
+    protected ProgressBar easyapp_pb;
+    protected FloatingActionButton fab;
 
-    private BaseRecyclerViewAdapter baseRecycleViewAdapter;
+    protected BaseRecyclerViewAdapter baseRecycleViewAdapter;
 
-    private boolean fabVisible = true;
+    protected boolean fabVisible = true;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, @Nullable Bundle savedInstanceState) {
