@@ -42,7 +42,7 @@ public abstract class BaseRecyclerViewAdapter<VH extends BaseRecyclerViewAdapter
         this.headerView = headerView;
     }
 
-    public View getHeaderView(){
+    public View getHeaderView() {
         return headerView;
     }
 
@@ -120,6 +120,14 @@ public abstract class BaseRecyclerViewAdapter<VH extends BaseRecyclerViewAdapter
     public static abstract class ItemHolder extends RecyclerView.ViewHolder {
         public ItemHolder(View itemView) {
             super(itemView);
+        }
+
+        protected <T> void bind(T t, int position, OnItemClick onItemClick) {
+
+        }
+
+        public interface OnItemClick {
+            <T> void onItemClick(T t, String tag);
         }
     }
 

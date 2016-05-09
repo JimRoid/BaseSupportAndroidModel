@@ -208,6 +208,25 @@ public abstract class BaseRecyclerViewFragment extends BaseDrawerFragment implem
     }
 
     /**
+     * 設定單筆的訊息改變
+     *
+     * @param position
+     * @param o
+     */
+    protected void setItem(int position, Object o) {
+        baseRecycleViewAdapter.setItem(position, o);
+    }
+
+    /**
+     * 移除單筆的資訊
+     *
+     * @param position
+     */
+    protected void removeItem(int position) {
+        baseRecycleViewAdapter.removeItem(position);
+    }
+
+    /**
      * 增加data
      *
      * @param arrayList
@@ -218,7 +237,18 @@ public abstract class BaseRecyclerViewFragment extends BaseDrawerFragment implem
         baseRecycleViewAdapter.addData(arrayList);
         setEmptyView();
         baseRecycleViewAdapter.notifyDataSetChanged();
+    }
 
+    protected BaseRecyclerViewAdapter getAdapter() {
+        return baseRecycleViewAdapter;
+    }
+
+    protected <T> T getItem(int position) {
+        return (T) getAdapter().getItem(position);
+    }
+
+    protected int getSize() {
+        return getAdapter().getDataSize();
     }
 
     protected abstract void setOnRecycleAdapter();
