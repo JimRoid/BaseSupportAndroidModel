@@ -29,7 +29,7 @@ repositories {
 
 ```
 dependencies {
-    compile 'com.easyapp.baseproject.lib:BaseSupport:2.1.2'
+    compile 'com.easyapp.baseproject.lib:BaseSupport:3.2.1'
 }
 ```
 
