@@ -6,7 +6,7 @@ import android.view.View;
 import com.easyapp.baseproject.lib.callback.iToolbarCallback;
 
 /**
- * Created by easyapp_jim on 2016/4/13.
+ * 基本toolbar fragment
  */
 public class BaseToolbarFragment extends BaseEasyFragment {
 
