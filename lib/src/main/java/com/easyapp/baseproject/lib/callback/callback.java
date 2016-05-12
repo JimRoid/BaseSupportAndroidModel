@@ -4,6 +4,7 @@ package com.easyapp.baseproject.lib.callback;
  * 簡單的callback 回傳
  */
 public class Callback implements iCallback {
+
     @Override
     public void initCallback() {
 
