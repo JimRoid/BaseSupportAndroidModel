@@ -5,6 +5,11 @@ package com.easyapp.baseproject.lib.callback;
  */
 public class Callback implements iCallback {
     @Override
+    public void initCallback() {
+
+    }
+
+    @Override
     public void callback() {
 
     }

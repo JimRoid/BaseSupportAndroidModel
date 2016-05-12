@@ -5,6 +5,8 @@ package com.easyapp.baseproject.lib.callback;
  */
 public interface iCallback {
 
+    void initCallback();
+
     void callback();
 
     void callback(String value);
