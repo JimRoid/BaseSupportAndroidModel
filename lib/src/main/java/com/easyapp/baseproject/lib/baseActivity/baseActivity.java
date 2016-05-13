@@ -9,7 +9,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.inputmethod.InputMethodManager;
 
 import com.easyapp.baseproject.lib.customview.loadDialog.SpotsDialog;
-import com.easyapp.baseproject.lib.tool.CleanCache;
 
 /**
  * 提供一些基本方法的activity
@@ -20,7 +19,7 @@ public abstract class BaseActivity extends AppCompatActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        CleanCache.CleanGlideCache(this);
+//        CleanCache.CleanGlideCache(this);
         alertDialog = new SpotsDialog(this);
     }
 
