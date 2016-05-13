@@ -34,6 +34,7 @@ public abstract class BaseRecyclerViewFragment extends BaseDrawerFragment implem
     protected BaseRecyclerViewAdapter baseRecycleViewAdapter;
 
     protected boolean fabVisible = true;
+    protected boolean isScrollTop = true;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -66,6 +67,12 @@ public abstract class BaseRecyclerViewFragment extends BaseDrawerFragment implem
     protected void initData() {
         EndlessRecyclerOnScrollListener endlessRecyclerOnScrollListener = new EndlessRecyclerOnScrollListener() {
             @Override
+            public void onScrolledToTop() {
+                super.onScrolledToTop();
+                isScrollTop = true;
+            }
+
+            @Override
             public void onScrolledUp() {
                 super.onScrolledUp();
                 showFab();
@@ -75,6 +82,7 @@ public abstract class BaseRecyclerViewFragment extends BaseDrawerFragment implem
             public void onScrolledDown() {
                 super.onScrolledDown();
                 hideFab();
+                isScrollTop = false;
             }
 
             @Override
@@ -119,6 +127,15 @@ public abstract class BaseRecyclerViewFragment extends BaseDrawerFragment implem
             }
         };
         recyclerView.setAdapter(baseRecycleViewAdapter);
+    }
+
+    /**
+     * 是否拉到最頂端
+     *
+     * @return
+     */
+    protected boolean isScrollTop() {
+        return isScrollTop;
     }
 
     /**
@@ -297,10 +314,8 @@ public abstract class BaseRecyclerViewFragment extends BaseDrawerFragment implem
 
     protected void setEmptyView() {
         if (baseRecycleViewAdapter.getData().size() == 0) {
-//            recyclerView.setVisibility(View.GONE);
             emptyView.setVisibility(View.VISIBLE);
         } else {
-//            recyclerView.setVisibility(View.VISIBLE);
             emptyView.setVisibility(View.GONE);
         }
     }

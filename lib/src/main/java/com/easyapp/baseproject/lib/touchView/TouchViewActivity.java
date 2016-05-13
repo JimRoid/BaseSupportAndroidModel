@@ -5,7 +5,7 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 
 import com.easyapp.baseproject.lib.R;
-import com.easyapp.baseproject.lib.tool.ClearGlideAsyncTask;
+import com.easyapp.baseproject.lib.tool.CleanGlideAsyncTask;
 import com.ogaclejapan.smarttablayout.utils.v4.FragmentPagerItem;
 import com.ogaclejapan.smarttablayout.utils.v4.FragmentPagerItemAdapter;
 import com.ogaclejapan.smarttablayout.utils.v4.FragmentPagerItems;
@@ -21,7 +21,7 @@ public class TouchViewActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setTheme(android.R.style.Theme_Black_NoTitleBar_Fullscreen);
         setContentView(R.layout.easyapp_pager_touchview);
-        new ClearGlideAsyncTask(TouchViewActivity.this).execute();
+        new CleanGlideAsyncTask(TouchViewActivity.this).execute();
         initView();
     }
 

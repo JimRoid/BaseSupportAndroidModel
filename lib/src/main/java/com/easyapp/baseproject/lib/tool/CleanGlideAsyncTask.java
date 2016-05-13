@@ -6,10 +6,10 @@ import android.os.AsyncTask;
 import com.bumptech.glide.Glide;
 import com.orhanobut.logger.Logger;
 
-public class ClearGlideAsyncTask extends AsyncTask<Void, Void, Void> {
+public class CleanGlideAsyncTask extends AsyncTask<Void, Void, Void> {
     private Context context;
 
-    public ClearGlideAsyncTask(Context context) {
+    public CleanGlideAsyncTask(Context context) {
         super();
         this.context = context;
     }
