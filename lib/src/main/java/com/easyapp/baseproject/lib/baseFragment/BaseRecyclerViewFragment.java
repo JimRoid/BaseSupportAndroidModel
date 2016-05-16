@@ -30,6 +30,7 @@ public abstract class BaseRecyclerViewFragment extends BaseDrawerFragment implem
     protected View emptyView;
     protected ProgressBar easyapp_pb;
     protected FloatingActionButton fab;
+    protected boolean isNoMore = false;
 
     protected BaseRecyclerViewAdapter baseRecycleViewAdapter;
 
@@ -87,6 +88,9 @@ public abstract class BaseRecyclerViewFragment extends BaseDrawerFragment implem
 
             @Override
             public void onScrolledToBottom() {
+                if (isNoMore) {
+                    return;
+                }
                 if (easyapp_pb.getVisibility() == View.GONE) {
                     showProgress();
                     onLoadMore();
@@ -209,6 +213,10 @@ public abstract class BaseRecyclerViewFragment extends BaseDrawerFragment implem
         if (fabVisible) {
             fab.hide();
         }
+    }
+
+    protected void setIsNoMore(boolean isNoMore) {
+        this.isNoMore = isNoMore;
     }
 
     /**
