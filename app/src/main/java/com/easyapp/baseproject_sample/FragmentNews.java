@@ -10,13 +10,11 @@ import com.easyapp.baseproject.lib.recycleView.BaseRecyclerViewAdapter;
 import com.easyapp.baseproject.lib.tool.CollectionTool;
 import com.easyapp.baseproject.lib.tool.RawTool;
 import com.google.gson.Gson;
-import com.orhanobut.logger.Logger;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -43,10 +41,9 @@ public class FragmentNews extends BaseRecyclerViewFragment {
             JSONArray jsonArray = jsonObject.optJSONArray("data");
             ItemNews[] itemNewses = gson.fromJson(jsonArray.toString(), ItemNews[].class);
             List<ItemNews> newses = CollectionTool.arrayToList(itemNewses);
-            Logger.d("newses" + newses.size());
-            setData(new ArrayList());
+            setData(newses);
         } catch (JSONException e) {
-
+            e.printStackTrace();
         }
     }
 

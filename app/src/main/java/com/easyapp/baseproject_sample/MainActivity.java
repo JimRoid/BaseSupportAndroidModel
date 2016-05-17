@@ -11,7 +11,7 @@ public class MainActivity extends BaseDrawerMainActivity {
     protected void initial() {
         setTitle("BaseProject Sample");
 //        ReplaceFragment(new SampleFragment());
-        ReplaceFragment(new FragmentNews());
+        ReplaceFragment(new FragmentViewPage());
     }
 
 

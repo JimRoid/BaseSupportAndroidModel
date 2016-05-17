@@ -7,7 +7,7 @@
     <color name="toolbar_title_color">#fff</color>
     <!-- common background -->
     <color name="list_item_background_normal">#ffffff</color>
-
+    <color name="transparent">#00ffffff</color>
 
     <!--commmon colors-->
     <color name="black">#000000</color>

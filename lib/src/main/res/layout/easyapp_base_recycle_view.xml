@@ -49,7 +49,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|end"
         android:layout_margin="@dimen/fab_margin"
-        android:src="@drawable/ic_add_white_48dp"
+        android:src="@drawable/icon_add_white"
         app:backgroundTint="@color/toolbar_color"
         app:layout_behavior="com.easyapp.baseproject.lib.widgets.ScrollAwareFABBehavior" />
 

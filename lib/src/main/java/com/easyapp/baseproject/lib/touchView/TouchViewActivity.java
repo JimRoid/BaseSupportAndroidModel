@@ -6,14 +6,16 @@ import android.support.v7.app.AppCompatActivity;
 
 import com.easyapp.baseproject.lib.R;
 import com.easyapp.baseproject.lib.tool.CleanGlideAsyncTask;
-import com.ogaclejapan.smarttablayout.utils.v4.FragmentPagerItem;
-import com.ogaclejapan.smarttablayout.utils.v4.FragmentPagerItemAdapter;
-import com.ogaclejapan.smarttablayout.utils.v4.FragmentPagerItems;
+import com.easyapp.baseproject.lib.widgets.adapter.v4.FragmentPagerItem;
+import com.easyapp.baseproject.lib.widgets.adapter.v4.FragmentPagerItemAdapter;
+import com.easyapp.baseproject.lib.widgets.adapter.v4.FragmentPagerItems;
+
 
 /**
  * 顯示可滑動 touch view
  */
 public class TouchViewActivity extends AppCompatActivity {
+
     private ViewPager viewPager;
 
     @Override
