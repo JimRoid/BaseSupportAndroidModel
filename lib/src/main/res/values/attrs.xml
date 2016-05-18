@@ -40,4 +40,7 @@
         <attr name="circularImageViewDefault" format="reference"/>
     </declare-styleable>
 
+    <declare-styleable name="SlidingTabLayout">
+        <attr name="customTabTextLayoutId" format="reference"/>
+    </declare-styleable>
 </resources>

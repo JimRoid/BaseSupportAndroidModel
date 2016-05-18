@@ -17,6 +17,7 @@
 package com.easyapp.baseproject.lib.widgets;
 
 import android.content.Context;
+import android.content.res.TypedArray;
 import android.graphics.Typeface;
 import android.os.Build;
 import android.support.v4.view.PagerAdapter;
@@ -28,6 +29,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.HorizontalScrollView;
 import android.widget.TextView;
+
+import com.easyapp.baseproject.lib.R;
 
 /**
  * To be used with ViewPager to provide a tab indicator component which give constant feedback as to
@@ -105,8 +108,19 @@ public class SlidingTabLayout extends HorizontalScrollView {
         // Make sure that the Tab Strips fills this View
         setFillViewport(true);
 
+        int customTabLayoutId = NO_ID;
+        int customTabTextViewId = NO_ID;
+
+        TypedArray a = context.obtainStyledAttributes(
+                attrs, R.styleable.SlidingTabLayout, defStyle, 0);
+        customTabLayoutId = a.getResourceId(
+                R.styleable.SlidingTabLayout_customTabTextLayoutId, customTabLayoutId);
+
         mTitleOffset = (int) (TITLE_OFFSET_DIPS * getResources().getDisplayMetrics().density);
 
+        if (customTabLayoutId != NO_ID) {
+            setCustomTabView(customTabLayoutId, customTabTextViewId);
+        }
         mTabStrip = new SlidingTabStrip(context);
         addView(mTabStrip, LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT);
     }
@@ -214,11 +228,14 @@ public class SlidingTabLayout extends HorizontalScrollView {
             View tabView = null;
             TextView tabTitleView = null;
 
-            if (mTabViewLayoutId != 0) {
+            if (mTabViewLayoutId != NO_ID) {
                 // If there is a custom tab view layout id set, try and inflate it
                 tabView = LayoutInflater.from(getContext()).inflate(mTabViewLayoutId, mTabStrip,
                         false);
-                tabTitleView = (TextView) tabView.findViewById(mTabViewTextViewId);
+
+                if (mTabViewTextViewId != NO_ID) {
+                    tabTitleView = (TextView) tabView.findViewById(mTabViewTextViewId);
+                }
                 if (tabProvider != null) {
                     tabProvider.createTabView(tabView, i);
                 }
@@ -231,7 +248,9 @@ public class SlidingTabLayout extends HorizontalScrollView {
             if (tabTitleView == null && TextView.class.isInstance(tabView)) {
                 tabTitleView = (TextView) tabView;
             }
-            tabTitleView.setText(adapter.getPageTitle(i));
+            if (tabTitleView != null) {
+                tabTitleView.setText(adapter.getPageTitle(i));
+            }
             tabView.setOnClickListener(tabClickListener);
 
             mTabStrip.addView(tabView);
