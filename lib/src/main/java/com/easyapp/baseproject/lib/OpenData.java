@@ -128,6 +128,37 @@ public class OpenData {
     }
 
     /**
+     * 開啟activity
+     *
+     * @param activity
+     * @param intent
+     */
+    public static void StartActivity(Activity activity, Class<? extends Activity> clazz) {
+        try {
+            Intent intent = new Intent(activity, clazz);
+            activity.startActivity(intent);
+        } catch (ActivityNotFoundException var3) {
+            var3.printStackTrace();
+        }
+    }
+
+    /**
+     * 附帶回傳值
+     *
+     * @param activity
+     * @param clazz
+     * @param requestCode
+     */
+    public static void StartActivityForResult(Activity activity, Class<? extends Activity> clazz, int requestCode) {
+        try {
+            Intent intent = new Intent(activity, clazz);
+            activity.startActivityForResult(intent, requestCode);
+        } catch (ActivityNotFoundException var3) {
+            var3.printStackTrace();
+        }
+    }
+
+    /**
      * 取得目標檔案的副檔名
      *
      * @param file
