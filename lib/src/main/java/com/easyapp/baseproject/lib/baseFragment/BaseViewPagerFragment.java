@@ -7,6 +7,7 @@ import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -22,6 +23,8 @@ import com.easyapp.baseproject.lib.widgets.adapter.v4.FragmentPagerItems;
 public abstract class BaseViewPagerFragment extends BaseToolbarFragment {
     protected View view;
     protected ViewPager viewPager;
+    protected FrameLayout fl_sliding_bg;
+    protected View iv_right;
     protected SlidingTabLayout slidingTabLayout;
     protected FragmentPagerItemAdapter pagerItemAdapter;
     protected FragmentPagerItems pagerItems;
@@ -45,6 +48,8 @@ public abstract class BaseViewPagerFragment extends BaseToolbarFragment {
     }
 
     protected void initView() {
+        iv_right = view.findViewById(R.id.iv_right);
+        fl_sliding_bg = (FrameLayout) view.findViewById(R.id.fl_sliding_bg);
         viewPager = (ViewPager) view.findViewById(R.id.viewpager);
         viewPager.setAdapter(pagerItemAdapter);
         slidingTabLayout = (SlidingTabLayout) view.findViewById(R.id.slidingTabLayout);
@@ -52,6 +57,26 @@ public abstract class BaseViewPagerFragment extends BaseToolbarFragment {
         setCustomViewTab();
         init();
         slidingTabLayout.setViewPager(viewPager);
+        iv_right.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (viewPager.getCurrentItem() + 1 < pagerItemAdapter.getCount()) {
+                    viewPager.setCurrentItem(viewPager.getCurrentItem() + 1);
+                }
+            }
+        });
+    }
+
+    protected void setFlSlidingBg(int color) {
+        fl_sliding_bg.setBackgroundColor(color);
+    }
+
+    protected void hideSlidingTab() {
+        fl_sliding_bg.setVisibility(View.GONE);
+    }
+
+    protected void showSlidingTab() {
+        fl_sliding_bg.setVisibility(View.VISIBLE);
     }
 
     private void setCustomViewTab() {
