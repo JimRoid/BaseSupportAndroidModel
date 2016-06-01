@@ -14,9 +14,9 @@ public class EndlessRecyclerOnScrollListener extends RecyclerView.OnScrollListen
             onScrolledToTop();
         } else if (!recyclerView.canScrollVertically(1)) {
             onScrolledToBottom();
-        } else if (dy < 0) {
+        } else if (dy < -5) {
             onScrolledUp();
-        } else if (dy > 0) {
+        } else if (dy > 20) {
             onScrolledDown();
         }
     }

@@ -104,21 +104,26 @@ public class FragmentNews extends BaseRecyclerViewFragment {
         AdapterItemHolder adapterItemHolder = (AdapterItemHolder) holder;
         ItemNews itemNews = (ItemNews) obj;
         adapterItemHolder.textView.setText(itemNews.getName());
+        adapterItemHolder.content.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                AddFragment(new SampleFragment());
+            }
+        });
     }
 
     @Override
     protected void getBindHeaderViewHolder(RecyclerView.ViewHolder holder, Object obj) {
-        AdapterItemHolder adapterItemHolder = (AdapterItemHolder) holder;
-        ItemNews itemNews = (ItemNews) obj;
-        adapterItemHolder.textView.setText(itemNews.getName());
+        getBindViewHolder(holder, obj);
     }
 
     public class AdapterItemHolder extends BaseRecyclerViewAdapter.ItemHolder {
         public TextView textView;
+        public View content;
 
         public AdapterItemHolder(View itemView) {
             super(itemView);
-
+            content = itemView.findViewById(R.id.content);
             textView = (TextView) itemView.findViewById(R.id.tv_title);
         }
     }

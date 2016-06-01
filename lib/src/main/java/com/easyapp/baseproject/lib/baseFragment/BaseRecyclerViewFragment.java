@@ -1,5 +1,6 @@
 package com.easyapp.baseproject.lib.baseFragment;
 
+import android.content.Context;
 import android.content.res.ColorStateList;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -36,6 +37,13 @@ public abstract class BaseRecyclerViewFragment extends BaseDrawerFragment implem
 
     protected boolean fabVisible = true;
     protected boolean isScrollTop = true;
+    protected boolean isAutoHideToolBar = true;
+
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        setToolbarCallback(context);
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -67,6 +75,8 @@ public abstract class BaseRecyclerViewFragment extends BaseDrawerFragment implem
 
     protected void initData() {
         EndlessRecyclerOnScrollListener endlessRecyclerOnScrollListener = new EndlessRecyclerOnScrollListener() {
+            boolean hideToolBar = false;
+
             @Override
             public void onScrolledToTop() {
                 super.onScrolledToTop();
@@ -77,12 +87,14 @@ public abstract class BaseRecyclerViewFragment extends BaseDrawerFragment implem
             public void onScrolledUp() {
                 super.onScrolledUp();
                 showFab();
+                hideToolBar = false;
             }
 
             @Override
             public void onScrolledDown() {
                 super.onScrolledDown();
                 hideFab();
+                hideToolBar = true;
                 isScrollTop = false;
             }
 
@@ -94,6 +106,19 @@ public abstract class BaseRecyclerViewFragment extends BaseDrawerFragment implem
                 if (easyapp_pb.getVisibility() == View.GONE) {
                     showProgress();
                     onLoadMore();
+                }
+            }
+
+
+            @Override
+            public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
+                super.onScrollStateChanged(recyclerView, newState);
+                if (isAutoHideToolBar) {
+                    if (hideToolBar) {
+                        hideToolbar();
+                    } else {
+                        showToolbar();
+                    }
                 }
             }
         };
@@ -132,6 +157,7 @@ public abstract class BaseRecyclerViewFragment extends BaseDrawerFragment implem
         };
         recyclerView.setAdapter(baseRecycleViewAdapter);
     }
+
 
     /**
      * 是否拉到最頂端
@@ -200,6 +226,17 @@ public abstract class BaseRecyclerViewFragment extends BaseDrawerFragment implem
             fab.setVisibility(View.VISIBLE);
         } else {
             fab.setVisibility(View.GONE);
+        }
+    }
+
+    /**
+     * 設定列表是否自動隱藏bar
+     * @param isAutoHideToolBar
+     */
+    protected void setAutoHideToolBar(boolean isAutoHideToolBar) {
+        this.isAutoHideToolBar = isAutoHideToolBar;
+        if (!isAutoHideToolBar) {
+            showToolbar();
         }
     }
 

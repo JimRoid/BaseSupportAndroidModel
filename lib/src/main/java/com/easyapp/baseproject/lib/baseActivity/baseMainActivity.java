@@ -4,6 +4,8 @@ import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.util.TypedValue;
 import android.view.View;
+import android.view.animation.AccelerateInterpolator;
+import android.view.animation.DecelerateInterpolator;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -55,7 +57,8 @@ public abstract class BaseMainActivity extends BaseSupportActivity implements iT
 
     @Override
     public void hideToolbar() {
-        getSupportActionBar().hide();
+        toolbar.animate().translationY(-toolbar.getHeight()).setInterpolator(new AccelerateInterpolator(2));
+//        getSupportActionBar().hide();
         FrameLayout.LayoutParams layoutParams = (FrameLayout.LayoutParams) container.getLayoutParams();
         layoutParams.setMargins(0, 0, 0, 0);
         container.setLayoutParams(layoutParams);
@@ -63,7 +66,8 @@ public abstract class BaseMainActivity extends BaseSupportActivity implements iT
 
     @Override
     public void showToolbar() {
-        getSupportActionBar().show();
+        toolbar.animate().translationY(0).setInterpolator(new DecelerateInterpolator(2));
+//        getSupportActionBar().show();
         TypedValue tv = new TypedValue();
         int actionBarHeight;
         if (getTheme().resolveAttribute(android.R.attr.actionBarSize, tv, true)) {
