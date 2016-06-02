@@ -1,6 +1,7 @@
 package com.easyapp.baseproject_sample;
 
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -9,6 +10,7 @@ import android.view.ViewGroup;
 
 import com.easyapp.baseproject.lib.OpenData;
 import com.easyapp.baseproject.lib.baseFragment.BaseToolbarFragment;
+import com.easyapp.baseproject.lib.widgets.Menu;
 
 
 /**
@@ -18,6 +20,11 @@ public class SampleFragment extends BaseToolbarFragment implements View.OnClickL
 
     private View view;
 
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        setToolbarCallback(context);
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -39,6 +46,13 @@ public class SampleFragment extends BaseToolbarFragment implements View.OnClickL
 
         View bt_touchview = view.findViewById(R.id.bt_touchview);
         bt_touchview.setOnClickListener(this);
+
+        setLeft(new Menu().Builder(getActivity()).setMenuText("測試").setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showToast("測試");
+            }
+        }).getMenu());
     }
 
     @Override

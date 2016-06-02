@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/toolbar"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="?attr/actionBarSize"
     android:background="@color/toolbar_color"
     android:contentInsetEnd="0dp"
     android:contentInsetLeft="0dp"
@@ -36,10 +36,10 @@
 
     <TextView
         android:id="@+id/tv_title"
-        android:text="title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
+        android:text="title"
         android:textColor="@color/toolbar_title_color"
         android:textSize="20sp" />
 
