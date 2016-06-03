@@ -13,6 +13,8 @@ public class MainActivity extends BaseDrawerMainActivity {
 //        ReplaceFragment(new SampleFragment());
         ReplaceFragment(new FragmentViewPage());
 //        ReplaceFragment(new FragmentViewPageCircle());
+
+        addLeftDrawer(new FragmentImage());
     }
 
 

@@ -14,10 +14,6 @@ import android.widget.TextView;
 public class FragmentImage extends Fragment {
 
 
-    public FragmentImage() {
-        // Required empty public constructor
-    }
-
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,

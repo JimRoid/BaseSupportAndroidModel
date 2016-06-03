@@ -12,6 +12,7 @@
     <!--commmon colors-->
     <color name="black">#000000</color>
     <color name="white">#FFFFFF</color>
+    <color name="transparent_black">#55000000</color>
     <color name="light_blue">#6BBEE5</color>
 
     <!--dialog default color-->
