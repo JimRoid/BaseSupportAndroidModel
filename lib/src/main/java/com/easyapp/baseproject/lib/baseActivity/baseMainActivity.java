@@ -57,6 +57,9 @@ public abstract class BaseMainActivity extends BaseSupportActivity implements iT
 
     @Override
     public void hideToolbar() {
+        if(toolbar == null){
+            return;
+        }
         toolbar.animate().translationY(-toolbar.getHeight()).setInterpolator(new AccelerateInterpolator(2));
 //        getSupportActionBar().hide();
         FrameLayout.LayoutParams layoutParams = (FrameLayout.LayoutParams) container.getLayoutParams();
@@ -66,6 +69,9 @@ public abstract class BaseMainActivity extends BaseSupportActivity implements iT
 
     @Override
     public void showToolbar() {
+        if(toolbar == null){
+            return;
+        }
         toolbar.animate().translationY(0).setInterpolator(new DecelerateInterpolator(2));
 //        getSupportActionBar().show();
         TypedValue tv = new TypedValue();
