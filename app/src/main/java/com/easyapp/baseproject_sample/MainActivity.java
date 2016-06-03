@@ -23,4 +23,10 @@ public class MainActivity extends BaseDrawerMainActivity {
         intent.setClass(this, MainDrawerActivity.class);
         startActivity(intent);
     }
+
+    @Override
+    public void OnAddFragment() {
+        super.OnAddFragment();
+        showBack(true);
+    }
 }

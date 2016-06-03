@@ -57,12 +57,12 @@ public class BlurDrawerLayout extends DrawerLayout {
 
             setDrawerListener(blurActionBarDrawerToggle);
 
-            post(new Runnable() {
-                @Override
-                public void run() {
-                    blurActionBarDrawerToggle.syncState();
-                }
-            });
+//            post(new Runnable() {
+//                @Override
+//                public void run() {
+//                    blurActionBarDrawerToggle.syncState();
+//                }
+//            });
 
         } finally {
             ta.recycle();
