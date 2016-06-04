@@ -31,6 +31,7 @@ public class FragmentNews extends BaseRecyclerViewFragment {
 
     @Override
     protected void init() {
+        setRecyclerViewAnimDisable();
 //        setAutoHideToolBar(false);
 //        setFabSrc(1);
 //        setFabVisible(false);

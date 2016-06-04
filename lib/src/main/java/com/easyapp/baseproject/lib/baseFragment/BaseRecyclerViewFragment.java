@@ -70,7 +70,12 @@ public abstract class BaseRecyclerViewFragment extends BaseDrawerFragment implem
         easyapp_swiperefresh_layout.setOnRefreshListener(this);
         recyclerView = (RecyclerView) view.findViewById(R.id.easyapp_recycler_view);
         GridLayoutManager gridLayoutManager = new GridLayoutManager(getActivity(), setGridLayoutSpanCount());
+
         recyclerView.setLayoutManager(gridLayoutManager);
+    }
+
+    final protected void setRecyclerViewAnimDisable() {
+        recyclerView.setLayoutAnimation(null);
     }
 
     protected void initData() {
@@ -231,6 +236,7 @@ public abstract class BaseRecyclerViewFragment extends BaseDrawerFragment implem
 
     /**
      * 設定列表是否自動隱藏bar
+     *
      * @param isAutoHideToolBar
      */
     protected void setAutoHideToolBar(boolean isAutoHideToolBar) {
