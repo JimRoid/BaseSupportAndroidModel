@@ -1,5 +1,6 @@
 package com.easyapp.baseproject.lib.baseActivity;
 
+import android.animation.Animator;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.util.TypedValue;
@@ -60,11 +61,31 @@ public abstract class BaseMainActivity extends BaseSupportActivity implements iT
         if(toolbar == null){
             return;
         }
-        toolbar.animate().translationY(-toolbar.getHeight()).setInterpolator(new AccelerateInterpolator(2));
+        toolbar.animate().translationY(-toolbar.getHeight()).setInterpolator(new AccelerateInterpolator(2)).setListener(new Animator.AnimatorListener() {
+            @Override
+            public void onAnimationStart(Animator animation) {
+                FrameLayout.LayoutParams layoutParams = (FrameLayout.LayoutParams) container.getLayoutParams();
+                layoutParams.setMargins(0, 0, 0, 0);
+                container.setLayoutParams(layoutParams);
+            }
+
+            @Override
+            public void onAnimationEnd(Animator animation) {
+
+            }
+
+            @Override
+            public void onAnimationCancel(Animator animation) {
+
+            }
+
+            @Override
+            public void onAnimationRepeat(Animator animation) {
+
+            }
+        });
 //        getSupportActionBar().hide();
-        FrameLayout.LayoutParams layoutParams = (FrameLayout.LayoutParams) container.getLayoutParams();
-        layoutParams.setMargins(0, 0, 0, 0);
-        container.setLayoutParams(layoutParams);
+
     }
 
     @Override
@@ -72,16 +93,36 @@ public abstract class BaseMainActivity extends BaseSupportActivity implements iT
         if(toolbar == null){
             return;
         }
-        toolbar.animate().translationY(0).setInterpolator(new DecelerateInterpolator(2));
+        toolbar.animate().translationY(0).setInterpolator(new DecelerateInterpolator(2)).setListener(new Animator.AnimatorListener() {
+            @Override
+            public void onAnimationStart(Animator animation) {
+
+            }
+
+            @Override
+            public void onAnimationEnd(Animator animation) {
+                TypedValue tv = new TypedValue();
+                int actionBarHeight;
+                if (getTheme().resolveAttribute(android.R.attr.actionBarSize, tv, true)) {
+                    actionBarHeight = TypedValue.complexToDimensionPixelSize(tv.data, getResources().getDisplayMetrics());
+                    FrameLayout.LayoutParams layoutParams = (FrameLayout.LayoutParams) container.getLayoutParams();
+                    layoutParams.setMargins(0, actionBarHeight, 0, 0);
+                    container.setLayoutParams(layoutParams);
+                }
+            }
+
+            @Override
+            public void onAnimationCancel(Animator animation) {
+
+            }
+
+            @Override
+            public void onAnimationRepeat(Animator animation) {
+
+            }
+        });
 //        getSupportActionBar().show();
-        TypedValue tv = new TypedValue();
-        int actionBarHeight;
-        if (getTheme().resolveAttribute(android.R.attr.actionBarSize, tv, true)) {
-            actionBarHeight = TypedValue.complexToDimensionPixelSize(tv.data, getResources().getDisplayMetrics());
-            FrameLayout.LayoutParams layoutParams = (FrameLayout.LayoutParams) container.getLayoutParams();
-            layoutParams.setMargins(0, actionBarHeight, 0, 0);
-            container.setLayoutParams(layoutParams);
-        }
+
     }
 
     @Override
