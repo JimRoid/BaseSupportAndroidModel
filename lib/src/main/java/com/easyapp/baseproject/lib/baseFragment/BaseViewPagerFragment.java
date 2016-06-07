@@ -53,7 +53,7 @@ public abstract class BaseViewPagerFragment extends BaseToolbarFragment {
         viewPager = (ViewPager) view.findViewById(R.id.viewpager);
         viewPager.setAdapter(pagerItemAdapter);
         slidingTabLayout = (SlidingTabLayout) view.findViewById(R.id.slidingTabLayout);
-        slidingTabLayout.setCustomTabView(R.layout.custom_tab_icon_and_text, R.id.custom_tab_text);
+        slidingTabLayout.setCustomTabView(R.layout.custom_tab_icon_and_text, R.id.tv_tab);
         setCustomViewTab();
         init();
         slidingTabLayout.setViewPager(viewPager);
@@ -108,7 +108,7 @@ public abstract class BaseViewPagerFragment extends BaseToolbarFragment {
         }
 
         if (TabTextColor != 0) {
-            TextView tv = (TextView) container.findViewById(R.id.custom_tab_text);
+            TextView tv = (TextView) container.findViewById(R.id.tv_tab);
             tv.setTextColor(getResources().getColor(TabTextColor));
         }
     }

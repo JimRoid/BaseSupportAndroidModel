@@ -1,15 +1,18 @@
-package com.easyapp.baseproject_sample;
+package com.easyapp.baseproject_sample.tabactivity;
 
 import android.os.Handler;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.TextView;
 
-import com.easyapp.baseproject.lib.baseFragment.BaseRecyclerViewFragment;
 import com.easyapp.baseproject.lib.recycleView.BaseRecyclerViewAdapter;
 import com.easyapp.baseproject.lib.tool.CollectionTool;
 import com.easyapp.baseproject.lib.tool.RawTool;
+import com.easyapp.baseproject_sample.ItemNews;
+import com.easyapp.baseproject_sample.R;
+import com.easyapp.baseproject_sample.SampleFragment;
 import com.google.gson.Gson;
+import com.orhanobut.logger.Logger;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -20,32 +23,30 @@ import java.util.List;
 /**
  * Created by easyapp_jim on 2016/5/3.
  */
-public class FragmentNews extends BaseRecyclerViewFragment {
+public class FragmentHospitals extends BaseTabRecyclerFragment {
 
     int count = 0;
 
     @Override
-    protected void setOnRecycleAdapter() {
-
-    }
-
-    @Override
     protected void init() {
         setRecyclerViewAnimDisable();
+        Logger.d("init");
 //        setAutoHideToolBar(false);
 //        setFabSrc(1);
 //        setFabVisible(false);
 //        setFabBackground();
-        Gson gson = new Gson();
-        String json = RawTool.getRawString(getActivity(), R.raw.proj);
-        try {
-            JSONObject jsonObject = new JSONObject(json);
-            JSONArray jsonArray = jsonObject.optJSONArray("data");
-            ItemNews[] itemNewses = gson.fromJson(jsonArray.toString(), ItemNews[].class);
-            List<ItemNews> newses = CollectionTool.arrayToList(itemNewses);
-            setData(newses);
-        } catch (JSONException e) {
-            e.printStackTrace();
+        if (getSize() == 0) {
+            Gson gson = new Gson();
+            String json = RawTool.getRawString(getActivity(), R.raw.proj);
+            try {
+                JSONObject jsonObject = new JSONObject(json);
+                JSONArray jsonArray = jsonObject.optJSONArray("data");
+                ItemNews[] itemNewses = gson.fromJson(jsonArray.toString(), ItemNews[].class);
+                List<ItemNews> newses = CollectionTool.arrayToList(itemNewses);
+                setData(newses);
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
         }
     }
 

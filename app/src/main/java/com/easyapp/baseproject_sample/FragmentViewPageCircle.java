@@ -12,6 +12,7 @@ import com.easyapp.baseproject.lib.widgets.SlidingTabLayout;
 import com.easyapp.baseproject.lib.widgets.adapter.v4.FragmentPagerItem;
 import com.easyapp.baseproject.lib.widgets.adapter.v4.FragmentPagerItemAdapter;
 import com.easyapp.baseproject.lib.widgets.adapter.v4.FragmentPagerItems;
+import com.easyapp.baseproject_sample.draweractivity.FragmentNews;
 
 
 /**

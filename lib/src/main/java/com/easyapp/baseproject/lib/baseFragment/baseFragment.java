@@ -79,7 +79,7 @@ public abstract class BaseFragment extends Fragment {
         if (toast != null) {
             toast.cancel();
         }
-        toast = Toast.makeText(getActivity(), content, isLong ? Toast.LENGTH_SHORT : Toast.LENGTH_LONG);
+        toast = Toast.makeText(getContext(), content, isLong ? Toast.LENGTH_SHORT : Toast.LENGTH_LONG);
         toast.show();
     }
 

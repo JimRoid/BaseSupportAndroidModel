@@ -3,6 +3,7 @@ package com.easyapp.baseproject.lib.baseFragment;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 
 import com.easyapp.baseproject.lib.callback.iFragmentTransactionListener;
 
@@ -24,12 +25,43 @@ public abstract class BaseEasyFragment extends BaseFragment {
         }
     }
 
+    /**
+     * 是否需要用到 child manager
+     *
+     * @return
+     */
+    protected boolean isChildMode() {
+        return false;
+    }
+
+    protected int getChildId() {
+        return -1;
+    }
+
+    protected void AddChildFragment(Fragment fragment) {
+        getParentFrag(this).beginTransaction().replace(getChildId(), fragment, "tab").addToBackStack("").commitAllowingStateLoss();
+    }
+
+    protected void ReplaceChildFragment(Fragment fragment) {
+        getParentFrag(this).beginTransaction().add(getChildId(), fragment, "tab").commitAllowingStateLoss();
+    }
+
+
     protected void AddFragment(Fragment fragment, Bundle bundle) {
-        onFragmentTransactionListener.AddFragment(fragment, bundle);
+        if (isChildMode() && getChildId() != -1) {
+            fragment.setArguments(bundle);
+            AddChildFragment(fragment);
+        } else {
+            onFragmentTransactionListener.AddFragment(fragment, bundle);
+        }
     }
 
     protected void AddFragment(Fragment fragment) {
-        onFragmentTransactionListener.AddFragment(fragment);
+        if (isChildMode()) {
+            AddChildFragment(fragment);
+        } else {
+            onFragmentTransactionListener.AddFragment(fragment);
+        }
     }
 
     protected void AddFragment(Fragment fragment, String anim) {
@@ -57,7 +89,11 @@ public abstract class BaseEasyFragment extends BaseFragment {
     }
 
     protected void ReplaceFragment(Fragment fragment) {
-        onFragmentTransactionListener.ReplaceFragment(fragment);
+        if (isChildMode()) {
+            ReplaceChildFragment(fragment);
+        } else {
+            onFragmentTransactionListener.ReplaceFragment(fragment);
+        }
     }
 
     protected void ReplaceFragment(Fragment fragment, int container) {
@@ -89,4 +125,12 @@ public abstract class BaseEasyFragment extends BaseFragment {
     }
 
 
+    protected FragmentManager getParentFrag(Fragment frag) {
+        Fragment f = frag.getParentFragment();
+        if (f != null) {
+            return getParentFrag(f);
+        } else {
+            return frag.getChildFragmentManager();
+        }
+    }
 }

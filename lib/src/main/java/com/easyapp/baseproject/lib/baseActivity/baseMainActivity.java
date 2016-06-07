@@ -21,7 +21,8 @@ public abstract class BaseMainActivity extends BaseSupportActivity implements iT
     protected Toolbar toolbar;
     protected TextView tv_title;
     protected LinearLayout fl_right, fl_left;
-    private FrameLayout container;
+    private View container;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,8 +33,8 @@ public abstract class BaseMainActivity extends BaseSupportActivity implements iT
         initial();
     }
 
-    protected int getLayoutId(){
-        return R.layout.easyapp_base_main;
+    protected int getLayoutId() {
+        return R.layout.easyapp_activity_base_toolbar;
     }
 
     protected abstract void initial();
@@ -49,7 +50,7 @@ public abstract class BaseMainActivity extends BaseSupportActivity implements iT
             }
         });
 
-        container = (FrameLayout) findViewById(R.id.container);
+        container = findViewById(container_id);
 
         tv_title = (TextView) toolbar.findViewById(R.id.tv_title);
         fl_right = (LinearLayout) toolbar.findViewById(R.id.fl_right);
@@ -58,56 +59,25 @@ public abstract class BaseMainActivity extends BaseSupportActivity implements iT
 
     @Override
     public void hideToolbar() {
-        if(toolbar == null){
+        if (toolbar == null || container == null) {
             return;
         }
         toolbar.animate().translationY(-toolbar.getHeight()).setInterpolator(new AccelerateInterpolator(2)).setListener(new Animator.AnimatorListener() {
             @Override
             public void onAnimationStart(Animator animation) {
-                FrameLayout.LayoutParams layoutParams = (FrameLayout.LayoutParams) container.getLayoutParams();
-                layoutParams.setMargins(0, 0, 0, 0);
-                container.setLayoutParams(layoutParams);
+                if (container.getLayoutParams().getClass().equals(LinearLayout.LayoutParams.class)) {
+
+                } else if (container.getLayoutParams().getClass().equals(FrameLayout.LayoutParams.class)) {
+                    FrameLayout.LayoutParams params = (FrameLayout.LayoutParams) container.getLayoutParams();
+                    params.setMargins(0, 0, 0, 0);
+                    container.setLayoutParams(params);
+                }
             }
 
             @Override
             public void onAnimationEnd(Animator animation) {
-
-            }
-
-            @Override
-            public void onAnimationCancel(Animator animation) {
-
-            }
-
-            @Override
-            public void onAnimationRepeat(Animator animation) {
-
-            }
-        });
-//        getSupportActionBar().hide();
-
-    }
-
-    @Override
-    public void showToolbar() {
-        if(toolbar == null){
-            return;
-        }
-        toolbar.animate().translationY(0).setInterpolator(new DecelerateInterpolator(2)).setListener(new Animator.AnimatorListener() {
-            @Override
-            public void onAnimationStart(Animator animation) {
-
-            }
-
-            @Override
-            public void onAnimationEnd(Animator animation) {
-                TypedValue tv = new TypedValue();
-                int actionBarHeight;
-                if (getTheme().resolveAttribute(android.R.attr.actionBarSize, tv, true)) {
-                    actionBarHeight = TypedValue.complexToDimensionPixelSize(tv.data, getResources().getDisplayMetrics());
-                    FrameLayout.LayoutParams layoutParams = (FrameLayout.LayoutParams) container.getLayoutParams();
-                    layoutParams.setMargins(0, actionBarHeight, 0, 0);
-                    container.setLayoutParams(layoutParams);
+                if (container.getLayoutParams().getClass().equals(LinearLayout.LayoutParams.class)) {
+                    toolbar.setVisibility(View.GONE);
                 }
             }
 
@@ -121,8 +91,51 @@ public abstract class BaseMainActivity extends BaseSupportActivity implements iT
 
             }
         });
-//        getSupportActionBar().show();
+    }
 
+    @Override
+    public void showToolbar() {
+        if (toolbar == null || container == null) {
+            return;
+        }
+        toolbar.animate().translationY(0).setInterpolator(new DecelerateInterpolator(2)).setListener(new Animator.AnimatorListener() {
+            TypedValue tv = new TypedValue();
+            int actionBarHeight = TypedValue.complexToDimensionPixelSize(tv.data, getResources().getDisplayMetrics());
+
+            @Override
+            public void onAnimationStart(Animator animation) {
+                if (getTheme().resolveAttribute(android.R.attr.actionBarSize, tv, true)) {
+                    actionBarHeight = TypedValue.complexToDimensionPixelSize(tv.data, getResources().getDisplayMetrics());
+                    if (container.getLayoutParams().getClass().equals(LinearLayout.LayoutParams.class)) {
+                        toolbar.setVisibility(View.VISIBLE);
+                    }
+                }
+            }
+
+            @Override
+            public void onAnimationEnd(Animator animation) {
+                if (getTheme().resolveAttribute(android.R.attr.actionBarSize, tv, true)) {
+                    if (container.getLayoutParams().getClass().equals(LinearLayout.LayoutParams.class)) {
+
+                    } else if (container.getLayoutParams().getClass().equals(FrameLayout.LayoutParams.class)) {
+                        FrameLayout.LayoutParams params = (FrameLayout.LayoutParams) container.getLayoutParams();
+                        params.setMargins(0, actionBarHeight, 0, 0);
+                        container.setLayoutParams(params);
+                    }
+
+                }
+            }
+
+            @Override
+            public void onAnimationCancel(Animator animation) {
+
+            }
+
+            @Override
+            public void onAnimationRepeat(Animator animation) {
+
+            }
+        });
     }
 
     @Override

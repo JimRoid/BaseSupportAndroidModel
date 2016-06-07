@@ -19,7 +19,7 @@ public abstract class BaseDrawerMainActivity extends BaseMainActivity implements
 
     @Override
     protected int getLayoutId() {
-        return R.layout.easyapp_base_drawer_main;
+        return R.layout.easyapp_activity_base_drawer;
     }
 
     @Override

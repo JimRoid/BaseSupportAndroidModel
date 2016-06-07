@@ -1,6 +1,7 @@
 package com.easyapp.baseproject_sample;
 
 import com.easyapp.baseproject.lib.baseFragment.BaseViewPagerFragment;
+import com.easyapp.baseproject_sample.draweractivity.FragmentNews;
 
 /**
  * Created by easyapp_jim on 2016/5/16.
