@@ -112,6 +112,7 @@ public abstract class BaseTabActivity extends BaseMainActivity {
         ImageView iv = (ImageView) view.findViewById(R.id.iv_tab_icon);
         TextView tv = (TextView) view.findViewById(R.id.tv_tab);
         tv.setText(easyTab.getTabTextResource());
+        tv.setTextColor(getResources().getColor(easyTab.getTabTextColorResource()));
         iv.setImageResource(easyTab.getTabImageResource());
         view.setBackgroundResource(easyTab.getTabPressStateDrawable());
         return view;

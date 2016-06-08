@@ -38,6 +38,7 @@
 
                     <TabWidget
                         android:id="@android:id/tabs"
+                        android:showDividers="none"
                         android:layout_width="wrap_content"
                         android:layout_height="60dp" />
                 </com.easyapp.baseproject.lib.widgets.EasyHorizontalScrollView>
