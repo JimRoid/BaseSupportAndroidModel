@@ -15,6 +15,7 @@ public class EasyTab implements Serializable {
     private final String TAB = "tab";
     private Class<? extends Fragment> clazz;
     private int tabImageResource = R.drawable.ic_camera;
+    private int tabPressStateDrawable = R.drawable.tab_default_background;
     private String tabTextResource = "tab";
 
     public EasyTab setFragment(Class<? extends Fragment> clazz) {
@@ -32,16 +33,27 @@ public class EasyTab implements Serializable {
         return tabTextResource;
     }
 
-    public void setTabTextResource(String tabTextResource) {
+    public EasyTab setTabTextResource(String tabTextResource) {
         this.tabTextResource = tabTextResource;
+        return this;
     }
 
     public int getTabImageResource() {
         return tabImageResource;
     }
 
-    public void setTabImageResource(int tabImageResource) {
+    public EasyTab setTabImageResource(int tabImageResource) {
         this.tabImageResource = tabImageResource;
+        return this;
+    }
+
+    public EasyTab setTabPressStateDrawable(int tabPressStateDrawable) {
+        this.tabPressStateDrawable = tabPressStateDrawable;
+        return this;
+    }
+
+    public int getTabPressStateDrawable() {
+        return tabPressStateDrawable;
     }
 
     public Class<? extends Fragment> getClazz() {

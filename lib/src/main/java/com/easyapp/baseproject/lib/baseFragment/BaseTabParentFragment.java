@@ -1,5 +1,6 @@
 package com.easyapp.baseproject.lib.baseFragment;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -8,7 +9,6 @@ import android.view.ViewGroup;
 
 import com.easyapp.baseproject.lib.R;
 import com.easyapp.baseproject.lib.widgets.tabhost.EasyTab;
-import com.orhanobut.logger.Logger;
 
 /**
  * 基本的 tab fragment 版面
@@ -16,6 +16,12 @@ import com.orhanobut.logger.Logger;
 public class BaseTabParentFragment extends BaseToolbarFragment {
     private View view;
 
+
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        setToolbarCallback(context);
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -27,7 +33,6 @@ public class BaseTabParentFragment extends BaseToolbarFragment {
 
     private void initView() {
         if (getChildFragmentManager().findFragmentByTag("tab") == null) {
-            Logger.d(" == null");
             EasyTab easyTab = (EasyTab) getArguments().getSerializable(EasyTab.EasyTab);
             ReplaceFragment(Fragment.instantiate(getContext(), easyTab.getClazz().getName(), new Bundle()));
         }
@@ -36,7 +41,7 @@ public class BaseTabParentFragment extends BaseToolbarFragment {
     public boolean onBackPressed() {
         if (getChildFragmentManager().getBackStackEntryCount() > 0) {
             if (getChildFragmentManager().getBackStackEntryCount() == 1) {
-//                setToolbar_menu(Common.HIDE_BACK);
+                showBack(false);
             }
             getChildFragmentManager().popBackStack();
             return true;

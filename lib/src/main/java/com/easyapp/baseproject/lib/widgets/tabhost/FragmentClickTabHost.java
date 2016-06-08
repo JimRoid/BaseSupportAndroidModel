@@ -21,6 +21,8 @@ public class FragmentClickTabHost extends FragmentTabHost {
 		}
 	}
 
+
+
 	protected OnClickListener onReclickListener;
 
 	@Override

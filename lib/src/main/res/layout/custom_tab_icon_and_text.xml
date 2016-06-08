@@ -4,7 +4,6 @@
     android:id="@+id/ll_content"
     android:layout_width="wrap_content"
     android:layout_height="match_parent"
-    android:background="@drawable/tab_default_background"
     android:minHeight="48dp">
 
     <LinearLayout

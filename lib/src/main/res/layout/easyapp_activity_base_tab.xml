@@ -24,19 +24,34 @@
                 android:layout_height="0dp"
                 android:layout_weight="1" />
 
-
-            <HorizontalScrollView
-                android:layout_width="wrap_content"
+            <FrameLayout
+                android:layout_width="match_parent"
                 android:layout_height="60dp"
-                android:layout_gravity="bottom"
-                android:fillViewport="true"
-                android:scrollbars="none">
+                android:orientation="horizontal">
 
-                <TabWidget
-                    android:id="@android:id/tabs"
+                <com.easyapp.baseproject.lib.widgets.EasyHorizontalScrollView
+                    android:id="@+id/horiziontal_scrollview"
                     android:layout_width="wrap_content"
-                    android:layout_height="60dp" />
-            </HorizontalScrollView>
+                    android:layout_height="60dp"
+                    android:fillViewport="true"
+                    android:scrollbars="none">
+
+                    <TabWidget
+                        android:id="@android:id/tabs"
+                        android:layout_width="wrap_content"
+                        android:layout_height="60dp" />
+                </com.easyapp.baseproject.lib.widgets.EasyHorizontalScrollView>
+
+                <ImageView
+                    android:id="@+id/iv_right"
+                    android:layout_width="32dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="right|center_vertical"
+                    android:minWidth="32dp"
+                    android:src="@drawable/ic_arrow_right_gray"
+                    android:visibility="gone" />
+            </FrameLayout>
+
         </LinearLayout>
     </com.easyapp.baseproject.lib.widgets.tabhost.FragmentClickTabHost>
 

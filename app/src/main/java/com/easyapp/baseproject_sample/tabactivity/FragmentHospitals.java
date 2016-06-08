@@ -12,7 +12,6 @@ import com.easyapp.baseproject_sample.ItemNews;
 import com.easyapp.baseproject_sample.R;
 import com.easyapp.baseproject_sample.SampleFragment;
 import com.google.gson.Gson;
-import com.orhanobut.logger.Logger;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -30,7 +29,6 @@ public class FragmentHospitals extends BaseTabRecyclerFragment {
     @Override
     protected void init() {
         setRecyclerViewAnimDisable();
-        Logger.d("init");
 //        setAutoHideToolBar(false);
 //        setFabSrc(1);
 //        setFabVisible(false);

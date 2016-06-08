@@ -39,6 +39,7 @@ public abstract class BaseRecyclerViewFragment extends BaseDrawerFragment implem
     protected boolean isScrollTop = true;
     protected boolean isAutoHideToolBar = true;
 
+
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);

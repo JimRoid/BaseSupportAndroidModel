@@ -15,10 +15,4 @@ public class TabActivity extends BaseTabActivity {
         addTab(new EasyTab().setFragment(SampleTabFragment.class));
     }
 
-    @Override
-    protected void initial() {
-
-    }
-
-
 }
