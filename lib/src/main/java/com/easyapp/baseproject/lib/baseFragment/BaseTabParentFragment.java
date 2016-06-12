@@ -34,7 +34,7 @@ public class BaseTabParentFragment extends BaseToolbarFragment {
     private void initView() {
         if (getChildFragmentManager().findFragmentByTag("tab") == null) {
             EasyTab easyTab = (EasyTab) getArguments().getSerializable(EasyTab.EasyTab);
-            ReplaceFragment(Fragment.instantiate(getContext(), easyTab.getClazz().getName(), new Bundle()));
+            ReplaceFragment(Fragment.instantiate(getContext(), easyTab.getClazz().getName(), easyTab.getBundle()));
         }
     }
 
