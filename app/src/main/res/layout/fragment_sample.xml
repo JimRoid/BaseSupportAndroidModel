@@ -43,6 +43,12 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="OpenTouchView" />
+
+        <Button
+            android:id="@+id/bt_childview"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="child" />
     </LinearLayout>
 
 </FrameLayout>

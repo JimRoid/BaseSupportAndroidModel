@@ -53,6 +53,9 @@ public class SampleTabFragment extends BaseTabFragment implements View.OnClickLi
                 showToast("測試");
             }
         }).getMenu());
+
+        View bt_childview = view.findViewById(R.id.bt_childview);
+        bt_childview.setOnClickListener(this);
     }
 
     @Override
@@ -71,6 +74,9 @@ public class SampleTabFragment extends BaseTabFragment implements View.OnClickLi
             case R.id.bt_touchview:
                 String[] d = {"https://pixabay.com/static/uploads/photo/2015/10/01/21/39/background-image-967820_960_720.jpg"};
                 OpenData.OpenTouchImage(getActivity(), d, 0);
+                break;
+            case R.id.bt_childview:
+                AddFragment(new ChildFragment());
                 break;
         }
     }

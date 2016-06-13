@@ -40,10 +40,12 @@ public abstract class BaseEasyFragment extends BaseFragment {
 
     protected void AddChildFragment(Fragment fragment) {
         getParentFrag(this).beginTransaction().replace(getChildId(), fragment, "tab").addToBackStack("").commitAllowingStateLoss();
+        onFragmentTransactionListener.OnAddFragment();
     }
 
     protected void ReplaceChildFragment(Fragment fragment) {
         getParentFrag(this).beginTransaction().add(getChildId(), fragment, "tab").commitAllowingStateLoss();
+        onFragmentTransactionListener.OnReplaceFragment();
     }
 
 
