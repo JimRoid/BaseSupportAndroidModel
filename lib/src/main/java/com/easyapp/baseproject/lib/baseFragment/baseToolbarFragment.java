@@ -49,6 +49,13 @@ public class BaseToolbarFragment extends BaseEasyFragment {
         toolbarCallback.setTitle(titleId);
     }
 
+    protected void setTitleImageResource(int titleId) {
+        if (toolbarCallback == null) {
+            return;
+        }
+        toolbarCallback.setTitleImageResource(titleId);
+    }
+
     protected void showBack(boolean value) {
         if (toolbarCallback == null) {
             return;

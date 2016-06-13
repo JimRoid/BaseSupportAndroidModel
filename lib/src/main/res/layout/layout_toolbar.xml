@@ -43,4 +43,9 @@
         android:textColor="@color/toolbar_title_color"
         android:textSize="20sp" />
 
+    <ImageView
+        android:id="@+id/iv_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center" />
 </android.support.v7.widget.Toolbar>

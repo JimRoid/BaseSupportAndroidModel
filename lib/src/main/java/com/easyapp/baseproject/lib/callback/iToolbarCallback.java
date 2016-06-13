@@ -28,4 +28,6 @@ public interface iToolbarCallback {
     void setTitle(CharSequence sequence);
 
     void setTitle(int title_id);
+
+    void setTitleImageResource(int resId);
 }

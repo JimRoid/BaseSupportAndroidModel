@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.animation.AccelerateInterpolator;
 import android.view.animation.DecelerateInterpolator;
 import android.widget.FrameLayout;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -19,6 +20,7 @@ import com.easyapp.baseproject.lib.callback.iToolbarCallback;
  */
 public abstract class BaseMainActivity extends BaseSupportActivity implements iToolbarCallback {
     protected Toolbar toolbar;
+    protected ImageView iv_title;
     protected TextView tv_title;
     protected LinearLayout fl_right, fl_left;
     private View container;
@@ -52,6 +54,7 @@ public abstract class BaseMainActivity extends BaseSupportActivity implements iT
 
         container = findViewById(container_id);
 
+        iv_title = (ImageView) toolbar.findViewById(R.id.iv_title);
         tv_title = (TextView) toolbar.findViewById(R.id.tv_title);
         fl_right = (LinearLayout) toolbar.findViewById(R.id.fl_right);
         fl_left = (LinearLayout) toolbar.findViewById(R.id.fl_left);
@@ -139,13 +142,24 @@ public abstract class BaseMainActivity extends BaseSupportActivity implements iT
     }
 
     @Override
+    public void setTitleImageResource(int resId) {
+        tv_title.setVisibility(View.GONE);
+        iv_title.setVisibility(View.VISIBLE);
+        iv_title.setImageResource(resId);
+    }
+
+    @Override
     public void setTitle(CharSequence title) {
         tv_title.setText(title);
+        tv_title.setVisibility(View.VISIBLE);
+        iv_title.setVisibility(View.GONE);
     }
 
     @Override
     public void setTitle(int titleId) {
         tv_title.setText(titleId);
+        tv_title.setVisibility(View.VISIBLE);
+        iv_title.setVisibility(View.GONE);
     }
 
     @Override

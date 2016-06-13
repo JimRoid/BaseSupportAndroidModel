@@ -29,6 +29,7 @@ public class FragmentHospitals extends BaseTabRecyclerFragment {
     @Override
     protected void init() {
         setRecyclerViewAnimDisable();
+        setTitleImageResource(R.drawable.logo);
 //        setAutoHideToolBar(false);
 //        setFabSrc(1);
 //        setFabVisible(false);
