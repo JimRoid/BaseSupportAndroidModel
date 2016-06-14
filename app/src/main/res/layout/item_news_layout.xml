@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/content"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:orientation="vertical"
     android:minHeight="48dp">
 
     <TextView
@@ -13,4 +14,10 @@
         android:layout_marginLeft="@dimen/activity_horizontal_margin"
         android:text="文字" />
 
-</FrameLayout>
+    <ImageView
+        android:id="@+id/iv_picture"
+        android:adjustViewBounds="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+</LinearLayout>

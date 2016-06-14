@@ -2,6 +2,7 @@ package com.easyapp.baseproject_sample.tabactivity;
 
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -10,6 +11,7 @@ import android.view.ViewGroup;
 
 import com.easyapp.baseproject.lib.OpenData;
 import com.easyapp.baseproject.lib.widgets.Menu;
+import com.easyapp.baseproject_sample.MainDrawerActivity;
 import com.easyapp.baseproject_sample.R;
 
 
@@ -56,6 +58,9 @@ public class SampleTabFragment extends BaseTabFragment implements View.OnClickLi
 
         View bt_childview = view.findViewById(R.id.bt_childview);
         bt_childview.setOnClickListener(this);
+
+        View bt_drawer = view.findViewById(R.id.bt_drawer);
+        bt_drawer.setOnClickListener(this);
     }
 
     @Override
@@ -78,6 +83,15 @@ public class SampleTabFragment extends BaseTabFragment implements View.OnClickLi
             case R.id.bt_childview:
                 AddFragment(new ChildFragment());
                 break;
+            case R.id.bt_drawer:
+                openDrawerActivity();
+                break;
         }
+    }
+
+    public void openDrawerActivity() {
+        Intent intent = new Intent();
+        intent.setClass(getContext(), MainDrawerActivity.class);
+        startActivity(intent);
     }
 }

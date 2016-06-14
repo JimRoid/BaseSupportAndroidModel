@@ -6,7 +6,7 @@ import android.view.View;
 import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
-import com.easyapp.baseproject.lib.baseFragment.BaseRecyclerViewFragment;
+import com.easyapp.baseproject.lib.baseFragment.list.BaseRecyclerViewFragment;
 import com.easyapp.baseproject.lib.recycleView.BaseRecyclerViewAdapter;
 import com.easyapp.baseproject.lib.tool.CollectionTool;
 import com.easyapp.baseproject.lib.tool.RawTool;
@@ -29,6 +29,7 @@ public class FragmentViewer extends BaseRecyclerViewFragment {
     protected void setOnRecycleAdapter() {
 
     }
+
 
     @Override
     protected void init() {

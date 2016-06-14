@@ -1,21 +1,18 @@
 package com.easyapp.baseproject_sample.tabactivity;
 
-import android.os.Handler;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
+import com.easyapp.baseproject.lib.callback.Callback;
 import com.easyapp.baseproject.lib.recycleView.BaseRecyclerViewAdapter;
-import com.easyapp.baseproject.lib.tool.CollectionTool;
-import com.easyapp.baseproject.lib.tool.RawTool;
-import com.easyapp.baseproject_sample.ItemNews;
 import com.easyapp.baseproject_sample.R;
 import com.easyapp.baseproject_sample.SampleFragment;
-import com.google.gson.Gson;
-
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
+import com.easyapp.baseproject_sample.api.ApiTool;
+import com.easyapp.baseproject_sample.entity.Photo;
 
 import java.util.List;
 
@@ -24,56 +21,49 @@ import java.util.List;
  */
 public class FragmentHospitals extends BaseTabRecyclerFragment {
 
-    int count = 0;
+    private ApiTool apiTool;
+
+    @Override
+    protected RecyclerView.LayoutManager getLayoutManager() {
+        return new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL);
+    }
+
 
     @Override
     protected void init() {
+        apiTool = new ApiTool(getContext());
         setRecyclerViewAnimDisable();
         setTitleImageResource(R.drawable.logo);
 //        setAutoHideToolBar(false);
 //        setFabSrc(1);
-//        setFabVisible(false);
+        setFabVisible(false);
 //        setFabBackground();
-        if (getSize() == 0) {
-            Gson gson = new Gson();
-            String json = RawTool.getRawString(getActivity(), R.raw.proj);
-            try {
-                JSONObject jsonObject = new JSONObject(json);
-                JSONArray jsonArray = jsonObject.optJSONArray("data");
-                ItemNews[] itemNewses = gson.fromJson(jsonArray.toString(), ItemNews[].class);
-                List<ItemNews> newses = CollectionTool.arrayToList(itemNewses);
-                setData(newses);
-            } catch (JSONException e) {
-                e.printStackTrace();
-            }
-        }
-    }
-
-    @Override
-    protected int setGridLayoutSpanCount() {
-        return 2;
+        onRefresh();
     }
 
     @Override
     protected void onLoadMore() {
-        final Handler handler = new Handler();
-        handler.postDelayed(new Runnable() {
+        apiTool.getPhotos(new Callback() {
             @Override
-            public void run() {
-                Gson gson = new Gson();
-                String json = RawTool.getRawString(getActivity(), R.raw.proj);
-                try {
-                    JSONObject jsonObject = new JSONObject(json);
-                    JSONArray jsonArray = jsonObject.optJSONArray("data");
-                    ItemNews[] itemNewses = gson.fromJson(jsonArray.toString(), ItemNews[].class);
-                    List<ItemNews> newses = CollectionTool.arrayToList(itemNewses);
-                    count++;
-                    addData(newses);
-                } catch (JSONException e) {
+            public void initCallback() {
+                showLoading();
+            }
 
+            @Override
+            public void onComplete() {
+                cancelLoading();
+            }
+
+            @Override
+            public void callback(Object object) {
+                List<Photo> photos = (List<Photo>) object;
+                if (getSize() > 0) {
+                    addData(photos);
+                } else {
+                    setData(photos);
                 }
             }
-        }, 200);
+        });
     }
 
     @Override
@@ -104,8 +94,9 @@ public class FragmentHospitals extends BaseTabRecyclerFragment {
     @Override
     protected void getBindViewHolder(RecyclerView.ViewHolder holder, Object obj) {
         AdapterItemHolder adapterItemHolder = (AdapterItemHolder) holder;
-        ItemNews itemNews = (ItemNews) obj;
-        adapterItemHolder.textView.setText(itemNews.getName());
+        Photo photo = (Photo) obj;
+        Glide.with(getContext()).load(photo.getUrl()).placeholder(R.drawable.icon_empty).into(adapterItemHolder.iv_picture);
+        adapterItemHolder.textView.setText(photo.getTitle());
         adapterItemHolder.content.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -121,12 +112,14 @@ public class FragmentHospitals extends BaseTabRecyclerFragment {
 
     public class AdapterItemHolder extends BaseRecyclerViewAdapter.ItemHolder {
         public TextView textView;
+        public ImageView iv_picture;
         public View content;
 
         public AdapterItemHolder(View itemView) {
             super(itemView);
             content = itemView.findViewById(R.id.content);
             textView = (TextView) itemView.findViewById(R.id.tv_title);
+            iv_picture = (ImageView) itemView.findViewById(R.id.iv_picture);
         }
     }
 }

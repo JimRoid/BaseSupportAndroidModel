@@ -3,7 +3,6 @@
     <!-- common configure -->
     <color name="text_color_hint">#9A9A9A</color>
     <!-- common toolbar -->
-    <color name="toolbar_color">#2196f3</color>
     <color name="toolbar_title_color">#fff</color>
     <!-- common background -->
     <color name="list_item_background_normal">#ffffff</color>

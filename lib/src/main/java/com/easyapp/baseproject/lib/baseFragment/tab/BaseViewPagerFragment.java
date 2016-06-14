@@ -1,4 +1,4 @@
-package com.easyapp.baseproject.lib.baseFragment;
+package com.easyapp.baseproject.lib.baseFragment.tab;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -12,6 +12,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.easyapp.baseproject.lib.R;
+import com.easyapp.baseproject.lib.baseFragment.BaseToolbarFragment;
 import com.easyapp.baseproject.lib.widgets.SlidingTabLayout;
 import com.easyapp.baseproject.lib.widgets.adapter.v4.FragmentPagerItem;
 import com.easyapp.baseproject.lib.widgets.adapter.v4.FragmentPagerItemAdapter;

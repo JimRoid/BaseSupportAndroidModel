@@ -1,4 +1,4 @@
-package com.easyapp.baseproject.lib.baseFragment;
+package com.easyapp.baseproject.lib.baseFragment.list;
 
 import android.content.Context;
 import android.content.res.ColorStateList;
@@ -14,6 +14,7 @@ import android.view.ViewGroup;
 import android.widget.ProgressBar;
 
 import com.easyapp.baseproject.lib.R;
+import com.easyapp.baseproject.lib.baseFragment.BaseDrawerFragment;
 import com.easyapp.baseproject.lib.recycleView.BaseRecyclerViewAdapter;
 import com.easyapp.baseproject.lib.recycleView.EndlessRecyclerOnScrollListener;
 import com.orhanobut.logger.Logger;
@@ -71,7 +72,6 @@ public abstract class BaseRecyclerViewFragment extends BaseDrawerFragment implem
         easyapp_swiperefresh_layout.setOnRefreshListener(this);
         recyclerView = (RecyclerView) view.findViewById(R.id.easyapp_recycler_view);
         GridLayoutManager gridLayoutManager = new GridLayoutManager(getActivity(), setGridLayoutSpanCount());
-
         recyclerView.setLayoutManager(gridLayoutManager);
     }
 

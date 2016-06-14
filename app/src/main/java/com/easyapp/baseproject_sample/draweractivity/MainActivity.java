@@ -1,12 +1,8 @@
 package com.easyapp.baseproject_sample.draweractivity;
 
-import android.content.Intent;
-import android.view.View;
-
 import com.easyapp.baseproject.lib.baseActivity.BaseDrawerMainActivity;
 import com.easyapp.baseproject_sample.FragmentImage;
 import com.easyapp.baseproject_sample.FragmentViewPage;
-import com.easyapp.baseproject_sample.MainDrawerActivity;
 
 public class MainActivity extends BaseDrawerMainActivity {
 
@@ -21,11 +17,7 @@ public class MainActivity extends BaseDrawerMainActivity {
     }
 
 
-    public void openDrawerActivity(View view) {
-        Intent intent = new Intent();
-        intent.setClass(this, MainDrawerActivity.class);
-        startActivity(intent);
-    }
+
 
     @Override
     public void OnAddFragment() {

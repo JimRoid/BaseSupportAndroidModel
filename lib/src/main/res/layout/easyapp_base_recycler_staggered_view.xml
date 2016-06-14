@@ -10,11 +10,10 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <com.easyapp.baseproject.lib.widgets.GridRecyclerView
+        <android.support.v7.widget.RecyclerView
             android:id="@+id/easyapp_recycler_view"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layoutAnimation="@anim/grid_layout_animation" />
+            android:layout_height="wrap_content" />
 
 
     </android.support.v4.widget.SwipeRefreshLayout>

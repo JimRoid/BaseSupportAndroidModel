@@ -15,9 +15,9 @@
             android:text="測試用" />
 
         <Button
+            android:id="@+id/bt_drawer"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:onClick="openDrawerActivity"
             android:text="打開側欄activity" />
 
         <Button

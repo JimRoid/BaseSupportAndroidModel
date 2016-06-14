@@ -5,7 +5,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.TextView;
 
-import com.easyapp.baseproject.lib.baseFragment.BaseRecyclerViewFragment;
+import com.easyapp.baseproject.lib.baseFragment.list.BaseRecyclerViewFragment;
 import com.easyapp.baseproject.lib.recycleView.BaseRecyclerViewAdapter;
 import com.easyapp.baseproject.lib.tool.CollectionTool;
 import com.easyapp.baseproject.lib.tool.RawTool;
@@ -31,6 +31,7 @@ public class FragmentNews extends BaseRecyclerViewFragment {
     protected void setOnRecycleAdapter() {
 
     }
+
 
     @Override
     protected void init() {
