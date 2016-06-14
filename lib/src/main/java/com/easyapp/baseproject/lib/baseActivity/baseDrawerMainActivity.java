@@ -14,8 +14,8 @@ public abstract class BaseDrawerMainActivity extends BaseMainActivity implements
 
     protected DrawerLayout drawerLayout;
 
-    private View fl_drawer_right;
-    private View fl_drawer_left;
+    protected View fl_drawer_right;
+    protected View fl_drawer_left;
 
     @Override
     protected int getLayoutId() {
