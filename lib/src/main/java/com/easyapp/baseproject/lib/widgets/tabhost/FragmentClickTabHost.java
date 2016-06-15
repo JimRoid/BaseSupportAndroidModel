@@ -6,27 +6,33 @@ import android.util.AttributeSet;
 
 public class FragmentClickTabHost extends FragmentTabHost {
 
-	public FragmentClickTabHost(Context context, AttributeSet attrs) {
-		super(context, attrs);
-	}
+    public FragmentClickTabHost(Context context, AttributeSet attrs) {
+        super(context, attrs);
+    }
 
-	@Override
-	public void setCurrentTab(int index) {
-		if (index == getCurrentTab()) {
-			if (onReclickListener != null) {
-				onReclickListener.onClick(this);
-			}
-		} else {
-			super.setCurrentTab(index);
-		}
-	}
+    @Override
+    public void setCurrentTab(int index) {
+        if (index == getCurrentTab()) {
+            if (onReclickListener != null) {
+                onReclickListener.onClick(this);
+            }
+        } else {
+            if (isCanSetCurrentTab(index)) {
+                super.setCurrentTab(index);
+            }
+        }
+    }
 
 
+    protected boolean isCanSetCurrentTab(int index) {
+        return true;
+    }
 
-	protected OnClickListener onReclickListener;
 
-	@Override
-	public void setOnClickListener(OnClickListener l) {
-		onReclickListener = l;
-	}
+    protected OnClickListener onReclickListener;
+
+    @Override
+    public void setOnClickListener(OnClickListener l) {
+        onReclickListener = l;
+    }
 }
