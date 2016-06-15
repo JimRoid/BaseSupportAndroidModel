@@ -1,7 +1,8 @@
-package com.easyapp.baseproject_sample.api;
+package com.easyapp.apitest.api;
 
-import com.easyapp.baseproject_sample.entity.Photo;
-import com.easyapp.baseproject_sample.entity.Post;
+
+import com.easyapp.apitest.entity.Photo;
+import com.easyapp.apitest.entity.Post;
 
 import java.util.List;
 

@@ -1,4 +1,4 @@
-package com.easyapp.baseproject_sample.entity;
+package com.easyapp.apitest.entity;
 
 import com.google.gson.annotations.SerializedName;
 

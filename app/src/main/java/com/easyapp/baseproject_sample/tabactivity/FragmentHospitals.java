@@ -7,12 +7,13 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.easyapp.apitest.entity.Photo;
 import com.easyapp.baseproject.lib.callback.Callback;
 import com.easyapp.baseproject.lib.recycleView.BaseRecyclerViewAdapter;
 import com.easyapp.baseproject_sample.R;
 import com.easyapp.baseproject_sample.SampleFragment;
-import com.easyapp.baseproject_sample.api.ApiTool;
-import com.easyapp.baseproject_sample.entity.Photo;
+import com.easyapp.apitest.api.ApiTool;
+
 
 import java.util.List;
 
@@ -31,7 +32,7 @@ public class FragmentHospitals extends BaseTabRecyclerFragment {
 
     @Override
     protected void init() {
-        apiTool = new ApiTool(getContext());
+        apiTool = new ApiTool();
         setRecyclerViewAnimDisable();
         setTitleImageResource(R.drawable.logo);
 //        setAutoHideToolBar(false);

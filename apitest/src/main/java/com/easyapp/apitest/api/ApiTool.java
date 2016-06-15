@@ -1,4 +1,5 @@
-package com.easyapp.baseproject_sample.api;
+package com.easyapp.apitest.api;
+
 
 import com.easyapp.baseproject.lib.callback.Callback;
 import com.orhanobut.logger.Logger;
