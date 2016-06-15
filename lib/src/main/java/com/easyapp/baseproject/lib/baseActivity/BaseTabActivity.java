@@ -48,7 +48,17 @@ public abstract class BaseTabActivity extends BaseMainActivity {
         fragmentTabHost.setup(this, getSupportFragmentManager(), android.R.id.tabcontent);
         fragmentTabHost.setOnClickListener(getTabOnClickListener());
         fragmentTabHost.setOnTabChangedListener(getOnTabChangeListener());
+        fragmentTabHost.setisCanSetCurrentTab(getIsCanSetCurrentTab());
         onSetupTab();
+    }
+
+    protected FragmentClickTabHost.IsCanSetCurrentTab getIsCanSetCurrentTab(){
+        return new FragmentClickTabHost.IsCanSetCurrentTab() {
+            @Override
+            public boolean isCanSetCurrentTab(int index) {
+                return true;
+            }
+        };
     }
 
     protected View.OnClickListener getTabOnClickListener() {

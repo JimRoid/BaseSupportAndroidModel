@@ -8,7 +8,15 @@ public class FragmentClickTabHost extends FragmentTabHost {
 
     public FragmentClickTabHost(Context context, AttributeSet attrs) {
         super(context, attrs);
+
+        isCanSetCurrentTab = new IsCanSetCurrentTab() {
+            @Override
+            public boolean isCanSetCurrentTab(int index) {
+                return true;
+            }
+        };
     }
+
 
     @Override
     public void setCurrentTab(int index) {
@@ -17,17 +25,26 @@ public class FragmentClickTabHost extends FragmentTabHost {
                 onReclickListener.onClick(this);
             }
         } else {
-            if (isCanSetCurrentTab(index)) {
+            if (isCanSetCurrentTab.isCanSetCurrentTab(index)) {
                 super.setCurrentTab(index);
             }
         }
     }
 
 
-    protected boolean isCanSetCurrentTab(int index) {
+    public boolean isCanSetCurrentTab(int index) {
         return true;
     }
 
+    public interface IsCanSetCurrentTab {
+        boolean isCanSetCurrentTab(int index);
+    }
+
+    public void setisCanSetCurrentTab(IsCanSetCurrentTab i) {
+        isCanSetCurrentTab = i;
+    }
+
+    protected IsCanSetCurrentTab isCanSetCurrentTab;
 
     protected OnClickListener onReclickListener;
 
