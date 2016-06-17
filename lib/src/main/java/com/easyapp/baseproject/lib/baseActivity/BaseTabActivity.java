@@ -21,6 +21,8 @@ public abstract class BaseTabActivity extends BaseMainActivity {
     protected FragmentClickTabHost fragmentTabHost;
     private ArrayList<EasyTab> easyTabs = new ArrayList<>();
 
+    protected ImageView iv_right;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -52,7 +54,7 @@ public abstract class BaseTabActivity extends BaseMainActivity {
         onSetupTab();
     }
 
-    protected FragmentClickTabHost.IsCanSetCurrentTab getIsCanSetCurrentTab(){
+    protected FragmentClickTabHost.IsCanSetCurrentTab getIsCanSetCurrentTab() {
         return new FragmentClickTabHost.IsCanSetCurrentTab() {
             @Override
             public boolean isCanSetCurrentTab(int index) {
@@ -89,7 +91,7 @@ public abstract class BaseTabActivity extends BaseMainActivity {
 
         if (easyTabs.size() > 5) {
             final EasyHorizontalScrollView horizontalScrollView = (EasyHorizontalScrollView) findViewById(R.id.horiziontal_scrollview);
-            final ImageView iv_right = (ImageView) findViewById(R.id.iv_right);
+            iv_right = (ImageView) findViewById(R.id.iv_right);
 
             if (iv_right != null && horizontalScrollView != null) {
                 iv_right.setVisibility(View.VISIBLE);
@@ -112,6 +114,17 @@ public abstract class BaseTabActivity extends BaseMainActivity {
                     }
                 });
             }
+        }
+    }
+
+    /**
+     * 設定向右icon的image resource
+     *
+     * @param imageRes
+     */
+    protected void setImageRight(int imageRes) {
+        if (iv_right != null) {
+            iv_right.setImageResource(imageRes);
         }
     }
 
