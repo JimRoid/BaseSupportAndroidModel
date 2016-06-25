@@ -9,7 +9,7 @@ import android.widget.TabHost;
 import android.widget.TextView;
 
 import com.easyapp.baseproject.lib.R;
-import com.easyapp.baseproject.lib.baseFragment.BaseTabParentFragment;
+import com.easyapp.baseproject.lib.baseFragment.tab.BaseTabParentFragment;
 import com.easyapp.baseproject.lib.widgets.EasyHorizontalScrollView;
 import com.easyapp.baseproject.lib.widgets.tabhost.EasyTab;
 import com.easyapp.baseproject.lib.widgets.tabhost.FragmentClickTabHost;

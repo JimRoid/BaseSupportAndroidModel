@@ -1,4 +1,4 @@
-package com.easyapp.baseproject.lib.baseFragment;
+package com.easyapp.baseproject.lib.baseFragment.tab;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.easyapp.baseproject.lib.R;
+import com.easyapp.baseproject.lib.baseFragment.BaseToolbarFragment;
 import com.easyapp.baseproject.lib.widgets.tabhost.EasyTab;
 
 /**
@@ -32,10 +33,10 @@ public class BaseTabParentFragment extends BaseToolbarFragment {
     }
 
     private void initView() {
-        if (getChildFragmentManager().findFragmentByTag("tab") == null) {
+//        if (getChildFragmentManager().findFragmentByTag("tab") == null) {
             EasyTab easyTab = (EasyTab) getArguments().getSerializable(EasyTab.EasyTab);
             ReplaceFragment(Fragment.instantiate(getContext(), easyTab.getClazz().getName(), easyTab.getBundle()));
-        }
+//        }
     }
 
     public boolean onBackPressed() {
