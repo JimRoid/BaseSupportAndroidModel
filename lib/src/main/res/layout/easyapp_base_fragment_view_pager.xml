@@ -15,12 +15,12 @@
             android:id="@+id/slidingTabLayout"
             android:layout_width="match_parent"
             android:layout_height="48dp"
-            android:layout_marginRight="24dp"
             android:minHeight="48dp" />
 
         <ImageView
             android:id="@+id/iv_right"
             android:layout_width="24dp"
+            android:visibility="gone"
             android:layout_height="wrap_content"
             android:layout_gravity="right|center_vertical"
             android:minWidth="24dp"
