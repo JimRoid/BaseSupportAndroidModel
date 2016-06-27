@@ -1,9 +1,8 @@
-package com.easyapp.apitest.api;
+package com.easyapp.baseproject_sample.http.api;
 
 
-import com.easyapp.apitest.entity.Photo;
-import com.easyapp.apitest.entity.Post;
-
+import com.easyapp.baseproject_sample.http.entity.Photo;
+import com.easyapp.baseproject_sample.http.entity.Post;
 import java.util.List;
 
 import retrofit2.Call;

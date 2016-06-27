@@ -1,4 +1,4 @@
-package com.easyapp.apitest.api;
+package com.easyapp.baseproject_sample.http.api;
 
 
 import com.easyapp.baseproject.lib.callback.Callback;

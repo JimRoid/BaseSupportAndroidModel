@@ -6,4 +6,7 @@
 
     <color name="icon_enabled">#f04682</color>
     <color name="icon_disabled">#ff69a4</color>
+
+    <color name="default_orange">#f46543</color>
+    <color name="default_gray">#9c9c9c</color>
 </resources>

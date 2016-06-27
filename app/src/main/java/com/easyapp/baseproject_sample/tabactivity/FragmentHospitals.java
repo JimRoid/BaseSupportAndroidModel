@@ -7,13 +7,12 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
-import com.easyapp.apitest.entity.Photo;
 import com.easyapp.baseproject.lib.callback.Callback;
 import com.easyapp.baseproject.lib.recycleView.BaseRecyclerViewAdapter;
 import com.easyapp.baseproject_sample.R;
 import com.easyapp.baseproject_sample.SampleFragment;
-import com.easyapp.apitest.api.ApiTool;
-
+import com.easyapp.baseproject_sample.http.api.ApiTool;
+import com.easyapp.baseproject_sample.http.entity.Photo;
 
 import java.util.List;
 
