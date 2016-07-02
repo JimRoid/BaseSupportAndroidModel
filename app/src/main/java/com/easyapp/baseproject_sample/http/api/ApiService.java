@@ -20,6 +20,6 @@ public interface ApiService {
     @GET("/posts")
     Call<List<Post>> getPosts();
 
-    @GET("/photos")
+    @GET("/photos?_limit=40")
     Call<List<Photo>> getPhotos();
 }

@@ -1,59 +1,83 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/ll_bg"
+<com.easyapp.baseproject.lib.widget.tabhost.FragmentClickTabHost xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@android:id/tabhost"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="wrap_content">
 
-
-    <com.easyapp.baseproject.lib.widgets.tabhost.FragmentClickTabHost xmlns:android="http://schemas.android.com/apk/res/android"
-        android:id="@android:id/tabhost"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_gravity="bottom">
+        android:orientation="vertical">
 
-        <LinearLayout
+        <FrameLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical">
+            android:layout_height="0dp"
+            android:layout_weight="1">
 
-            <include layout="@layout/layout_toolbar" />
-
-            <FrameLayout
-                android:id="@android:id/tabcontent"
+            <android.support.design.widget.CoordinatorLayout
+                android:id="@+id/coordinatorLayout"
                 android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="1" />
+                android:layout_height="match_parent"
+                android:fitsSystemWindows="false">
 
-            <FrameLayout
-                android:layout_width="match_parent"
+                <android.support.design.widget.AppBarLayout
+                    android:id="@+id/appBar"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
+
+                    <include layout="@layout/layout_toolbar" />
+                </android.support.design.widget.AppBarLayout>
+
+                <FrameLayout
+                    android:id="@android:id/tabcontent"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    app:layout_behavior="@string/appbar_scrolling_view_behavior" />
+
+                <android.support.design.widget.FloatingActionButton
+                    android:id="@+id/fab"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="bottom|end"
+                    android:layout_margin="@dimen/fab_margin"
+                    android:src="@drawable/icon_add_white" />
+            </android.support.design.widget.CoordinatorLayout>
+        </FrameLayout>
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:orientation="horizontal">
+
+            <com.easyapp.baseproject.lib.widget.EasyHorizontalScrollView
+                android:id="@+id/horiziontal_scrollview"
+                android:layout_width="wrap_content"
                 android:layout_height="60dp"
-                android:orientation="horizontal">
+                android:fillViewport="true"
+                android:scrollbars="none">
 
-                <com.easyapp.baseproject.lib.widgets.EasyHorizontalScrollView
-                    android:id="@+id/horiziontal_scrollview"
+                <TabWidget
+                    android:id="@android:id/tabs"
                     android:layout_width="wrap_content"
                     android:layout_height="60dp"
-                    android:fillViewport="true"
-                    android:scrollbars="none">
+                    android:showDividers="none" />
+            </com.easyapp.baseproject.lib.widget.EasyHorizontalScrollView>
 
-                    <TabWidget
-                        android:id="@android:id/tabs"
-                        android:showDividers="none"
-                        android:layout_width="wrap_content"
-                        android:layout_height="60dp" />
-                </com.easyapp.baseproject.lib.widgets.EasyHorizontalScrollView>
+            <ImageView
+                android:id="@+id/iv_right"
+                android:layout_width="32dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="right|center_vertical"
+                android:minWidth="32dp"
+                android:src="@drawable/ic_arrow_right_gray"
+                android:visibility="gone" />
+        </FrameLayout>
 
-                <ImageView
-                    android:id="@+id/iv_right"
-                    android:layout_width="32dp"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="right|center_vertical"
-                    android:minWidth="32dp"
-                    android:src="@drawable/ic_arrow_right_gray"
-                    android:visibility="gone" />
-            </FrameLayout>
+    </LinearLayout>
 
-        </LinearLayout>
-    </com.easyapp.baseproject.lib.widgets.tabhost.FragmentClickTabHost>
 
-</FrameLayout>
+</com.easyapp.baseproject.lib.widget.tabhost.FragmentClickTabHost>
+

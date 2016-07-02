@@ -1,54 +1,29 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.easyapp.baseproject_sample.SampleFragment">
+    android:orientation="vertical">
 
-    <LinearLayout
+
+    <Button
+        android:id="@+id/bt_list"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:text="測試列表" />
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:text="測試用" />
+    <Button
+        android:id="@+id/bt_tab"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="測試tab" />
 
-        <Button
-            android:id="@+id/bt_drawer"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="打開側欄activity" />
+    <Button
+        android:id="@+id/bt_drawerView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="測試側邊欄" />
 
-        <Button
-            android:id="@+id/bt_showtoolbar"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="showtoolbar" />
 
-        <Button
-            android:id="@+id/bt_hidetoolbar"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="hidetoolbar" />
 
-        <Button
-            android:id="@+id/bt_loading"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Loading" />
 
-        <Button
-            android:id="@+id/bt_touchview"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="OpenTouchView" />
-
-        <Button
-            android:id="@+id/bt_childview"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="child" />
-    </LinearLayout>
-
-</FrameLayout>
+</LinearLayout>

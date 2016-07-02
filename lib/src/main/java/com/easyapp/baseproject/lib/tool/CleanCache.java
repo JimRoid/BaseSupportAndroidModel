@@ -5,7 +5,7 @@ import android.content.Context;
 import com.bumptech.glide.Glide;
 
 /**
- * Created by easyapp_jim on 2016/5/4.
+ * 清除glide暫存記憶體
  */
 public class CleanCache {
     public static void CleanGlideCache(Context context) {

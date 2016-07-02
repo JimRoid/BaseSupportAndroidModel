@@ -1,36 +1,20 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
 
 
-    <FrameLayout
-        android:id="@+id/fl_sliding_bg"
+    <com.easyapp.baseproject.lib.widget.viewPager.SlidingTabLayout
+        android:id="@+id/slidingTabLayout"
         android:layout_width="match_parent"
-        android:layout_height="48dp"
-        android:layout_alignParentBottom="true"
-        android:minHeight="48dp">
+        android:layout_height="wrap_content"
+        android:minHeight="60dp" />
 
-        <com.easyapp.baseproject.lib.widgets.SlidingTabLayout
-            android:id="@+id/slidingTabLayout"
-            android:layout_width="match_parent"
-            android:layout_height="48dp"
-            android:minHeight="48dp" />
-
-        <ImageView
-            android:id="@+id/iv_right"
-            android:layout_width="24dp"
-            android:visibility="gone"
-            android:layout_height="wrap_content"
-            android:layout_gravity="right|center_vertical"
-            android:minWidth="24dp"
-            android:src="@drawable/ic_arrow_right_gray" />
-    </FrameLayout>
 
     <android.support.v4.view.ViewPager
         android:id="@+id/viewpager"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="@dimen/tab_height" />
+        android:layout_height="wrap_content" />
 
-</RelativeLayout>
+</LinearLayout>

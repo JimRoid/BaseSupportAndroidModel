@@ -1,4 +1,4 @@
-<com.easyapp.baseproject.lib.drawer.BlurDrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<com.easyapp.baseproject.lib.widget.drawerView.BlurDrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     app:blurRadius="5"
@@ -6,6 +6,7 @@
     android:id="@+id/drawer_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
+
 
     <include layout="@layout/easyapp_activity_base_toolbar" />
 
@@ -27,4 +28,4 @@
 
 
 
-</com.easyapp.baseproject.lib.drawer.BlurDrawerLayout>
+</com.easyapp.baseproject.lib.widget.drawerView.BlurDrawerLayout>

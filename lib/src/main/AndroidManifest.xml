@@ -3,7 +3,7 @@
     package="com.easyapp.baseproject.lib">
 
     <application>
-        <activity android:name=".baseActivity.BaseTabActivity"></activity>
+        <activity android:name=".base.activity.BaseTabActivity"></activity>
     </application>
 
 </manifest>

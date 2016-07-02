@@ -9,11 +9,11 @@
     android:contentInsetLeft="0dp"
     android:contentInsetRight="0dp"
     android:contentInsetStart="0dp"
-    android:minHeight="?attr/actionBarSize"
     app:contentInsetEnd="0dp"
     app:contentInsetLeft="0dp"
     app:contentInsetRight="0dp"
-    app:contentInsetStart="0dp">
+    app:contentInsetStart="0dp"
+    app:layout_scrollFlags="scroll|enterAlways">
 
 
     <LinearLayout

@@ -2,7 +2,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.easyapp.baseproject_sample.FragmentViewPageCircle">
+    tools:context=".screen.FragmentViewPageCircle">
 
     <android.support.v4.view.ViewPager
         android:id="@+id/viewpager"
@@ -11,7 +11,7 @@
 
     </android.support.v4.view.ViewPager>
 
-    <com.easyapp.baseproject.lib.widgets.SlidingTabLayout xmlns:app="http://schemas.android.com/apk/res-auto"
+    <com.easyapp.baseproject.lib.widget.viewPager.SlidingTabLayout xmlns:app="http://schemas.android.com/apk/res-auto"
         android:id="@+id/slidingTabLayout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

@@ -11,7 +11,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
 
-        <activity android:name=".tabactivity.TabActivity">
+        <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -19,18 +19,11 @@
             </intent-filter>
         </activity>
 
-        <activity
-            android:name=".draweractivity.MainActivity"
-            android:theme="@style/TransAppTheme">
-            <!--<intent-filter>-->
-            <!--<action android:name="android.intent.action.MAIN" />-->
-            <!--<category android:name="android.intent.category.LAUNCHER" />-->
-            <!--</intent-filter>-->
-        </activity>
-        <activity
-            android:name=".MainDrawerActivity"
-            android:theme="@style/TransAppTheme" />
-        <activity android:name="com.easyapp.baseproject.lib.touchView.TouchViewActivity" />
+        <activity android:name=".draweractivity.DrawerViewActivity" />
+        <activity android:name=".tabactivity.TabActivity" />
+
+        <activity android:name=".toolbaractivity.ToolbarActivity" />
+
 
     </application>
 

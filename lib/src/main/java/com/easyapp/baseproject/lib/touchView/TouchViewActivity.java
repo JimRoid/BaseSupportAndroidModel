@@ -6,9 +6,9 @@ import android.support.v7.app.AppCompatActivity;
 
 import com.easyapp.baseproject.lib.R;
 import com.easyapp.baseproject.lib.tool.CleanGlideAsyncTask;
-import com.easyapp.baseproject.lib.widgets.adapter.v4.FragmentPagerItem;
-import com.easyapp.baseproject.lib.widgets.adapter.v4.FragmentPagerItemAdapter;
-import com.easyapp.baseproject.lib.widgets.adapter.v4.FragmentPagerItems;
+import com.easyapp.baseproject.lib.widget.viewPager.adapter.v4.FragmentPagerItem;
+import com.easyapp.baseproject.lib.widget.viewPager.adapter.v4.FragmentPagerItemAdapter;
+import com.easyapp.baseproject.lib.widget.viewPager.adapter.v4.FragmentPagerItems;
 
 
 /**
