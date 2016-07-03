@@ -92,13 +92,17 @@ public abstract class BaseRecyclerViewFragment extends BaseDrawerFragment implem
             @Override
             public void onScrolledUp() {
                 super.onScrolledUp();
-                showFab();
+                if (!fabVisible) {
+                    showFab();
+                }
             }
 
             @Override
             public void onScrolledDown() {
                 super.onScrolledDown();
-                hideFab();
+                if (!fabVisible) {
+                    hideFab();
+                }
                 isScrollTop = false;
             }
 
@@ -221,6 +225,7 @@ public abstract class BaseRecyclerViewFragment extends BaseDrawerFragment implem
         this.fabVisible = fabVisible;
         if (fabVisible) {
             hideFab();
+            getFab().setVisibility(View.GONE);
         } else {
             showFab();
         }
