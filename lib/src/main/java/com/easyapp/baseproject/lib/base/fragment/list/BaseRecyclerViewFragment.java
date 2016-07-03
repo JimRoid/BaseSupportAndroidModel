@@ -45,12 +45,17 @@ public abstract class BaseRecyclerViewFragment extends BaseDrawerFragment implem
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, @Nullable Bundle savedInstanceState) {
-        view = inflater.inflate(R.layout.easyapp_base_recycle_view, container, false);
+        view = inflater.inflate(getLayoutId(), container, false);
         hideToolbar();
         initView();
         initData();
         init();
         return view;
+    }
+
+
+    protected int getLayoutId() {
+        return R.layout.easyapp_base_recycle_view;
     }
 
     /**

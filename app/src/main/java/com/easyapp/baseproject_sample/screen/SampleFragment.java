@@ -31,6 +31,8 @@ public class SampleFragment extends BaseToolbarFragment {
     Button btTab;
     @BindView(R.id.bt_drawerView)
     Button btDrawerView;
+    @BindView(R.id.bt_staggered_list)
+    Button btStaggeredList;
     private View view;
 
     @Override
@@ -53,6 +55,10 @@ public class SampleFragment extends BaseToolbarFragment {
         AddFragment(new PostsList());
     }
 
+    protected void AddToList2() {
+        AddFragment(new PostsStaggeredList());
+    }
+
     protected void OpenTabActivity() {
         OpenData.StartActivity(getActivity(), TabActivity.class);
     }
@@ -61,7 +67,7 @@ public class SampleFragment extends BaseToolbarFragment {
         OpenData.StartActivity(getActivity(), DrawerViewActivity.class);
     }
 
-    @OnClick({R.id.bt_list, R.id.bt_tab, R.id.bt_drawerView})
+    @OnClick({R.id.bt_list, R.id.bt_tab, R.id.bt_drawerView, R.id.bt_staggered_list})
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.bt_list:
@@ -72,6 +78,9 @@ public class SampleFragment extends BaseToolbarFragment {
                 break;
             case R.id.bt_drawerView:
                 OpenDrawerViewActivity();
+                break;
+            case R.id.bt_staggered_list:
+                AddToList2();
                 break;
         }
     }
