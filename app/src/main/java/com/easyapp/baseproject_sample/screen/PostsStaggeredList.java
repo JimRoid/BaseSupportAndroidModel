@@ -7,9 +7,9 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
-import com.easyapp.baseproject.lib.base.fragment.list.BaseRecyclerViewStaggeredFragment;
-import com.easyapp.baseproject.lib.callback.Callback;
-import com.easyapp.baseproject.lib.widget.recyclerView.BaseRecyclerViewAdapter;
+import com.easyapp.lib.base.fragment.list.BaseRecyclerViewStaggeredFragment;
+import com.easyapp.lib.callback.Callback;
+import com.easyapp.lib.widget.recyclerView.BaseRecyclerViewAdapter;
 import com.easyapp.baseproject_sample.R;
 import com.easyapp.baseproject_sample.http.api.ApiTool;
 import com.easyapp.baseproject_sample.http.entity.Photo;

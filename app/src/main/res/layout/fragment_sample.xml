@@ -12,6 +12,12 @@
         android:text="測試列表" />
 
     <Button
+        android:id="@+id/dot_viewpager"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="測試原點viewpager" />
+
+    <Button
         android:id="@+id/bt_staggered_list"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

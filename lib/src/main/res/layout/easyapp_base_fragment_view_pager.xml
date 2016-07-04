@@ -5,7 +5,7 @@
     android:orientation="vertical">
 
 
-    <com.easyapp.baseproject.lib.widget.viewPager.SlidingTabLayout
+    <com.easyapp.lib.widget.viewpager.SlidingTabLayout
         android:id="@+id/slidingTabLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

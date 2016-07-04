@@ -10,7 +10,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <com.easyapp.baseproject.lib.widget.recyclerView.GridRecyclerView
+        <com.easyapp.lib.widget.recyclerView.GridRecyclerView
             android:id="@+id/easyapp_recycler_view"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -45,7 +45,7 @@
 
 
 
-    <!--app:layout_behavior="com.easyapp.baseproject.lib.widgets.ScrollAwareFABBehavior"-->
+    <!--app:layout_behavior="com.easyapp.lib.widgets.ScrollAwareFABBehavior"-->
     <ProgressBar
         android:id="@+id/easyapp_pb"
         style="?android:attr/progressBarStyleHorizontal"

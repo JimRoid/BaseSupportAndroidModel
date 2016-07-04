@@ -8,11 +8,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.easyapp.baseproject.lib.widget.viewPager.SlidingTabLayout;
-import com.easyapp.baseproject.lib.widget.viewPager.adapter.v4.FragmentPagerItem;
-import com.easyapp.baseproject.lib.widget.viewPager.adapter.v4.FragmentPagerItemAdapter;
-import com.easyapp.baseproject.lib.widget.viewPager.adapter.v4.FragmentPagerItems;
 import com.easyapp.baseproject_sample.R;
+import com.easyapp.lib.widget.viewpager.SlidingTabLayout;
+import com.easyapp.lib.widget.viewpager.adapter.v4.FragmentPagerItem;
+import com.easyapp.lib.widget.viewpager.adapter.v4.FragmentPagerItemAdapter;
+import com.easyapp.lib.widget.viewpager.adapter.v4.FragmentPagerItems;
 
 
 /**

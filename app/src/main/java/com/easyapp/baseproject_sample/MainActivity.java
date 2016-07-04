@@ -1,6 +1,6 @@
 package com.easyapp.baseproject_sample;
 
-import com.easyapp.baseproject.lib.base.activity.BaseMainActivity;
+import com.easyapp.lib.base.activity.BaseMainActivity;
 import com.easyapp.baseproject_sample.screen.SampleFragment;
 
 /**

@@ -1,6 +1,6 @@
 package com.easyapp.baseproject_sample.screen;
 
-import com.easyapp.baseproject.lib.base.fragment.tab.BaseViewPagerFragment;
+import com.easyapp.lib.base.fragment.tab.BaseViewPagerFragment;
 import com.easyapp.baseproject_sample.R;
 
 /**

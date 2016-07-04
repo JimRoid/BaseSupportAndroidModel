@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.easyapp.baseproject.lib.widget.tabhost.FragmentClickTabHost xmlns:android="http://schemas.android.com/apk/res/android"
+<com.easyapp.lib.widget.tabhost.FragmentClickTabHost xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@android:id/tabhost"
@@ -52,7 +52,7 @@
             android:layout_height="60dp"
             android:orientation="horizontal">
 
-            <com.easyapp.baseproject.lib.widget.EasyHorizontalScrollView
+            <com.easyapp.lib.widget.EasyHorizontalScrollView
                 android:id="@+id/horiziontal_scrollview"
                 android:layout_width="wrap_content"
                 android:layout_height="60dp"
@@ -64,7 +64,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="60dp"
                     android:showDividers="none" />
-            </com.easyapp.baseproject.lib.widget.EasyHorizontalScrollView>
+            </com.easyapp.lib.widget.EasyHorizontalScrollView>
 
             <ImageView
                 android:id="@+id/iv_right"
@@ -79,5 +79,5 @@
     </LinearLayout>
 
 
-</com.easyapp.baseproject.lib.widget.tabhost.FragmentClickTabHost>
+</com.easyapp.lib.widget.tabhost.FragmentClickTabHost>
 

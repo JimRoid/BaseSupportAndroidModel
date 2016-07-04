@@ -9,11 +9,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
-import com.easyapp.baseproject.lib.base.fragment.BaseToolbarFragment;
-import com.easyapp.baseproject.lib.tool.OpenData;
 import com.easyapp.baseproject_sample.R;
 import com.easyapp.baseproject_sample.draweractivity.DrawerViewActivity;
 import com.easyapp.baseproject_sample.tabactivity.TabActivity;
+import com.easyapp.lib.base.fragment.BaseToolbarFragment;
+import com.easyapp.lib.tool.OpenData;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -33,6 +33,8 @@ public class SampleFragment extends BaseToolbarFragment {
     Button btDrawerView;
     @BindView(R.id.bt_staggered_list)
     Button btStaggeredList;
+    @BindView(R.id.dot_viewpager)
+    Button dotViewpager;
     private View view;
 
     @Override
@@ -59,6 +61,10 @@ public class SampleFragment extends BaseToolbarFragment {
         AddFragment(new PostsStaggeredList());
     }
 
+    protected void AddToDotView2() {
+        AddFragment(new FragmentViewPageCircle());
+    }
+
     protected void OpenTabActivity() {
         OpenData.StartActivity(getActivity(), TabActivity.class);
     }
@@ -67,7 +73,7 @@ public class SampleFragment extends BaseToolbarFragment {
         OpenData.StartActivity(getActivity(), DrawerViewActivity.class);
     }
 
-    @OnClick({R.id.bt_list, R.id.bt_tab, R.id.bt_drawerView, R.id.bt_staggered_list})
+    @OnClick({R.id.bt_list, R.id.bt_tab, R.id.bt_drawerView, R.id.bt_staggered_list, R.id.dot_viewpager})
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.bt_list:
@@ -81,6 +87,9 @@ public class SampleFragment extends BaseToolbarFragment {
                 break;
             case R.id.bt_staggered_list:
                 AddToList2();
+                break;
+            case R.id.dot_viewpager:
+                AddToDotView2();
                 break;
         }
     }

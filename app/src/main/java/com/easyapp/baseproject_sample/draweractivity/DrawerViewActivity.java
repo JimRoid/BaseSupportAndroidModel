@@ -1,6 +1,6 @@
 package com.easyapp.baseproject_sample.draweractivity;
 
-import com.easyapp.baseproject.lib.base.activity.BaseDrawerMainActivity;
+import com.easyapp.lib.base.activity.BaseDrawerMainActivity;
 import com.easyapp.baseproject_sample.screen.FragmentViewPage;
 
 public class DrawerViewActivity extends BaseDrawerMainActivity {

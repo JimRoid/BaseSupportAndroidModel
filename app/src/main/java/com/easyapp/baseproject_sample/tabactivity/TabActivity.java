@@ -1,7 +1,7 @@
 package com.easyapp.baseproject_sample.tabactivity;
 
-import com.easyapp.baseproject.lib.base.activity.BaseTabActivity;
-import com.easyapp.baseproject.lib.widget.tabhost.EasyTab;
+import com.easyapp.lib.base.activity.BaseTabActivity;
+import com.easyapp.lib.widget.tabhost.EasyTab;
 import com.easyapp.baseproject_sample.R;
 import com.easyapp.baseproject_sample.screen.PostsList;
 import com.easyapp.baseproject_sample.screen.PostsStaggeredList;

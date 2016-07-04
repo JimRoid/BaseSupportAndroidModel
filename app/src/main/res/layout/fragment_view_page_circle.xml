@@ -11,7 +11,7 @@
 
     </android.support.v4.view.ViewPager>
 
-    <com.easyapp.baseproject.lib.widget.viewPager.SlidingTabLayout xmlns:app="http://schemas.android.com/apk/res-auto"
+    <com.easyapp.lib.widget.viewpager.SlidingTabLayout xmlns:app="http://schemas.android.com/apk/res-auto"
         android:id="@+id/slidingTabLayout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
