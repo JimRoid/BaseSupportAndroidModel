@@ -18,6 +18,7 @@ package com.easyapp.lib.widget.viewpager;
 
 import android.content.Context;
 import android.content.res.TypedArray;
+import android.graphics.Color;
 import android.graphics.Typeface;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
@@ -54,16 +55,16 @@ import com.easyapp.lib.R;
 /**
  * To be used with ViewPager to provide a tab indicator component which give constant feedback as to
  * the user's scroll progress.
- * <p>
+ * <p/>
  * To use the component, simply add it to your view hierarchy. Then in your
  * {@link android.app.Activity} or {@link android.support.v4.app.Fragment} call
  * {@link #setViewPager(ViewPager)} providing it the ViewPager this layout is being used for.
- * <p>
+ * <p/>
  * The colors can be customized in two ways. The first and simplest is to provide an array of colors
  * via {@link #setSelectedIndicatorColors(int...)}. The
  * alternative is via the {@link TabColorizer} interface which provides you complete control over
  * which color is used for any individual position.
- * <p>
+ * <p/>
  * The views used as tabs can be customized by calling {@link #setCustomTabView(int, int)},
  * providing the layout ID of your custom layout.
  */
@@ -126,7 +127,7 @@ public class SlidingTabLayout extends HorizontalScrollView {
 
     /**
      * Set the custom {@link TabColorizer} to be used.
-     * <p>
+     * <p/>
      * If you only require simple custmisation then you can use
      * {@link #setSelectedIndicatorColors(int...)} to achieve
      * similar effects.
@@ -217,12 +218,12 @@ public class SlidingTabLayout extends HorizontalScrollView {
 
             if (mTabViewLayoutId != NO_ID) {
                 // If there is a custom tab view layout id set, try and inflate it
-                tabView = LayoutInflater.from(getContext()).inflate(mTabViewLayoutId, mTabStrip,
-                        false);
+                tabView = LayoutInflater.from(getContext()).inflate(mTabViewLayoutId, mTabStrip, false);
+                setSelectedIndicatorColors(Color.TRANSPARENT);
                 if (mTabViewTextViewId != NO_ID) {
                     tabTitleView = (TextView) tabView.findViewById(mTabViewTextViewId);
                 }
-            }else{
+            } else {
                 if (tabView == null) {
                     tabView = createDefaultTabView(getContext());
                 }
@@ -233,14 +234,13 @@ public class SlidingTabLayout extends HorizontalScrollView {
             }
 
 
-
             if (mDistributeEvenly) {
                 LinearLayout.LayoutParams lp = (LinearLayout.LayoutParams) tabView.getLayoutParams();
                 lp.width = 0;
                 lp.weight = 1;
             }
 
-            if(tabTitleView!=null){
+            if (tabTitleView != null) {
                 tabTitleView.setText(adapter.getPageTitle(i));
             }
 
