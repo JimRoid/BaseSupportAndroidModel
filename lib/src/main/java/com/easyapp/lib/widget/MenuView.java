@@ -1,6 +1,7 @@
 package com.easyapp.lib.widget;
 
 import android.app.Activity;
+import android.content.Context;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -16,12 +17,14 @@ public class MenuView {
     private View menu;
     protected ImageView imageView;
     protected TextView textView;
+    protected Context context;
 
     public MenuView() {
         super();
     }
 
     public MenuView Builder(Activity activity) {
+        context = activity;
         menu = activity.getLayoutInflater().inflate(R.layout.menu_item, null, false);
         textView = (TextView) menu.findViewById(R.id.tv_title);
         imageView = (ImageView) menu.findViewById(R.id.iv_menu);
@@ -43,6 +46,11 @@ public class MenuView {
     public MenuView setMenuText(String text) {
         textView.setText(text);
         textView.setVisibility(View.VISIBLE);
+        return this;
+    }
+
+    public MenuView setMenuTextColor(int color) {
+        textView.setTextColor(context.getResources().getColor(color));
         return this;
     }
 

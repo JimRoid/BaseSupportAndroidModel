@@ -14,6 +14,7 @@ import com.easyapp.baseproject_sample.draweractivity.DrawerViewActivity;
 import com.easyapp.baseproject_sample.tabactivity.TabActivity;
 import com.easyapp.lib.base.fragment.BaseToolbarFragment;
 import com.easyapp.lib.tool.OpenData;
+import com.easyapp.lib.widget.MenuView;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -49,6 +50,11 @@ public class SampleFragment extends BaseToolbarFragment {
         view = inflater.inflate(R.layout.fragment_sample, container, false);
         showToolbar();
         ButterKnife.bind(this, view);
+        MenuView menuView = new MenuView();
+        menuView.Builder(getActivity());
+        menuView.setMenuText("儲存");
+        menuView.setMenuTextColor(R.color.white);
+        setRight(menuView.getMenu());
         return view;
     }
 
