@@ -14,6 +14,7 @@ import com.easyapp.lib.base.fragment.tab.BaseTabParentFragment;
 import com.easyapp.lib.widget.EasyHorizontalScrollView;
 import com.easyapp.lib.widget.tabhost.EasyTab;
 import com.easyapp.lib.widget.tabhost.FragmentClickTabHost;
+import com.orhanobut.logger.Logger;
 
 import java.util.ArrayList;
 
@@ -78,6 +79,17 @@ public abstract class BaseTabActivity extends BaseMainActivity {
         return new TabHost.OnTabChangeListener() {
             @Override
             public void onTabChanged(String tabId) {
+                showToolbar();
+                cancelLeft();
+                cancelRight();
+                if (getSupportFragmentManager().findFragmentByTag(tabId) != null) {
+                    if (getSupportFragmentManager().findFragmentByTag(tabId).getChildFragmentManager().getBackStackEntryCount() > 0) {
+                        showBack(true);
+                        return;
+                    }
+                    Logger.d("tabId:" + tabId + ":" + getSupportFragmentManager().findFragmentByTag(tabId).getChildFragmentManager().getBackStackEntryCount());
+                }
+                showBack(false);
             }
         };
     }
