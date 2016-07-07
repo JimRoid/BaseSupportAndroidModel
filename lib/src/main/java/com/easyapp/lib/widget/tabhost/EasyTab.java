@@ -38,7 +38,7 @@ public class EasyTab implements Serializable {
         return tabTextColorResource;
     }
 
-    public EasyTab setTabTextResource(int tabTextColorResource) {
+    public EasyTab setTabTextColorResource(int tabTextColorResource) {
         this.tabTextColorResource = tabTextColorResource;
         return this;
     }
