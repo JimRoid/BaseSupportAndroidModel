@@ -28,7 +28,7 @@ public abstract class BaseViewPagerFragment extends BaseToolbarFragment {
 
     private int TabBackgrounds = 0;
     private int TabTextColor = 0;
-    private int[] TabIcons;
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -78,15 +78,6 @@ public abstract class BaseViewPagerFragment extends BaseToolbarFragment {
      */
     protected void setTabBackgrounds(int color) {
         this.TabBackgrounds = color;
-    }
-
-    /**
-     * 設定tab icon
-     *
-     * @param icons
-     */
-    protected void setTabImageViewIcon(int[] icons) {
-        this.TabIcons = icons;
     }
 
     /**

@@ -4,16 +4,16 @@
     android:layout_height="wrap_content"
     android:orientation="vertical">
 
+    <com.easyapp.lib.widget.viewpager.SlidingTabLayout
+        android:id="@+id/slidingTabLayout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
 
     <android.support.v4.view.ViewPager
         android:id="@+id/viewpager"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 
-    <com.easyapp.lib.widget.viewpager.SlidingTabLayout
-        android:id="@+id/slidingTabLayout"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:minHeight="60dp" />
 
 </LinearLayout>

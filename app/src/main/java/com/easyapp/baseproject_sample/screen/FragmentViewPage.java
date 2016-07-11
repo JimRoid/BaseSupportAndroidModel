@@ -1,9 +1,6 @@
 package com.easyapp.baseproject_sample.screen;
 
-import android.view.View;
-
 import com.easyapp.lib.base.fragment.tab.BaseViewPagerFragment;
-import com.easyapp.baseproject_sample.R;
 
 /**
  * Created by easyapp_jim on 2016/5/16.
@@ -26,7 +23,7 @@ public class FragmentViewPage extends BaseViewPagerFragment {
     @Override
     protected void init() {
         setFillViewport(false);
-        setCustomTab(R.layout.item_circle, View.NO_ID);
+//        setCustomTab(R.layout.item_circle, View.NO_ID);
 
 //        setTabTextColor(R.color.white);
 //        setTabBackgrounds(R.drawable.tab_background);

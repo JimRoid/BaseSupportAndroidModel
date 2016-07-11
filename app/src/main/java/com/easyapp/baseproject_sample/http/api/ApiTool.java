@@ -14,7 +14,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
  */
 public class ApiTool {
 
-    private String test_domain = "http://192.168.1.106:3000";
+    private String test_domain = "http://192.168.1.129:3000";
 
     private ApiService service;
     private Retrofit retrofit;
