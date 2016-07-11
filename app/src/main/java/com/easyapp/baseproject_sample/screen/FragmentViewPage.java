@@ -22,7 +22,7 @@ public class FragmentViewPage extends BaseViewPagerFragment {
 
     @Override
     protected void init() {
-        setFillViewport(false);
+        setFillViewport(true);
 //        setCustomTab(R.layout.item_circle, View.NO_ID);
 
 //        setTabTextColor(R.color.white);
