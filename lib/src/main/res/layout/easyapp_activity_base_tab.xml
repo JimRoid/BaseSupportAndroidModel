@@ -49,20 +49,20 @@
 
         <FrameLayout
             android:layout_width="match_parent"
-            android:layout_height="60dp"
+            android:layout_height="@dimen/tab_host_height"
             android:orientation="horizontal">
 
             <com.easyapp.lib.widget.EasyHorizontalScrollView
                 android:id="@+id/horiziontal_scrollview"
                 android:layout_width="wrap_content"
-                android:layout_height="60dp"
+                android:layout_height="@dimen/tab_host_height"
                 android:fillViewport="true"
                 android:scrollbars="none">
 
                 <TabWidget
                     android:id="@android:id/tabs"
                     android:layout_width="wrap_content"
-                    android:layout_height="60dp"
+                    android:layout_height="@dimen/tab_host_height"
                     android:showDividers="none" />
             </com.easyapp.lib.widget.EasyHorizontalScrollView>
 
