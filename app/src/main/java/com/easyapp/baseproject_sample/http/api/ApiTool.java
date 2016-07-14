@@ -14,7 +14,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
  */
 public class ApiTool {
 
-    private String test_domain = "http://192.168.1.129:3000";
+    private String test_domain = "http://139.59.246.193/treasure/api/v1/index.php/";
 
     private ApiService service;
     private Retrofit retrofit;
@@ -29,12 +29,16 @@ public class ApiTool {
     }
 
 
-    public void getPhotos(Callback callback) {
-        service.getPhotos().enqueue(getCallback(callback));
-    }
-
-    public void getPosts(Callback callback) {
-        service.getPosts().enqueue(getCallback(callback));
+    /**
+     * 取回商品列表資料
+     *
+     * @param type
+     * @param p_name
+     * @param page
+     * @param callback
+     */
+    public void getProductList(String type, String p_name, String page, Callback callback) {
+        service.getProductList(type, p_name, page, "40").enqueue(getCallback(callback));
     }
 
     public <T> retrofit2.Callback getCallback(final Callback callback) {

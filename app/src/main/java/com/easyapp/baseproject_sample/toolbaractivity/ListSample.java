@@ -6,15 +6,13 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.easyapp.baseproject_sample.R;
+import com.easyapp.baseproject_sample.http.api.ApiTool;
+import com.easyapp.baseproject_sample.http.entity.ItemProduct;
+import com.easyapp.baseproject_sample.screen.SampleFragment;
 import com.easyapp.lib.base.fragment.list.BaseRecyclerViewFragment;
 import com.easyapp.lib.callback.Callback;
 import com.easyapp.lib.widget.recyclerView.BaseRecyclerViewAdapter;
-import com.easyapp.baseproject_sample.R;
-import com.easyapp.baseproject_sample.screen.SampleFragment;
-import com.easyapp.baseproject_sample.http.api.ApiTool;
-import com.easyapp.baseproject_sample.http.entity.Photo;
-
-import java.util.List;
 
 /**
  * Created by easyapp_jim on 2016/5/3.
@@ -46,14 +44,14 @@ public class ListSample extends BaseRecyclerViewFragment {
 
     @Override
     protected void onLoadMore() {
-        apiTool.getPhotos(new Callback() {
+        apiTool.getProductList("","","",new Callback() {
             @Override
             public void callback(Object object) {
-                List<Photo> photos = (List<Photo>) object;
+                ItemProduct photos = (ItemProduct) object;
                 if (getSize() > 0) {
-                    addData(photos);
+                    addData(photos.getData().getContent());
                 } else {
-                    setData(photos);
+                    addData(photos.getData().getContent());
                 }
             }
         });
@@ -87,9 +85,9 @@ public class ListSample extends BaseRecyclerViewFragment {
     @Override
     protected void getBindViewHolder(RecyclerView.ViewHolder holder, Object obj) {
         AdapterItemHolder adapterItemHolder = (AdapterItemHolder) holder;
-        Photo photo = (Photo) obj;
-        Glide.with(getContext()).load(photo.getUrl()).placeholder(R.drawable.icon_empty).into(adapterItemHolder.iv_picture);
-        adapterItemHolder.textView.setText(photo.getTitle());
+        ItemProduct.DataBean.ContentBean photo = ( ItemProduct.DataBean.ContentBean) obj;
+        Glide.with(getContext()).load(photo.getS_pic()).placeholder(R.drawable.icon_empty).into(adapterItemHolder.iv_picture);
+        adapterItemHolder.textView.setText(photo.getName());
         adapterItemHolder.content.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

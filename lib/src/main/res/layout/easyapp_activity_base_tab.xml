@@ -4,17 +4,16 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@android:id/tabhost"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="match_parent">
 
-    <LinearLayout
+    <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:layout_height="match_parent">
 
         <FrameLayout
             android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1">
+            android:layout_height="match_parent"
+            android:layout_marginBottom="@dimen/tab_host_height">
 
             <android.support.design.widget.CoordinatorLayout
                 android:id="@+id/coordinatorLayout"
@@ -50,12 +49,14 @@
         <FrameLayout
             android:layout_width="match_parent"
             android:layout_height="@dimen/tab_host_height"
-            android:orientation="horizontal">
+            android:layout_gravity="bottom"
+            android:minHeight="@dimen/tab_host_height">
 
             <com.easyapp.lib.widget.EasyHorizontalScrollView
                 android:id="@+id/horiziontal_scrollview"
                 android:layout_width="wrap_content"
                 android:layout_height="@dimen/tab_host_height"
+                android:layout_gravity="center_vertical"
                 android:fillViewport="true"
                 android:scrollbars="none">
 
@@ -63,6 +64,8 @@
                     android:id="@android:id/tabs"
                     android:layout_width="wrap_content"
                     android:layout_height="@dimen/tab_host_height"
+                    android:gravity="center_vertical"
+                    android:minHeight="@dimen/tab_host_height"
                     android:showDividers="none" />
             </com.easyapp.lib.widget.EasyHorizontalScrollView>
 
@@ -76,7 +79,7 @@
                 android:visibility="gone" />
         </FrameLayout>
 
-    </LinearLayout>
+    </FrameLayout>
 
 
 </com.easyapp.lib.widget.tabhost.FragmentClickTabHost>
