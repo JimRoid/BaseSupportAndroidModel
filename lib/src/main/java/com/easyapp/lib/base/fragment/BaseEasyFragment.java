@@ -41,13 +41,20 @@ public abstract class BaseEasyFragment extends BaseFragment {
     }
 
 
-
     protected int getChildId() {
         return R.id.tab_content;
     }
 
     protected void AddChildFragment(Fragment fragment) {
         getParentFrag(this).beginTransaction().replace(getChildId(), fragment, "tab").addToBackStack("").commitAllowingStateLoss();
+        onFragmentTransactionListener.OnAddFragment();
+    }
+
+    protected void AddChildFragmentUp(Fragment fragment) {
+        getParentFrag(this).beginTransaction()
+                .setCustomAnimations(R.anim.slide_out_up, R.anim.slide_in_up, R.anim.slide_out_up, R.anim.slide_in_up)
+                .replace(getChildId(), fragment, "tab")
+                .addToBackStack("").commitAllowingStateLoss();
         onFragmentTransactionListener.OnAddFragment();
     }
 
@@ -86,8 +93,17 @@ public abstract class BaseEasyFragment extends BaseFragment {
         onFragmentTransactionListener.AddFragment_Zoom(fragment, container);
     }
 
+    protected void AddFragment_Up(Fragment fragment, Bundle bundle) {
+        fragment.setArguments(bundle);
+        AddFragment_Up(fragment);
+    }
+
     protected void AddFragment_Up(Fragment fragment) {
-        onFragmentTransactionListener.AddFragment_Up(fragment);
+        if (isTabMode) {
+            AddChildFragmentUp(fragment);
+        } else {
+            onFragmentTransactionListener.AddFragment_Up(fragment);
+        }
     }
 
     protected void AddFragment_Up(Fragment fragment, int container) {
