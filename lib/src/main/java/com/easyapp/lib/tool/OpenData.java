@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.ActivityNotFoundException;
 import android.content.Intent;
 import android.net.Uri;
+import android.os.Bundle;
 
 import com.easyapp.lib.touchView.TouchViewActivity;
 
@@ -152,6 +153,23 @@ public class OpenData {
     public static void StartActivityForResult(Activity activity, Class<? extends Activity> clazz, int requestCode) {
         try {
             Intent intent = new Intent(activity, clazz);
+            activity.startActivityForResult(intent, requestCode);
+        } catch (ActivityNotFoundException var3) {
+            var3.printStackTrace();
+        }
+    }
+
+    /**
+     * 附帶回傳值
+     *
+     * @param activity
+     * @param clazz
+     * @param requestCode
+     */
+    public static void StartActivityForResult(Activity activity, Class<? extends Activity> clazz, Bundle bundle, int requestCode) {
+        try {
+            Intent intent = new Intent(activity, clazz);
+            intent.putExtras(bundle);
             activity.startActivityForResult(intent, requestCode);
         } catch (ActivityNotFoundException var3) {
             var3.printStackTrace();
