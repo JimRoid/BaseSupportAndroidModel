@@ -10,8 +10,8 @@ import android.widget.FrameLayout;
 import com.easyapp.lib.R;
 
 /**
- * Created by Maxim Dybarsky | maxim.dybarskyy@gmail.com
- * on 13.01.15 at 17:34
+ *
+ * loading progress
  */
 public class ProgressLayout extends FrameLayout {
 

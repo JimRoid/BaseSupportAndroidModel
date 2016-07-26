@@ -13,7 +13,7 @@ import com.easyapp.lib.dialog.LoadingDialog;
 
 /**
  * initial
- *
+ * <p>
  * load dialog
  * hide keyboard
  */
@@ -90,6 +90,10 @@ public abstract class BaseActivity extends AppCompatActivity {
      * 隱藏鍵盤
      */
     protected void hideKeyboard() {
+        if (getCurrentFocus() == null) {
+            return;
+        }
+
         InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
         if (imm.isActive()) {
             imm.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(), 0);

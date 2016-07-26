@@ -16,7 +16,6 @@ import com.easyapp.lib.R;
 import com.easyapp.lib.base.fragment.BaseDrawerFragment;
 import com.easyapp.lib.widget.recyclerView.BaseRecyclerViewAdapter;
 import com.easyapp.lib.widget.recyclerView.EndlessRecyclerOnScrollListener;
-import com.orhanobut.logger.Logger;
 
 import java.util.List;
 
@@ -137,7 +136,6 @@ public abstract class BaseRecyclerViewFragment extends BaseDrawerFragment implem
                     contactView = LayoutInflater.from(context).inflate(getRecycleViewHolderHeaderLayout(), parent, false);
                     viewHolder = getHeaderItemHolder(contactView);
                 } else if (viewType == BaseRecyclerViewAdapter.VIEWTYPEHEADER && getHeaderView() != null) {
-                    Logger.d("get header view != null");
                     viewHolder = getHeaderItemHolder(getHeaderView());
                 } else {
                     contactView = LayoutInflater.from(context).inflate(getRecycleViewHolderLayout(), parent, false);

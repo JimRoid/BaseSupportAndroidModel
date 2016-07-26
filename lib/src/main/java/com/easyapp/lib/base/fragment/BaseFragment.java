@@ -84,6 +84,9 @@ public abstract class BaseFragment extends Fragment {
     }
 
     protected void hideKeyboard() {
+        if (getView() == null) {
+            return;
+        }
         InputMethodManager imm = (InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
         if (imm.isActive()) {
             imm.hideSoftInputFromWindow(getView().getWindowToken(), 0);

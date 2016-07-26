@@ -19,30 +19,18 @@
 
     </android.support.v4.widget.SwipeRefreshLayout>
 
-    <LinearLayout
+    <FrameLayout
         android:id="@+id/easyapp_empty_view"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:gravity="center"
-        android:orientation="vertical"
         android:visibility="gone">
 
+        <include layout="@layout/empty_layout" />
 
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/icon_empty" />
 
-        <TextView
-            android:id="@+id/tv_empty"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/activity_vertical_margin"
-            android:text="@string/not_found" />
-
-    </LinearLayout>
-
+    </FrameLayout>
 
 
     <!--app:layout_behavior="com.easyapp.lib.widgets.ScrollAwareFABBehavior"-->

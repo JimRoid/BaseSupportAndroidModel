@@ -9,6 +9,7 @@ import android.os.Bundle;
 import com.easyapp.lib.touchView.TouchViewActivity;
 
 import java.io.File;
+import java.util.ArrayList;
 
 /**
  * 快速開啟檔案的class
@@ -96,7 +97,6 @@ public class OpenData {
             intent.setFlags(67108864);
             StartActivity(activity, intent);
         }
-
     }
 
 
@@ -106,10 +106,12 @@ public class OpenData {
      * @param activity
      * @param path
      */
-    public static void OpenTouchImage(Activity activity, String path[], int position) {
+    public static void OpenTouchImage(Activity activity, ArrayList<String> path, int position) {
         Intent intent = new Intent(activity, TouchViewActivity.class);
-        intent.putExtra("PATH", path);
-        intent.putExtra("POSITION", position);
+        Bundle bundle = new Bundle();
+        bundle.putStringArrayList("PATH",path);
+        bundle.putInt("POSITION", position);
+        intent.putExtras(bundle);
         StartActivity(activity, intent);
     }
 

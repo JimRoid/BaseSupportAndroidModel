@@ -9,6 +9,8 @@ import com.easyapp.lib.widget.viewpager.adapter.v4.FragmentPagerItem;
 import com.easyapp.lib.widget.viewpager.adapter.v4.FragmentPagerItemAdapter;
 import com.easyapp.lib.widget.viewpager.adapter.v4.FragmentPagerItems;
 
+import java.util.ArrayList;
+
 
 /**
  * 顯示可滑動 touch view
@@ -22,7 +24,6 @@ public class TouchViewActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setTheme(android.R.style.Theme_Black_NoTitleBar_Fullscreen);
         setContentView(R.layout.easyapp_pager_touchview);
-//        new CleanGlideAsyncTask(TouchViewActivity.this).execute();
         initView();
     }
 
@@ -32,11 +33,14 @@ public class TouchViewActivity extends AppCompatActivity {
     }
 
     private void initData() {
-        String[] data = getIntent().getStringArrayExtra("PATH");
+        Bundle bundle = getIntent().getExtras();
+        int position = bundle.getInt("POSITION", 0);
+        ArrayList<String> data = new ArrayList<>();
+        data.addAll(bundle.getStringArrayList("PATH"));
 
         FragmentPagerItems pages = new FragmentPagerItems(this);
         for (String resource : data) {
-            Bundle bundle = new Bundle();
+            bundle = new Bundle();
             bundle.putString("PATH", resource);
             pages.add(FragmentPagerItem.of("", FragmentTouchView.class, bundle));
         }
@@ -45,13 +49,11 @@ public class TouchViewActivity extends AppCompatActivity {
                 getSupportFragmentManager(), pages);
 
         viewPager.setAdapter(adapter);
-        int position = getIntent().getIntExtra("POSITION", 0);
         if (position > pages.size()) {
             viewPager.setCurrentItem(0);
         } else {
             viewPager.setCurrentItem(position);
         }
-
     }
 
 

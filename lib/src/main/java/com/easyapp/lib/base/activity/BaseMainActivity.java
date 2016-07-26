@@ -58,6 +58,7 @@ public abstract class BaseMainActivity extends BaseSupportActivity implements iT
         fl_left = (LinearLayout) toolbar.findViewById(R.id.fl_left);
 
         fab = (FloatingActionButton) findViewById(R.id.fab);
+        hideFab();
     }
 
     @Override
