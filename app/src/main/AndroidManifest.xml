@@ -23,7 +23,7 @@
         <activity android:name=".tabactivity.TabActivity" />
 
         <activity android:name=".toolbaractivity.ToolbarActivity" />
-
+        <activity android:name=".loginView.LoginActivity"/>
 
     </application>
 

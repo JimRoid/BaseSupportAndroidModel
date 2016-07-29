@@ -35,6 +35,12 @@
         android:layout_height="wrap_content"
         android:text="測試側邊欄" />
 
+    <Button
+        android:id="@+id/bt_loginView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="登入" />
+
     <com.easyapp.lib.widget.CircleImageView
         android:layout_width="100dp"
         android:layout_height="100dp"

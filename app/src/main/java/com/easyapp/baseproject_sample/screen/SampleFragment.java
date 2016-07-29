@@ -11,6 +11,7 @@ import android.widget.Button;
 
 import com.easyapp.baseproject_sample.R;
 import com.easyapp.baseproject_sample.draweractivity.DrawerViewActivity;
+import com.easyapp.baseproject_sample.loginView.LoginActivity;
 import com.easyapp.baseproject_sample.tabactivity.TabActivity;
 import com.easyapp.lib.base.fragment.BaseToolbarFragment;
 import com.easyapp.lib.tool.OpenData;
@@ -36,6 +37,8 @@ public class SampleFragment extends BaseToolbarFragment {
     Button btStaggeredList;
     @BindView(R.id.dot_viewpager)
     Button dotViewpager;
+    @BindView(R.id.bt_loginView)
+    Button btLoginView;
     private View view;
 
     @Override
@@ -79,7 +82,7 @@ public class SampleFragment extends BaseToolbarFragment {
         OpenData.StartActivity(getActivity(), DrawerViewActivity.class);
     }
 
-    @OnClick({R.id.bt_list, R.id.bt_tab, R.id.bt_drawerView, R.id.bt_staggered_list, R.id.dot_viewpager})
+    @OnClick({R.id.bt_loginView, R.id.bt_list, R.id.bt_tab, R.id.bt_drawerView, R.id.bt_staggered_list, R.id.dot_viewpager})
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.bt_list:
@@ -96,6 +99,9 @@ public class SampleFragment extends BaseToolbarFragment {
                 break;
             case R.id.dot_viewpager:
                 AddToDotView2();
+                break;
+            case R.id.bt_loginView:
+                OpenData.StartActivity(getActivity(), LoginActivity.class);
                 break;
         }
     }

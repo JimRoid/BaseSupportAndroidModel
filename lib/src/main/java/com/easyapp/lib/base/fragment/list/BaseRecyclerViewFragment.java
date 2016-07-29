@@ -27,14 +27,19 @@ public abstract class BaseRecyclerViewFragment extends BaseDrawerFragment implem
     protected View view;
     protected SwipeRefreshLayout easyapp_swiperefresh_layout;
     protected RecyclerView recyclerView;
-    protected View emptyView;
-    protected ProgressBar easyapp_pb;
-    protected boolean isNoMore = false;
-
     protected BaseRecyclerViewAdapter baseRecycleViewAdapter;
+    protected View emptyView;
+    protected View error_network_state_view;
+    protected View empty_state_view;
+    protected ProgressBar easyapp_pb;
+
+    protected boolean isNoMore = false;
 
     protected boolean fabVisible = true;
     protected boolean isScrollTop = true;
+
+    private int limit = 40;
+
 
     @Override
     public void onAttach(Context context) {
@@ -61,7 +66,7 @@ public abstract class BaseRecyclerViewFragment extends BaseDrawerFragment implem
      * 初始化view;
      */
     protected void initView() {
-        emptyView = view.findViewById(R.id.easyapp_empty_view);
+        initEmptyView();
         easyapp_pb = (ProgressBar) view.findViewById(R.id.easyapp_pb);
         easyapp_pb.getIndeterminateDrawable().setColorFilter(
                 getResources().getColor(R.color.light_blue),
@@ -73,6 +78,15 @@ public abstract class BaseRecyclerViewFragment extends BaseDrawerFragment implem
         recyclerView = (RecyclerView) view.findViewById(R.id.easyapp_recycler_view);
         GridLayoutManager gridLayoutManager = new GridLayoutManager(getActivity(), setGridLayoutSpanCount());
         recyclerView.setLayoutManager(gridLayoutManager);
+    }
+
+    /**
+     * 初始化空值或是沒有網路的view
+     */
+    protected void initEmptyView() {
+        emptyView = view.findViewById(R.id.easyapp_empty_view);
+        error_network_state_view = emptyView.findViewById(R.id.error_state_view);
+        empty_state_view = emptyView.findViewById(R.id.empty_state_view);
     }
 
     final protected void setRecyclerViewAnimDisable() {
@@ -157,62 +171,79 @@ public abstract class BaseRecyclerViewFragment extends BaseDrawerFragment implem
         recyclerView.setAdapter(baseRecycleViewAdapter);
     }
 
-
-    /**
-     * 是否拉到最頂端
-     *
-     * @return
-     */
-    protected boolean isScrollTop() {
-        return isScrollTop;
-    }
-
-    /**
-     * 設定header view
-     *
-     * @param headerView
-     */
-    protected void setHeaderView(View headerView) {
-        baseRecycleViewAdapter.setHeaderView(headerView);
-    }
-
-    /**
-     * @return
-     */
-    @Nullable
-    protected View getHeaderView() {
-        return baseRecycleViewAdapter.getHeaderView();
-    }
-
-    /**
-     * 設定float action button image resource
-     *
-     * @param res
-     */
-    protected void setFabSrc(int res) {
-        getFab().setImageResource(res);
-    }
-
-    /**
-     * 設定float action button 背景顏色
-     */
-    protected void setFabBackground(int color) {
-        getFab().setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(color)));
-    }
-
-    /**
-     * 設定float action 點擊時的動作
-     *
-     * @param fabOnClickListener
-     */
-    protected void setFabOnClickListener(View.OnClickListener fabOnClickListener) {
-        getFab().setOnClickListener(fabOnClickListener);
-    }
-
     /**
      * 設定頁面的初始化
      */
     protected abstract void init();
+
+    @Override
+    public void onRefresh() {
+        setIsNoMore(false);
+        getAdapter().clear();
+        onLoadMore();
+    }
+
+    protected abstract void onLoadMore();
+
+    protected void setIsNoMore(boolean isNoMore) {
+        this.isNoMore = isNoMore;
+    }
+
+    /**
+     * 設定data 並清除原本的檔案
+     *
+     * @param arrayList
+     */
+    protected void setData(List arrayList) {
+        baseRecycleViewAdapter.clear();
+        addData(arrayList);
+    }
+
+    /**
+     * 增加data
+     *
+     * @param arrayList
+     */
+    protected void addData(List arrayList) {
+        cancelProgress();
+        if (arrayList.size() < limit) {
+            setIsNoMore(true);
+        }
+        easyapp_swiperefresh_layout.setRefreshing(false);
+        baseRecycleViewAdapter.addData(arrayList);
+        setEmptyView();
+        baseRecycleViewAdapter.notifyDataSetChanged();
+    }
+
+    /**
+     * 設定無資料時的顯示狀態
+     */
+    protected void setEmptyView() {
+        if (baseRecycleViewAdapter.getData().size() == 0) {
+            emptyView.setVisibility(View.VISIBLE);
+        } else {
+            emptyView.setVisibility(View.GONE);
+        }
+    }
+
+    /**
+     * 設定單筆的訊息改變
+     *
+     * @param position
+     * @param o
+     */
+    protected void setItem(int position, Object o) {
+        baseRecycleViewAdapter.setItem(position, o);
+    }
+
+    /**
+     * 移除單筆的資訊
+     *
+     * @param position
+     */
+    protected void removeItem(int position) {
+        baseRecycleViewAdapter.removeItem(position);
+    }
 
     /**
      * 設定float action 是否要顯示
@@ -242,54 +273,38 @@ public abstract class BaseRecyclerViewFragment extends BaseDrawerFragment implem
         }
     }
 
-
-    protected void setIsNoMore(boolean isNoMore) {
-        this.isNoMore = isNoMore;
+    /**
+     * 是否拉到最頂端
+     *
+     * @return
+     */
+    protected boolean isScrollTop() {
+        return isScrollTop;
     }
 
     /**
-     * 設定data 並清除原本的檔案
+     * 設定float action button image resource
      *
-     * @param arrayList
+     * @param res
      */
-    protected void setData(List arrayList) {
-        easyapp_swiperefresh_layout.setRefreshing(false);
-        baseRecycleViewAdapter.clear();
-        baseRecycleViewAdapter.addData(arrayList);
-        setEmptyView();
-        baseRecycleViewAdapter.notifyDataSetChanged();
+    protected void setFabSrc(int res) {
+        getFab().setImageResource(res);
     }
 
     /**
-     * 設定單筆的訊息改變
-     *
-     * @param position
-     * @param o
+     * 設定float action button 背景顏色
      */
-    protected void setItem(int position, Object o) {
-        baseRecycleViewAdapter.setItem(position, o);
+    protected void setFabBackground(int color) {
+        getFab().setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(color)));
     }
 
     /**
-     * 移除單筆的資訊
+     * 設定float action 點擊時的動作
      *
-     * @param position
+     * @param fabOnClickListener
      */
-    protected void removeItem(int position) {
-        baseRecycleViewAdapter.removeItem(position);
-    }
-
-    /**
-     * 增加data
-     *
-     * @param arrayList
-     */
-    protected void addData(List arrayList) {
-        cancelProgress();
-        easyapp_swiperefresh_layout.setRefreshing(false);
-        baseRecycleViewAdapter.addData(arrayList);
-        setEmptyView();
-        baseRecycleViewAdapter.notifyDataSetChanged();
+    protected void setFabOnClickListener(View.OnClickListener fabOnClickListener) {
+        getFab().setOnClickListener(fabOnClickListener);
     }
 
     protected BaseRecyclerViewAdapter getAdapter() {
@@ -307,11 +322,6 @@ public abstract class BaseRecyclerViewFragment extends BaseDrawerFragment implem
     protected abstract void setOnRecycleAdapter();
 
     protected abstract int setGridLayoutSpanCount();
-
-    @Override
-    public abstract void onRefresh();
-
-    protected abstract void onLoadMore();
 
     /**
      * 取回其他的 view holder
@@ -348,13 +358,6 @@ public abstract class BaseRecyclerViewFragment extends BaseDrawerFragment implem
 
     protected abstract void getBindHeaderViewHolder(RecyclerView.ViewHolder holder, Object obj);
 
-    protected void setEmptyView() {
-        if (baseRecycleViewAdapter.getData().size() == 0) {
-            emptyView.setVisibility(View.VISIBLE);
-        } else {
-            emptyView.setVisibility(View.GONE);
-        }
-    }
 
     /**
      * 關閉讀取進度條
