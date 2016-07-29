@@ -215,14 +215,30 @@ public abstract class BaseRecyclerViewFragment extends BaseDrawerFragment implem
         baseRecycleViewAdapter.notifyDataSetChanged();
     }
 
+    protected void setEmptyView() {
+        setEmptyView(false);
+    }
+
     /**
      * 設定無資料時的顯示狀態
      */
-    protected void setEmptyView() {
-        if (baseRecycleViewAdapter.getData().size() == 0) {
-            emptyView.setVisibility(View.VISIBLE);
+    protected void setEmptyView(boolean error_network) {
+        if (error_network) {
+            if (baseRecycleViewAdapter.getData().size() == 0) {
+                emptyView.setVisibility(View.VISIBLE);
+                empty_state_view.setVisibility(View.GONE);
+                error_network_state_view.setVisibility(View.VISIBLE);
+            } else {
+                emptyView.setVisibility(View.GONE);
+            }
         } else {
-            emptyView.setVisibility(View.GONE);
+            if (baseRecycleViewAdapter.getData().size() == 0) {
+                emptyView.setVisibility(View.VISIBLE);
+                empty_state_view.setVisibility(View.VISIBLE);
+                error_network_state_view.setVisibility(View.GONE);
+            } else {
+                emptyView.setVisibility(View.GONE);
+            }
         }
     }
 
@@ -232,6 +248,7 @@ public abstract class BaseRecyclerViewFragment extends BaseDrawerFragment implem
      * @param position
      * @param o
      */
+
     protected void setItem(int position, Object o) {
         baseRecycleViewAdapter.setItem(position, o);
     }
