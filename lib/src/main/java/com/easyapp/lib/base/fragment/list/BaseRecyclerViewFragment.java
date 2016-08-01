@@ -25,21 +25,21 @@ import java.util.List;
 public abstract class BaseRecyclerViewFragment extends BaseDrawerFragment implements SwipeRefreshLayout.OnRefreshListener {
 
     protected View view;
-    protected SwipeRefreshLayout easyapp_swiperefresh_layout;
+    protected SwipeRefreshLayout swipeRefreshLayout;
     protected RecyclerView recyclerView;
     protected BaseRecyclerViewAdapter baseRecycleViewAdapter;
     protected View emptyView;
     protected View error_network_state_view;
     protected View empty_state_view;
-    protected ProgressBar easyapp_pb;
+    protected ProgressBar progressBar;
 
     protected boolean isNoMore = false;
 
     protected boolean fabVisible = true;
     protected boolean isScrollTop = true;
 
-    private int limit = 40;
-
+    protected int limit = 40;
+    protected int page = 0;
 
     @Override
     public void onAttach(Context context) {
@@ -67,14 +67,14 @@ public abstract class BaseRecyclerViewFragment extends BaseDrawerFragment implem
      */
     protected void initView() {
         initEmptyView();
-        easyapp_pb = (ProgressBar) view.findViewById(R.id.easyapp_pb);
-        easyapp_pb.getIndeterminateDrawable().setColorFilter(
+        progressBar = (ProgressBar) view.findViewById(R.id.progress_bar);
+        progressBar.getIndeterminateDrawable().setColorFilter(
                 getResources().getColor(R.color.light_blue),
                 android.graphics.PorterDuff.Mode.SRC_IN);
 
 
-        easyapp_swiperefresh_layout = (SwipeRefreshLayout) view.findViewById(R.id.easyapp_swiperefresh_layout);
-        easyapp_swiperefresh_layout.setOnRefreshListener(this);
+        swipeRefreshLayout = (SwipeRefreshLayout) view.findViewById(R.id.easyapp_swiperefresh_layout);
+        swipeRefreshLayout.setOnRefreshListener(this);
         recyclerView = (RecyclerView) view.findViewById(R.id.easyapp_recycler_view);
         GridLayoutManager gridLayoutManager = new GridLayoutManager(getActivity(), setGridLayoutSpanCount());
         recyclerView.setLayoutManager(gridLayoutManager);
@@ -124,7 +124,7 @@ public abstract class BaseRecyclerViewFragment extends BaseDrawerFragment implem
                 if (isNoMore) {
                     return;
                 }
-                if (easyapp_pb.getVisibility() == View.GONE) {
+                if (progressBar.getVisibility() == View.GONE) {
                     showProgress();
                     onLoadMore();
                 }
@@ -178,6 +178,7 @@ public abstract class BaseRecyclerViewFragment extends BaseDrawerFragment implem
 
     @Override
     public void onRefresh() {
+        page = 0;
         setIsNoMore(false);
         getAdapter().clear();
         onLoadMore();
@@ -209,7 +210,8 @@ public abstract class BaseRecyclerViewFragment extends BaseDrawerFragment implem
         if (arrayList.size() < limit) {
             setIsNoMore(true);
         }
-        easyapp_swiperefresh_layout.setRefreshing(false);
+        page++;
+        swipeRefreshLayout.setRefreshing(false);
         baseRecycleViewAdapter.addData(arrayList);
         setEmptyView();
         baseRecycleViewAdapter.notifyDataSetChanged();
@@ -380,7 +382,7 @@ public abstract class BaseRecyclerViewFragment extends BaseDrawerFragment implem
      * 關閉讀取進度條
      */
     private void cancelProgress() {
-        easyapp_pb.setVisibility(View.GONE);
+        progressBar.setVisibility(View.GONE);
     }
 
 
@@ -388,7 +390,7 @@ public abstract class BaseRecyclerViewFragment extends BaseDrawerFragment implem
      * 顯示讀取進度條
      */
     private void showProgress() {
-        easyapp_pb.setVisibility(View.VISIBLE);
+        progressBar.setVisibility(View.VISIBLE);
     }
 
 }

@@ -22,14 +22,14 @@ public abstract class BaseRecyclerViewStaggeredFragment extends BaseRecyclerView
     @Override
     protected void initView() {
         emptyView = view.findViewById(R.id.easyapp_empty_view);
-        easyapp_pb = (ProgressBar) view.findViewById(R.id.easyapp_pb);
-        easyapp_pb.getIndeterminateDrawable().setColorFilter(
+        progressBar = (ProgressBar) view.findViewById(R.id.progress_bar);
+        progressBar.getIndeterminateDrawable().setColorFilter(
                 getResources().getColor(R.color.light_blue),
                 android.graphics.PorterDuff.Mode.SRC_IN);
 
 
-        easyapp_swiperefresh_layout = (SwipeRefreshLayout) view.findViewById(R.id.easyapp_swiperefresh_layout);
-        easyapp_swiperefresh_layout.setOnRefreshListener(this);
+        swipeRefreshLayout = (SwipeRefreshLayout) view.findViewById(R.id.easyapp_swiperefresh_layout);
+        swipeRefreshLayout.setOnRefreshListener(this);
         recyclerView = (RecyclerView) view.findViewById(R.id.easyapp_recycler_view);
         recyclerView.setLayoutManager(getLayoutManager());
     }

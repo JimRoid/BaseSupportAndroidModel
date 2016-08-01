@@ -14,7 +14,7 @@ public class EasyTab implements Serializable {
     public final static String EasyTab = "EasyTab";
     private final String TAB = "tab";
     private Class<? extends Fragment> clazz;
-    private int tabImageResource = R.drawable.ic_camera;
+    private int tabImageResource = 0;
     private int tabTextColorResource = R.drawable.tab_text_color;
     private int tabPressStateDrawable = R.drawable.tab_default_background;
     private String tabTextResource = "tab";

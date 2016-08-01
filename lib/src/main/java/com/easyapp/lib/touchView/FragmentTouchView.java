@@ -44,12 +44,12 @@ public class FragmentTouchView extends Fragment {
         Bundle bundle = getArguments();
         String path = bundle.getString("PATH");
         if (path == null) {
-            touchImageView.setImageResource(R.drawable.img_empty340);
+            touchImageView.setImageResource(R.drawable.icon_empty);
             return;
         }
 
         if (path.contains("http")) {
-            Glide.with(this).load(path).error(R.drawable.img_empty340).into(touchImageView);
+            Glide.with(this).load(path).error(R.drawable.icon_empty).into(touchImageView);
         } else if (path.contains("/storage")) {
             File file = new File(path);
             if (file.exists()) {

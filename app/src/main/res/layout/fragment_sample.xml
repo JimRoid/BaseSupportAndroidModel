@@ -43,8 +43,7 @@
 
     <com.easyapp.lib.widget.CircleImageView
         android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:src="@drawable/img_empty340" />
+        android:layout_height="100dp" />
 
 
 </LinearLayout>

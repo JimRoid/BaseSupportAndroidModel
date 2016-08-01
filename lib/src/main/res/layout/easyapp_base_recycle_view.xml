@@ -35,7 +35,7 @@
 
     <!--app:layout_behavior="com.easyapp.lib.widgets.ScrollAwareFABBehavior"-->
     <ProgressBar
-        android:id="@+id/easyapp_pb"
+        android:id="@+id/progress_bar"
         style="?android:attr/progressBarStyleHorizontal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
