@@ -28,12 +28,11 @@ public class EasyHorizontalScrollView extends HorizontalScrollView {
 
     @Override
     protected void onScrollChanged(int l, int t, int oldl, int oldt) {
-        View view = (View) getChildAt(getChildCount() - 1);
+        View view = getChildAt(getChildCount() - 1);
         int diff = (view.getRight() - (getWidth() + getScrollX()));
         if (diff == 0 && mListener != null) {
-            Logger.d("right");
             mListener.onBottomReached();
-        } else {
+        } else if (mListener != null) {
             mListener.onStartReached();
         }
 
