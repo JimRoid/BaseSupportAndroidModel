@@ -269,12 +269,13 @@ public abstract class BaseRecyclerViewFragment extends BaseDrawerFragment implem
      *
      * @param fabVisible
      */
-    protected void setFabVisible(boolean fabVisible) {
+    protected void setFabVisibleHide(boolean fabVisible) {
         this.fabVisible = fabVisible;
         if (fabVisible) {
             hideFab();
             getFab().setVisibility(View.GONE);
         } else {
+            getFab().setVisibility(View.VISIBLE);
             showFab();
         }
     }
