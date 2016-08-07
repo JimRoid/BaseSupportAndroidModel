@@ -27,10 +27,6 @@ public class PostsStaggeredList extends BaseRecyclerViewStaggeredFragment {
         return new StaggeredGridLayoutManager(3, RecyclerView.VERTICAL);
     }
 
-    @Override
-    protected void setOnRecycleAdapter() {
-
-    }
 
     @Override
     protected void init() {

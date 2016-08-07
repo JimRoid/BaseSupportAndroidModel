@@ -21,10 +21,6 @@ public class PostsList extends BaseRecyclerViewFragment {
 
     private ApiTool apiTool;
 
-    @Override
-    protected void setOnRecycleAdapter() {
-
-    }
 
     @Override
     protected int setGridLayoutSpanCount() {

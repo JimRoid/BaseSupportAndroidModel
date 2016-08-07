@@ -23,11 +23,6 @@ public class ListSample extends BaseRecyclerViewFragment {
 
 
     @Override
-    protected void setOnRecycleAdapter() {
-
-    }
-
-    @Override
     protected int setGridLayoutSpanCount() {
         return 2;
     }

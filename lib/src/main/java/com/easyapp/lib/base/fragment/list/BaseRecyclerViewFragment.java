@@ -144,20 +144,15 @@ public abstract class BaseRecyclerViewFragment extends BaseDrawerFragment implem
 
         };
         baseRecycleViewAdapter = new BaseRecyclerViewAdapter(getActivity(), endlessRecyclerOnScrollListener) {
-            @Override
-            protected void setOnCreateAdapter() {
-                setOnRecycleAdapter();
-            }
+
 
             @Override
             public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
                 View contactView;
                 RecyclerView.ViewHolder viewHolder;
-                if (viewType == BaseRecyclerViewAdapter.VIEWTYPEHEADER && getHeaderView() == null) {
+                if (viewType == BaseRecyclerViewAdapter.VIEWTYPEHEADER) {
                     contactView = LayoutInflater.from(context).inflate(getRecycleViewHolderHeaderLayout(), parent, false);
                     viewHolder = getHeaderItemHolder(contactView);
-                } else if (viewType == BaseRecyclerViewAdapter.VIEWTYPEHEADER && getHeaderView() != null) {
-                    viewHolder = getHeaderItemHolder(getHeaderView());
                 } else {
                     contactView = LayoutInflater.from(context).inflate(getRecycleViewHolderLayout(), parent, false);
                     viewHolder = getItemHolder(contactView);
@@ -353,8 +348,6 @@ public abstract class BaseRecyclerViewFragment extends BaseDrawerFragment implem
     protected int getSize() {
         return getAdapter().getDataSize();
     }
-
-    protected abstract void setOnRecycleAdapter();
 
     protected abstract int setGridLayoutSpanCount();
 

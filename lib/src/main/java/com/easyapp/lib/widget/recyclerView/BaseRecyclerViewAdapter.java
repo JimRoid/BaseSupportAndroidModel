@@ -19,16 +19,11 @@ public abstract class BaseRecyclerViewAdapter<VH extends BaseRecyclerViewAdapter
     protected Context context;
     protected EndlessRecyclerOnScrollListener recyclerOnScrollListener;
 
-    private View headerView;
-
     public BaseRecyclerViewAdapter(Context context, EndlessRecyclerOnScrollListener recyclerOnScrollListener) {
-        this.context = context;
         data = new ArrayList();
+        this.context = context;
         this.recyclerOnScrollListener = recyclerOnScrollListener;
-        setOnCreateAdapter();
     }
-
-    protected abstract void setOnCreateAdapter();
 
     @Override
     public void onAttachedToRecyclerView(RecyclerView recyclerView) {
@@ -38,13 +33,7 @@ public abstract class BaseRecyclerViewAdapter<VH extends BaseRecyclerViewAdapter
         }
     }
 
-    public void setHeaderView(View headerView) {
-        this.headerView = headerView;
-    }
 
-    public View getHeaderView() {
-        return headerView;
-    }
 
     public <T> void setItem(int position, T obj) {
         data.set(position, obj);

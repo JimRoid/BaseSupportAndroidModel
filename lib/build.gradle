@@ -8,8 +8,8 @@ android {
     defaultConfig {
         minSdkVersion 14
         targetSdkVersion 23
-        versionCode 140
-        versionName "6.5.8"
+        versionCode 141
+        versionName "6.5.9"
     }
 
     buildTypes {
@@ -38,7 +38,7 @@ uploadArchives {
     repositories {
         mavenDeployer {
             repository url: "file://${repo.absolutePath}"
-            pom.version = '6.5.8'
+            pom.version = '6.5.9'
             pom.groupId = 'com.easyapp.lib'
             pom.artifactId = 'BaseSupport'
         }
