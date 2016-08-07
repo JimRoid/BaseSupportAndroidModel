@@ -284,6 +284,7 @@ public abstract class BaseRecyclerViewFragment extends BaseDrawerFragment implem
             hideFab();
             floatingActionButton.setVisibility(View.GONE);
         } else {
+            setAutoHideToolBar(false);
             floatingActionButton.setVisibility(View.VISIBLE);
             showFab();
         }
