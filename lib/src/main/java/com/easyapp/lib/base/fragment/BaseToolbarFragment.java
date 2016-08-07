@@ -1,7 +1,6 @@
 package com.easyapp.lib.base.fragment;
 
 import android.content.Context;
-import android.support.design.widget.FloatingActionButton;
 import android.view.View;
 
 import com.easyapp.lib.callback.iToolbarCallback;
@@ -20,27 +19,6 @@ public class BaseToolbarFragment extends BaseEasyFragment {
             throw new ClassCastException(context.toString()
                     + " must implement OnHeadlineSelectedListener");
         }
-    }
-
-    protected void showFab() {
-        if (toolbarCallback == null) {
-            return;
-        }
-        toolbarCallback.showFab();
-    }
-
-    protected void hideFab() {
-        if (toolbarCallback == null) {
-            return;
-        }
-        toolbarCallback.hideFab();
-    }
-
-    protected FloatingActionButton getFab() {
-        if (toolbarCallback == null) {
-            return null;
-        }
-        return toolbarCallback.getFab();
     }
 
     protected void hideToolbar() {

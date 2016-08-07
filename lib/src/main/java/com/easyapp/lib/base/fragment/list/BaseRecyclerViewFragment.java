@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.res.ColorStateList;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -32,6 +33,7 @@ public abstract class BaseRecyclerViewFragment extends BaseDrawerFragment implem
     protected View error_network_state_view;
     protected View empty_state_view;
     protected ProgressBar progressBar;
+    protected FloatingActionButton floatingActionButton;
 
     protected boolean isNoMore = false;
 
@@ -67,6 +69,7 @@ public abstract class BaseRecyclerViewFragment extends BaseDrawerFragment implem
      */
     protected void initView() {
         initEmptyView();
+        initFab();
         progressBar = (ProgressBar) view.findViewById(R.id.progress_bar);
         progressBar.getIndeterminateDrawable().setColorFilter(
                 getResources().getColor(R.color.light_blue),
@@ -80,6 +83,10 @@ public abstract class BaseRecyclerViewFragment extends BaseDrawerFragment implem
         recyclerView.setLayoutManager(gridLayoutManager);
     }
 
+    protected void initFab() {
+        floatingActionButton = (FloatingActionButton) view.findViewById(R.id.fab);
+    }
+
     /**
      * 初始化空值或是沒有網路的view
      */
@@ -88,6 +95,8 @@ public abstract class BaseRecyclerViewFragment extends BaseDrawerFragment implem
         error_network_state_view = emptyView.findViewById(R.id.error_state_view);
         empty_state_view = emptyView.findViewById(R.id.empty_state_view);
     }
+
+
 
     final protected void setRecyclerViewAnimDisable() {
         recyclerView.setLayoutAnimation(null);
@@ -273,11 +282,19 @@ public abstract class BaseRecyclerViewFragment extends BaseDrawerFragment implem
         this.fabVisible = fabVisible;
         if (fabVisible) {
             hideFab();
-            getFab().setVisibility(View.GONE);
+            floatingActionButton.setVisibility(View.GONE);
         } else {
-            getFab().setVisibility(View.VISIBLE);
+            floatingActionButton.setVisibility(View.VISIBLE);
             showFab();
         }
+    }
+
+    protected void showFab() {
+        floatingActionButton.show();
+    }
+
+    protected void hideFab() {
+        floatingActionButton.hide();
     }
 
     /**
@@ -308,14 +325,14 @@ public abstract class BaseRecyclerViewFragment extends BaseDrawerFragment implem
      * @param res
      */
     protected void setFabSrc(int res) {
-        getFab().setImageResource(res);
+        floatingActionButton.setImageResource(res);
     }
 
     /**
      * 設定float action button 背景顏色
      */
     protected void setFabBackground(int color) {
-        getFab().setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(color)));
+        floatingActionButton.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(color)));
     }
 
     /**
@@ -324,7 +341,7 @@ public abstract class BaseRecyclerViewFragment extends BaseDrawerFragment implem
      * @param fabOnClickListener
      */
     protected void setFabOnClickListener(View.OnClickListener fabOnClickListener) {
-        getFab().setOnClickListener(fabOnClickListener);
+        floatingActionButton.setOnClickListener(fabOnClickListener);
     }
 
     protected BaseRecyclerViewAdapter getAdapter() {

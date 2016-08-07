@@ -2,7 +2,6 @@ package com.easyapp.lib.base.activity;
 
 import android.os.Bundle;
 import android.support.design.widget.AppBarLayout;
-import android.support.design.widget.FloatingActionButton;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.ImageView;
@@ -20,7 +19,6 @@ public abstract class BaseMainActivity extends BaseSupportActivity implements iT
     protected ImageView iv_title;
     protected TextView tv_title;
     protected LinearLayout fl_right, fl_left;
-    protected FloatingActionButton fab;
     private View container;
 
 
@@ -57,27 +55,9 @@ public abstract class BaseMainActivity extends BaseSupportActivity implements iT
         fl_right = (LinearLayout) toolbar.findViewById(R.id.fl_right);
         fl_left = (LinearLayout) toolbar.findViewById(R.id.fl_left);
 
-        fab = (FloatingActionButton) findViewById(R.id.fab);
-        hideFab();
     }
 
-    @Override
-    public void hideFab() {
-        if (fab == null) {
-            return;
-        }
-        fab.hide();
-    }
 
-    @Override
-    public void showFab() {
-        fab.show();
-    }
-
-    @Override
-    public FloatingActionButton getFab() {
-        return fab;
-    }
 
     @Override
     public void hideToolbar() {

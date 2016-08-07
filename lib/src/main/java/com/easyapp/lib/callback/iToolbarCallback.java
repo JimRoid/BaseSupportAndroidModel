@@ -1,6 +1,5 @@
 package com.easyapp.lib.callback;
 
-import android.support.design.widget.FloatingActionButton;
 import android.view.View;
 
 /**
@@ -25,12 +24,6 @@ public interface iToolbarCallback {
     void hideToolbar();
 
     void showToolbar();
-
-    void hideFab();
-
-    void showFab();
-
-    FloatingActionButton getFab();
 
     void setTitle(CharSequence sequence);
 

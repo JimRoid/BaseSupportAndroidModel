@@ -1,7 +1,6 @@
 package com.easyapp.lib.base.activity;
 
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.HorizontalScrollView;
@@ -53,7 +52,6 @@ public abstract class BaseTabActivity extends BaseMainActivity {
         fragmentTabHost.setOnClickListener(getTabOnClickListener());
         fragmentTabHost.setOnTabChangedListener(getOnTabChangeListener());
         fragmentTabHost.setisCanSetCurrentTab(getIsCanSetCurrentTab());
-        fab = (FloatingActionButton) findViewById(R.id.fab);
         onSetupTab();
     }
 
