@@ -33,30 +33,18 @@ public class PostsList extends BaseRecyclerViewFragment {
     @Override
     protected void init() {
         apiTool = new ApiTool();
-//        setRecyclerViewAnimDisable();
         setTitleImageResource(R.drawable.logo);
         setAutoHideToolBar(true);
-//        setFabVisible(false);
         onRefresh();
     }
 
     @Override
     protected void onLoadMore() {
-
-    }
-
-    @Override
-    public void onRefresh() {
-//        onLoadMore();
-        apiTool.getProductList("","","",new Callback() {
+        apiTool.getProductList("", "", "", new Callback() {
             @Override
             public void callback(Object object) {
                 ItemProduct photos = (ItemProduct) object;
-                if (getSize() > 0) {
-                    addData(photos.getData().getContent());
-                } else {
-                    addData(photos.getData().getContent());
-                }
+                addData(photos.getData().getContent());
             }
         });
     }
@@ -84,7 +72,7 @@ public class PostsList extends BaseRecyclerViewFragment {
     @Override
     protected void getBindViewHolder(RecyclerView.ViewHolder holder, Object obj) {
         AdapterItemHolder adapterItemHolder = (AdapterItemHolder) holder;
-        ItemProduct.DataBean.ContentBean photo = ( ItemProduct.DataBean.ContentBean) obj;
+        ItemProduct.DataBean.ContentBean photo = (ItemProduct.DataBean.ContentBean) obj;
         Glide.with(getContext()).load(photo.getS_pic()).placeholder(R.drawable.icon_empty).into(adapterItemHolder.iv_picture);
         adapterItemHolder.textView.setText(photo.getName());
         adapterItemHolder.content.setOnClickListener(new View.OnClickListener() {
