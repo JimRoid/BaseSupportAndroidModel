@@ -96,8 +96,6 @@ public abstract class BaseRecyclerViewFragment extends BaseDrawerFragment implem
         empty_state_view = emptyView.findViewById(R.id.empty_state_view);
     }
 
-
-
     final protected void setRecyclerViewAnimDisable() {
         recyclerView.setLayoutAnimation(null);
     }

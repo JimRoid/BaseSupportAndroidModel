@@ -21,6 +21,7 @@ public abstract class BaseRecyclerViewStaggeredFragment extends BaseRecyclerView
      */
     @Override
     protected void initView() {
+        initFab();
         emptyView = view.findViewById(R.id.easyapp_empty_view);
         progressBar = (ProgressBar) view.findViewById(R.id.progress_bar);
         progressBar.getIndeterminateDrawable().setColorFilter(

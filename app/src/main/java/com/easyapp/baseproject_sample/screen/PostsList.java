@@ -12,6 +12,7 @@ import com.easyapp.baseproject_sample.http.entity.ItemProduct;
 import com.easyapp.lib.base.fragment.list.BaseRecyclerViewFragment;
 import com.easyapp.lib.callback.Callback;
 import com.easyapp.lib.widget.recyclerView.BaseRecyclerViewAdapter;
+import com.orhanobut.logger.Logger;
 
 /**
  * 測試用列表
@@ -34,7 +35,12 @@ public class PostsList extends BaseRecyclerViewFragment {
     protected void init() {
         apiTool = new ApiTool();
         setTitleImageResource(R.drawable.logo);
-        setAutoHideToolBar(true);
+        setFabOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Logger.d("fab on click");
+            }
+        });
         onRefresh();
     }
 
