@@ -31,6 +31,7 @@ public class PostsList extends BaseRecyclerViewFragment {
     protected void init() {
         apiTool = new ApiTool();
         setTitleImageResource(R.drawable.logo);
+        setAutoHideToolBar(false);
         setFabOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -46,6 +47,9 @@ public class PostsList extends BaseRecyclerViewFragment {
             @Override
             public void callback(Object object) {
                 ItemProduct photos = (ItemProduct) object;
+                addData(photos.getData().getContent());
+                addData(photos.getData().getContent());
+                addData(photos.getData().getContent());
                 addData(photos.getData().getContent());
             }
         });
