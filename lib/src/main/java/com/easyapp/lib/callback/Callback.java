@@ -36,6 +36,11 @@ public class Callback implements iCallback {
     }
 
     @Override
+    public void onFail(Object object) {
+
+    }
+
+    @Override
     public void onComplete() {
 
     }
