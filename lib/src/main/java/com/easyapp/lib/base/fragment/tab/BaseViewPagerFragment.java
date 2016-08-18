@@ -7,6 +7,7 @@ import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.FrameLayout;
 
 import com.easyapp.lib.R;
 import com.easyapp.lib.base.fragment.BaseToolbarFragment;
@@ -37,6 +38,12 @@ public abstract class BaseViewPagerFragment extends BaseToolbarFragment {
         initPages();
         initView();
         return view;
+    }
+
+    protected void setTabGravity(int gravity) {
+        FrameLayout.LayoutParams params = new FrameLayout.LayoutParams(FrameLayout.LayoutParams.MATCH_PARENT, FrameLayout.LayoutParams.WRAP_CONTENT);
+        params.gravity = gravity;
+        slidingTabLayout.setLayoutParams(params);
     }
 
     private void initVar() {
