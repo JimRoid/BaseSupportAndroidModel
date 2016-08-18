@@ -50,11 +50,14 @@ public abstract class BaseTabViewPagerFragment extends BaseToolbarFragment {
 
         init();
         slidingTabLayout.setViewPager(viewPager);
-
     }
 
     final protected void setFillViewport(boolean fillViewport) {
         slidingTabLayout.setFillViewport(fillViewport);
+    }
+
+    protected void setCustomTab(int layoutId, int textLayoutId, int imageViewId) {
+        slidingTabLayout.setCustomTabView(layoutId, textLayoutId, imageViewId);
     }
 
     protected void setCustomTab(int layoutId, int textLayoutId) {
