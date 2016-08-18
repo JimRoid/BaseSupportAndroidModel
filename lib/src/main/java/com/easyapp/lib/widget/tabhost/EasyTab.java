@@ -39,8 +39,9 @@ public class EasyTab implements Serializable {
         return tabLayout;
     }
 
-    public void setTabLayout(int tabLayout) {
+    public EasyTab setTabLayout(int tabLayout) {
         this.tabLayout = tabLayout;
+        return this;
     }
 
     public int getTabImageId() {
@@ -51,12 +52,14 @@ public class EasyTab implements Serializable {
         return tabTextId;
     }
 
-    public void setTabImageId(int tabImageId) {
+    public EasyTab setTabImageId(int tabImageId) {
         this.tabImageId = tabImageId;
+        return this;
     }
 
-    public void setTabTextId(int tabTextId) {
+    public EasyTab setTabTextId(int tabTextId) {
         this.tabTextId = tabTextId;
+        return this;
     }
 
     public String getTabTextResource() {
