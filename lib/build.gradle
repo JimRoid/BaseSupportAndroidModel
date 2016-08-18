@@ -8,8 +8,8 @@ android {
     defaultConfig {
         minSdkVersion 14
         targetSdkVersion 23
-        versionCode 143
-        versionName "6.6.1"
+        versionCode 144
+        versionName "6.6.2"
     }
 
     buildTypes {

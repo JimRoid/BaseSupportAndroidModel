@@ -40,6 +40,10 @@ public abstract class BaseEasyFragment extends BaseFragment {
         }
     }
 
+    protected void setTabMode(boolean isTabMode){
+        this.isTabMode = isTabMode;
+    }
+
 
     protected int getChildId() {
         return R.id.tab_content;

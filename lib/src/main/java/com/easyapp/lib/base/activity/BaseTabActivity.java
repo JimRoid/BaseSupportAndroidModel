@@ -13,7 +13,6 @@ import com.easyapp.lib.base.fragment.tab.BaseTabParentFragment;
 import com.easyapp.lib.widget.EasyHorizontalScrollView;
 import com.easyapp.lib.widget.tabhost.EasyTab;
 import com.easyapp.lib.widget.tabhost.FragmentClickTabHost;
-import com.orhanobut.logger.Logger;
 
 import java.util.ArrayList;
 
@@ -85,7 +84,6 @@ public abstract class BaseTabActivity extends BaseMainActivity {
                         showBack(true);
                         return;
                     }
-                    Logger.d("tabId:" + tabId + ":" + getSupportFragmentManager().findFragmentByTag(tabId).getChildFragmentManager().getBackStackEntryCount());
                 }
                 showBack(false);
             }
@@ -141,9 +139,9 @@ public abstract class BaseTabActivity extends BaseMainActivity {
     }
 
     private View getTabIndicator(EasyTab easyTab) {
-        View view = LayoutInflater.from(this).inflate(R.layout.custom_tab_icon_and_text, null);
-        ImageView iv = (ImageView) view.findViewById(R.id.iv_tab_icon);
-        TextView tv = (TextView) view.findViewById(R.id.tv_tab);
+        View view = LayoutInflater.from(this).inflate(easyTab.getTabLayout(), null);
+        ImageView iv = (ImageView) view.findViewById(easyTab.getTabImageId());
+        TextView tv = (TextView) view.findViewById(easyTab.getTabTextId());
         tv.setText(easyTab.getTabTextResource());
         tv.setTextColor(this.getResources().getColorStateList(easyTab.getTabTextColorResource()));
         iv.setImageResource(easyTab.getTabImageResource());

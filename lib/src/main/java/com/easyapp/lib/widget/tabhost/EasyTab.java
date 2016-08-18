@@ -19,6 +19,11 @@ public class EasyTab implements Serializable {
     private int tabPressStateDrawable = R.drawable.tab_default_background;
     private String tabTextResource = "tab";
 
+    private int tabLayout = R.layout.custom_tab_icon_and_text;
+    private int tabImageId = R.id.iv_tab_icon;
+    private int tabTextId = R.id.tv_tab;
+
+
     public EasyTab setFragment(Class<? extends Fragment> clazz) {
         this.clazz = clazz;
         return this;
@@ -28,6 +33,30 @@ public class EasyTab implements Serializable {
         Bundle bundle = new Bundle();
         bundle.putSerializable(EasyTab, this);
         return bundle;
+    }
+
+    public int getTabLayout() {
+        return tabLayout;
+    }
+
+    public void setTabLayout(int tabLayout) {
+        this.tabLayout = tabLayout;
+    }
+
+    public int getTabImageId() {
+        return tabImageId;
+    }
+
+    public int getTabTextId() {
+        return tabTextId;
+    }
+
+    public void setTabImageId(int tabImageId) {
+        this.tabImageId = tabImageId;
+    }
+
+    public void setTabTextId(int tabTextId) {
+        this.tabTextId = tabTextId;
     }
 
     public String getTabTextResource() {
