@@ -36,6 +36,8 @@ import android.widget.TextView;
 
 import com.easyapp.lib.R;
 
+import java.util.ArrayList;
+
 /**
  * To be used with ViewPager to provide a tab indicator component which give constant feedback as to
  * the user's scroll progress.
@@ -96,7 +98,7 @@ public class SlidingTabLayout extends HorizontalScrollView {
 
     private ViewPager mViewPager;
     private SparseArray<String> mContentDescriptions = new SparseArray<>();
-    private SparseArray<Integer> mImageDrawableResources = new SparseArray<>();
+    private ArrayList<Integer> mImageDrawableResources = new ArrayList<>();
     private ViewPager.OnPageChangeListener mViewPagerPageChangeListener;
 
     private final SlidingTabStrip mTabStrip;
@@ -179,7 +181,7 @@ public class SlidingTabLayout extends HorizontalScrollView {
         mTabViewImageViewId = imageViewId;
     }
 
-    public void setmImageDrawableResources(SparseArray<Integer> mImageDrawableResources) {
+    public void setmImageDrawableResources(ArrayList<Integer> mImageDrawableResources) {
         this.mImageDrawableResources = mImageDrawableResources;
     }
 
