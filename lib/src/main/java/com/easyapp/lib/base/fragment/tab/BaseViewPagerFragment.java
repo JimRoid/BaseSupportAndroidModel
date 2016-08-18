@@ -73,6 +73,10 @@ public abstract class BaseViewPagerFragment extends BaseToolbarFragment {
         slidingTabLayout.setCustomTabView(layoutId, textLayoutId);
     }
 
+    protected void setCustomTab(int layoutId, int textLayoutId, int imageViewId) {
+        slidingTabLayout.setCustomTabView(layoutId, textLayoutId, imageViewId);
+    }
+
     protected abstract void init();
 
     protected abstract void initPages();
