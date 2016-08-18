@@ -30,6 +30,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.HorizontalScrollView;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -38,16 +39,16 @@ import com.easyapp.lib.R;
 /**
  * To be used with ViewPager to provide a tab indicator component which give constant feedback as to
  * the user's scroll progress.
- * <p/>
+ * <p>
  * To use the component, simply add it to your view hierarchy. Then in your
  * {@link android.app.Activity} or {@link android.support.v4.app.Fragment} call
  * {@link #setViewPager(ViewPager)} providing it the ViewPager this layout is being used for.
- * <p/>
+ * <p>
  * The colors can be customized in two ways. The first and simplest is to provide an array of colors
  * via {@link #setSelectedIndicatorColors(int...)} and {@link #setDividerColors(int...)}. The
  * alternative is via the {@link TabColorizer} interface which provides you complete control over
  * which color is used for any individual position.
- * <p/>
+ * <p>
  * The views used as tabs can be customized by calling {@link #setCustomTabView(int, int)},
  * providing the layout ID of your custom layout.
  */
@@ -55,16 +56,16 @@ import com.easyapp.lib.R;
 /**
  * To be used with ViewPager to provide a tab indicator component which give constant feedback as to
  * the user's scroll progress.
- * <p/>
+ * <p>
  * To use the component, simply add it to your view hierarchy. Then in your
  * {@link android.app.Activity} or {@link android.support.v4.app.Fragment} call
  * {@link #setViewPager(ViewPager)} providing it the ViewPager this layout is being used for.
- * <p/>
+ * <p>
  * The colors can be customized in two ways. The first and simplest is to provide an array of colors
  * via {@link #setSelectedIndicatorColors(int...)}. The
  * alternative is via the {@link TabColorizer} interface which provides you complete control over
  * which color is used for any individual position.
- * <p/>
+ * <p>
  * The views used as tabs can be customized by calling {@link #setCustomTabView(int, int)},
  * providing the layout ID of your custom layout.
  */
@@ -90,10 +91,12 @@ public class SlidingTabLayout extends HorizontalScrollView {
 
     private int mTabViewLayoutId = NO_ID;
     private int mTabViewTextViewId = NO_ID;
+    private int mTabViewImageViewId = NO_ID;
     private boolean mDistributeEvenly;
 
     private ViewPager mViewPager;
-    private SparseArray<String> mContentDescriptions = new SparseArray<String>();
+    private SparseArray<String> mContentDescriptions = new SparseArray<>();
+    private SparseArray<Integer> mImageDrawableResources = new SparseArray<>();
     private ViewPager.OnPageChangeListener mViewPagerPageChangeListener;
 
     private final SlidingTabStrip mTabStrip;
@@ -127,7 +130,7 @@ public class SlidingTabLayout extends HorizontalScrollView {
 
     /**
      * Set the custom {@link TabColorizer} to be used.
-     * <p/>
+     * <p>
      * If you only require simple custmisation then you can use
      * {@link #setSelectedIndicatorColors(int...)} to achieve
      * similar effects.
@@ -168,6 +171,16 @@ public class SlidingTabLayout extends HorizontalScrollView {
     public void setCustomTabView(int layoutResId, int textViewId) {
         mTabViewLayoutId = layoutResId;
         mTabViewTextViewId = textViewId;
+    }
+
+    public void setCustomTabView(int layoutResId, int textViewId, int imageViewId) {
+        mTabViewLayoutId = layoutResId;
+        mTabViewTextViewId = textViewId;
+        mTabViewImageViewId = imageViewId;
+    }
+
+    public void setmImageDrawableResources(SparseArray<Integer> mImageDrawableResources) {
+        this.mImageDrawableResources = mImageDrawableResources;
     }
 
     /**
@@ -215,13 +228,20 @@ public class SlidingTabLayout extends HorizontalScrollView {
         for (int i = 0; i < adapter.getCount(); i++) {
             View tabView = null;
             TextView tabTitleView = null;
-
+            ImageView tabImageView = null;
             if (mTabViewLayoutId != NO_ID) {
                 // If there is a custom tab view layout id set, try and inflate it
                 tabView = LayoutInflater.from(getContext()).inflate(mTabViewLayoutId, mTabStrip, false);
                 setSelectedIndicatorColors(Color.TRANSPARENT);
                 if (mTabViewTextViewId != NO_ID) {
                     tabTitleView = (TextView) tabView.findViewById(mTabViewTextViewId);
+                }
+
+                if (mTabViewImageViewId != NO_ID) {
+                    tabImageView = (ImageView) tabView.findViewById(mTabViewImageViewId);
+                    if (mImageDrawableResources.size() > 0) {
+                        tabImageView.setImageResource(mImageDrawableResources.get(i));
+                    }
                 }
             } else {
                 if (tabView == null) {
