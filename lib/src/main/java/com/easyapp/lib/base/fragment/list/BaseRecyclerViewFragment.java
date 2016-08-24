@@ -36,13 +36,13 @@ public abstract class BaseRecyclerViewFragment extends BaseDrawerFragment implem
     protected FloatingActionButton floatingActionButton;
 
     protected boolean isNoMore = false;
-    private boolean isLoad = false;
 
     protected boolean fabVisible = true;
     protected boolean isScrollTop = true;
 
     protected int limit = 40;
     protected int page = 0;
+    protected int oldPage = -1;
 
     @Override
     public void onAttach(Context context) {
@@ -181,19 +181,17 @@ public abstract class BaseRecyclerViewFragment extends BaseDrawerFragment implem
 
     @Override
     public void onRefresh() {
-        if (!isLoad) {
-            page = 0;
-            setIsNoMore(false);
-            getAdapter().clear();
-            onLoad();
-        } else {
-            swipeRefreshLayout.setRefreshing(false);
-        }
+        page = 0;
+        setIsNoMore(false);
+        getAdapter().clear();
+        onLoad();
     }
 
     final protected void onLoad() {
-        isLoad = true;
-        onLoadMore();
+        if (progressBar.getVisibility() == View.GONE) {
+            showProgress();
+            onLoadMore();
+        }
     }
 
     protected abstract void onLoadMore();
