@@ -5,8 +5,6 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
 
-import com.orhanobut.logger.Logger;
-
 public class EndlessRecyclerOnScrollListener extends RecyclerView.OnScrollListener {
 
     /**
@@ -91,7 +89,6 @@ public class EndlessRecyclerOnScrollListener extends RecyclerView.OnScrollListen
         if (dy > 20) {
             if ((visibleItemCount > 0 &&
                     (lastVisibleItemPosition) >= totalItemCount - 20)) {
-                Logger.d("is loading more");
                 onScrolledLoadMore();
             }
         }

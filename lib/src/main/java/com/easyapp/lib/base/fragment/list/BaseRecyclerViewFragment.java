@@ -36,6 +36,7 @@ public abstract class BaseRecyclerViewFragment extends BaseDrawerFragment implem
     protected FloatingActionButton floatingActionButton;
 
     protected boolean isNoMore = false;
+    private boolean isLoad = false;
 
     protected boolean fabVisible = true;
     protected boolean isScrollTop = true;
@@ -180,9 +181,18 @@ public abstract class BaseRecyclerViewFragment extends BaseDrawerFragment implem
 
     @Override
     public void onRefresh() {
-        page = 0;
-        setIsNoMore(false);
-        getAdapter().clear();
+        if (!isLoad) {
+            page = 0;
+            setIsNoMore(false);
+            getAdapter().clear();
+            onLoad();
+        } else {
+            swipeRefreshLayout.setRefreshing(false);
+        }
+    }
+
+    final protected void onLoad() {
+        isLoad = true;
         onLoadMore();
     }
 
