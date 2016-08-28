@@ -2,6 +2,7 @@ package com.easyapp.lib.tool;
 
 import android.app.Activity;
 import android.content.ActivityNotFoundException;
+import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -19,35 +20,35 @@ public class OpenData {
     /**
      * 可自動選擇開啟檔案
      *
-     * @param activity
+     * @param context
      * @param file
      */
-    public static void AutoOpen(Activity activity, File file) {
+    public static void AutoOpen(Context context, File file) {
         String file_extension = getExtension(file);
         file_extension = file_extension.toLowerCase();
         if (file_extension.equals("pdf")) {
-            OpenPdf(activity, file);
+            OpenPdf(context, file);
         } else if (file_extension.equals("jpg") || file_extension.equals("png") || file_extension.equals("bmp")) {
-            OpenImage(activity, file);
+            OpenImage(context, file);
         } else {
-            OpenUnKnowData(activity, file);
+            OpenUnKnowData(context, file);
         }
     }
 
     /**
      * 未知檔案 讓android 及使用者自己判斷
      *
-     * @param activity
+     * @param context
      * @param file
      */
-    public static void OpenUnKnowData(Activity activity, File file) {
+    public static void OpenUnKnowData(Context context, File file) {
         if (file.exists()) {
             String subname = getExtension(file);
             Uri path = Uri.fromFile(file);
             Intent intent = new Intent("android.intent.action.VIEW");
             intent.setDataAndType(path, "application/" + subname);
             intent.setFlags(67108864);
-            StartActivity(activity, intent);
+            StartActivity(context, intent);
         }
     }
 
@@ -70,32 +71,32 @@ public class OpenData {
     /**
      * 開啟pdf
      *
-     * @param activity
+     * @param context
      * @param file
      */
-    public static void OpenPdf(Activity activity, File file) {
+    public static void OpenPdf(Context context, File file) {
         if (file.exists()) {
             Uri path = Uri.fromFile(file);
             Intent intent = new Intent("android.intent.action.VIEW");
             intent.setDataAndType(path, "application/pdf");
             intent.setFlags(67108864);
-            StartActivity(activity, intent);
+            StartActivity(context, intent);
         }
     }
 
     /**
      * 開啟圖片
      *
-     * @param activity
+     * @param context
      * @param file
      */
-    public static void OpenImage(Activity activity, File file) {
+    public static void OpenImage(Context context, File file) {
         if (file.exists()) {
             Uri path = Uri.fromFile(file);
             Intent intent = new Intent("android.intent.action.VIEW");
             intent.setDataAndType(path, "application/jpg");
             intent.setFlags(67108864);
-            StartActivity(activity, intent);
+            StartActivity(context, intent);
         }
     }
 
@@ -103,28 +104,29 @@ public class OpenData {
     /**
      * 開啟可放大縮小圖片
      *
-     * @param activity
+     * @param context
      * @param path
      */
-    public static void OpenTouchImage(Activity activity, ArrayList<String> path, int position) {
-        Intent intent = new Intent(activity, TouchViewActivity.class);
+    public static void OpenTouchImage(Context context, ArrayList<String> path, int position) {
+
+        Intent intent = new Intent(context, TouchViewActivity.class);
         Bundle bundle = new Bundle();
-        bundle.putStringArrayList("PATH",path);
+        bundle.putStringArrayList("PATH", path);
         bundle.putInt("POSITION", position);
         intent.putExtras(bundle);
-        StartActivity(activity, intent);
+        StartActivity(context, intent);
     }
 
 
     /**
      * 開啟activity
      *
-     * @param activity
+     * @param context
      * @param intent
      */
-    public static void StartActivity(Activity activity, Intent intent) {
+    public static void StartActivity(Context context, Intent intent) {
         try {
-            activity.startActivity(intent);
+            context.startActivity(intent);
         } catch (ActivityNotFoundException var3) {
             var3.printStackTrace();
         }
@@ -133,13 +135,13 @@ public class OpenData {
     /**
      * 開啟activity
      *
-     * @param activity
-     * @param intent
+     * @param context
+     * @param clazz
      */
-    public static void StartActivity(Activity activity, Class<? extends Activity> clazz) {
+    public static void StartActivity(Context context, Class<? extends Activity> clazz) {
         try {
-            Intent intent = new Intent(activity, clazz);
-            activity.startActivity(intent);
+            Intent intent = new Intent(context, clazz);
+            context.startActivity(intent);
         } catch (ActivityNotFoundException var3) {
             var3.printStackTrace();
         }
