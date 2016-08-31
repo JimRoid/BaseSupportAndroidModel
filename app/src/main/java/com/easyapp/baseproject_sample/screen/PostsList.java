@@ -10,9 +10,10 @@ import com.easyapp.baseproject_sample.R;
 import com.easyapp.baseproject_sample.http.api.ApiTool;
 import com.easyapp.baseproject_sample.http.entity.ItemProduct;
 import com.easyapp.lib.base.fragment.list.BaseRecyclerViewFragment;
-import com.easyapp.lib.callback.Callback;
 import com.easyapp.lib.widget.recyclerView.BaseRecyclerViewAdapter;
 import com.orhanobut.logger.Logger;
+
+import java.util.ArrayList;
 
 /**
  * 測試用列表
@@ -38,21 +39,22 @@ public class PostsList extends BaseRecyclerViewFragment {
                 Logger.d("fab on click");
             }
         });
-        onRefresh();
+//        onRefresh();
     }
 
     @Override
     protected void onLoadMore() {
-        apiTool.getProductList("", "", "", new Callback() {
-            @Override
-            public void callback(Object object) {
-                ItemProduct photos = (ItemProduct) object;
-                addData(photos.getData().getContent());
-                addData(photos.getData().getContent());
-                addData(photos.getData().getContent());
-                addData(photos.getData().getContent());
-            }
-        });
+        addData(new ArrayList());
+//        apiTool.getProductList("", "", "", new Callback() {
+//            @Override
+//            public void callback(Object object) {
+//                ItemProduct photos = (ItemProduct) object;
+//                addData(photos.getData().getContent());
+//                addData(photos.getData().getContent());
+//                addData(photos.getData().getContent());
+//                addData(photos.getData().getContent());
+//            }
+//        });
     }
 
     @Override
