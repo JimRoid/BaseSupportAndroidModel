@@ -12,7 +12,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center_vertical"
         android:layout_marginLeft="@dimen/activity_horizontal_margin"
-        android:text="文字" />
+        android:text="文字預設" />
 
     <com.easyapp.lib.widget.CircleImageView
         android:id="@+id/iv_picture"
