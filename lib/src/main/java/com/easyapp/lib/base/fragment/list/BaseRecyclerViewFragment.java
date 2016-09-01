@@ -181,6 +181,7 @@ public abstract class BaseRecyclerViewFragment extends BaseDrawerFragment implem
 
     @Override
     public void onRefresh() {
+        cancelProgress();
         page = 0;
         setIsNoMore(false);
         getAdapter().clear();
