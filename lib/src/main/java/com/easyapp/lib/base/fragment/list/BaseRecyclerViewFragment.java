@@ -181,7 +181,7 @@ public abstract class BaseRecyclerViewFragment extends BaseDrawerFragment implem
 
     @Override
     public void onRefresh() {
-        cancelProgress();
+//        cancelProgress();
         page = 0;
         setIsNoMore(false);
         getAdapter().clear();
@@ -189,10 +189,8 @@ public abstract class BaseRecyclerViewFragment extends BaseDrawerFragment implem
     }
 
     final protected void onLoad() {
-        if (progressBar.getVisibility() == View.GONE) {
-            showProgress();
-            onLoadMore();
-        }
+//        showProgress();
+        onLoadMore();
     }
 
     protected abstract void onLoadMore();
