@@ -36,48 +36,37 @@ public abstract class BaseSupportActivity extends BaseActivity implements iFragm
 
     @Override
     public void AddFragment(Fragment fragment) {
-        AddFragment(fragment, false);
+        AddFragment(fragment, container_id, SLIDE);
     }
 
     @Override
     public void AddFragment(Fragment fragment, int container) {
-        AddFragment(fragment, container, SLIDE, false);
+        AddFragment(fragment, container, SLIDE);
     }
 
-    @Override
-    public void AddFragment(Fragment fragment, boolean instead) {
-        if (container_id == 0) {
-            Toast.makeText(this, "Please Set container_id ID", Toast.LENGTH_SHORT).show();
-            return;
-        }
-        AddFragment(fragment, container_id, SLIDE, instead);
-    }
 
     @Override
     public void AddFragment(Fragment fragment, String anim) {
-        AddFragment(fragment, container_id, anim, false);
+        AddFragment(fragment, container_id, anim);
     }
 
     @Override
-    public void AddFragment(Fragment fragment, int container, String anim, boolean instead) {
+    public void AddFragment(Fragment fragment, int container, String anim) {
         if (container == 0) {
             Toast.makeText(this, "Please Set container_id ID", Toast.LENGTH_SHORT).show();
             return;
         }
-        Fragment originalFragment = fragmentManager.findFragmentById(container);
-        if (!fragment.getClass().equals(originalFragment.getClass()) || instead) {
-            FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-            if (anim.equals(SLIDE)) {
-                fragmentTransaction.setCustomAnimations(R.anim.enter_from_right, R.anim.exit_to_right, R.anim.enter_from_left, R.anim.exit_to_left);
-            } else if (anim.equals(PUSH)) {
-                fragmentTransaction.setCustomAnimations(R.anim.slide_out_up, R.anim.slide_in_up, R.anim.slide_out_up, R.anim.slide_in_up);
-            } else if (anim.equals(FADE)) {
-                fragmentTransaction.setCustomAnimations(R.anim.zoom_in, 0, 0, R.anim.zoom_out);
-            } else if (anim.equals("")) {
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        if (anim.equals(SLIDE)) {
+            fragmentTransaction.setCustomAnimations(R.anim.enter_from_right, R.anim.exit_to_right, R.anim.enter_from_left, R.anim.exit_to_left);
+        } else if (anim.equals(PUSH)) {
+            fragmentTransaction.setCustomAnimations(R.anim.slide_out_up, R.anim.slide_in_up, R.anim.slide_out_up, R.anim.slide_in_up);
+        } else if (anim.equals(FADE)) {
+            fragmentTransaction.setCustomAnimations(R.anim.zoom_in, 0, 0, R.anim.zoom_out);
+        } else if (anim.equals("")) {
 
-            }
-            fragmentTransaction.replace(container, fragment, "main").addToBackStack("main_interface").commitAllowingStateLoss();
         }
+        fragmentTransaction.replace(container, fragment, "main").addToBackStack("main_interface").commitAllowingStateLoss();
         OnAddFragment();
     }
 

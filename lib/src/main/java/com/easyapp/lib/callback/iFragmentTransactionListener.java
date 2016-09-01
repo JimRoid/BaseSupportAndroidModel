@@ -17,11 +17,9 @@ public interface iFragmentTransactionListener {
 
     void AddFragment(Fragment fragment, int container);
 
-    void AddFragment(Fragment fragment, boolean instead);
-
     void AddFragment(Fragment fragment, String anim);
 
-    void AddFragment(Fragment fragment, int container, String anim, boolean instead);
+    void AddFragment(Fragment fragment, int container, String anim);
 
     void AddFragment_Zoom(Fragment fragment, int container);
 
