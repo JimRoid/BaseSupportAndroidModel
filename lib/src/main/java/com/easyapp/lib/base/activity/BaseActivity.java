@@ -18,8 +18,8 @@ import com.easyapp.lib.dialog.LoadingDialog;
  * hide keyboard
  */
 public abstract class BaseActivity extends AppCompatActivity {
-    private AlertDialog alertDialog;
-    private Toast toast;
+    protected AlertDialog alertDialog;
+    protected Toast toast;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
