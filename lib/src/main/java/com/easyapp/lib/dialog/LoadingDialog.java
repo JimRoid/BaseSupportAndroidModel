@@ -66,7 +66,6 @@ public class LoadingDialog extends AlertDialog {
     @Override
     protected void onStop() {
         super.onStop();
-
         animator.stop();
     }
 

@@ -17,7 +17,7 @@ public abstract class BaseRecyclerViewAdapter<VH extends BaseRecyclerViewAdapter
     public final static int VIEWTYPECONTENT = 1;
     protected List data;
     protected Context context;
-    protected EndlessRecyclerOnScrollListener recyclerOnScrollListener;
+    private EndlessRecyclerOnScrollListener recyclerOnScrollListener;
 
     public BaseRecyclerViewAdapter(Context context, EndlessRecyclerOnScrollListener recyclerOnScrollListener) {
         data = new ArrayList();
