@@ -27,9 +27,10 @@ public abstract class BaseTabActivity extends BaseMainActivity {
     protected void initial() {
         easyTabs.clear();
         setContainer(android.R.id.tabcontent);
+        initialOnCreate();
     }
 
-    abstract void initialOnCreate();
+    protected abstract void initialOnCreate();
 
     @Override
     protected int getLayoutId() {
