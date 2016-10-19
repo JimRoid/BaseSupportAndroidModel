@@ -1,6 +1,5 @@
 package com.easyapp.lib.base.activity;
 
-import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.HorizontalScrollView;
@@ -23,20 +22,14 @@ public abstract class BaseTabActivity extends BaseMainActivity {
 
     protected ImageView iv_right;
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(getLayoutId());
-        setContainer(android.R.id.tabcontent);
-        easyTabs.clear();
-        initView();
-        initial();
-    }
 
     @Override
     protected void initial() {
-
+        easyTabs.clear();
+        setContainer(android.R.id.tabcontent);
     }
+
+    abstract void initialOnCreate();
 
     @Override
     protected int getLayoutId() {
