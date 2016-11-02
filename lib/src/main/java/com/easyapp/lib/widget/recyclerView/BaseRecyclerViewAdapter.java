@@ -45,6 +45,11 @@ public abstract class BaseRecyclerViewAdapter<VH extends BaseRecyclerViewAdapter
         notifyDataSetChanged();
     }
 
+    public void addData(Object data) {
+        this.data.add(data);
+        notifyDataSetChanged();
+    }
+
     public <T> List getData() {
         if (data == null) data = new ArrayList();
 

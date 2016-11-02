@@ -226,6 +226,14 @@ public abstract class BaseRecyclerViewFragment extends BaseDrawerFragment implem
         baseRecycleViewAdapter.notifyDataSetChanged();
     }
 
+    protected void addData(Object o){
+        cancelProgress();
+        swipeRefreshLayout.setRefreshing(false);
+        baseRecycleViewAdapter.addData(o);
+        setEmptyView();
+        baseRecycleViewAdapter.notifyDataSetChanged();
+    }
+
     protected void setEmptyView() {
         setEmptyView(false);
     }
