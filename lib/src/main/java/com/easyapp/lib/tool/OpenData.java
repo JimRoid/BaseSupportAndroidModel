@@ -52,6 +52,11 @@ public class OpenData {
         }
     }
 
+    public static void OpenPhone(Context context, String number) {
+        Intent intent = new Intent(Intent.ACTION_DIAL, Uri.parse("tel:" + number));
+        context.startActivity(intent);
+    }
+
 
     /**
      * 開啟url
