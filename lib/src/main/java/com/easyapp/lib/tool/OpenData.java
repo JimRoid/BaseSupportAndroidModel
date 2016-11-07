@@ -52,8 +52,30 @@ public class OpenData {
         }
     }
 
+    /**
+     * 開啟電話
+     *
+     * @param context
+     * @param number
+     */
     public static void OpenPhone(Context context, String number) {
         Intent intent = new Intent(Intent.ACTION_DIAL, Uri.parse("tel:" + number));
+        context.startActivity(intent);
+    }
+
+    /**
+     * 開啟email
+     *
+     * @param context
+     * @param mailAddress
+     * @param content
+     */
+    public static void OpenEmail(Context context, String mailAddress, String subject, String content) {
+        Intent intent = new Intent();
+        intent.setAction(Intent.ACTION_SENDTO);
+        intent.setData(Uri.parse("mailto:" + mailAddress));
+        intent.putExtra(Intent.EXTRA_SUBJECT, subject);
+        intent.putExtra(Intent.EXTRA_TEXT, content);
         context.startActivity(intent);
     }
 
