@@ -50,7 +50,7 @@ public abstract class BaseRecyclerViewAdapter<VH extends BaseRecyclerViewAdapter
         notifyDataSetChanged();
     }
 
-    public <T> List getData() {
+    public List getData() {
         if (data == null) data = new ArrayList();
 
         return data;

@@ -268,7 +268,7 @@ public abstract class BaseRecyclerViewFragment extends BaseDrawerFragment implem
      * @param o
      */
 
-    protected void setItem(int position, Object o) {
+    protected<T> void setItem(int position, T o) {
         baseRecycleViewAdapter.setItem(position, o);
     }
 
@@ -397,9 +397,9 @@ public abstract class BaseRecyclerViewFragment extends BaseDrawerFragment implem
      */
     protected abstract BaseRecyclerViewAdapter.ItemHolder getHeaderItemHolder(View contactView);
 
-    protected abstract void getBindViewHolder(RecyclerView.ViewHolder holder, Object obj);
+    protected abstract<T> void getBindViewHolder(RecyclerView.ViewHolder holder, T obj);
 
-    protected abstract void getBindHeaderViewHolder(RecyclerView.ViewHolder holder, Object obj);
+    protected abstract<T> void getBindHeaderViewHolder(RecyclerView.ViewHolder holder, T obj);
 
 
     /**
