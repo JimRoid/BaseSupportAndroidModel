@@ -11,16 +11,16 @@ import java.util.List;
 /**
  * Recycler View Adapter
  */
-public abstract class BaseRecyclerViewAdapter<VH extends BaseRecyclerViewAdapter.ItemHolder> extends RecyclerView.Adapter<BaseRecyclerViewAdapter.ItemHolder> {
+public abstract class BaseRecyclerViewAdapter<VH extends BaseRecyclerViewAdapter.ItemHolder, T> extends RecyclerView.Adapter<BaseRecyclerViewAdapter.ItemHolder> {
 
     public final static int VIEWTYPEHEADER = 0;
     public final static int VIEWTYPECONTENT = 1;
-    protected List data;
+    protected ArrayList<T> data;
     protected Context context;
     private EndlessRecyclerOnScrollListener recyclerOnScrollListener;
 
     public BaseRecyclerViewAdapter(Context context, EndlessRecyclerOnScrollListener recyclerOnScrollListener) {
-        data = new ArrayList();
+        data = new ArrayList<T>();
         this.context = context;
         this.recyclerOnScrollListener = recyclerOnScrollListener;
     }
@@ -34,18 +34,17 @@ public abstract class BaseRecyclerViewAdapter<VH extends BaseRecyclerViewAdapter
     }
 
 
-
-    public <T> void setItem(int position, T obj) {
+    public void setItem(int position, T obj) {
         data.set(position, obj);
         notifyItemChanged(position);
     }
 
-    public void addData(List data) {
+    public void addData(ArrayList<T> data) {
         this.data.addAll(data);
         notifyDataSetChanged();
     }
 
-    public void addData(Object data) {
+    public void addData(T data) {
         this.data.add(data);
         notifyDataSetChanged();
     }
@@ -56,19 +55,19 @@ public abstract class BaseRecyclerViewAdapter<VH extends BaseRecyclerViewAdapter
         return data;
     }
 
-    public <T> void addItem(int pos, T obj) {
+    public void addItem(int pos, T obj) {
         getData();
         data.add(pos, obj);
         notifyDataSetChanged();
     }
 
-    public <T> void addItem(T obj) {
+    public void addItem(T obj) {
         getData();
         data.add(obj);
         notifyDataSetChanged();
     }
 
-    public <T> void removeItem(T obj) {
+    public void removeItem(T obj) {
         if (data != null) {
             data.remove(obj);
             notifyDataSetChanged();
@@ -95,7 +94,7 @@ public abstract class BaseRecyclerViewAdapter<VH extends BaseRecyclerViewAdapter
         return size;
     }
 
-    public <T> T getItem(int position) {
+    public T getItem(int position) {
         return (T) getData().get(position);
     }
 
@@ -114,14 +113,6 @@ public abstract class BaseRecyclerViewAdapter<VH extends BaseRecyclerViewAdapter
     public static abstract class ItemHolder extends RecyclerView.ViewHolder {
         public ItemHolder(View itemView) {
             super(itemView);
-        }
-
-        protected <T> void bind(T t, int position, OnItemClick onItemClick) {
-
-        }
-
-        public interface OnItemClick {
-            <T> void onItemClick(T t, String tag);
         }
     }
 

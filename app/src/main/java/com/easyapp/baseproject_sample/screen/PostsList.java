@@ -10,15 +10,14 @@ import com.easyapp.baseproject_sample.R;
 import com.easyapp.baseproject_sample.http.api.ApiTool;
 import com.easyapp.baseproject_sample.http.entity.ItemProduct;
 import com.easyapp.lib.base.fragment.list.BaseRecyclerViewFragment;
+import com.easyapp.lib.callback.Callback;
 import com.easyapp.lib.widget.recyclerView.BaseRecyclerViewAdapter;
 import com.orhanobut.logger.Logger;
-
-import java.util.ArrayList;
 
 /**
  * 測試用列表
  */
-public class PostsList extends BaseRecyclerViewFragment {
+public class PostsList extends BaseRecyclerViewFragment<PostsList.AdapterItemHolder, ItemProduct.DataBean.ContentBean> {
 
     private ApiTool apiTool;
 
@@ -44,17 +43,17 @@ public class PostsList extends BaseRecyclerViewFragment {
 
     @Override
     protected void onLoadMore() {
-        addData(new ArrayList());
-//        apiTool.getProductList("", "", "", new Callback() {
-//            @Override
-//            public void callback(Object object) {
-//                ItemProduct photos = (ItemProduct) object;
-//                addData(photos.getData().getContent());
-//                addData(photos.getData().getContent());
-//                addData(photos.getData().getContent());
-//                addData(photos.getData().getContent());
-//            }
-//        });
+//        addData(new ArrayList());
+        apiTool.getProductList("", "", "", new Callback() {
+            @Override
+            public void callback(Object object) {
+                ItemProduct photos = (ItemProduct) object;
+                addData(photos.getData().getContent());
+                addData(photos.getData().getContent());
+                addData(photos.getData().getContent());
+                addData(photos.getData().getContent());
+            }
+        });
     }
 
     @Override
@@ -78,9 +77,8 @@ public class PostsList extends BaseRecyclerViewFragment {
     }
 
     @Override
-    protected void getBindViewHolder(RecyclerView.ViewHolder holder, Object obj) {
+    protected void getBindViewHolder(RecyclerView.ViewHolder holder, ItemProduct.DataBean.ContentBean photo) {
         AdapterItemHolder adapterItemHolder = (AdapterItemHolder) holder;
-        ItemProduct.DataBean.ContentBean photo = (ItemProduct.DataBean.ContentBean) obj;
         Glide.with(getContext()).load(photo.getS_pic()).placeholder(R.drawable.icon_empty).into(adapterItemHolder.iv_picture);
         adapterItemHolder.textView.setText(photo.getName());
         adapterItemHolder.content.setOnClickListener(new View.OnClickListener() {
@@ -92,7 +90,7 @@ public class PostsList extends BaseRecyclerViewFragment {
     }
 
     @Override
-    protected void getBindHeaderViewHolder(RecyclerView.ViewHolder holder, Object obj) {
+    protected void getBindHeaderViewHolder(RecyclerView.ViewHolder holder, ItemProduct.DataBean.ContentBean obj) {
         getBindViewHolder(holder, obj);
     }
 

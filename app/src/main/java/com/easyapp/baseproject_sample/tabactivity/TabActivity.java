@@ -10,6 +10,11 @@ import com.easyapp.baseproject_sample.screen.PostsStaggeredList;
 public class TabActivity extends BaseTabActivity {
 
     @Override
+    protected void initialOnCreate() {
+
+    }
+
+    @Override
     protected void onSetupTab() {
 
         setTitleImageResource(R.drawable.logo);

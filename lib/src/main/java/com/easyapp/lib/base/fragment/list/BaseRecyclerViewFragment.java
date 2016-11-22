@@ -23,7 +23,7 @@ import java.util.List;
 /**
  * 基本的列表fragment
  */
-public abstract class BaseRecyclerViewFragment extends BaseDrawerFragment implements SwipeRefreshLayout.OnRefreshListener {
+public abstract class BaseRecyclerViewFragment<VH extends BaseRecyclerViewAdapter.ItemHolder, T> extends BaseDrawerFragment implements SwipeRefreshLayout.OnRefreshListener {
 
     protected View view;
     protected SwipeRefreshLayout swipeRefreshLayout;
@@ -165,9 +165,9 @@ public abstract class BaseRecyclerViewFragment extends BaseDrawerFragment implem
             @Override
             public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
                 if (holder.getItemViewType() == VIEWTYPEHEADER) {
-                    getBindHeaderViewHolder(holder, getItem(position));
+                    getBindHeaderViewHolder(holder, (T) getItem(position));
                 } else {
-                    getBindViewHolder(holder, getItem(position));
+                    getBindViewHolder(holder, (T) getItem(position));
                 }
             }
         };
@@ -226,7 +226,7 @@ public abstract class BaseRecyclerViewFragment extends BaseDrawerFragment implem
         baseRecycleViewAdapter.notifyDataSetChanged();
     }
 
-    protected void addData(Object o){
+    protected void addData(Object o) {
         cancelProgress();
         swipeRefreshLayout.setRefreshing(false);
         baseRecycleViewAdapter.addData(o);
@@ -268,7 +268,7 @@ public abstract class BaseRecyclerViewFragment extends BaseDrawerFragment implem
      * @param o
      */
 
-    protected<T> void setItem(int position, T o) {
+    protected <T> void setItem(int position, T o) {
         baseRecycleViewAdapter.setItem(position, o);
     }
 
@@ -397,9 +397,9 @@ public abstract class BaseRecyclerViewFragment extends BaseDrawerFragment implem
      */
     protected abstract BaseRecyclerViewAdapter.ItemHolder getHeaderItemHolder(View contactView);
 
-    protected abstract<T> void getBindViewHolder(RecyclerView.ViewHolder holder, T obj);
+    protected abstract void getBindViewHolder(RecyclerView.ViewHolder holder, T obj);
 
-    protected abstract<T> void getBindHeaderViewHolder(RecyclerView.ViewHolder holder, T obj);
+    protected abstract void getBindHeaderViewHolder(RecyclerView.ViewHolder holder, T obj);
 
 
     /**
