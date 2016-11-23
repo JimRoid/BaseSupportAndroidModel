@@ -206,7 +206,7 @@ public abstract class BaseRecyclerViewFragment<VH extends BaseRecyclerViewAdapte
      */
     protected void setData(List arrayList) {
         baseRecycleViewAdapter.clear();
-        addData(arrayList);
+        addAll(arrayList);
     }
 
     /**
@@ -214,22 +214,22 @@ public abstract class BaseRecyclerViewFragment<VH extends BaseRecyclerViewAdapte
      *
      * @param arrayList
      */
-    protected void addData(List arrayList) {
+    protected void addAll(List arrayList) {
         cancelProgress();
         if (arrayList.size() < limit) {
             setIsNoMore(true);
         }
         page++;
         swipeRefreshLayout.setRefreshing(false);
-        baseRecycleViewAdapter.addData(arrayList);
+        baseRecycleViewAdapter.addAll(arrayList);
         setEmptyView();
         baseRecycleViewAdapter.notifyDataSetChanged();
     }
 
-    protected void addData(T o) {
+    protected void add(T o) {
         cancelProgress();
         swipeRefreshLayout.setRefreshing(false);
-        baseRecycleViewAdapter.addData(o);
+        baseRecycleViewAdapter.add(o);
         setEmptyView();
         baseRecycleViewAdapter.notifyDataSetChanged();
     }

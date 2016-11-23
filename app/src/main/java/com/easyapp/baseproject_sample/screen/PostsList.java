@@ -47,10 +47,10 @@ public class PostsList extends BaseRecyclerViewFragment<PostsList.AdapterItemHol
             @Override
             public void callback(Object object) {
                 ItemProduct photos = (ItemProduct) object;
-                addData(photos.getData().getContent());
-                addData(photos.getData().getContent());
-                addData(photos.getData().getContent());
-                addData(photos.getData().getContent());
+                addAll(photos.getData().getContent());
+                addAll(photos.getData().getContent());
+                addAll(photos.getData().getContent());
+                addAll(photos.getData().getContent());
             }
         });
     }

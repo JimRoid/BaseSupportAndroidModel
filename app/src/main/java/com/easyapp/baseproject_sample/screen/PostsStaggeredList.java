@@ -45,9 +45,9 @@ public class PostsStaggeredList extends BaseRecyclerViewStaggeredFragment {
             public void callback(Object object) {
                 ItemProduct photos = (ItemProduct) object;
                 if (getSize() > 0) {
-                    addData(photos.getData().getContent());
+                    addAll(photos.getData().getContent());
                 } else {
-                    addData(photos.getData().getContent());
+                    addAll(photos.getData().getContent());
                 }
             }
         });

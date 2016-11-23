@@ -20,7 +20,7 @@ public abstract class BaseRecyclerViewAdapter<VH extends BaseRecyclerViewAdapter
     private EndlessRecyclerOnScrollListener recyclerOnScrollListener;
 
     public BaseRecyclerViewAdapter(Context context, EndlessRecyclerOnScrollListener recyclerOnScrollListener) {
-        data = new ArrayList<T>();
+        data = new ArrayList<>();
         this.context = context;
         this.recyclerOnScrollListener = recyclerOnScrollListener;
     }
@@ -39,12 +39,12 @@ public abstract class BaseRecyclerViewAdapter<VH extends BaseRecyclerViewAdapter
         notifyItemChanged(position);
     }
 
-    public void addData(ArrayList<T> data) {
+    public void addAll(List data) {
         this.data.addAll(data);
         notifyDataSetChanged();
     }
 
-    public void addData(T data) {
+    public void add(T data) {
         this.data.add(data);
         notifyDataSetChanged();
     }
@@ -55,15 +55,9 @@ public abstract class BaseRecyclerViewAdapter<VH extends BaseRecyclerViewAdapter
         return data;
     }
 
-    public void addItem(int pos, T obj) {
+    public void add(int pos, T obj) {
         getData();
         data.add(pos, obj);
-        notifyDataSetChanged();
-    }
-
-    public void addItem(T obj) {
-        getData();
-        data.add(obj);
         notifyDataSetChanged();
     }
 
