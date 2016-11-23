@@ -165,9 +165,9 @@ public abstract class BaseRecyclerViewFragment<VH extends BaseRecyclerViewAdapte
             @Override
             public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
                 if (holder.getItemViewType() == VIEWTYPEHEADER) {
-                    getBindHeaderViewHolder(holder, (T) getItem(position));
+                    getBindHeaderViewHolder((VH) holder, (T) getItem(position));
                 } else {
-                    getBindViewHolder(holder, (T) getItem(position));
+                    getBindViewHolder((VH) holder, (T) getItem(position));
                 }
             }
         };
@@ -226,7 +226,7 @@ public abstract class BaseRecyclerViewFragment<VH extends BaseRecyclerViewAdapte
         baseRecycleViewAdapter.notifyDataSetChanged();
     }
 
-    protected void addData(Object o) {
+    protected void addData(T o) {
         cancelProgress();
         swipeRefreshLayout.setRefreshing(false);
         baseRecycleViewAdapter.addData(o);
@@ -268,7 +268,7 @@ public abstract class BaseRecyclerViewFragment<VH extends BaseRecyclerViewAdapte
      * @param o
      */
 
-    protected <T> void setItem(int position, T o) {
+    protected void setItem(int position, T o) {
         baseRecycleViewAdapter.setItem(position, o);
     }
 
@@ -356,7 +356,7 @@ public abstract class BaseRecyclerViewFragment<VH extends BaseRecyclerViewAdapte
         return baseRecycleViewAdapter;
     }
 
-    protected <T> T getItem(int position) {
+    protected T getItem(int position) {
         return (T) getAdapter().getItem(position);
     }
 
@@ -397,9 +397,9 @@ public abstract class BaseRecyclerViewFragment<VH extends BaseRecyclerViewAdapte
      */
     protected abstract BaseRecyclerViewAdapter.ItemHolder getHeaderItemHolder(View contactView);
 
-    protected abstract void getBindViewHolder(RecyclerView.ViewHolder holder, T obj);
+    protected abstract void getBindViewHolder(VH holder, T obj);
 
-    protected abstract void getBindHeaderViewHolder(RecyclerView.ViewHolder holder, T obj);
+    protected abstract void getBindHeaderViewHolder(VH holder, T obj);
 
 
     /**

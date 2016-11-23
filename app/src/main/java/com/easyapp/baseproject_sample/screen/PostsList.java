@@ -1,6 +1,5 @@
 package com.easyapp.baseproject_sample.screen;
 
-import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -77,11 +76,10 @@ public class PostsList extends BaseRecyclerViewFragment<PostsList.AdapterItemHol
     }
 
     @Override
-    protected void getBindViewHolder(RecyclerView.ViewHolder holder, ItemProduct.DataBean.ContentBean photo) {
-        AdapterItemHolder adapterItemHolder = (AdapterItemHolder) holder;
-        Glide.with(getContext()).load(photo.getS_pic()).placeholder(R.drawable.icon_empty).into(adapterItemHolder.iv_picture);
-        adapterItemHolder.textView.setText(photo.getName());
-        adapterItemHolder.content.setOnClickListener(new View.OnClickListener() {
+    protected void getBindViewHolder(AdapterItemHolder holder, ItemProduct.DataBean.ContentBean photo) {
+        Glide.with(getContext()).load(photo.getS_pic()).placeholder(R.drawable.icon_empty).into(holder.iv_picture);
+        holder.textView.setText(photo.getName());
+        holder.content.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 AddFragment(new SampleFragment());
@@ -90,7 +88,7 @@ public class PostsList extends BaseRecyclerViewFragment<PostsList.AdapterItemHol
     }
 
     @Override
-    protected void getBindHeaderViewHolder(RecyclerView.ViewHolder holder, ItemProduct.DataBean.ContentBean obj) {
+    protected void getBindHeaderViewHolder(AdapterItemHolder holder, ItemProduct.DataBean.ContentBean obj) {
         getBindViewHolder(holder, obj);
     }
 
