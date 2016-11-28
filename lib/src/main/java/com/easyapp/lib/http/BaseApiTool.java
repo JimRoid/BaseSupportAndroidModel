@@ -1,52 +1,75 @@
 package com.easyapp.lib.http;
 
+import android.content.Context;
+
 import com.easyapp.lib.callback.Callback;
-import com.google.gson.Gson;
+import com.easyapp.lib.tool.Utils;
 import com.orhanobut.logger.Logger;
 
 import retrofit2.Call;
 import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
 
 /**
- * Created by easyapp_jim on 2016/9/6.
+ * 提供基本的 retrofit2 泛型callback
+ * <p>
+ * example: new initCallback<T>().getCallback(callback);
  */
-public class BaseApiTool {
+public abstract class BaseApiTool<TServices> {
 
-    public <T> retrofit2.Callback getCallback(final Callback callback) {
-        callback.initCallback();
-        return new retrofit2.Callback<T>() {
-            @Override
-            public void onResponse(Call<T> call, Response<T> response) {
-                if (response.isSuccessful() && response.code() == 200) {
-                    Gson gson = new Gson();
-                    String raw = gson.toJson(response.body());
-                    ItemBase message = gson.fromJson(raw, ItemBase.class);
+    private Context context;
 
-                    if (message == null) {
-                        callback.onFail();
-                        callback.onComplete();
-                        return;
-                    }
+    protected abstract String initUrl();
 
-                    if (message.getStatus() == 200) {
+    protected abstract Class<TServices> initService();
+
+    protected TServices services;
+
+    public Context getContext() {
+        return context;
+    }
+
+    public BaseApiTool(Context context) {
+        super();
+        this.context = context;
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl(initUrl())
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+        Utils.validateServiceInterface(this.initService());
+        services = retrofit.create(initService());
+    }
+
+    interface BaseApiCallback<T> {
+        retrofit2.Callback<T> getCallback(final Callback callback);
+    }
+
+    public class initCallback<T> implements BaseApiCallback<T> {
+        @Override
+        public retrofit2.Callback<T> getCallback(final Callback callback) {
+            //初始化
+            callback.initCallback();
+
+            return new retrofit2.Callback<T>() {
+                @Override
+                public void onResponse(Call<T> call, Response<T> response) {
+                    if (response.isSuccessful() && response.code() == 200) {
                         callback.callback(response.body());
+                        callback.onComplete();
                     } else {
-                        callback.onFail(response.body());
+                        callback.onFail(response.code() + "");
+                        callback.onComplete();
                     }
-                    callback.onComplete();
-                } else {
-                    callback.onFail();
+                }
+
+                @Override
+                public void onFailure(Call<T> call, Throwable t) {
+                    Logger.d("onFailure");
+                    callback.onFail("error");
                     callback.onComplete();
                 }
-            }
-
-            @Override
-            public void onFailure(Call<T> call, Throwable t) {
-                Logger.d("onFailure");
-                callback.onFail();
-                callback.onComplete();
-                t.printStackTrace();
-            }
-        };
+            };
+        }
     }
 }

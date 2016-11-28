@@ -30,7 +30,7 @@ public class PostsStaggeredList extends BaseRecyclerViewStaggeredFragment<PostsS
 
     @Override
     protected void init() {
-        apiTool = new ApiTool();
+        apiTool = new ApiTool(getContext());
 //        setRecyclerViewAnimDisable();
         setTitleImageResource(R.drawable.logo);
         setAutoHideToolBar(true);

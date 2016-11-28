@@ -29,7 +29,7 @@ public class ListSample extends BaseRecyclerViewFragment<PostsList.AdapterItemHo
 
     @Override
     protected void init() {
-        apiTool = new ApiTool();
+        apiTool = new ApiTool(getContext());
         setRecyclerViewAnimDisable();
         setTitleImageResource(R.drawable.logo);
         setAutoHideToolBar(false);

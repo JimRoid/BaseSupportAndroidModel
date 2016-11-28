@@ -28,7 +28,7 @@ public class PostsList extends BaseRecyclerViewFragment<PostsList.AdapterItemHol
 
     @Override
     protected void init() {
-        apiTool = new ApiTool();
+        apiTool = new ApiTool(getContext());
         setTitleImageResource(R.drawable.logo);
         setAutoHideToolBar(false);
         setFabOnClickListener(new View.OnClickListener() {
@@ -42,10 +42,9 @@ public class PostsList extends BaseRecyclerViewFragment<PostsList.AdapterItemHol
 
     @Override
     protected void onLoadMore() {
-//        addData(new ArrayList());
-        apiTool.getProductList("", "", "", new Callback() {
+        apiTool.getProductList("", "", "", new Callback<ItemProduct>() {
             @Override
-            public void callback(Object object) {
+            public void callback(ItemProduct object) {
                 ItemProduct photos = (ItemProduct) object;
                 addAll(photos.getData().getContent());
                 addAll(photos.getData().getContent());
