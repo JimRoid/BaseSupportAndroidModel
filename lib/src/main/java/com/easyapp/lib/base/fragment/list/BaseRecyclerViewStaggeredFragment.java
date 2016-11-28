@@ -5,11 +5,12 @@ import android.support.v7.widget.RecyclerView;
 import android.widget.ProgressBar;
 
 import com.easyapp.lib.R;
+import com.easyapp.lib.widget.recyclerView.BaseRecyclerViewAdapter;
 
 /**
  * 基本的列表fragment
  */
-public abstract class BaseRecyclerViewStaggeredFragment extends BaseRecyclerViewFragment implements SwipeRefreshLayout.OnRefreshListener {
+public abstract class BaseRecyclerViewStaggeredFragment<VH extends BaseRecyclerViewAdapter.ItemHolder, T> extends BaseRecyclerViewFragment<VH, T> implements SwipeRefreshLayout.OnRefreshListener {
 
     @Override
     protected int getLayoutId() {

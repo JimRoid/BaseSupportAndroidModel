@@ -3,7 +3,7 @@ package com.easyapp.lib.callback;
 /**
  * 基本callback
  */
-public interface iCallback {
+public interface iCallback<T> {
 
     void initCallback();
 
@@ -11,7 +11,7 @@ public interface iCallback {
 
     void callback(String value);
 
-    void callback(Object object);
+    void callback(T object);
 
     void onSuccess();
 

@@ -1,6 +1,5 @@
 package com.easyapp.baseproject_sample.toolbaractivity;
 
-import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -9,6 +8,7 @@ import com.bumptech.glide.Glide;
 import com.easyapp.baseproject_sample.R;
 import com.easyapp.baseproject_sample.http.api.ApiTool;
 import com.easyapp.baseproject_sample.http.entity.ItemProduct;
+import com.easyapp.baseproject_sample.screen.PostsList;
 import com.easyapp.baseproject_sample.screen.SampleFragment;
 import com.easyapp.lib.base.fragment.list.BaseRecyclerViewFragment;
 import com.easyapp.lib.callback.Callback;
@@ -17,7 +17,7 @@ import com.easyapp.lib.widget.recyclerView.BaseRecyclerViewAdapter;
 /**
  * Created by easyapp_jim on 2016/5/3.
  */
-public class ListSample extends BaseRecyclerViewFragment {
+public class ListSample extends BaseRecyclerViewFragment<PostsList.AdapterItemHolder, ItemProduct.DataBean.ContentBean> {
 
     private ApiTool apiTool;
 
@@ -39,15 +39,11 @@ public class ListSample extends BaseRecyclerViewFragment {
 
     @Override
     protected void onLoadMore() {
-        apiTool.getProductList("","","",new Callback() {
+        apiTool.getProductList("", "", "", new Callback() {
             @Override
             public void callback(Object object) {
                 ItemProduct photos = (ItemProduct) object;
-                if (getSize() > 0) {
-                    addData(photos.getData().getContent());
-                } else {
-                    addData(photos.getData().getContent());
-                }
+                addAll(photos.getData().getContent());
             }
         });
     }
@@ -78,12 +74,10 @@ public class ListSample extends BaseRecyclerViewFragment {
     }
 
     @Override
-    protected void getBindViewHolder(RecyclerView.ViewHolder holder, Object obj) {
-        AdapterItemHolder adapterItemHolder = (AdapterItemHolder) holder;
-        ItemProduct.DataBean.ContentBean photo = ( ItemProduct.DataBean.ContentBean) obj;
-        Glide.with(getContext()).load(photo.getS_pic()).placeholder(R.drawable.icon_empty).into(adapterItemHolder.iv_picture);
-        adapterItemHolder.textView.setText(photo.getName());
-        adapterItemHolder.content.setOnClickListener(new View.OnClickListener() {
+    protected void getBindViewHolder(PostsList.AdapterItemHolder holder, ItemProduct.DataBean.ContentBean photo) {
+        Glide.with(getContext()).load(photo.getS_pic()).placeholder(R.drawable.icon_empty).into(holder.iv_picture);
+        holder.textView.setText(photo.getName());
+        holder.content.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 AddFragment(new SampleFragment());
@@ -92,7 +86,7 @@ public class ListSample extends BaseRecyclerViewFragment {
     }
 
     @Override
-    protected void getBindHeaderViewHolder(RecyclerView.ViewHolder holder, Object obj) {
+    protected void getBindHeaderViewHolder(PostsList.AdapterItemHolder holder, ItemProduct.DataBean.ContentBean obj) {
         getBindViewHolder(holder, obj);
     }
 

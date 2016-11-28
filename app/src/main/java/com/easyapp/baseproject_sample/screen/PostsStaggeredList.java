@@ -17,7 +17,7 @@ import com.easyapp.lib.widget.recyclerView.BaseRecyclerViewAdapter;
 /**
  * 測試用列表
  */
-public class PostsStaggeredList extends BaseRecyclerViewStaggeredFragment {
+public class PostsStaggeredList extends BaseRecyclerViewStaggeredFragment<PostsStaggeredList.AdapterItemHolder, ItemProduct.DataBean.ContentBean> {
 
     private ApiTool apiTool;
 
@@ -40,7 +40,7 @@ public class PostsStaggeredList extends BaseRecyclerViewStaggeredFragment {
 
     @Override
     protected void onLoadMore() {
-        apiTool.getProductList("","","",new Callback() {
+        apiTool.getProductList("", "", "", new Callback() {
             @Override
             public void callback(Object object) {
                 ItemProduct photos = (ItemProduct) object;
@@ -79,12 +79,10 @@ public class PostsStaggeredList extends BaseRecyclerViewStaggeredFragment {
     }
 
     @Override
-    protected void getBindViewHolder(RecyclerView.ViewHolder holder, Object obj) {
-        AdapterItemHolder adapterItemHolder = (AdapterItemHolder) holder;
-        ItemProduct.DataBean.ContentBean photo = ( ItemProduct.DataBean.ContentBean) obj;
-        Glide.with(getContext()).load(photo.getS_pic()).placeholder(R.drawable.icon_empty).into(adapterItemHolder.iv_picture);
-        adapterItemHolder.textView.setText(photo.getName());
-        adapterItemHolder.content.setOnClickListener(new View.OnClickListener() {
+    protected void getBindViewHolder(AdapterItemHolder holder, ItemProduct.DataBean.ContentBean bean) {
+        Glide.with(getContext()).load(bean.getS_pic()).placeholder(R.drawable.icon_empty).into(holder.iv_picture);
+        holder.textView.setText(bean.getName());
+        holder.content.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 AddFragment(new SampleFragment());
@@ -93,7 +91,7 @@ public class PostsStaggeredList extends BaseRecyclerViewStaggeredFragment {
     }
 
     @Override
-    protected void getBindHeaderViewHolder(RecyclerView.ViewHolder holder, Object obj) {
+    protected void getBindHeaderViewHolder(AdapterItemHolder holder, ItemProduct.DataBean.ContentBean obj) {
         getBindViewHolder(holder, obj);
     }
 
