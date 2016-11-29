@@ -21,6 +21,11 @@ public class Callback<T> implements iCallback<T> {
     }
 
     @Override
+    public void onFail() {
+
+    }
+
+    @Override
     public void onComplete() {
 
     }

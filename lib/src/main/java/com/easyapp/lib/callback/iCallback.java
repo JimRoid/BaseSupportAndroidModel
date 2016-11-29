@@ -12,6 +12,8 @@ public interface iCallback<T> {
 
     void onFail(T object);
 
+    void onFail();
+
     void onComplete();
 
 }

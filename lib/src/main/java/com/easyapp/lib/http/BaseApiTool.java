@@ -4,6 +4,7 @@ import android.content.Context;
 
 import com.easyapp.lib.callback.Callback;
 import com.easyapp.lib.tool.Utils;
+import com.google.gson.Gson;
 import com.orhanobut.logger.Logger;
 
 import retrofit2.Call;
@@ -18,6 +19,8 @@ import retrofit2.converter.gson.GsonConverterFactory;
  */
 public abstract class BaseApiTool<TServices> {
 
+    private boolean showDebug = true;
+
     private Context context;
 
     protected abstract String initUrl();
@@ -28,6 +31,10 @@ public abstract class BaseApiTool<TServices> {
 
     public Context getContext() {
         return context;
+    }
+
+    public void setShowDebug(boolean showDebug) {
+        this.showDebug = showDebug;
     }
 
     public BaseApiTool(Context context) {
@@ -54,19 +61,25 @@ public abstract class BaseApiTool<TServices> {
             return new retrofit2.Callback<T>() {
                 @Override
                 public void onResponse(Call<T> call, Response<T> response) {
+                    if (showDebug) {
+                        Logger.d("response.code():" + response.code() + "");
+                        Gson gson = new Gson();
+                        Logger.d("" + gson.toJson(response.body()));
+                    }
                     if (response.isSuccessful() && response.code() == 200) {
                         callback.callback(response.body());
-                        callback.onComplete();
                     } else {
-                        callback.onFail(response.code() + "");
-                        callback.onComplete();
+                        callback.onFail(response.body());
                     }
+                    callback.onComplete();
                 }
 
                 @Override
                 public void onFailure(Call<T> call, Throwable t) {
-                    Logger.d("onFailure");
-                    callback.onFail("error");
+                    if (showDebug) {
+                        Logger.d("onFailure");
+                    }
+                    callback.onFail();
                     callback.onComplete();
                 }
             };
