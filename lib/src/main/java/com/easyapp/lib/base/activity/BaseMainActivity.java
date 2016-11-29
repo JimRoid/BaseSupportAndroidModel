@@ -19,7 +19,7 @@ public abstract class BaseMainActivity extends BaseSupportActivity implements iT
     protected ImageView iv_title;
     protected TextView tv_title;
     protected LinearLayout fl_right, fl_left;
-    private View container;
+    protected View container;
 
 
     @Override
@@ -49,12 +49,10 @@ public abstract class BaseMainActivity extends BaseSupportActivity implements iT
         });
 
         container = findViewById(container_id);
-
         iv_title = (ImageView) toolbar.findViewById(R.id.iv_title);
         tv_title = (TextView) toolbar.findViewById(R.id.tv_title);
         fl_right = (LinearLayout) toolbar.findViewById(R.id.fl_right);
         fl_left = (LinearLayout) toolbar.findViewById(R.id.fl_left);
-
     }
 
 
