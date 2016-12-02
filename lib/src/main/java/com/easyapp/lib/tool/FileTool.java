@@ -6,7 +6,9 @@ import java.io.File;
 import java.io.IOException;
 
 /**
- * Created by easyapp_jim on 2016/4/29.
+ * 建立檔案
+ * 建立資料夾
+ *
  */
 public class FileTool {
 

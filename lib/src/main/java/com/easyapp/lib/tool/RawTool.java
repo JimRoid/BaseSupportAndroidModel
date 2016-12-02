@@ -11,7 +11,7 @@ import java.io.StringWriter;
 import java.io.Writer;
 
 /**
- * Created by easyapp_jim on 2016/3/31.
+ * 取回raw資料夾的檔案資料
  */
 public class RawTool {
     public static String getRawString(Context context, int res_raw) {
