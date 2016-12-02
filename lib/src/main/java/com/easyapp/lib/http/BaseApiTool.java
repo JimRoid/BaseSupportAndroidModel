@@ -48,13 +48,10 @@ public abstract class BaseApiTool<TServices> {
         services = retrofit.create(initService());
     }
 
-    interface BaseApiCallback<T> {
-        retrofit2.Callback<T> getCallback(final Callback callback);
-    }
 
     public class initCallback<T> implements BaseApiCallback<T> {
         @Override
-        public retrofit2.Callback<T> getCallback(final Callback callback) {
+        public retrofit2.Callback<T> getCallback(final Callback<T> callback) {
             //初始化
             callback.initCallback();
 
