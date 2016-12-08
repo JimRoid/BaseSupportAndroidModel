@@ -9,14 +9,14 @@ import com.easyapp.baseproject_sample.R;
 import com.easyapp.baseproject_sample.http.api.ApiTool;
 import com.easyapp.baseproject_sample.http.entity.ItemProduct;
 import com.easyapp.baseproject_sample.screen.SampleFragment;
-import com.easyapp.lib.base.fragment.list.BaseRecyclerList;
+import com.easyapp.lib.base.fragment.list.BaseList;
 import com.easyapp.lib.callback.Callback;
 import com.easyapp.lib.widget.recyclerView.BaseRecyclerViewAdapter;
 
 /**
  * Created by easyapp_jim on 2016/5/3.
  */
-public class ListSample extends BaseRecyclerList<ListSample.AdapterItemHolder, ItemProduct.DataBean.ContentBean> {
+public class ListSample extends BaseList<ListSample.AdapterItemHolder, ItemProduct.DataBean.ContentBean> {
 
     private ApiTool apiTool;
 

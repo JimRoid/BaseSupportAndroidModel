@@ -8,7 +8,7 @@ import com.bumptech.glide.Glide;
 import com.easyapp.baseproject_sample.R;
 import com.easyapp.baseproject_sample.http.api.ApiTool;
 import com.easyapp.baseproject_sample.http.entity.ItemProduct;
-import com.easyapp.lib.base.fragment.list.BaseRecyclerList;
+import com.easyapp.lib.base.fragment.list.BaseList;
 import com.easyapp.lib.callback.Callback;
 import com.easyapp.lib.widget.recyclerView.BaseRecyclerViewAdapter;
 import com.orhanobut.logger.Logger;
@@ -16,7 +16,7 @@ import com.orhanobut.logger.Logger;
 /**
  * 測試用列表
  */
-public class PostsList extends BaseRecyclerList<PostsList.AdapterItemHolder, ItemProduct.DataBean.ContentBean> {
+public class PostsList extends BaseList<PostsList.AdapterItemHolder, ItemProduct.DataBean.ContentBean> {
 
     private ApiTool apiTool;
 

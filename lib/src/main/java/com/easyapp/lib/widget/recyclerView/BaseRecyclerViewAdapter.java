@@ -11,7 +11,7 @@ import java.util.List;
 /**
  * Recycler View Adapter
  */
-public abstract class BaseRecyclerViewAdapter<VH extends BaseRecyclerViewAdapter.ItemHolder, T> extends RecyclerView.Adapter<BaseRecyclerViewAdapter.ItemHolder> {
+public abstract class BaseRecyclerViewAdapter<THead, T> extends RecyclerView.Adapter<BaseRecyclerViewAdapter.ItemHolder> {
 
     public final static int VIEWTYPEHEADER = 0;
     public final static int VIEWTYPECONTENT = 1;
@@ -34,7 +34,7 @@ public abstract class BaseRecyclerViewAdapter<VH extends BaseRecyclerViewAdapter
     }
 
 
-    public void setItem(int position, T obj) {
+    public void set(int position, T obj) {
         data.set(position, obj);
         notifyItemChanged(position);
     }
@@ -49,26 +49,12 @@ public abstract class BaseRecyclerViewAdapter<VH extends BaseRecyclerViewAdapter
         notifyDataSetChanged();
     }
 
-    public List getData() {
-        if (data == null) data = new ArrayList();
-
-        return data;
-    }
-
     public void add(int pos, T obj) {
-        getData();
         data.add(pos, obj);
         notifyDataSetChanged();
     }
 
-    public void removeItem(T obj) {
-        if (data != null) {
-            data.remove(obj);
-            notifyDataSetChanged();
-        }
-    }
-
-    public void removeItem(int pos) {
+    public void remove(int pos) {
         if (data != null) {
             data.remove(pos);
             notifyDataSetChanged();
@@ -84,12 +70,19 @@ public abstract class BaseRecyclerViewAdapter<VH extends BaseRecyclerViewAdapter
 
     @Override
     public int getItemCount() {
-        int size = getDataSize();
-        return size;
+        return getDataSize();
+    }
+
+    public List getData() {
+        return data;
     }
 
     public T getItem(int position) {
         return (T) getData().get(position);
+    }
+
+    protected THead getHeadItem(int position) {
+        return (THead) getData().get(position);
     }
 
     public int getDataSize() {

@@ -10,14 +10,14 @@ import com.bumptech.glide.Glide;
 import com.easyapp.baseproject_sample.R;
 import com.easyapp.baseproject_sample.http.api.ApiTool;
 import com.easyapp.baseproject_sample.http.entity.ItemProduct;
-import com.easyapp.lib.base.fragment.list.BaseStaggeredList;
+import com.easyapp.lib.base.fragment.list.BaseWaterFull;
 import com.easyapp.lib.callback.Callback;
 import com.easyapp.lib.widget.recyclerView.BaseRecyclerViewAdapter;
 
 /**
  * 測試用列表
  */
-public class PostsStaggeredList extends BaseStaggeredList<PostsStaggeredList.AdapterItemHolder, ItemProduct.DataBean.ContentBean> {
+public class PostsStaggeredList extends BaseWaterFull<PostsStaggeredList.AdapterItemHolder, ItemProduct.DataBean.ContentBean> {
 
     private ApiTool apiTool;
 

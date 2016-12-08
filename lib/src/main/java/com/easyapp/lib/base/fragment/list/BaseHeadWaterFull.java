@@ -9,8 +9,10 @@ import com.easyapp.lib.widget.recyclerView.BaseRecyclerViewAdapter;
 
 /**
  * 基本的列表fragment
+ * 不規則瀑布流
+ * 含可客製頭
  */
-public abstract class BaseRecyclerViewStaggeredFragment<VHead extends BaseRecyclerViewAdapter.ItemHolder, VH extends BaseRecyclerViewAdapter.ItemHolder, T> extends BaseRecyclerViewFragment<VHead, VH, T> implements SwipeRefreshLayout.OnRefreshListener {
+public abstract class BaseHeadWaterFull<VHead extends BaseRecyclerViewAdapter.ItemHolder, VH extends BaseRecyclerViewAdapter.ItemHolder, THead, T> extends BaseHeadList<VHead, VH, THead, T> implements SwipeRefreshLayout.OnRefreshListener {
 
     @Override
     protected int getLayoutId() {

@@ -5,10 +5,12 @@ import android.view.View;
 import com.easyapp.lib.widget.recyclerView.BaseRecyclerViewAdapter;
 
 /**
- * 沒有頭的recycler List
+ * 不規則的列表
+ * 瀑布流
  */
 
-public abstract class BaseRecyclerList<VH extends BaseRecyclerViewAdapter.ItemHolder, T> extends BaseRecyclerViewFragment<VH, VH, T> {
+public abstract class BaseWaterFull<VH extends BaseRecyclerViewAdapter.ItemHolder, T> extends BaseHeadWaterFull<VH, VH, T, T> {
+
     @Override
     protected VH getHeaderItemHolder(View contactView) {
         return getItemHolder(contactView);
@@ -21,6 +23,6 @@ public abstract class BaseRecyclerList<VH extends BaseRecyclerViewAdapter.ItemHo
 
     @Override
     protected void getBindHeaderViewHolder(VH holder, T obj) {
-        getBindViewHolder(holder,obj);
+        getBindViewHolder(holder, obj);
     }
 }
