@@ -10,7 +10,7 @@ import com.easyapp.lib.widget.recyclerView.BaseRecyclerViewAdapter;
 /**
  * 基本的列表fragment
  */
-public abstract class BaseRecyclerViewStaggeredFragment<VH extends BaseRecyclerViewAdapter.ItemHolder, T> extends BaseRecyclerViewFragment<VH, T> implements SwipeRefreshLayout.OnRefreshListener {
+public abstract class BaseRecyclerViewStaggeredFragment<VHead extends BaseRecyclerViewAdapter.ItemHolder, VH extends BaseRecyclerViewAdapter.ItemHolder, T> extends BaseRecyclerViewFragment<VHead, VH, T> implements SwipeRefreshLayout.OnRefreshListener {
 
     @Override
     protected int getLayoutId() {

@@ -8,16 +8,15 @@ import com.bumptech.glide.Glide;
 import com.easyapp.baseproject_sample.R;
 import com.easyapp.baseproject_sample.http.api.ApiTool;
 import com.easyapp.baseproject_sample.http.entity.ItemProduct;
-import com.easyapp.baseproject_sample.screen.PostsList;
 import com.easyapp.baseproject_sample.screen.SampleFragment;
-import com.easyapp.lib.base.fragment.list.BaseRecyclerViewFragment;
+import com.easyapp.lib.base.fragment.list.BaseRecyclerList;
 import com.easyapp.lib.callback.Callback;
 import com.easyapp.lib.widget.recyclerView.BaseRecyclerViewAdapter;
 
 /**
  * Created by easyapp_jim on 2016/5/3.
  */
-public class ListSample extends BaseRecyclerViewFragment<PostsList.AdapterItemHolder, ItemProduct.DataBean.ContentBean> {
+public class ListSample extends BaseRecyclerList<ListSample.AdapterItemHolder, ItemProduct.DataBean.ContentBean> {
 
     private ApiTool apiTool;
 
@@ -59,22 +58,12 @@ public class ListSample extends BaseRecyclerViewFragment<PostsList.AdapterItemHo
     }
 
     @Override
-    protected int getRecycleViewHolderHeaderLayout() {
-        return R.layout.item_news_layout;
-    }
-
-    @Override
-    protected BaseRecyclerViewAdapter.ItemHolder getItemHolder(View contactView) {
+    protected AdapterItemHolder getItemHolder(View contactView) {
         return new AdapterItemHolder(contactView);
     }
 
     @Override
-    protected BaseRecyclerViewAdapter.ItemHolder getHeaderItemHolder(View contactView) {
-        return new AdapterItemHolder(contactView);
-    }
-
-    @Override
-    protected void getBindViewHolder(PostsList.AdapterItemHolder holder, ItemProduct.DataBean.ContentBean photo) {
+    protected void getBindViewHolder(AdapterItemHolder holder, ItemProduct.DataBean.ContentBean photo) {
         Glide.with(getContext()).load(photo.getS_pic()).placeholder(R.drawable.icon_empty).into(holder.iv_picture);
         holder.textView.setText(photo.getName());
         holder.content.setOnClickListener(new View.OnClickListener() {
@@ -83,11 +72,6 @@ public class ListSample extends BaseRecyclerViewFragment<PostsList.AdapterItemHo
                 AddFragment(new SampleFragment());
             }
         });
-    }
-
-    @Override
-    protected void getBindHeaderViewHolder(PostsList.AdapterItemHolder holder, ItemProduct.DataBean.ContentBean obj) {
-        getBindViewHolder(holder, obj);
     }
 
     public class AdapterItemHolder extends BaseRecyclerViewAdapter.ItemHolder {

@@ -23,7 +23,7 @@ import java.util.List;
 /**
  * 基本的列表fragment
  */
-public abstract class BaseRecyclerViewFragment<VH extends BaseRecyclerViewAdapter.ItemHolder, T> extends BaseDrawerFragment implements SwipeRefreshLayout.OnRefreshListener {
+public abstract class BaseRecyclerViewFragment<VHead extends BaseRecyclerViewAdapter.ItemHolder, VH extends BaseRecyclerViewAdapter.ItemHolder, T> extends BaseDrawerFragment implements SwipeRefreshLayout.OnRefreshListener {
 
     protected View view;
     protected SwipeRefreshLayout swipeRefreshLayout;
@@ -42,7 +42,6 @@ public abstract class BaseRecyclerViewFragment<VH extends BaseRecyclerViewAdapte
 
     protected int limit = 40;
     protected int page = 0;
-    protected int oldPage = -1;
 
     @Override
     public void onAttach(Context context) {
@@ -145,27 +144,25 @@ public abstract class BaseRecyclerViewFragment<VH extends BaseRecyclerViewAdapte
 
         };
         baseRecycleViewAdapter = new BaseRecyclerViewAdapter(getActivity(), endlessRecyclerOnScrollListener) {
-
-
             @Override
             public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
                 View contactView;
-                RecyclerView.ViewHolder viewHolder;
+
                 if (viewType == BaseRecyclerViewAdapter.VIEWTYPEHEADER) {
                     contactView = LayoutInflater.from(context).inflate(getRecycleViewHolderHeaderLayout(), parent, false);
-                    viewHolder = getHeaderItemHolder(contactView);
+                    VHead viewHolder = getHeaderItemHolder(contactView);
+                    return viewHolder;
                 } else {
                     contactView = LayoutInflater.from(context).inflate(getRecycleViewHolderLayout(), parent, false);
-                    viewHolder = getItemHolder(contactView);
+                    VH viewHolder = getItemHolder(contactView);
+                    return viewHolder;
                 }
-
-                return viewHolder;
             }
 
             @Override
             public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
                 if (holder.getItemViewType() == VIEWTYPEHEADER) {
-                    getBindHeaderViewHolder((VH) holder, (T) getItem(position));
+                    getBindHeaderViewHolder((VHead) holder, (T) getItem(position));
                 } else {
                     getBindViewHolder((VH) holder, (T) getItem(position));
                 }
@@ -387,7 +384,7 @@ public abstract class BaseRecyclerViewFragment<VH extends BaseRecyclerViewAdapte
      * @param contactView
      * @return
      */
-    protected abstract BaseRecyclerViewAdapter.ItemHolder getItemHolder(View contactView);
+    protected abstract VH getItemHolder(View contactView);
 
     /**
      * 設定header 列表畫面
@@ -395,11 +392,11 @@ public abstract class BaseRecyclerViewFragment<VH extends BaseRecyclerViewAdapte
      * @param contactView
      * @return
      */
-    protected abstract BaseRecyclerViewAdapter.ItemHolder getHeaderItemHolder(View contactView);
+    protected abstract VHead getHeaderItemHolder(View contactView);
 
     protected abstract void getBindViewHolder(VH holder, T obj);
 
-    protected abstract void getBindHeaderViewHolder(VH holder, T obj);
+    protected abstract void getBindHeaderViewHolder(VHead holder, T obj);
 
 
     /**

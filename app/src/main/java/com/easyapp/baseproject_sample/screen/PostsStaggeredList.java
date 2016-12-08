@@ -10,14 +10,14 @@ import com.bumptech.glide.Glide;
 import com.easyapp.baseproject_sample.R;
 import com.easyapp.baseproject_sample.http.api.ApiTool;
 import com.easyapp.baseproject_sample.http.entity.ItemProduct;
-import com.easyapp.lib.base.fragment.list.BaseRecyclerViewStaggeredFragment;
+import com.easyapp.lib.base.fragment.list.BaseStaggeredList;
 import com.easyapp.lib.callback.Callback;
 import com.easyapp.lib.widget.recyclerView.BaseRecyclerViewAdapter;
 
 /**
  * 測試用列表
  */
-public class PostsStaggeredList extends BaseRecyclerViewStaggeredFragment<PostsStaggeredList.AdapterItemHolder, ItemProduct.DataBean.ContentBean> {
+public class PostsStaggeredList extends BaseStaggeredList<PostsStaggeredList.AdapterItemHolder, ItemProduct.DataBean.ContentBean> {
 
     private ApiTool apiTool;
 
@@ -64,17 +64,7 @@ public class PostsStaggeredList extends BaseRecyclerViewStaggeredFragment<PostsS
     }
 
     @Override
-    protected int getRecycleViewHolderHeaderLayout() {
-        return R.layout.item_news_layout;
-    }
-
-    @Override
-    protected BaseRecyclerViewAdapter.ItemHolder getItemHolder(View contactView) {
-        return new AdapterItemHolder(contactView);
-    }
-
-    @Override
-    protected BaseRecyclerViewAdapter.ItemHolder getHeaderItemHolder(View contactView) {
+    protected AdapterItemHolder getItemHolder(View contactView) {
         return new AdapterItemHolder(contactView);
     }
 
@@ -90,10 +80,6 @@ public class PostsStaggeredList extends BaseRecyclerViewStaggeredFragment<PostsS
         });
     }
 
-    @Override
-    protected void getBindHeaderViewHolder(AdapterItemHolder holder, ItemProduct.DataBean.ContentBean obj) {
-        getBindViewHolder(holder, obj);
-    }
 
     public class AdapterItemHolder extends BaseRecyclerViewAdapter.ItemHolder {
         public TextView textView;

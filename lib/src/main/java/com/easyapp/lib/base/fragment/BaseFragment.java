@@ -21,7 +21,7 @@ public abstract class BaseFragment extends Fragment {
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        alertDialog = new LoadingDialog(getActivity());
+        alertDialog = new LoadingDialog(getContext());
     }
 
     /**
@@ -87,7 +87,7 @@ public abstract class BaseFragment extends Fragment {
         if (getView() == null) {
             return;
         }
-        InputMethodManager imm = (InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
+        InputMethodManager imm = (InputMethodManager) getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
         if (imm.isActive()) {
             imm.hideSoftInputFromWindow(getView().getWindowToken(), 0);
         }
