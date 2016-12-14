@@ -70,7 +70,6 @@ public abstract class BaseTabActivity extends BaseMainActivity {
         return new TabHost.OnTabChangeListener() {
             @Override
             public void onTabChanged(String tabId) {
-                showToolbar();
                 cancelLeft();
                 cancelRight();
                 if (getSupportFragmentManager().findFragmentByTag(tabId) != null) {

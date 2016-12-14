@@ -1,63 +1,48 @@
 package com.easyapp.lib.base.fragment;
 
-import android.app.AlertDialog;
 import android.content.Context;
 import android.os.Bundle;
-import android.os.Handler;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Toast;
-
-import com.easyapp.lib.dialog.LoadingDialog;
 
 /**
  * 基本fragment
  */
 public abstract class BaseFragment extends Fragment {
     private Toast toast;
-    private AlertDialog alertDialog;
+    protected Loading loading;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        alertDialog = new LoadingDialog(getContext());
+        loading = Loading.newInstance();
     }
 
-    /**
-     * 顯示讀取的進度動畫dialog
-     */
     protected void showLoading() {
-        showLoading(false);
-    }
+        if (getActivity() == null) {
+            return;
+        }
 
-    /**
-     * 顯示讀取的進度動畫dialog
-     */
-    protected void showLoading(boolean notautodismiss) {
-        if (!alertDialog.isShowing()) {
-            alertDialog.show();
-            if (!notautodismiss) {
-                Handler handler = new Handler();
-                handler.postDelayed(new Runnable() {
+        if (getFragmentManager() == null) {
+            return;
+        }
 
-                    @Override
-                    public void run() {
-                        if (alertDialog != null && alertDialog.isShowing()) {
-                            alertDialog.dismiss();
-                        }
-                    }
-                }, 10000);
-            }
+        if (!loading.isAdded()) {
+            FragmentManager fragmentManager = getFragmentManager();
+            fragmentManager.beginTransaction().add(loading, "loading").commitAllowingStateLoss();
         }
     }
 
-    /**
-     * 關閉dialog
-     */
     protected void cancelLoading() {
-        if (alertDialog != null) {
-            alertDialog.dismiss();
+        if (getFragmentManager() == null) {
+            return;
+        }
+
+        if (loading.isAdded()) {
+            loading.dismiss();
         }
     }
 

@@ -1,15 +1,14 @@
 package com.easyapp.lib.base.activity;
 
-import android.app.AlertDialog;
 import android.content.Context;
 import android.os.Bundle;
-import android.os.Handler;
 import android.support.annotation.Nullable;
+import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Toast;
 
-import com.easyapp.lib.dialog.LoadingDialog;
+import com.easyapp.lib.base.fragment.Loading;
 
 /**
  * initial
@@ -18,51 +17,37 @@ import com.easyapp.lib.dialog.LoadingDialog;
  * hide keyboard
  */
 public abstract class BaseActivity extends AppCompatActivity {
-    protected AlertDialog alertDialog;
     protected Toast toast;
+    protected Loading loading;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        alertDialog = new LoadingDialog(this);
+        loading = Loading.newInstance();
     }
 
-    /**
-     * 顯示讀取的進度動畫dialog
-     */
+
     protected void showLoading() {
-        showLoading(false);
-    }
+        if (getSupportFragmentManager() == null) {
+            return;
+        }
 
-    /**
-     * 顯示讀取的進度動畫dialog
-     */
-    protected void showLoading(boolean auto_dismiss) {
-        if (!alertDialog.isShowing()) {
-            alertDialog.show();
-            if (!auto_dismiss) {
-                Handler handler = new Handler();
-                handler.postDelayed(new Runnable() {
-
-                    @Override
-                    public void run() {
-                        if (alertDialog != null && alertDialog.isShowing()) {
-                            alertDialog.dismiss();
-                        }
-                    }
-                }, 10000);
-            }
+        if (!loading.isAdded()) {
+            FragmentManager fragmentManager = getSupportFragmentManager();
+            fragmentManager.beginTransaction().add(loading, "loading").commitAllowingStateLoss();
         }
     }
 
-    /**
-     * 關閉dialog
-     */
     protected void cancelLoading() {
-        if (alertDialog != null) {
-            alertDialog.dismiss();
+        if (getSupportFragmentManager() == null) {
+            return;
+        }
+
+        if (loading.isAdded()) {
+            loading.dismiss();
         }
     }
+
 
     /**
      * 可關閉的 Toast

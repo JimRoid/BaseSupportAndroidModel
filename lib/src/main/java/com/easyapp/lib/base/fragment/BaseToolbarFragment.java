@@ -21,20 +21,6 @@ public class BaseToolbarFragment extends BaseEasyFragment {
         }
     }
 
-    protected void hideToolbar() {
-        if (toolbarCallback == null) {
-            return;
-        }
-        toolbarCallback.hideToolbar();
-    }
-
-    protected void showToolbar() {
-        if (toolbarCallback == null) {
-            return;
-        }
-        toolbarCallback.showToolbar();
-    }
-
     protected void setTitle(CharSequence title) {
         if (toolbarCallback == null) {
             return;

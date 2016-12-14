@@ -51,7 +51,6 @@ public class SampleFragment extends BaseToolbarFragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.fragment_sample, container, false);
-        showToolbar();
         ButterKnife.bind(this, view);
         MenuView menuView = new MenuView();
         menuView.Builder(getActivity());

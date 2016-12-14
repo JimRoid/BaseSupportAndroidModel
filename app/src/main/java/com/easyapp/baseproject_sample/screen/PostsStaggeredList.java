@@ -33,7 +33,6 @@ public class PostsStaggeredList extends BaseWaterFull<PostsStaggeredList.Adapter
         apiTool = new ApiTool(getContext());
 //        setRecyclerViewAnimDisable();
         setTitleImageResource(R.drawable.logo);
-        setAutoHideToolBar(true);
 //        setFabVisible(false);
         onRefresh();
     }

@@ -52,7 +52,6 @@ public abstract class BaseHeadList<VHead extends BaseRecyclerViewAdapter.ItemHol
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, @Nullable Bundle savedInstanceState) {
         view = inflater.inflate(getLayoutId(), container, false);
-        hideToolbar();
         initView();
         initData();
         init();
@@ -300,19 +299,6 @@ public abstract class BaseHeadList<VHead extends BaseRecyclerViewAdapter.ItemHol
 
     protected void hideFab() {
         floatingActionButton.hide();
-    }
-
-    /**
-     * 設定列表是否自動隱藏bar
-     *
-     * @param autoHideToolBar
-     */
-    protected void setAutoHideToolBar(boolean autoHideToolBar) {
-        if (autoHideToolBar) {
-            hideToolbar();
-        } else {
-            showToolbar();
-        }
     }
 
     /**

@@ -31,7 +31,6 @@ public class ListSample extends BaseList<ListSample.AdapterItemHolder, ItemProdu
         apiTool = new ApiTool(getContext());
         setRecyclerViewAnimDisable();
         setTitleImageResource(R.drawable.logo);
-        setAutoHideToolBar(false);
 //        setFabVisible(false);
         onRefresh();
     }

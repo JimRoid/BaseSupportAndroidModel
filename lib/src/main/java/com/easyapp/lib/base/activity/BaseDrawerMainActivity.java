@@ -14,20 +14,20 @@ public abstract class BaseDrawerMainActivity extends BaseMainActivity implements
 
     protected DrawerLayout drawerLayout;
 
-    protected View fl_drawer_right;
-    protected View fl_drawer_left;
+    protected View drawerRight;
+    protected View drawerLeft;
 
     @Override
     protected int getLayoutId() {
-        return R.layout.easyapp_activity_base_drawer;
+        return R.layout.layout_base_drawer;
     }
 
     @Override
     protected void initView() {
         super.initView();
         drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
-        fl_drawer_left = findViewById(R.id.fl_drawer_left);
-        fl_drawer_right = findViewById(R.id.fl_drawer_right);
+        drawerLeft = findViewById(R.id.fl_drawer_left);
+        drawerRight = findViewById(R.id.fl_drawer_right);
     }
 
     /**
@@ -36,8 +36,8 @@ public abstract class BaseDrawerMainActivity extends BaseMainActivity implements
      * @param res
      */
     public void setDrawerLayoutBackground(int res) {
-        fl_drawer_right.setBackgroundResource(res);
-        fl_drawer_left.setBackgroundResource(res);
+        drawerRight.setBackgroundResource(res);
+        drawerLeft.setBackgroundResource(res);
     }
 
     @Override

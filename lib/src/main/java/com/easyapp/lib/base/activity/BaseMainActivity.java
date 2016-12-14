@@ -1,7 +1,6 @@
 package com.easyapp.lib.base.activity;
 
 import android.os.Bundle;
-import android.support.design.widget.AppBarLayout;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.ImageView;
@@ -16,9 +15,9 @@ import com.easyapp.lib.callback.iToolbarCallback;
  */
 public abstract class BaseMainActivity extends BaseSupportActivity implements iToolbarCallback {
     protected Toolbar toolbar;
-    protected ImageView iv_title;
-    protected TextView tv_title;
-    protected LinearLayout fl_right, fl_left;
+    protected ImageView ivTitle;
+    protected TextView tvTitle;
+    protected LinearLayout flRight, flLeft;
     protected View container;
 
 
@@ -32,7 +31,7 @@ public abstract class BaseMainActivity extends BaseSupportActivity implements iT
     }
 
     protected int getLayoutId() {
-        return R.layout.easyapp_activity_base_toolbar;
+        return R.layout.layout_base_toolbar;
     }
 
     protected abstract void initial();
@@ -40,7 +39,9 @@ public abstract class BaseMainActivity extends BaseSupportActivity implements iT
     protected void initView() {
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        getSupportActionBar().setDisplayShowTitleEnabled(false);
+        if (getSupportActionBar() != null) {
+            getSupportActionBar().setDisplayShowTitleEnabled(false);
+        }
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -48,46 +49,33 @@ public abstract class BaseMainActivity extends BaseSupportActivity implements iT
             }
         });
 
-        container = findViewById(container_id);
-        iv_title = (ImageView) toolbar.findViewById(R.id.iv_title);
-        tv_title = (TextView) toolbar.findViewById(R.id.tv_title);
-        fl_right = (LinearLayout) toolbar.findViewById(R.id.fl_right);
-        fl_left = (LinearLayout) toolbar.findViewById(R.id.fl_left);
+        container = findViewById(containerId);
+        ivTitle = (ImageView) toolbar.findViewById(R.id.iv_title);
+        tvTitle = (TextView) toolbar.findViewById(R.id.tv_title);
+        flRight = (LinearLayout) toolbar.findViewById(R.id.fl_right);
+        flLeft = (LinearLayout) toolbar.findViewById(R.id.fl_left);
     }
 
-
-
-    @Override
-    public void hideToolbar() {
-        AppBarLayout.LayoutParams params = (AppBarLayout.LayoutParams) toolbar.getLayoutParams();
-        params.setScrollFlags(AppBarLayout.LayoutParams.SCROLL_FLAG_SCROLL | AppBarLayout.LayoutParams.SCROLL_FLAG_ENTER_ALWAYS);
-    }
-
-    @Override
-    public void showToolbar() {
-        AppBarLayout.LayoutParams params = (AppBarLayout.LayoutParams) toolbar.getLayoutParams();
-        params.setScrollFlags(0);  // clear all scroll flags
-    }
 
     @Override
     public void setTitleImageResource(int resId) {
-        tv_title.setVisibility(View.GONE);
-        iv_title.setVisibility(View.VISIBLE);
-        iv_title.setImageResource(resId);
+        tvTitle.setVisibility(View.GONE);
+        ivTitle.setVisibility(View.VISIBLE);
+        ivTitle.setImageResource(resId);
     }
 
     @Override
     public void setTitle(CharSequence title) {
-        tv_title.setText(title);
-        tv_title.setVisibility(View.VISIBLE);
-        iv_title.setVisibility(View.GONE);
+        tvTitle.setText(title);
+        tvTitle.setVisibility(View.VISIBLE);
+        ivTitle.setVisibility(View.GONE);
     }
 
     @Override
     public void setTitle(int titleId) {
-        tv_title.setText(titleId);
-        tv_title.setVisibility(View.VISIBLE);
-        iv_title.setVisibility(View.GONE);
+        tvTitle.setText(titleId);
+        tvTitle.setVisibility(View.VISIBLE);
+        ivTitle.setVisibility(View.GONE);
     }
 
     @Override
@@ -97,45 +85,45 @@ public abstract class BaseMainActivity extends BaseSupportActivity implements iT
 
     @Override
     public void cancelRight() {
-        fl_right.removeAllViews();
-        fl_right.setVisibility(View.GONE);
+        flRight.removeAllViews();
+        flRight.setVisibility(View.GONE);
     }
 
     @Override
     public void cancelLeft() {
-        fl_left.removeAllViews();
-        fl_left.setVisibility(View.GONE);
+        flLeft.removeAllViews();
+        flLeft.setVisibility(View.GONE);
     }
 
     @Override
     public void setLeft(View view) {
-        fl_left.removeAllViews();
-        fl_left.setVisibility(View.VISIBLE);
-        fl_left.addView(view);
+        flLeft.removeAllViews();
+        flLeft.setVisibility(View.VISIBLE);
+        flLeft.addView(view);
     }
 
     @Override
     public void setRight(View view) {
-        fl_right.removeAllViews();
-        fl_right.setVisibility(View.VISIBLE);
-        fl_right.addView(view);
+        flRight.removeAllViews();
+        flRight.setVisibility(View.VISIBLE);
+        flRight.addView(view);
     }
 
     @Override
     public void setLeft(View[] views) {
-        fl_left.removeAllViews();
-        fl_left.setVisibility(View.VISIBLE);
+        flLeft.removeAllViews();
+        flLeft.setVisibility(View.VISIBLE);
         for (int i = views.length - 1; i >= 0; i--) {
-            fl_left.addView(views[i]);
+            flLeft.addView(views[i]);
         }
     }
 
     @Override
     public void setRight(View[] views) {
-        fl_right.removeAllViews();
-        fl_right.setVisibility(View.VISIBLE);
+        flRight.removeAllViews();
+        flRight.setVisibility(View.VISIBLE);
         for (int i = views.length - 1; i >= 0; i--) {
-            fl_right.addView(views[i]);
+            flRight.addView(views[i]);
         }
     }
 

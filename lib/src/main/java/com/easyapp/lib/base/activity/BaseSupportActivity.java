@@ -20,12 +20,12 @@ public abstract class BaseSupportActivity extends BaseActivity implements iFragm
     protected final static String PUSH = "PUSH";
 
 
-    protected int container_id = 0;
+    protected int containerId = 0;
     protected FragmentManager fragmentManager = getSupportFragmentManager();
 
 
     protected void setContainer(int container_id) {
-        this.container_id = container_id;
+        this.containerId = container_id;
     }
 
     @Override
@@ -36,7 +36,7 @@ public abstract class BaseSupportActivity extends BaseActivity implements iFragm
 
     @Override
     public void AddFragment(Fragment fragment) {
-        AddFragment(fragment, container_id, SLIDE);
+        AddFragment(fragment, containerId, SLIDE);
     }
 
     @Override
@@ -47,13 +47,13 @@ public abstract class BaseSupportActivity extends BaseActivity implements iFragm
 
     @Override
     public void AddFragment(Fragment fragment, String anim) {
-        AddFragment(fragment, container_id, anim);
+        AddFragment(fragment, containerId, anim);
     }
 
     @Override
     public void AddFragment(Fragment fragment, int container, String anim) {
         if (container == 0) {
-            Toast.makeText(this, "Please Set container_id ID", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Please Set containerId ID", Toast.LENGTH_SHORT).show();
             return;
         }
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
@@ -78,13 +78,13 @@ public abstract class BaseSupportActivity extends BaseActivity implements iFragm
 
     @Override
     public void AddFragment_Up(Fragment fragment) {
-        AddFragment_Up(fragment, container_id);
+        AddFragment_Up(fragment, containerId);
     }
 
     @Override
     public void AddFragment_Up(Fragment fragment, int container) {
         if (container == 0) {
-            Toast.makeText(this, "Please Set container_id ID", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Please Set containerId ID", Toast.LENGTH_SHORT).show();
             return;
         }
         Fragment originalFragment = fragmentManager.findFragmentById(container);
@@ -102,18 +102,18 @@ public abstract class BaseSupportActivity extends BaseActivity implements iFragm
 
     @Override
     public void ReplaceFragment(Fragment fragment) {
-        ReplaceFragment(fragment, container_id, SLIDE);
+        ReplaceFragment(fragment, containerId, SLIDE);
     }
 
     @Override
     public void ReplaceFragment(Fragment fragment, String anim) {
-        ReplaceFragment(fragment, container_id, anim);
+        ReplaceFragment(fragment, containerId, anim);
     }
 
     @Override
     public void ReplaceFragment(Fragment fragment, String anim, Bundle bundle) {
         fragment.setArguments(bundle);
-        ReplaceFragment(fragment, container_id, anim);
+        ReplaceFragment(fragment, containerId, anim);
     }
 
     @Override
@@ -124,7 +124,7 @@ public abstract class BaseSupportActivity extends BaseActivity implements iFragm
     @Override
     public void ReplaceFragment(Fragment fragment, int container, String anim) {
         if (container == 0) {
-            Toast.makeText(this, "Please Set container_id ID", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Please Set containerId ID", Toast.LENGTH_SHORT).show();
             return;
         }
         PopAllBackStack();

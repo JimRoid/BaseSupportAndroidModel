@@ -1,11 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <declare-styleable name="Dialog">
-        <attr name="DialogTitleAppearance" format="reference" />
-        <attr name="DialogTitleText" format="reference|string" />
-        <attr name="DialogSpotColor" format="reference|color"/>
-        <attr name="DialogSpotCount" format="integer"/>
-    </declare-styleable>
 
     <!-- CircularImageView Custom Styling -->
     <declare-styleable name="CircularImageView">
@@ -51,5 +45,19 @@
         <attr name="openDescription" format="reference" />
         <attr name="closeDescription" format="reference" />
         <attr name="toolbar" format="reference" />
+    </declare-styleable>
+
+    <declare-styleable name="CircularProgressView">
+        <attr name="cpv_progress" format="float" />
+        <attr name="cpv_maxProgress" format="float" />
+        <attr name="cpv_animDuration" format="integer" />
+        <attr name="cpv_animSwoopDuration" format="integer" />
+        <attr name="cpv_animSyncDuration" format="integer" />
+        <attr name="cpv_color" format="color"/>
+        <attr name="cpv_thickness" format="dimension"/>
+        <attr name="cpv_indeterminate" format="boolean" />
+        <attr name="cpv_animAutostart" format="boolean" />
+        <attr name="cpv_animSteps" format="integer" />
+        <attr name="cpv_startAngle" format="float" />
     </declare-styleable>
 </resources>

@@ -30,26 +30,31 @@ public class PostsList extends BaseList<PostsList.AdapterItemHolder, ItemProduct
     protected void init() {
         apiTool = new ApiTool(getContext());
         setTitleImageResource(R.drawable.logo);
-        setAutoHideToolBar(false);
         setFabOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Logger.d("fab on click");
             }
         });
-//        onRefresh();
+        onRefresh();
     }
 
     @Override
     protected void onLoadMore() {
         apiTool.getProductList("", "", "", new Callback<ItemProduct>() {
             @Override
-            public void callback(ItemProduct object) {
-                ItemProduct photos = (ItemProduct) object;
+            public void initCallback() {
+                showLoading();
+            }
+
+            @Override
+            public void callback(ItemProduct photos) {
                 addAll(photos.getData().getContent());
-                addAll(photos.getData().getContent());
-                addAll(photos.getData().getContent());
-                addAll(photos.getData().getContent());
+            }
+
+            @Override
+            public void onComplete() {
+//                cancelLoading();
             }
         });
     }

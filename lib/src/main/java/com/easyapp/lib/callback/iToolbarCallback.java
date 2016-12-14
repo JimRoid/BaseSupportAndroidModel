@@ -21,10 +21,6 @@ public interface iToolbarCallback {
 
     void showBack(boolean value);
 
-    void hideToolbar();
-
-    void showToolbar();
-
     void setTitle(CharSequence sequence);
 
     void setTitle(int title_id);
