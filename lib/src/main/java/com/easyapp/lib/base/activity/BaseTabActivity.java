@@ -34,7 +34,7 @@ public abstract class BaseTabActivity extends BaseMainActivity {
 
     @Override
     protected int getLayoutId() {
-        return R.layout.easyapp_activity_base_tab;
+        return R.layout.layout_base_tab;
     }
 
     @Override

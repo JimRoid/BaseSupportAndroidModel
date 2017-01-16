@@ -15,29 +15,17 @@
             android:layout_height="match_parent"
             android:layout_marginBottom="@dimen/tab_host_height">
 
-            <android.support.design.widget.CoordinatorLayout
-                android:id="@+id/coordinatorLayout"
+            <include layout="@layout/layout_toolbar" />
+
+
+            <FrameLayout
+                android:id="@android:id/tabcontent"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:fitsSystemWindows="false">
+                app:layout_behavior="@string/appbar_scrolling_view_behavior" />
 
-                <android.support.design.widget.AppBarLayout
-                    android:id="@+id/appBar"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
-
-                    <include layout="@layout/layout_toolbar" />
-                </android.support.design.widget.AppBarLayout>
-
-                <FrameLayout
-                    android:id="@android:id/tabcontent"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    app:layout_behavior="@string/appbar_scrolling_view_behavior" />
-
-            </android.support.design.widget.CoordinatorLayout>
         </FrameLayout>
+
 
         <FrameLayout
             android:layout_width="match_parent"
