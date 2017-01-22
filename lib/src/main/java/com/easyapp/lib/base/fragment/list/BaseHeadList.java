@@ -161,9 +161,9 @@ public abstract class BaseHeadList<VHead extends BaseRecyclerViewAdapter.ItemHol
             @Override
             public void onBindViewHolder(ItemHolder holder, int position) {
                 if (holder.getItemViewType() == VIEWTYPEHEADER) {
-                    getBindHeaderViewHolder((VHead) holder,  getHeadItem());
+                    getBindHeaderViewHolder((VHead) holder, getHeadItem());
                 } else {
-                    getBindViewHolder((VH) holder, getItem(position));
+                    getBindViewHolder((VH) holder, getItem(position - 1));
                 }
             }
         };
