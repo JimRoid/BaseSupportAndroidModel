@@ -87,7 +87,7 @@ public abstract class BaseRecyclerViewAdapter<THead, T> extends RecyclerView.Ada
         return (T) getData().get(position);
     }
 
-    protected THead getHeadItem() {
+    public THead getHeadItem() {
         return tHead;
     }
 

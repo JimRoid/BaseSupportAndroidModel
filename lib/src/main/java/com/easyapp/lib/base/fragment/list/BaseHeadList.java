@@ -251,7 +251,7 @@ public abstract class BaseHeadList<VHead extends BaseRecyclerViewAdapter.ItemHol
      */
     protected void setEmptyView(boolean error_network) {
         if (error_network) {
-            if (baseRecycleViewAdapter.getData().size() == 0) {
+            if (baseRecycleViewAdapter.getData().size() == 0 && baseRecycleViewAdapter.getHeadItem() == null) {
                 emptyView.setVisibility(View.VISIBLE);
                 empty_state_view.setVisibility(View.GONE);
                 error_network_state_view.setVisibility(View.VISIBLE);
@@ -259,7 +259,7 @@ public abstract class BaseHeadList<VHead extends BaseRecyclerViewAdapter.ItemHol
                 emptyView.setVisibility(View.GONE);
             }
         } else {
-            if (baseRecycleViewAdapter.getData().size() == 0) {
+            if (baseRecycleViewAdapter.getData().size() == 0 && baseRecycleViewAdapter.getHeadItem() == null) {
                 emptyView.setVisibility(View.VISIBLE);
                 empty_state_view.setVisibility(View.VISIBLE);
                 error_network_state_view.setVisibility(View.GONE);
