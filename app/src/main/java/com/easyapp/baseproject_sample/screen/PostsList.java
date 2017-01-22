@@ -8,7 +8,7 @@ import com.bumptech.glide.Glide;
 import com.easyapp.baseproject_sample.R;
 import com.easyapp.baseproject_sample.http.api.ApiTool;
 import com.easyapp.baseproject_sample.http.entity.ItemProduct;
-import com.easyapp.lib.base.fragment.list.BaseList;
+import com.easyapp.lib.base.fragment.list.BaseHeadList;
 import com.easyapp.lib.callback.Callback;
 import com.easyapp.lib.widget.recyclerView.BaseRecyclerViewAdapter;
 import com.orhanobut.logger.Logger;
@@ -16,14 +16,14 @@ import com.orhanobut.logger.Logger;
 /**
  * 測試用列表
  */
-public class PostsList extends BaseList<PostsList.AdapterItemHolder, ItemProduct.DataBean.ContentBean> {
+public class PostsList extends BaseHeadList<PostsList.AdapterItemHolder, PostsList.AdapterItemHolder, ItemProduct.DataBean.ContentBean, ItemProduct.DataBean.ContentBean> {
 
     private ApiTool apiTool;
 
 
     @Override
     protected int setGridLayoutSpanCount() {
-        return 2;
+        return 1;
     }
 
     @Override
@@ -36,7 +36,10 @@ public class PostsList extends BaseList<PostsList.AdapterItemHolder, ItemProduct
                 Logger.d("fab on click");
             }
         });
+        ItemProduct.DataBean.ContentBean contentBean = new ItemProduct.DataBean.ContentBean();
+        addHead(contentBean);
         onRefresh();
+
     }
 
     @Override
@@ -74,6 +77,10 @@ public class PostsList extends BaseList<PostsList.AdapterItemHolder, ItemProduct
         return new AdapterItemHolder(contactView);
     }
 
+    @Override
+    protected AdapterItemHolder getHeaderItemHolder(View contactView) {
+        return new AdapterItemHolder(contactView);
+    }
 
     @Override
     protected void getBindViewHolder(AdapterItemHolder holder, ItemProduct.DataBean.ContentBean photo) {
@@ -89,7 +96,7 @@ public class PostsList extends BaseList<PostsList.AdapterItemHolder, ItemProduct
 
     @Override
     protected void getBindHeaderViewHolder(AdapterItemHolder holder, ItemProduct.DataBean.ContentBean obj) {
-        getBindViewHolder(holder, obj);
+        holder.textView.setText("asdfasdg");
     }
 
     public class AdapterItemHolder extends BaseRecyclerViewAdapter.ItemHolder {

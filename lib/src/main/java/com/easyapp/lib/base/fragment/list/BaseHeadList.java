@@ -161,11 +161,7 @@ public abstract class BaseHeadList<VHead extends BaseRecyclerViewAdapter.ItemHol
             @Override
             public void onBindViewHolder(ItemHolder holder, int position) {
                 if (holder.getItemViewType() == VIEWTYPEHEADER) {
-                    if (tHead != null) {
-                        getBindHeaderViewHolder((VHead) holder, getHeadItem());
-                    } else {
-                        getBindViewHolder((VH) holder, getItem(position));
-                    }
+                    getBindHeaderViewHolder((VHead) holder, getHeadItem(position));
                 } else {
                     getBindViewHolder((VH) holder, getItem(position));
                 }
@@ -234,10 +230,10 @@ public abstract class BaseHeadList<VHead extends BaseRecyclerViewAdapter.ItemHol
         baseRecycleViewAdapter.notifyDataSetChanged();
     }
 
-    protected void setHead(THead o) {
+    protected void addHead(THead o) {
         cancelProgress();
         swipeRefreshLayout.setRefreshing(false);
-        baseRecycleViewAdapter.setHead(o);
+        baseRecycleViewAdapter.addHead(o);
         setEmptyView();
         baseRecycleViewAdapter.notifyDataSetChanged();
     }
@@ -251,7 +247,7 @@ public abstract class BaseHeadList<VHead extends BaseRecyclerViewAdapter.ItemHol
      */
     protected void setEmptyView(boolean error_network) {
         if (error_network) {
-            if (baseRecycleViewAdapter.getData().size() == 0 && baseRecycleViewAdapter.getHeadItem() == null) {
+            if (baseRecycleViewAdapter.getData().size() == 0) {
                 emptyView.setVisibility(View.VISIBLE);
                 empty_state_view.setVisibility(View.GONE);
                 error_network_state_view.setVisibility(View.VISIBLE);
@@ -259,7 +255,7 @@ public abstract class BaseHeadList<VHead extends BaseRecyclerViewAdapter.ItemHol
                 emptyView.setVisibility(View.GONE);
             }
         } else {
-            if (baseRecycleViewAdapter.getData().size() == 0 && baseRecycleViewAdapter.getHeadItem() == null) {
+            if (baseRecycleViewAdapter.getData().size() == 0) {
                 emptyView.setVisibility(View.VISIBLE);
                 empty_state_view.setVisibility(View.VISIBLE);
                 error_network_state_view.setVisibility(View.GONE);
