@@ -161,9 +161,9 @@ public abstract class BaseHeadList<VHead extends BaseRecyclerViewAdapter.ItemHol
             @Override
             public void onBindViewHolder(ItemHolder holder, int position) {
                 if (holder.getItemViewType() == VIEWTYPEHEADER) {
-                    getBindHeaderViewHolder((VHead) holder, (THead) getHeadItem(position));
+                    getBindHeaderViewHolder((VHead) holder,  getHeadItem());
                 } else {
-                    getBindViewHolder((VH) holder, (T) getItem(position));
+                    getBindViewHolder((VH) holder, getItem(position));
                 }
             }
         };
@@ -226,6 +226,14 @@ public abstract class BaseHeadList<VHead extends BaseRecyclerViewAdapter.ItemHol
         cancelProgress();
         swipeRefreshLayout.setRefreshing(false);
         baseRecycleViewAdapter.add(o);
+        setEmptyView();
+        baseRecycleViewAdapter.notifyDataSetChanged();
+    }
+
+    protected void setHead(THead o) {
+        cancelProgress();
+        swipeRefreshLayout.setRefreshing(false);
+        baseRecycleViewAdapter.setHead(o);
         setEmptyView();
         baseRecycleViewAdapter.notifyDataSetChanged();
     }

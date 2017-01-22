@@ -15,7 +15,8 @@ public abstract class BaseRecyclerViewAdapter<THead, T> extends RecyclerView.Ada
 
     public final static int VIEWTYPEHEADER = 0;
     public final static int VIEWTYPECONTENT = 1;
-    protected ArrayList<T> data;
+    protected List data;
+    protected THead tHead;
     protected Context context;
     private EndlessRecyclerOnScrollListener recyclerOnScrollListener;
 
@@ -46,6 +47,11 @@ public abstract class BaseRecyclerViewAdapter<THead, T> extends RecyclerView.Ada
 
     public void add(T data) {
         this.data.add(data);
+        notifyDataSetChanged();
+    }
+
+    public void setHead(THead data) {
+        tHead = data;
         notifyDataSetChanged();
     }
 
@@ -81,8 +87,8 @@ public abstract class BaseRecyclerViewAdapter<THead, T> extends RecyclerView.Ada
         return (T) getData().get(position);
     }
 
-    protected THead getHeadItem(int position) {
-        return (THead) getData().get(position);
+    protected THead getHeadItem() {
+        return tHead;
     }
 
     public int getDataSize() {
