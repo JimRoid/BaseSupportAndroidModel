@@ -15,7 +15,7 @@ public abstract class BaseRecyclerViewAdapter<THead, T> extends RecyclerView.Ada
 
     public final static int VIEWTYPEHEADER = 0;
     public final static int VIEWTYPECONTENT = 1;
-    protected List data;
+    protected ArrayList<T> data;
     protected THead tHead;
     protected Context context;
     private EndlessRecyclerOnScrollListener recyclerOnScrollListener;

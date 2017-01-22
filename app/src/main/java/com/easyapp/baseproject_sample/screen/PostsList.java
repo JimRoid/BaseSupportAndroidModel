@@ -54,7 +54,7 @@ public class PostsList extends BaseList<PostsList.AdapterItemHolder, ItemProduct
 
             @Override
             public void onComplete() {
-//                cancelLoading();
+                cancelLoading();
             }
         });
     }
