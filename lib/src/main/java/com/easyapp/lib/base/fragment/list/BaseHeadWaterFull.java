@@ -25,7 +25,7 @@ public abstract class BaseHeadWaterFull<VHead extends BaseRecyclerViewAdapter.It
     @Override
     protected void initView() {
         initFab();
-        emptyView = view.findViewById(R.id.easyapp_empty_view);
+        initEmptyView();
         progressBar = (ProgressBar) view.findViewById(R.id.progress_bar);
         progressBar.getIndeterminateDrawable().setColorFilter(
                 getResources().getColor(R.color.light_blue),
