@@ -60,7 +60,7 @@ public abstract class BaseHeadList<VHead extends BaseRecyclerViewAdapter.ItemHol
 
 
     protected int getLayoutId() {
-        return R.layout.easyapp_base_recycle_view;
+        return R.layout.easyapp_base_recycler_view;
     }
 
     /**
@@ -106,6 +106,7 @@ public abstract class BaseHeadList<VHead extends BaseRecyclerViewAdapter.ItemHol
             public void onScrolledToTop() {
                 super.onScrolledToTop();
                 isScrollTop = true;
+                onScrollTop();
             }
 
             @Override
@@ -114,6 +115,7 @@ public abstract class BaseHeadList<VHead extends BaseRecyclerViewAdapter.ItemHol
                 if (!fabVisible) {
                     showFab();
                 }
+                onScrollUp();
             }
 
             @Override
@@ -122,6 +124,7 @@ public abstract class BaseHeadList<VHead extends BaseRecyclerViewAdapter.ItemHol
                 if (!fabVisible) {
                     hideFab();
                 }
+                onScrollDown();
                 isScrollTop = false;
             }
 
@@ -134,11 +137,12 @@ public abstract class BaseHeadList<VHead extends BaseRecyclerViewAdapter.ItemHol
                     showProgress();
                     onLoadMore();
                 }
+                onScrollLoadMore();
             }
 
             @Override
             public void onScrolledToBottom() {
-
+                onScrollBottom();
             }
 
         };
@@ -169,6 +173,27 @@ public abstract class BaseHeadList<VHead extends BaseRecyclerViewAdapter.ItemHol
         };
         recyclerView.setAdapter(baseRecycleViewAdapter);
     }
+
+
+    public void onScrollBottom() {
+
+    }
+
+    public void onScrollTop() {
+
+    }
+
+    public void onScrollUp() {
+
+    }
+
+    public void onScrollDown() {
+
+    }
+
+    public void onScrollLoadMore() {
+    }
+
 
     /**
      * 設定頁面的初始化
