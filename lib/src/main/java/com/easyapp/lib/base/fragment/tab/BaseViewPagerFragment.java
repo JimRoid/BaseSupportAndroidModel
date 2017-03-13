@@ -30,11 +30,16 @@ public abstract class BaseViewPagerFragment extends BaseToolbarFragment {
     private int TabBackgrounds = 0;
     private int TabTextColor = 0;
 
+    protected View emptyView;
+    protected View error_network_state_view;
+    protected View empty_state_view;
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, @Nullable Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.easyapp_base_fragment_view_pager, container, false);
         initVar();
+        initEmptyView();
         initPages();
         initView();
         return view;
@@ -52,17 +57,37 @@ public abstract class BaseViewPagerFragment extends BaseToolbarFragment {
     }
 
     protected void initView() {
-
         viewPager = (ViewPager) view.findViewById(R.id.viewpager);
         viewPager.setAdapter(pagerItemAdapter);
         slidingTabLayout = (SlidingTabLayout) view.findViewById(R.id.slidingTabLayout);
         slidingTabLayout.setFillViewport(false);
         slidingTabLayout.setDistributeEvenly(true);
-
-
         init();
         slidingTabLayout.setViewPager(viewPager);
+    }
 
+    /**
+     * 初始化空值或是沒有網路的view
+     */
+    protected void initEmptyView() {
+        emptyView = view.findViewById(R.id.easyapp_empty_view);
+        error_network_state_view = emptyView.findViewById(R.id.error_state_view);
+        empty_state_view = emptyView.findViewById(R.id.empty_state_view);
+    }
+
+    /**
+     * 設定無資料時的顯示狀態
+     */
+    protected void setEmptyView(boolean error_network) {
+        if (error_network) {
+            emptyView.setVisibility(View.VISIBLE);
+            empty_state_view.setVisibility(View.GONE);
+            error_network_state_view.setVisibility(View.VISIBLE);
+        } else {
+            emptyView.setVisibility(View.VISIBLE);
+            empty_state_view.setVisibility(View.VISIBLE);
+            error_network_state_view.setVisibility(View.GONE);
+        }
     }
 
     final protected void setFillViewport(boolean fillViewport) {
