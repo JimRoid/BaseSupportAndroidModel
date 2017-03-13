@@ -70,7 +70,7 @@ public abstract class BaseViewPagerFragment extends BaseToolbarFragment {
      * 初始化空值或是沒有網路的view
      */
     protected void initEmptyView() {
-        emptyView = view.findViewById(R.id.easyapp_empty_view);
+        emptyView = view.findViewById(R.id.emptyView);
         error_network_state_view = emptyView.findViewById(R.id.error_state_view);
         empty_state_view = emptyView.findViewById(R.id.empty_state_view);
     }
