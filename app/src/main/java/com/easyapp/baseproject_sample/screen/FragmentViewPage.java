@@ -1,5 +1,6 @@
 package com.easyapp.baseproject_sample.screen;
 
+import com.easyapp.baseproject_sample.screen.list.PostsList;
 import com.easyapp.lib.base.fragment.tab.BaseViewPagerFragment;
 
 /**

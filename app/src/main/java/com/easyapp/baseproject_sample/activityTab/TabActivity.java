@@ -1,11 +1,11 @@
-package com.easyapp.baseproject_sample.tabactivity;
+package com.easyapp.baseproject_sample.activityTab;
 
 import com.easyapp.baseproject_sample.screen.BlankFragment;
 import com.easyapp.lib.base.activity.BaseTabActivity;
 import com.easyapp.lib.widget.tabhost.EasyTab;
 import com.easyapp.baseproject_sample.R;
-import com.easyapp.baseproject_sample.screen.PostsList;
-import com.easyapp.baseproject_sample.screen.PostsStaggeredList;
+import com.easyapp.baseproject_sample.screen.list.PostsList;
+import com.easyapp.baseproject_sample.screen.list.PostsStaggeredList;
 
 public class TabActivity extends BaseTabActivity {
 

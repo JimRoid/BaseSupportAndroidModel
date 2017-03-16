@@ -10,9 +10,11 @@ import android.view.ViewGroup;
 import android.widget.Button;
 
 import com.easyapp.baseproject_sample.R;
-import com.easyapp.baseproject_sample.draweractivity.DrawerViewActivity;
+import com.easyapp.baseproject_sample.activityDrawer.DrawerViewActivity;
 import com.easyapp.baseproject_sample.loginView.LoginActivity;
-import com.easyapp.baseproject_sample.tabactivity.TabActivity;
+import com.easyapp.baseproject_sample.activityTab.TabActivity;
+import com.easyapp.baseproject_sample.screen.list.PostsList;
+import com.easyapp.baseproject_sample.screen.list.PostsStaggeredList;
 import com.easyapp.lib.base.fragment.BaseToolbarFragment;
 import com.easyapp.lib.tool.OpenData;
 import com.easyapp.lib.widget.MenuView;

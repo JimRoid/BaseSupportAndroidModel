@@ -2,6 +2,7 @@ package com.easyapp.lib.base.fragment;
 
 import android.content.Context;
 import android.support.v4.app.Fragment;
+import android.support.v7.app.ActionBarDrawerToggle;
 
 import com.easyapp.lib.callback.iDrawerCallback;
 
@@ -12,7 +13,7 @@ public abstract class BaseDrawerFragment extends BaseToolbarFragment {
 
     private iDrawerCallback drawerCallback;
 
-    protected void setDrawerCallback(Context context){
+    protected void setDrawerCallback(Context context) {
         try {
             drawerCallback = (iDrawerCallback) context;
         } catch (ClassCastException e) {
@@ -21,12 +22,15 @@ public abstract class BaseDrawerFragment extends BaseToolbarFragment {
         }
     }
 
+    protected ActionBarDrawerToggle getDrawerToggle() {
+        return drawerCallback.getDrawerToggle();
+    }
+
     protected void addLeftDrawer(Fragment fragment) {
         if (drawerCallback == null) {
             return;
         }
         drawerCallback.addLeftDrawer(fragment);
-
     }
 
     protected void addRightDrawer(Fragment fragment) {

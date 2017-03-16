@@ -1,6 +1,9 @@
 <resources>
     <string name="app_name">BaseProject</string>
 
+    <string name="navigation_drawer_open">open</string>
+    <string name="navigation_drawer_close">close</string>
+
     <!-- common text -->
     <string name="not_found">目前沒有資料</string>
 
@@ -8,5 +11,7 @@
     <string name="network_message_title">網路</string>
     <string name="network_message_content">請檢查網路是否連線成功</string>
     <string name="ScrollAwareFABBehavior">com.easyapp.lib.widget.ScrollAwareFABBehavior</string>
+
+
 
 </resources>

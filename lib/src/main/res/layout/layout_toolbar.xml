@@ -14,7 +14,6 @@
     app:contentInsetRight="0dp"
     app:contentInsetStart="0dp"
     app:layout_scrollFlags="scroll|enterAlways">
-    <!--app:layout_scrollFlags="scroll|enterAlways"-->
 
     <LinearLayout
         android:id="@+id/fl_left"

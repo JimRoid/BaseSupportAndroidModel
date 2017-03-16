@@ -19,11 +19,14 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".draweractivity.DrawerViewActivity" />
-        <activity android:name=".tabactivity.TabActivity" />
+        <activity
+            android:name=".activityDrawer.DrawerViewActivity"
+            android:theme="@style/DrawerAppTheme" />
 
-        <activity android:name=".toolbaractivity.ToolbarActivity" />
-        <activity android:name=".loginView.LoginActivity"/>
+        <activity android:name=".activityTab.TabActivity" />
+
+        <activity android:name=".activityToolbar.ToolbarActivity" />
+        <activity android:name=".loginView.LoginActivity" />
 
     </application>
 

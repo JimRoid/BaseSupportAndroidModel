@@ -1,4 +1,4 @@
-package com.easyapp.baseproject_sample.toolbaractivity;
+package com.easyapp.baseproject_sample.activityToolbar;
 
 import android.view.View;
 import android.widget.ImageView;

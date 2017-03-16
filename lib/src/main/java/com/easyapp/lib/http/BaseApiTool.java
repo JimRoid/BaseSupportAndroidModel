@@ -19,7 +19,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
  */
 public abstract class BaseApiTool<TServices> {
 
-    private boolean showDebug = true;
+    private boolean showDebug = false;
 
     private Context context;
 

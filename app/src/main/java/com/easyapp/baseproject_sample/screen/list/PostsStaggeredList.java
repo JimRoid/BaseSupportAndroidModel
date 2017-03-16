@@ -1,4 +1,4 @@
-package com.easyapp.baseproject_sample.screen;
+package com.easyapp.baseproject_sample.screen.list;
 
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
@@ -10,6 +10,7 @@ import com.bumptech.glide.Glide;
 import com.easyapp.baseproject_sample.R;
 import com.easyapp.baseproject_sample.http.api.ApiTool;
 import com.easyapp.baseproject_sample.http.entity.ItemProduct;
+import com.easyapp.baseproject_sample.screen.SampleFragment;
 import com.easyapp.lib.base.fragment.list.BaseWaterFull;
 import com.easyapp.lib.callback.Callback;
 import com.easyapp.lib.widget.recyclerView.BaseRecyclerViewAdapter;

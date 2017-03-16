@@ -1,7 +1,9 @@
 package com.easyapp.lib.base.activity;
 
 import android.support.v4.app.Fragment;
+import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBarDrawerToggle;
 import android.view.View;
 
 import com.easyapp.lib.R;
@@ -16,6 +18,7 @@ public abstract class BaseDrawerMainActivity extends BaseMainActivity implements
 
     protected View drawerRight;
     protected View drawerLeft;
+    protected ActionBarDrawerToggle mDrawerToggle;
 
     @Override
     protected int getLayoutId() {
@@ -28,6 +31,48 @@ public abstract class BaseDrawerMainActivity extends BaseMainActivity implements
         drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawerLeft = findViewById(R.id.fl_drawer_left);
         drawerRight = findViewById(R.id.fl_drawer_right);
+
+
+        mDrawerToggle = new ActionBarDrawerToggle(
+                this,              /* host Activity */
+                drawerLayout,                    /* DrawerLayout object */
+                // ((BaseActivity) getActivityCompat()).getToolbar(), <== delete this argument
+                R.string.navigation_drawer_open,  /* "open drawer" description for accessibility */
+                R.string.navigation_drawer_close  /* "close drawer" description for accessibility */
+        ) {
+            @Override
+            public void onDrawerClosed(View drawerView) {
+                super.onDrawerClosed(drawerView);
+            }
+        };
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (getSupportFragmentManager().getBackStackEntryCount() == 0) {
+                    if (drawerLayout.isDrawerOpen(GravityCompat.START)) {
+                        closeDrawer(GravityCompat.START);
+                    } else {
+                        openDrawer(GravityCompat.START);
+                    }
+                } else {
+                    onBackPressed();
+                }
+            }
+        });
+
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        mDrawerToggle.syncState();
+        drawerLayout.addDrawerListener(mDrawerToggle);
+    }
+
+    @Override
+    public void showBack(boolean value) {
+        if (!value) {
+            getDrawerToggle().setDrawerIndicatorEnabled(true);
+        } else {
+            getDrawerToggle().setDrawerIndicatorEnabled(false);
+        }
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
 
     /**
@@ -38,6 +83,11 @@ public abstract class BaseDrawerMainActivity extends BaseMainActivity implements
     public void setDrawerLayoutBackground(int res) {
         drawerRight.setBackgroundResource(res);
         drawerLeft.setBackgroundResource(res);
+    }
+
+    @Override
+    public ActionBarDrawerToggle getDrawerToggle() {
+        return mDrawerToggle;
     }
 
     @Override

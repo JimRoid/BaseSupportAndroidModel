@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.easyapp.baseproject_sample.R;
+import com.easyapp.baseproject_sample.screen.list.PostsList;
 import com.easyapp.lib.widget.viewpager.SlidingTabLayout;
 import com.easyapp.lib.widget.viewpager.adapter.v4.FragmentPagerItem;
 import com.easyapp.lib.widget.viewpager.adapter.v4.FragmentPagerItemAdapter;
