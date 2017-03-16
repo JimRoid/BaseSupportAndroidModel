@@ -1,5 +1,6 @@
 package com.easyapp.lib.base.activity;
 
+import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
@@ -73,6 +74,42 @@ public abstract class BaseDrawerMainActivity extends BaseMainActivity implements
             getDrawerToggle().setDrawerIndicatorEnabled(false);
         }
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+    }
+
+    @Override
+    public void ReplaceFragment(Fragment fragment, Bundle bundle) {
+        super.ReplaceFragment(fragment, bundle);
+        showBack(false);
+    }
+
+    @Override
+    public void ReplaceFragment(Fragment fragment) {
+        super.ReplaceFragment(fragment);
+        showBack(false);
+    }
+
+    @Override
+    public void ReplaceFragment(Fragment fragment, String anim) {
+        super.ReplaceFragment(fragment, anim);
+        showBack(false);
+    }
+
+    @Override
+    public void ReplaceFragment(Fragment fragment, String anim, Bundle bundle) {
+        super.ReplaceFragment(fragment, anim, bundle);
+        showBack(false);
+    }
+
+    @Override
+    public void ReplaceFragment(Fragment fragment, int container) {
+        super.ReplaceFragment(fragment, container);
+        showBack(false);
+    }
+
+    @Override
+    public void ReplaceFragment(Fragment fragment, int container, String anim) {
+        super.ReplaceFragment(fragment, container, anim);
+        showBack(false);
     }
 
     /**
