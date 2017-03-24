@@ -2,6 +2,7 @@ package com.easyapp.lib.touchView;
 
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -73,11 +74,12 @@ public class FragmentTouchView extends Fragment {
                 public void onResourceReady(GlideDrawable resource, GlideAnimation<? super GlideDrawable> animation) {
                     super.onResourceReady(resource, animation);
                     touchImageView.setImageDrawable(resource);
+                    cancelLoading();
                 }
 
                 @Override
-                public void onStop() {
-                    super.onStop();
+                public void onLoadFailed(Exception e, Drawable errorDrawable) {
+                    super.onLoadFailed(e, errorDrawable);
                     cancelLoading();
                 }
             });
