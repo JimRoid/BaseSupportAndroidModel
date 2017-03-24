@@ -144,6 +144,23 @@ public class OpenData {
         StartActivity(context, intent);
     }
 
+    /**
+     * 開啟可放大縮小圖片
+     *
+     * @param context
+     * @param path
+     */
+    public static void OpenTouchImage(Context context, String path) {
+        ArrayList<String> arrayList = new ArrayList<>();
+        arrayList.add(path);
+        Intent intent = new Intent(context, TouchViewActivity.class);
+        Bundle bundle = new Bundle();
+        bundle.putStringArrayList("PATH", arrayList);
+        bundle.putInt("POSITION", 0);
+        intent.putExtras(bundle);
+        StartActivity(context, intent);
+    }
+
 
     /**
      * 開啟activity

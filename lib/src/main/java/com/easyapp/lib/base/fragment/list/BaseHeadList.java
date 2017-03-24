@@ -214,6 +214,12 @@ public abstract class BaseHeadList<VHead extends BaseRecyclerViewAdapter.ItemHol
         onLoadMore();
     }
 
+    @Override
+    protected void cancelLoading() {
+        super.cancelLoading();
+        swipeRefreshLayout.setRefreshing(false);
+    }
+
     protected abstract void onLoadMore();
 
     protected void setIsNoMore(boolean isNoMore) {
