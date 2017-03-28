@@ -92,4 +92,20 @@ public class BaseToolbarFragment extends BaseEasyFragment {
         }
         toolbarCallback.setRight(views);
     }
+
+
+    protected void showToolbar() {
+        if (toolbarCallback == null) {
+            return;
+        }
+        toolbarCallback.showToolbar();
+    }
+
+
+    protected void hideToolbar() {
+        if (toolbarCallback == null) {
+            return;
+        }
+        toolbarCallback.hideToolbar();
+    }
 }

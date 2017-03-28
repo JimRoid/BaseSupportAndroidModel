@@ -26,4 +26,8 @@ public interface iToolbarCallback {
     void setTitle(int title_id);
 
     void setTitleImageResource(int resId);
+
+    void showToolbar();
+
+    void hideToolbar();
 }

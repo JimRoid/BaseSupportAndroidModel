@@ -127,5 +127,13 @@ public abstract class BaseMainActivity extends BaseSupportActivity implements iT
         }
     }
 
+    @Override
+    public void showToolbar() {
+        toolbar.setVisibility(View.VISIBLE);
+    }
 
+    @Override
+    public void hideToolbar() {
+        toolbar.setVisibility(View.GONE);
+    }
 }
