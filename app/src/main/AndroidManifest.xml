@@ -19,6 +19,8 @@
             </intent-filter>
         </activity>
 
+        <activity android:name="com.easyapp.lib.touchView.TouchViewActivity" />
+
         <activity
             android:name=".activityDrawer.DrawerViewActivity"
             android:theme="@style/DrawerAppTheme" />

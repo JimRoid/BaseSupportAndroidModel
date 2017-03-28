@@ -12,7 +12,6 @@
         android:layout_gravity="center"
         app:cpv_color="@color/light_blue"
         app:cpv_animAutostart="true"
-        app:cpv_indeterminate="true"
-         />
+        app:cpv_indeterminate="true" />
 
 </FrameLayout>

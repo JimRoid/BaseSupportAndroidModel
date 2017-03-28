@@ -19,6 +19,8 @@ import com.easyapp.lib.base.fragment.BaseToolbarFragment;
 import com.easyapp.lib.tool.OpenData;
 import com.easyapp.lib.widget.MenuView;
 
+import java.util.ArrayList;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
@@ -83,7 +85,7 @@ public class SampleFragment extends BaseToolbarFragment {
         OpenData.StartActivity(getActivity(), DrawerViewActivity.class);
     }
 
-    @OnClick({R.id.bt_loginView, R.id.bt_list, R.id.bt_tab, R.id.bt_drawerView, R.id.bt_staggered_list, R.id.dot_viewpager})
+    @OnClick({R.id.bt_touch_view, R.id.bt_loginView, R.id.bt_list, R.id.bt_tab, R.id.bt_drawerView, R.id.bt_staggered_list, R.id.dot_viewpager})
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.bt_list:
@@ -103,6 +105,15 @@ public class SampleFragment extends BaseToolbarFragment {
                 break;
             case R.id.bt_loginView:
                 OpenData.StartActivity(getActivity(), LoginActivity.class);
+                break;
+            case R.id.bt_touch_view:
+                ArrayList<String> arrayList = new ArrayList<>();
+                arrayList.add("http://i.imgur.com/1cULBoj.jpg");
+                arrayList.add("https://i.ytimg.com/vi/b0hHEEkkD60/maxresdefault.jpg");
+                arrayList.add("http://i.imgur.com/3UAUWux.jpg");
+                arrayList.add("http://i.imgur.com/NQCnE30.jpg");
+                arrayList.add("http://v.wxrw123.com/?url=http://mmbiz.qpic.cn/mmbiz/v66ABW24SibrCicZFT1ZKibKuROPkoXv9BPdwEfmvQfEKBd1hHibdh10MCj1pF9VVYN8fotJHx6hCvtDF6w6HEP8rQ/0?");
+                OpenData.OpenTouchImage(getContext(), arrayList, 0);
                 break;
         }
     }

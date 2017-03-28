@@ -37,6 +37,7 @@ public class FragmentTouchView extends Fragment {
     private void initView(View view) {
         touchImageView = (TouchImageView) view.findViewById(R.id.iv_touch);
         progressView = (CircularProgressView) view.findViewById(R.id.loading);
+        progressView.setVisibility(View.GONE);
         getExtraIntent();
     }
 
