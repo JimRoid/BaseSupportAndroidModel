@@ -10,10 +10,11 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <FrameLayout
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginBottom="@dimen/tab_host_height">
+            android:layout_marginBottom="@dimen/tab_host_height"
+            android:orientation="vertical">
 
             <include layout="@layout/layout_toolbar" />
 
@@ -21,10 +22,9 @@
             <FrameLayout
                 android:id="@android:id/tabcontent"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                app:layout_behavior="@string/appbar_scrolling_view_behavior" />
+                android:layout_height="match_parent" />
 
-        </FrameLayout>
+        </LinearLayout>
 
 
         <FrameLayout
