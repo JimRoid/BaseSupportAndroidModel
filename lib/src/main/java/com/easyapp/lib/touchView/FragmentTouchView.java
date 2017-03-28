@@ -6,7 +6,6 @@ import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -18,8 +17,8 @@ import com.bumptech.glide.load.resource.drawable.GlideDrawable;
 import com.bumptech.glide.request.animation.GlideAnimation;
 import com.bumptech.glide.request.target.GlideDrawableImageViewTarget;
 import com.easyapp.lib.R;
-import com.easyapp.lib.base.fragment.Loading;
 import com.easyapp.lib.tool.Base64Tool;
+import com.easyapp.lib.widget.anim.CircularProgressView;
 
 import java.io.File;
 
@@ -28,14 +27,7 @@ import java.io.File;
  */
 public class FragmentTouchView extends Fragment {
     private TouchImageView touchImageView;
-    protected Loading loading;
-
-    @Override
-    public void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        loading = Loading.newInstance();
-
-    }
+    private CircularProgressView progressView;
 
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -48,8 +40,10 @@ public class FragmentTouchView extends Fragment {
         layoutParams.gravity = Gravity.CENTER;
         frameLayout.setLayoutParams(layoutParams);
         touchImageView = new TouchImageView(getActivity());
+        progressView = new CircularProgressView(getContext());
         frameLayout.setBackgroundColor(getResources().getColor(android.R.color.background_dark));
         frameLayout.addView(touchImageView);
+        frameLayout.addView(progressView);
         getExtraIntent();
         return frameLayout;
     }
@@ -97,27 +91,10 @@ public class FragmentTouchView extends Fragment {
     }
 
     protected void showLoading() {
-        if (getActivity() == null) {
-            return;
-        }
-
-        if (getFragmentManager() == null) {
-            return;
-        }
-
-        if (!loading.isAdded()) {
-            FragmentManager fragmentManager = getFragmentManager();
-            fragmentManager.beginTransaction().add(loading, "loading").commitAllowingStateLoss();
-        }
+        progressView.setVisibility(View.VISIBLE);
     }
 
     protected void cancelLoading() {
-        if (getFragmentManager() == null) {
-            return;
-        }
-
-        if (loading.isAdded()) {
-            loading.dismiss();
-        }
+        progressView.setVisibility(View.GONE);
     }
 }
