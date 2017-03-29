@@ -9,7 +9,6 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.Toast;
 
 import com.easyapp.lib.callback.iLoading;
-import com.easyapp.lib.widget.anim.CircularProgressView;
 
 /**
  * initial
@@ -19,7 +18,7 @@ import com.easyapp.lib.widget.anim.CircularProgressView;
  */
 public abstract class BaseActivity extends AppCompatActivity implements iLoading {
     protected Toast toast;
-    protected CircularProgressView loading;
+    protected View loading;
 
 
     @Override
@@ -27,7 +26,7 @@ public abstract class BaseActivity extends AppCompatActivity implements iLoading
         super.onCreate(savedInstanceState);
     }
 
-    protected void setLoading(CircularProgressView progressView) {
+    protected void setLoading(View progressView) {
         loading = progressView;
     }
 

@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/fl_loading"
     android:layout_width="match_parent"
-    android:background="#55000000"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="#55000000">
 
 
     <com.easyapp.lib.widget.anim.CircularProgressView
@@ -11,8 +12,8 @@
         android:layout_width="48dp"
         android:layout_height="48dp"
         android:layout_gravity="center"
-        app:cpv_color="@color/light_blue"
         app:cpv_animAutostart="true"
+        app:cpv_color="@color/light_blue"
         app:cpv_indeterminate="true" />
 
 </FrameLayout>

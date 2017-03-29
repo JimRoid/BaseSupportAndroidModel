@@ -33,8 +33,9 @@ public abstract class BaseMainActivity extends BaseSupportActivity implements iT
     }
 
     protected void initLoading() {
-        CircularProgressView progressView = (CircularProgressView) findViewById(R.id.progress_view);
-        setLoading(progressView);
+        View fl_loading = findViewById(R.id.fl_loading);
+//        CircularProgressView progressView = (CircularProgressView) findViewById(R.id.progress_view);
+        setLoading(fl_loading);
     }
 
     protected int getLayoutId() {
