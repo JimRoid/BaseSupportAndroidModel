@@ -1,49 +1,37 @@
 package com.easyapp.lib.base.fragment;
 
 import android.content.Context;
-import android.os.Bundle;
-import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Toast;
+
+import com.easyapp.lib.callback.iLoading;
 
 /**
  * 基本fragment
  */
 public abstract class BaseFragment extends Fragment {
     private Toast toast;
-    protected Loading loading;
+    private iLoading loading;
 
     @Override
-    public void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        loading = Loading.newInstance();
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        loading = (iLoading) context;
     }
 
     protected void showLoading() {
-        if (getActivity() == null) {
+        if (loading == null) {
             return;
         }
-
-        if (getFragmentManager() == null) {
-            return;
-        }
-
-        if (!loading.isAdded()) {
-            FragmentManager fragmentManager = getFragmentManager();
-            fragmentManager.beginTransaction().add(loading, "loading").commitAllowingStateLoss();
-        }
+        loading.showLoading();
     }
 
     protected void cancelLoading() {
-        if (getFragmentManager() == null) {
+        if (loading == null) {
             return;
         }
-
-        if (loading.isAdded()) {
-            loading.dismiss();
-        }
+        loading.cancelLoading();
     }
 
     /**

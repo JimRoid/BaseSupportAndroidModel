@@ -3,12 +3,12 @@ package com.easyapp.lib.base.activity;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Toast;
 
 import com.easyapp.lib.base.fragment.Loading;
+import com.easyapp.lib.callback.iLoading;
 
 /**
  * initial
@@ -16,7 +16,7 @@ import com.easyapp.lib.base.fragment.Loading;
  * load dialog
  * hide keyboard
  */
-public abstract class BaseActivity extends AppCompatActivity {
+public abstract class BaseActivity extends AppCompatActivity implements iLoading {
     protected Toast toast;
     protected Loading loading;
 
@@ -26,19 +26,19 @@ public abstract class BaseActivity extends AppCompatActivity {
         loading = Loading.newInstance();
     }
 
-
-    protected void showLoading() {
+    @Override
+    public void showLoading() {
         if (getSupportFragmentManager() == null) {
             return;
         }
 
         if (!loading.isAdded()) {
-            FragmentManager fragmentManager = getSupportFragmentManager();
-            fragmentManager.beginTransaction().add(loading, "loading").commitAllowingStateLoss();
+            loading.show(getSupportFragmentManager(), null);
         }
     }
 
-    protected void cancelLoading() {
+    @Override
+    public void cancelLoading() {
         if (getSupportFragmentManager() == null) {
             return;
         }
