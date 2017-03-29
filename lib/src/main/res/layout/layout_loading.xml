@@ -4,7 +4,7 @@
     android:id="@+id/fl_loading"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#55000000">
+    android:background="#80000000">
 
 
     <com.easyapp.lib.widget.anim.CircularProgressView
