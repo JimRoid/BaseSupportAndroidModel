@@ -40,6 +40,7 @@ public abstract class BaseTabActivity extends BaseMainActivity {
     @Override
     protected void initView() {
         super.initView();
+        initLoading();
         fragmentTabHost = (FragmentClickTabHost) findViewById(android.R.id.tabhost);
         fragmentTabHost.setup(this, getSupportFragmentManager(), android.R.id.tabcontent);
         fragmentTabHost.setOnClickListener(getTabOnClickListener());

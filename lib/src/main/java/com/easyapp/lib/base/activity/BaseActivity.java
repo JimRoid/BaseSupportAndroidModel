@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Toast;
 
+import com.easyapp.lib.base.fragment.Loading;
 import com.easyapp.lib.callback.iLoading;
 
 /**
@@ -18,17 +19,19 @@ import com.easyapp.lib.callback.iLoading;
  */
 public abstract class BaseActivity extends AppCompatActivity implements iLoading {
     protected Toast toast;
-    protected View loading;
+    protected View progressLoading;
+    protected Loading loading;
 
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        loading = Loading.newInstance();
     }
 
-    protected void setLoading(View progressView) {
-        loading = progressView;
-        loading.setOnClickListener(new View.OnClickListener() {
+    protected void setProgressLoading(View progressView) {
+        progressLoading = progressView;
+        progressLoading.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
@@ -38,18 +41,31 @@ public abstract class BaseActivity extends AppCompatActivity implements iLoading
 
     @Override
     public void showLoading() {
-        if (loading == null) {
+        if (progressLoading == null) {
+            if (loading == null) {
+                return;
+            }
+
+            if (!loading.isAdded()) {
+                loading.show(getSupportFragmentManager(), null);
+            }
             return;
         }
-        loading.setVisibility(View.VISIBLE);
+        progressLoading.setVisibility(View.VISIBLE);
     }
 
     @Override
     public void cancelLoading() {
-        if (loading == null) {
+        if (progressLoading == null) {
+            if (loading == null) {
+                return;
+            }
+            if (loading.isAdded()) {
+                loading.dismiss();
+            }
             return;
         }
-        loading.setVisibility(View.GONE);
+        progressLoading.setVisibility(View.GONE);
     }
 
 
