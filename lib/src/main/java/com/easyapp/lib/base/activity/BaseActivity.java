@@ -4,11 +4,12 @@ import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
+import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Toast;
 
-import com.easyapp.lib.base.fragment.Loading;
 import com.easyapp.lib.callback.iLoading;
+import com.easyapp.lib.widget.anim.CircularProgressView;
 
 /**
  * initial
@@ -18,38 +19,32 @@ import com.easyapp.lib.callback.iLoading;
  */
 public abstract class BaseActivity extends AppCompatActivity implements iLoading {
     protected Toast toast;
-    protected Loading loading;
+    protected CircularProgressView loading;
+
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        loading = Loading.newInstance();
+    }
+
+    protected void setLoading(CircularProgressView progressView) {
+        loading = progressView;
     }
 
     @Override
     public void showLoading() {
-        if (getSupportFragmentManager() == null) {
+        if (loading == null){
             return;
         }
-
-        if (loading.isAdded()) {
-            return;
-        }
-
-        if (!loading.isAdded()) {
-            loading.show(getSupportFragmentManager(), null);
-        }
+        loading.setVisibility(View.VISIBLE);
     }
 
     @Override
     public void cancelLoading() {
-        if (getSupportFragmentManager() == null) {
+        if (loading == null){
             return;
         }
-
-        if (loading.isAdded()) {
-            loading.dismiss();
-        }
+        loading.setVisibility(View.GONE);
     }
 
 

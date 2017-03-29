@@ -9,6 +9,7 @@ import android.widget.TextView;
 
 import com.easyapp.lib.R;
 import com.easyapp.lib.callback.iToolbarCallback;
+import com.easyapp.lib.widget.anim.CircularProgressView;
 
 /**
  * 提供一般 基本 toolbar main activity layout
@@ -26,8 +27,14 @@ public abstract class BaseMainActivity extends BaseSupportActivity implements iT
         super.onCreate(savedInstanceState);
         setContentView(getLayoutId());
         setContainer(R.id.container);
+        initLoading();
         initView();
         initial();
+    }
+
+    protected void initLoading() {
+        CircularProgressView progressView = (CircularProgressView) findViewById(R.id.progress_view);
+        setLoading(progressView);
     }
 
     protected int getLayoutId() {
