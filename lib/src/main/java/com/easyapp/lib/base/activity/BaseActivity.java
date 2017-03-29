@@ -32,6 +32,10 @@ public abstract class BaseActivity extends AppCompatActivity implements iLoading
             return;
         }
 
+        if (loading.isAdded()) {
+            return;
+        }
+
         if (!loading.isAdded()) {
             loading.show(getSupportFragmentManager(), null);
         }
