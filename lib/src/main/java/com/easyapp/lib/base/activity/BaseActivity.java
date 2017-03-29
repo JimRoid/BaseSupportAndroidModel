@@ -28,11 +28,17 @@ public abstract class BaseActivity extends AppCompatActivity implements iLoading
 
     protected void setLoading(View progressView) {
         loading = progressView;
+        loading.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
     }
 
     @Override
     public void showLoading() {
-        if (loading == null){
+        if (loading == null) {
             return;
         }
         loading.setVisibility(View.VISIBLE);
@@ -40,7 +46,7 @@ public abstract class BaseActivity extends AppCompatActivity implements iLoading
 
     @Override
     public void cancelLoading() {
-        if (loading == null){
+        if (loading == null) {
             return;
         }
         loading.setVisibility(View.GONE);
