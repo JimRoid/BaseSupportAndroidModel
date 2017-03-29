@@ -18,17 +18,11 @@
 
             <include layout="@layout/layout_toolbar" />
 
+
             <FrameLayout
+                android:id="@android:id/tabcontent"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
-
-                <FrameLayout
-                    android:id="@android:id/tabcontent"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent" />
-
-                <include layout="@layout/layout_loading" />
-            </FrameLayout>
+                android:layout_height="match_parent" />
 
         </LinearLayout>
 
@@ -65,6 +59,8 @@
                 android:src="@drawable/ic_arrow_right_gray"
                 android:visibility="gone" />
         </FrameLayout>
+
+        <include layout="@layout/layout_loading" />
 
     </FrameLayout>
 
