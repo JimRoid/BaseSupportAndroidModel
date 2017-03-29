@@ -48,6 +48,13 @@ public abstract class BaseTabActivity extends BaseMainActivity {
         onSetupTab();
     }
 
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        fragmentTabHost = null;
+    }
+
+
     protected FragmentClickTabHost.IsCanSetCurrentTab getIsCanSetCurrentTab() {
         return new FragmentClickTabHost.IsCanSetCurrentTab() {
             @Override
