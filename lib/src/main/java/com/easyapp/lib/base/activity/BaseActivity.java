@@ -3,12 +3,13 @@ package com.easyapp.lib.base.activity;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
+import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Toast;
 
 import com.easyapp.lib.base.fragment.Loading;
+import com.easyapp.lib.callback.iLoading;
 
 /**
  * initial
@@ -16,9 +17,11 @@ import com.easyapp.lib.base.fragment.Loading;
  * load dialog
  * hide keyboard
  */
-public abstract class BaseActivity extends AppCompatActivity {
+public abstract class BaseActivity extends AppCompatActivity implements iLoading {
     protected Toast toast;
+    protected View progressLoading;
     protected Loading loading;
+
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -26,26 +29,43 @@ public abstract class BaseActivity extends AppCompatActivity {
         loading = Loading.newInstance();
     }
 
+    protected void setProgressLoading(View progressView) {
+        progressLoading = progressView;
+        progressLoading.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
 
-    protected void showLoading() {
-        if (getSupportFragmentManager() == null) {
-            return;
-        }
-
-        if (!loading.isAdded()) {
-            FragmentManager fragmentManager = getSupportFragmentManager();
-            fragmentManager.beginTransaction().add(loading, "loading").commitAllowingStateLoss();
-        }
+            }
+        });
     }
 
-    protected void cancelLoading() {
-        if (getSupportFragmentManager() == null) {
+    @Override
+    public void showLoading() {
+        if (progressLoading == null) {
+            if (loading == null) {
+                return;
+            }
+
+            if (!loading.isAdded()) {
+                loading.show(getSupportFragmentManager(), null);
+            }
             return;
         }
+        progressLoading.setVisibility(View.VISIBLE);
+    }
 
-        if (loading.isAdded()) {
-            loading.dismiss();
+    @Override
+    public void cancelLoading() {
+        if (progressLoading == null) {
+            if (loading == null) {
+                return;
+            }
+            if (loading.isAdded()) {
+                loading.dismiss();
+            }
+            return;
         }
+        progressLoading.setVisibility(View.GONE);
     }
 
 

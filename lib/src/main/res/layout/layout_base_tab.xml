@@ -60,6 +60,8 @@
                 android:visibility="gone" />
         </FrameLayout>
 
+        <include layout="@layout/layout_loading" />
+
     </FrameLayout>
 
 
