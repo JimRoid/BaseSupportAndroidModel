@@ -11,6 +11,7 @@ import retrofit2.Call;
 import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
+import retrofit2.converter.scalars.ScalarsConverterFactory;
 
 /**
  * 提供基本的 retrofit2 泛型callback
@@ -43,6 +44,7 @@ public abstract class BaseApiTool<TServices> {
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(initUrl())
                 .addConverterFactory(GsonConverterFactory.create())
+                .addConverterFactory(ScalarsConverterFactory.create())
                 .build();
         Utils.validateServiceInterface(this.initService());
         services = retrofit.create(initService());
