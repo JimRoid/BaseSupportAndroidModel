@@ -34,7 +34,7 @@ public abstract class BaseHeadList<VHead extends BaseRecyclerViewAdapter.ItemHol
     protected View empty_state_view;
     protected ProgressBar progressBar;
     protected FloatingActionButton floatingActionButton;
-
+    protected GridLayoutManager gridLayoutManager;
     protected boolean isNoMore = false;
 
     protected boolean fabVisible = true;
@@ -78,8 +78,17 @@ public abstract class BaseHeadList<VHead extends BaseRecyclerViewAdapter.ItemHol
         swipeRefreshLayout = (SwipeRefreshLayout) view.findViewById(R.id.easyapp_swiperefresh_layout);
         swipeRefreshLayout.setOnRefreshListener(this);
         recyclerView = (RecyclerView) view.findViewById(R.id.easyapp_recycler_view);
-        GridLayoutManager gridLayoutManager = new GridLayoutManager(getActivity(), setGridLayoutSpanCount());
+        gridLayoutManager = new GridLayoutManager(getActivity(), setGridLayoutSpanCount());
         recyclerView.setLayoutManager(gridLayoutManager);
+    }
+
+    /**
+     * 設定成橫向
+     */
+    protected void setHorizontal() {
+        gridLayoutManager = new GridLayoutManager(getContext(), 1, GridLayoutManager.HORIZONTAL, false);
+        recyclerView.setLayoutManager(gridLayoutManager);
+        recyclerView.setHasFixedSize(true);
     }
 
     protected void initFab() {
