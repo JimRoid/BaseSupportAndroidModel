@@ -16,6 +16,7 @@ public abstract class BaseRecyclerViewAdapter<THead, T> extends RecyclerView.Ada
     public final static int VIEWTYPEHEADER = 0;
     public final static int VIEWTYPECONTENT = 1;
     protected List data;
+    protected boolean isHead = true;
     protected Context context;
     private EndlessRecyclerOnScrollListener recyclerOnScrollListener;
 
@@ -96,10 +97,16 @@ public abstract class BaseRecyclerViewAdapter<THead, T> extends RecyclerView.Ada
 
     @Override
     public int getItemViewType(int position) {
-        if (position == 0) {
-            return VIEWTYPEHEADER;
+        if (isHead) {
+            if (position == 0) {
+                return VIEWTYPEHEADER;
+            }
         }
         return VIEWTYPECONTENT;
+    }
+
+    public void setHead(boolean isHead) {
+        this.isHead = isHead;
     }
 
     public static abstract class ItemHolder extends RecyclerView.ViewHolder {
