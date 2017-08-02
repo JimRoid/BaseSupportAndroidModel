@@ -12,7 +12,7 @@ import android.view.ViewGroup;
 import com.easyapp.lib.R;
 
 /**
- * Created by easyapp_jim on 2016/12/14.
+ * 讀取畫面的loading
  */
 
 public class Loading extends DialogFragment {

@@ -26,15 +26,14 @@ public abstract class BaseMainActivity extends BaseSupportActivity implements iT
         super.onCreate(savedInstanceState);
         setContentView(getLayoutId());
         setContainer(R.id.container);
-//        initLoading();
+        initLoading();
         initView();
         initial();
     }
 
     protected void initLoading() {
-        View fl_loading = findViewById(R.id.fl_loading);
-//        CircularProgressView progressView = (CircularProgressView) findViewById(R.id.progress_view);
-        setProgressLoading(fl_loading);
+        View flLoading = findViewById(R.id.fl_loading);
+        setProgressLoading(flLoading);
     }
 
     protected int getLayoutId() {
