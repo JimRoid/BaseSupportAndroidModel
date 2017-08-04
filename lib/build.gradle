@@ -8,8 +8,8 @@ android {
     defaultConfig {
         minSdkVersion 14
         targetSdkVersion 25
-        versionCode 206
-        versionName "9.0.5"
+        versionCode 207
+        versionName "9.0.6"
     }
 
     buildTypes {
@@ -36,7 +36,6 @@ dependencies {
     compile 'com.squareup.retrofit2:converter-gson:2.2.0'
     compile 'com.github.bumptech.glide:glide:3.7.0'
     compile 'com.orhanobut:logger:1.10'
-    compile 'com.easyapp.easydb:EasyDB:1.4'
 }
 
 def repo = new File(rootDir, "")
@@ -45,7 +44,7 @@ uploadArchives {
     repositories {
         mavenDeployer {
             repository url: "file://${repo.absolutePath}"
-            pom.version = '9.0.5'
+            pom.version = '9.0.6'
             pom.groupId = 'com.easyapp.lib'
             pom.artifactId = 'BaseSupport'
         }
