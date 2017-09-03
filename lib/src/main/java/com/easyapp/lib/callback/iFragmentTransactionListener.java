@@ -21,11 +21,11 @@ public interface iFragmentTransactionListener {
 
     void AddFragment(Fragment fragment, int container, String anim);
 
-    void AddFragment_Zoom(Fragment fragment, int container);
+    void AddFragmentZoom(Fragment fragment, int container);
 
-    void AddFragment_Up(Fragment fragment);
+    void AddFragmentUp(Fragment fragment);
 
-    void AddFragment_Up(Fragment fragment, int container);
+    void AddFragmentUp(Fragment fragment, int container);
 
     void ReplaceFragment(Fragment fragment, Bundle bundle);
 

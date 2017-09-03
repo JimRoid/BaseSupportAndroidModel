@@ -71,25 +71,25 @@ public abstract class BaseSupportActivity extends BaseActivity implements iFragm
     }
 
     @Override
-    public void AddFragment_Zoom(Fragment fragment, int container) {
-        fragmentManager.beginTransaction().setCustomAnimations(R.anim.zoom_in, 0, 0, R.anim.zoom_out).add(container, fragment, "main").addToBackStack("main_interface").commitAllowingStateLoss();
+    public void AddFragmentZoom(Fragment fragment, int container) {
+        fragmentManager.beginTransaction().setCustomAnimations(R.anim.zoom_in, 0, 0, R.anim.zoom_out).replace(container, fragment, "main").addToBackStack("main_interface").commitAllowingStateLoss();
         OnAddFragment();
     }
 
     @Override
-    public void AddFragment_Up(Fragment fragment) {
-        AddFragment_Up(fragment, containerId);
+    public void AddFragmentUp(Fragment fragment) {
+        AddFragmentUp(fragment, containerId);
     }
 
     @Override
-    public void AddFragment_Up(Fragment fragment, int container) {
+    public void AddFragmentUp(Fragment fragment, int container) {
         if (container == 0) {
             Toast.makeText(this, "Please Set containerId ID", Toast.LENGTH_SHORT).show();
             return;
         }
         Fragment originalFragment = fragmentManager.findFragmentById(container);
         if (!fragment.getClass().equals(originalFragment.getClass())) {
-            fragmentManager.beginTransaction().setCustomAnimations(R.anim.slide_out_up, R.anim.slide_in_up, R.anim.slide_out_up, R.anim.slide_in_up).add(container, fragment, "main").addToBackStack("main_interface").commitAllowingStateLoss();
+            fragmentManager.beginTransaction().setCustomAnimations(R.anim.slide_out_up, R.anim.slide_in_up, R.anim.slide_out_up, R.anim.slide_in_up).replace(container, fragment, "main").addToBackStack("main_interface").commitAllowingStateLoss();
         }
         OnAddFragment();
     }

@@ -93,25 +93,25 @@ public abstract class BaseEasyFragment extends BaseFragment {
         onFragmentTransactionListener.AddFragment(fragment, container);
     }
 
-    protected void AddFragment_Fade(Fragment fragment, int container) {
-        onFragmentTransactionListener.AddFragment_Zoom(fragment, container);
+    protected void AddFragmentFade(Fragment fragment, int container) {
+        onFragmentTransactionListener.AddFragmentZoom(fragment, container);
     }
 
-    protected void AddFragment_Up(Fragment fragment, Bundle bundle) {
+    protected void AddFragmentUp(Fragment fragment, Bundle bundle) {
         fragment.setArguments(bundle);
-        AddFragment_Up(fragment);
+        AddFragmentUp(fragment);
     }
 
-    protected void AddFragment_Up(Fragment fragment) {
+    protected void AddFragmentUp(Fragment fragment) {
         if (isTabMode) {
             AddChildFragmentUp(fragment);
         } else {
-            onFragmentTransactionListener.AddFragment_Up(fragment);
+            onFragmentTransactionListener.AddFragmentUp(fragment);
         }
     }
 
-    protected void AddFragment_Up(Fragment fragment, int container) {
-        onFragmentTransactionListener.AddFragment_Up(fragment, container);
+    protected void AddFragmentUp(Fragment fragment, int container) {
+        onFragmentTransactionListener.AddFragmentUp(fragment, container);
     }
 
     protected void ReplaceFragment(Fragment fragment, Bundle bundle) {
