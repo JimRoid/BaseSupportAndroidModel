@@ -7,6 +7,9 @@ import com.easyapp.lib.tool.Utils;
 import com.google.gson.Gson;
 import com.orhanobut.logger.Logger;
 
+import java.util.concurrent.TimeUnit;
+
+import okhttp3.OkHttpClient;
 import retrofit2.Call;
 import retrofit2.Response;
 import retrofit2.Retrofit;
@@ -43,11 +46,24 @@ public abstract class BaseApiTool<TServices> {
         this.context = context;
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(initUrl())
+                .client(getOkHttpClient().build())
                 .addConverterFactory(GsonConverterFactory.create())
                 .addConverterFactory(ScalarsConverterFactory.create())
                 .build();
         Utils.validateServiceInterface(this.initService());
         services = retrofit.create(initService());
+    }
+
+    protected OkHttpClient.Builder getOkHttpClient() {
+        OkHttpClient.Builder httpClient = new OkHttpClient.Builder();
+        httpClient.connectTimeout(getTimeOutSeconds(), TimeUnit.SECONDS);
+        httpClient.writeTimeout(getTimeOutSeconds(), TimeUnit.SECONDS);
+        httpClient.readTimeout(getTimeOutSeconds(), TimeUnit.SECONDS);
+        return httpClient;
+    }
+
+    public int getTimeOutSeconds() {
+        return 20;
     }
 
 
