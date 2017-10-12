@@ -5,16 +5,16 @@
     <string name="navigation_drawer_close">close</string>
 
     <!-- common text -->
-    <string name="not_found">目前沒有資料</string>
+    <string name="not_found">Not found</string>
 
     <!-- network tool -->
-    <string name="network_message_title">網路</string>
-    <string name="network_message_content">請檢查網路是否連線成功</string>
+    <string name="network_message_title">Network</string>
+    <string name="network_message_content">please check your internet</string>
 
     <!--dialog factory-->
-    <string name="cancel">關閉</string>
-    <string name="accept">確定</string>
-    <string name="understand">了解</string>
+    <string name="cancel">Cancel</string>
+    <string name="accept">Accept</string>
+    <string name="understand">OK</string>
 
 
 </resources>

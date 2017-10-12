@@ -1,11 +1,11 @@
-package com.easyapp.lib.http;
+package com.easyapp.lib.http.model;
 
 import com.google.gson.annotations.SerializedName;
 
 /**
- * Created by easyapp_jim on 2016/7/11.
+ * 基本的response 回傳
  */
-public class ItemBase {
+public class ResponseBase {
 
     /**
      * status : 200
@@ -16,7 +16,6 @@ public class ItemBase {
     private int status;
     @SerializedName("message")
     private String message;
-
 
 
     public int getStatus() {

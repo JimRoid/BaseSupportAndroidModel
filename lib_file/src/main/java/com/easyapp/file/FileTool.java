@@ -1,4 +1,4 @@
-package com.easyapp.lib.tool;
+package com.easyapp.file;
 
 import android.os.Environment;
 

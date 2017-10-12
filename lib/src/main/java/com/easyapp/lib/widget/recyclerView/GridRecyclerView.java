@@ -21,7 +21,6 @@ public class GridRecyclerView extends RecyclerView {
 
     public GridRecyclerView(Context context, AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
-
     }
 
     @Override

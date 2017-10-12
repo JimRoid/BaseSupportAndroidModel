@@ -23,9 +23,11 @@ import retrofit2.converter.scalars.ScalarsConverterFactory;
  */
 public abstract class BaseApiTool<TServices> {
 
-    private boolean showDebug = false;
+    private boolean showDebug = true;
 
     private Context context;
+
+    protected Retrofit retrofit;
 
     protected abstract String initUrl();
 
@@ -44,7 +46,7 @@ public abstract class BaseApiTool<TServices> {
     public BaseApiTool(Context context) {
         super();
         this.context = context;
-        Retrofit retrofit = new Retrofit.Builder()
+        retrofit = new Retrofit.Builder()
                 .baseUrl(initUrl())
                 .client(getOkHttpClient().build())
                 .addConverterFactory(GsonConverterFactory.create())
@@ -62,10 +64,13 @@ public abstract class BaseApiTool<TServices> {
         return httpClient;
     }
 
-    public int getTimeOutSeconds() {
+    protected int getTimeOutSeconds() {
         return 20;
     }
 
+    public void test(){
+
+    }
 
     public class initCallback<T> implements BaseApiCallback<T> {
         @Override
