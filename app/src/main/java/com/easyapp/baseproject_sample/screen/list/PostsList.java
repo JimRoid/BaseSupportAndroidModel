@@ -10,7 +10,7 @@ import com.easyapp.baseproject_sample.http.api.ApiTool;
 import com.easyapp.baseproject_sample.http.entity.ItemProduct;
 import com.easyapp.baseproject_sample.screen.BlankFragment;
 import com.easyapp.lib.base.fragment.list.BaseHeadList;
-import com.easyapp.lib.callback.Callback;
+import com.easyapp.lib.http.listener.EasyApiCallback;
 import com.easyapp.lib.widget.recyclerView.BaseRecyclerViewAdapter;
 import com.orhanobut.logger.Logger;
 
@@ -45,20 +45,20 @@ public class PostsList extends BaseHeadList<PostsList.AdapterItemHolder, PostsLi
 
     @Override
     protected void onLoadMore() {
-        apiTool.getProductList("", "", "", new Callback<ItemProduct>() {
+        apiTool.getProductList("", "", "", new EasyApiCallback<ItemProduct>() {
             @Override
-            public void initCallback() {
+            public void initial() {
                 showLoading();
-            }
-
-            @Override
-            public void callback(ItemProduct photos) {
-                addAll(photos.getData().getContent());
             }
 
             @Override
             public void onComplete() {
                 cancelLoading();
+            }
+
+            @Override
+            public void onCallback(ItemProduct itemProduct) {
+                addAll(itemProduct.getData().getContent());
             }
         });
     }

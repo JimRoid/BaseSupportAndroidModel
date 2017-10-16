@@ -12,7 +12,7 @@ import com.easyapp.baseproject_sample.http.api.ApiTool;
 import com.easyapp.baseproject_sample.http.entity.ItemProduct;
 import com.easyapp.baseproject_sample.screen.SampleFragment;
 import com.easyapp.lib.base.fragment.list.BaseWaterFull;
-import com.easyapp.lib.callback.Callback;
+import com.easyapp.lib.http.listener.EasyApiCallback;
 import com.easyapp.lib.widget.recyclerView.BaseRecyclerViewAdapter;
 
 /**
@@ -40,15 +40,11 @@ public class PostsStaggeredList extends BaseWaterFull<PostsStaggeredList.Adapter
 
     @Override
     protected void onLoadMore() {
-        apiTool.getProductList("", "", "", new Callback() {
+        apiTool.getProductList("", "", "", new EasyApiCallback<ItemProduct>() {
             @Override
-            public void callback(Object object) {
-                ItemProduct photos = (ItemProduct) object;
-                if (getSize() > 0) {
-                    addAll(photos.getData().getContent());
-                } else {
-                    addAll(photos.getData().getContent());
-                }
+            public void onCallback(ItemProduct itemProduct) {
+                super.onCallback(itemProduct);
+                addAll(itemProduct.getData().getContent());
             }
         });
     }

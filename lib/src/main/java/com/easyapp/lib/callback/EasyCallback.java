@@ -3,7 +3,7 @@ package com.easyapp.lib.callback;
 /**
  * 簡單的callback 回傳
  */
-public class Callback<T> implements iCallback<T> {
+public class EasyCallback<T> implements iCallback<T> {
 
     @Override
     public void initCallback() {

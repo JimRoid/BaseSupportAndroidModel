@@ -10,7 +10,7 @@ import com.easyapp.baseproject_sample.http.api.ApiTool;
 import com.easyapp.baseproject_sample.http.entity.ItemProduct;
 import com.easyapp.baseproject_sample.screen.SampleFragment;
 import com.easyapp.lib.base.fragment.list.BaseList;
-import com.easyapp.lib.callback.Callback;
+import com.easyapp.lib.http.listener.EasyApiCallback;
 import com.easyapp.lib.widget.recyclerView.BaseRecyclerViewAdapter;
 
 /**
@@ -37,11 +37,10 @@ public class ListSample extends BaseList<ListSample.AdapterItemHolder, ItemProdu
 
     @Override
     protected void onLoadMore() {
-        apiTool.getProductList("", "", "", new Callback() {
+        apiTool.getProductList("", "", "", new EasyApiCallback<ItemProduct>() {
             @Override
-            public void callback(Object object) {
-                ItemProduct photos = (ItemProduct) object;
-                addAll(photos.getData().getContent());
+            public void onCallback(ItemProduct itemProduct) {
+                addAll(itemProduct.getData().getContent());
             }
         });
     }

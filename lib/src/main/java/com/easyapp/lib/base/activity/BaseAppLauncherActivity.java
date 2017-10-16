@@ -1,9 +1,6 @@
 package com.easyapp.lib.base.activity;
 
-import android.content.Context;
 import android.content.DialogInterface;
-import android.net.ConnectivityManager;
-import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -11,6 +8,7 @@ import android.support.annotation.Nullable;
 
 import com.easyapp.lib.R;
 import com.easyapp.lib.dialogFactory.SimpleDialog;
+import com.easyapp.lib.http.Utils;
 
 /**
  * 基本的啟動activity
@@ -31,7 +29,7 @@ public abstract class BaseAppLauncherActivity extends BaseActivity {
     protected void onResume() {
         super.onResume();
         if (isCheckNetworkExist()) {
-            if (isNetworkAvailable(this)) {
+            if (Utils.isNetworkAvailable(this)) {
                 showLauncherView();
             } else {
                 SimpleDialog.Description(this, getString(R.string.network_message_title), getString(R.string.network_message_content), new DialogInterface.OnClickListener() {
@@ -102,13 +100,4 @@ public abstract class BaseAppLauncherActivity extends BaseActivity {
         }
     }
 
-    public static boolean isNetworkAvailable(Context context) {
-        ConnectivityManager cm = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
-        NetworkInfo activeNetwork = cm.getActiveNetworkInfo();
-        if (activeNetwork != null) { // connected to the internet
-            return true;
-        } else {
-            return false;
-        }
-    }
 }
