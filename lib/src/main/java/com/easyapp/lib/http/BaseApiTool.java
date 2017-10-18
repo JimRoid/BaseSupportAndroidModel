@@ -179,25 +179,33 @@ public abstract class BaseApiTool<TServices> {
         public initCallback(EasyApiCallback<T> easyApiCallback) {
             super();
             this.easyApiCallback = easyApiCallback;
-            this.easyApiCallback.initial();
+            try {
+                this.easyApiCallback.initial();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         }
 
         @Override
         public void onResponse(Call<T> call, Response<T> response) {
-            easyApiCallback.onResponse(call, response);
+            try {
+                easyApiCallback.onResponse(call, response);
 
-            //共用中間監聽器
-            for (OnResponseListener onResponseListener : onResponseListeners) {
-                onResponseListener.onResponse(call, response);
-            }
+                //共用中間監聽器
+                for (OnResponseListener onResponseListener : onResponseListeners) {
+                    onResponseListener.onResponse(call, response);
+                }
 
-            if (response.isSuccessful() && response.code() == 200) {
-                easyApiCallback.onCallback(response.body());
-            } else {
-                easyApiCallback.onFail(response.body());
+                if (response.isSuccessful() && response.code() == 200) {
+                    easyApiCallback.onCallback(response.body());
+                } else {
+                    easyApiCallback.onFail(response.body());
+                }
+                call.cancel();
+                easyApiCallback.onComplete();
+            } catch (Exception e) {
+                e.printStackTrace();
             }
-            call.cancel();
-            easyApiCallback.onComplete();
         }
 
         @Override
@@ -206,12 +214,16 @@ public abstract class BaseApiTool<TServices> {
                 t.printStackTrace();
             }
             call.cancel();
-            easyApiCallback.onFail(t);
-            easyApiCallback.onComplete();
+            try {
+                easyApiCallback.onFail(t);
+                easyApiCallback.onComplete();
 
-            if (!Utils.isNetworkAvailable(getContext())) {
-                cancel();
-                Toast.makeText(getContext(), getContext().getString(R.string.network_message_content), Toast.LENGTH_SHORT).show();
+                if (!Utils.isNetworkAvailable(getContext())) {
+                    cancel();
+                    Toast.makeText(getContext(), getContext().getString(R.string.network_message_content), Toast.LENGTH_SHORT).show();
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
             }
         }
     }
