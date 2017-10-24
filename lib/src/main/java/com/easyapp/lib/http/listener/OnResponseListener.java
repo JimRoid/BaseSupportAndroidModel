@@ -4,7 +4,7 @@ import retrofit2.Call;
 import retrofit2.Response;
 
 /**
- * Created by easyapp_jim on 2017/10/16.
+ * 取回正常回傳監聽器
  */
 
 public interface OnResponseListener<T> {

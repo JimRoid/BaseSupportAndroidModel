@@ -5,6 +5,7 @@ import android.widget.Toast;
 
 import com.easyapp.lib.R;
 import com.easyapp.lib.http.listener.EasyApiCallback;
+import com.easyapp.lib.http.listener.OnFailureListener;
 import com.easyapp.lib.http.listener.OnResponseListener;
 
 import java.io.IOException;
@@ -33,6 +34,7 @@ public abstract class BaseApiTool<TServices> {
     private ArrayList<Call> callArrayList;
 
     private ArrayList<OnResponseListener> onResponseListeners;
+    private ArrayList<OnFailureListener> onFailureListentrs;
 
     private boolean showDebug = true;
 
@@ -72,6 +74,7 @@ public abstract class BaseApiTool<TServices> {
 
         callArrayList = new ArrayList<>();
         onResponseListeners = new ArrayList<>();
+        onFailureListentrs = new ArrayList<>();
 
         initHttpClient();
 
@@ -160,6 +163,14 @@ public abstract class BaseApiTool<TServices> {
         onResponseListeners.clear();
     }
 
+    public <T> void addOnFailListener(OnFailureListener<T> onFailureListentr) {
+        onFailureListentrs.add(onFailureListentr);
+    }
+
+    public void clearOnFailListener() {
+        onFailureListentrs.clear();
+    }
+
     /**
      * 取消所有的請求
      */
@@ -213,6 +224,12 @@ public abstract class BaseApiTool<TServices> {
             if (showDebug) {
                 t.printStackTrace();
             }
+
+            //共用中間監聽器
+            for (OnFailureListener onFailureListener : onFailureListentrs) {
+                onFailureListener.onFailure(call, t);
+            }
+
             call.cancel();
             try {
                 easyApiCallback.onFail(t);
