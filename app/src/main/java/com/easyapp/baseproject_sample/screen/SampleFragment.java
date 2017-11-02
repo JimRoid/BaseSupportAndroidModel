@@ -7,12 +7,11 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 
 import com.easyapp.baseproject_sample.R;
 import com.easyapp.baseproject_sample.activityDrawer.DrawerViewActivity;
-import com.easyapp.baseproject_sample.loginView.LoginActivity;
 import com.easyapp.baseproject_sample.activityTab.TabActivity;
+import com.easyapp.baseproject_sample.loginView.LoginActivity;
 import com.easyapp.baseproject_sample.screen.list.PostsList;
 import com.easyapp.baseproject_sample.screen.list.PostsStaggeredList;
 import com.easyapp.lib.base.fragment.BaseToolbarFragment;
@@ -21,7 +20,6 @@ import com.easyapp.lib.widget.MenuView;
 
 import java.util.ArrayList;
 
-import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
@@ -31,19 +29,8 @@ import butterknife.OnClick;
  */
 public class SampleFragment extends BaseToolbarFragment {
 
-    @BindView(R.id.bt_list)
-    Button btList;
-    @BindView(R.id.bt_tab)
-    Button btTab;
-    @BindView(R.id.bt_drawerView)
-    Button btDrawerView;
-    @BindView(R.id.bt_staggered_list)
-    Button btStaggeredList;
-    @BindView(R.id.dot_viewpager)
-    Button dotViewpager;
-    @BindView(R.id.bt_loginView)
-    Button btLoginView;
-    private View view;
+
+
 
     @Override
     public void onAttach(Context context) {
@@ -54,7 +41,7 @@ public class SampleFragment extends BaseToolbarFragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        view = inflater.inflate(R.layout.fragment_sample, container, false);
+        View view = inflater.inflate(R.layout.fragment_sample, container, false);
         ButterKnife.bind(this, view);
         MenuView menuView = new MenuView();
         menuView.Builder(getActivity());

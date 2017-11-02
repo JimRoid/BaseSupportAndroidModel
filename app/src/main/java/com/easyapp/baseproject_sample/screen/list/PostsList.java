@@ -85,7 +85,7 @@ public class PostsList extends BaseHeadList<PostsList.AdapterItemHolder, PostsLi
 
     @Override
     protected void getBindViewHolder(AdapterItemHolder holder, ItemProduct.DataBean.ContentBean photo) {
-        Glide.with(getContext()).load(photo.getS_pic()).placeholder(R.drawable.icon_empty).into(holder.iv_picture);
+        Glide.with(getContext()).load(photo.getS_pic()).into(holder.iv_picture);
         holder.textView.setText(photo.getName());
         holder.content.setOnClickListener(new View.OnClickListener() {
             @Override

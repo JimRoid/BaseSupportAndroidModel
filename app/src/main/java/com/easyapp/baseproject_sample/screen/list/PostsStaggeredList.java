@@ -66,7 +66,7 @@ public class PostsStaggeredList extends BaseWaterFull<PostsStaggeredList.Adapter
 
     @Override
     protected void getBindViewHolder(AdapterItemHolder holder, ItemProduct.DataBean.ContentBean bean) {
-        Glide.with(getContext()).load(bean.getS_pic()).placeholder(R.drawable.icon_empty).into(holder.iv_picture);
+        Glide.with(getContext()).load(bean.getS_pic()).into(holder.iv_picture);
         holder.textView.setText(bean.getName());
         holder.content.setOnClickListener(new View.OnClickListener() {
             @Override

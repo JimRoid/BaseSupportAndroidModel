@@ -62,7 +62,7 @@ public class ListSample extends BaseList<ListSample.AdapterItemHolder, ItemProdu
 
     @Override
     protected void getBindViewHolder(AdapterItemHolder holder, ItemProduct.DataBean.ContentBean photo) {
-        Glide.with(getContext()).load(photo.getS_pic()).placeholder(R.drawable.icon_empty).into(holder.iv_picture);
+        Glide.with(getContext()).load(photo.getS_pic()).into(holder.iv_picture);
         holder.textView.setText(photo.getName());
         holder.content.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -80,8 +80,8 @@ public class ListSample extends BaseList<ListSample.AdapterItemHolder, ItemProdu
         public AdapterItemHolder(View itemView) {
             super(itemView);
             content = itemView.findViewById(R.id.content);
-            textView = (TextView) itemView.findViewById(R.id.tv_title);
-            iv_picture = (ImageView) itemView.findViewById(R.id.iv_picture);
+            textView = itemView.findViewById(R.id.tv_title);
+            iv_picture = itemView.findViewById(R.id.iv_picture);
         }
     }
 }
