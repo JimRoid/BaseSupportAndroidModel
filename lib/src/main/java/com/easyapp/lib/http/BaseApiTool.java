@@ -34,7 +34,7 @@ public abstract class BaseApiTool<TServices> {
     private ArrayList<Call> callArrayList;
 
     private ArrayList<OnResponseListener> onResponseListeners;
-    private ArrayList<OnFailureListener> onFailureListentrs;
+    private ArrayList<OnFailureListener> onFailureListeners;
 
     private boolean showDebug = true;
 
@@ -164,11 +164,11 @@ public abstract class BaseApiTool<TServices> {
     }
 
     public <T> void addOnFailListener(OnFailureListener<T> onFailureListentr) {
-        onFailureListentrs.add(onFailureListentr);
+        onFailureListeners.add(onFailureListentr);
     }
 
     public void clearOnFailListener() {
-        onFailureListentrs.clear();
+        onFailureListeners.clear();
     }
 
     /**
@@ -226,7 +226,7 @@ public abstract class BaseApiTool<TServices> {
             }
 
             //共用中間監聽器
-            for (OnFailureListener onFailureListener : onFailureListentrs) {
+            for (OnFailureListener onFailureListener : onFailureListeners) {
                 onFailureListener.onFailure(call, t);
             }
 

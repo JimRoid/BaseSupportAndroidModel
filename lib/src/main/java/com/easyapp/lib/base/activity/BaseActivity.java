@@ -12,10 +12,7 @@ import com.easyapp.lib.base.fragment.Loading;
 import com.easyapp.lib.callback.iLoading;
 
 /**
- * initial
- * <p>
- * load dialog
- * hide keyboard
+ * @author jim
  */
 public abstract class BaseActivity extends AppCompatActivity implements iLoading {
     protected Toast toast;
