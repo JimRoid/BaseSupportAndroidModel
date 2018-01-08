@@ -18,10 +18,6 @@
 repositories {
     maven {
             url "https://api.bitbucket.org/1.0/repositories/easyapp/android_module_baseproject/raw/master/"
-            credentials {
-                username 'Jimroid'
-                password 'Kincaid123'
-            }
     }
 }
 ```
