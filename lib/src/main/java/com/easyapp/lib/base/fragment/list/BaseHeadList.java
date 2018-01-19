@@ -35,7 +35,7 @@ public abstract class BaseHeadList<VHead extends BaseRecyclerViewAdapter.ItemHol
     protected ProgressBar progressBar;
     protected FloatingActionButton floatingActionButton;
     protected GridLayoutManager gridLayoutManager;
-    protected boolean isNoMore = false;
+    protected boolean isAutoLoad = false;
 
     protected boolean fabVisible = true;
     protected boolean isScrollTop = true;
@@ -139,14 +139,13 @@ public abstract class BaseHeadList<VHead extends BaseRecyclerViewAdapter.ItemHol
 
             @Override
             public void onScrolledLoadMore() {
-                if (isNoMore) {
-                    return;
+                if (isAutoLoad) {
+                    if (progressBar.getVisibility() == View.GONE) {
+                        showProgress();
+                        onLoadMore();
+                    }
+                    onScrollLoadMore();
                 }
-                if (progressBar.getVisibility() == View.GONE) {
-                    showProgress();
-                    onLoadMore();
-                }
-                onScrollLoadMore();
             }
 
             @Override
@@ -213,7 +212,7 @@ public abstract class BaseHeadList<VHead extends BaseRecyclerViewAdapter.ItemHol
     public void onRefresh() {
 //        cancelProgress();
         page = 0;
-        setIsNoMore(false);
+        setIsAutoLoad(false);
         getAdapter().clear();
         onLoad();
     }
@@ -231,8 +230,8 @@ public abstract class BaseHeadList<VHead extends BaseRecyclerViewAdapter.ItemHol
 
     protected abstract void onLoadMore();
 
-    protected void setIsNoMore(boolean isNoMore) {
-        this.isNoMore = isNoMore;
+    protected void setIsAutoLoad(boolean isAutoLoad) {
+        this.isAutoLoad = isAutoLoad;
     }
 
     /**
@@ -253,7 +252,7 @@ public abstract class BaseHeadList<VHead extends BaseRecyclerViewAdapter.ItemHol
     protected void addAll(List arrayList) {
         cancelProgress();
         if (arrayList.size() < limit) {
-            setIsNoMore(true);
+            setIsAutoLoad(false);
         }
         page++;
         swipeRefreshLayout.setRefreshing(false);
