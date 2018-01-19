@@ -3,14 +3,14 @@ apply plugin: 'maven'
 apply plugin: 'checkstyle'
 
 android {
-    compileSdkVersion 26
-    buildToolsVersion '26.0.2'
+    compileSdkVersion 27
+    buildToolsVersion '27.0.3'
 
     defaultConfig {
         minSdkVersion 14
-        targetSdkVersion 26
-        versionCode 216
-        versionName "9.5.0"
+        targetSdkVersion 27
+        versionCode 217
+        versionName "9.5.1"
     }
 
     buildTypes {
@@ -28,15 +28,15 @@ android {
 
 dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
-    compile 'com.android.support:support-compat:26.1.0'
-    compile 'com.android.support:design:26.1.0'
-    compile 'com.android.support:support-core-utils:26.1.0'
-    compile 'com.android.support:support-core-ui:26.1.0'
-    compile 'com.android.support:support-fragment:26.1.0'
-    compile 'com.android.support:support-annotations:26.1.0'
-    compile 'com.android.support:appcompat-v7:26.1.0'
-    compile 'com.android.support:cardview-v7:26.1.0'
-    compile 'com.android.support:recyclerview-v7:26.1.0'
+    compile 'com.android.support:support-compat:27.0.2'
+    compile 'com.android.support:design:27.0.2'
+    compile 'com.android.support:support-core-utils:27.0.2'
+    compile 'com.android.support:support-core-ui:27.0.2'
+    compile 'com.android.support:support-fragment:27.0.2'
+    compile 'com.android.support:support-annotations:27.0.2'
+    compile 'com.android.support:appcompat-v7:27.0.2'
+    compile 'com.android.support:cardview-v7:27.0.2'
+    compile 'com.android.support:recyclerview-v7:27.0.2'
     compile 'com.squareup.okhttp3:logging-interceptor:3.8.0'
     compile 'com.squareup.retrofit2:retrofit:2.3.0'
     compile 'com.squareup.retrofit2:converter-scalars:2.3.0'
@@ -52,7 +52,7 @@ uploadArchives {
     repositories {
         mavenDeployer {
             repository url: "file://${repo.absolutePath}"
-            pom.version = '9.5.0'
+            pom.version = '9.5.1'
             pom.groupId = 'com.easyapp.lib'
             pom.artifactId = 'BaseSupport'
         }

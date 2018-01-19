@@ -29,7 +29,7 @@ public abstract class BaseDrawerMainActivity extends BaseMainActivity implements
     @Override
     protected void initView() {
         super.initView();
-        drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
+        drawerLayout = findViewById(R.id.drawer_layout);
         drawerLeft = findViewById(R.id.fl_drawer_left);
         drawerRight = findViewById(R.id.fl_drawer_right);
 

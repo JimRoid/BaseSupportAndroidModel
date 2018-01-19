@@ -3,6 +3,7 @@ package com.easyapp.lib.http;
 import android.content.Context;
 import android.widget.Toast;
 
+import com.easyapp.lib.BuildConfig;
 import com.easyapp.lib.R;
 import com.easyapp.lib.http.listener.EasyApiCallback;
 import com.easyapp.lib.http.listener.OnFailureListener;
@@ -74,7 +75,7 @@ public abstract class BaseApiTool<TServices> {
 
         callArrayList = new ArrayList<>();
         onResponseListeners = new ArrayList<>();
-        onFailureListentrs = new ArrayList<>();
+        onFailureListeners = new ArrayList<>();
 
         initHttpClient();
 
@@ -95,8 +96,11 @@ public abstract class BaseApiTool<TServices> {
     private void initHttpClient() {
         httpClient = new OkHttpClient.Builder();
 
-        // api logger
-        httpClient.addInterceptor(new HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BASIC));
+        if (BuildConfig.DEBUG) {
+            // api logger
+            httpClient.addInterceptor(new HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BASIC));
+        }
+
         // 重跑 api 的初始化
         httpClient.addInterceptor(new RetryInterceptor(getTotalRetries()));
 
@@ -213,10 +217,10 @@ public abstract class BaseApiTool<TServices> {
                     easyApiCallback.onFail(response.body());
                 }
                 call.cancel();
-                easyApiCallback.onComplete();
             } catch (Exception e) {
                 e.printStackTrace();
             }
+            easyApiCallback.onComplete();
         }
 
         @Override
