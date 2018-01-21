@@ -1,4 +1,4 @@
-package com.easyapp.lib.http;
+package com.easyapp.easyhttp;
 
 import android.content.Context;
 import android.net.ConnectivityManager;

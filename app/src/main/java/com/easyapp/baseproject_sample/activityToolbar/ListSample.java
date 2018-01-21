@@ -10,7 +10,7 @@ import com.easyapp.baseproject_sample.http.api.ApiTool;
 import com.easyapp.baseproject_sample.http.entity.ItemProduct;
 import com.easyapp.baseproject_sample.screen.SampleFragment;
 import com.easyapp.lib.base.fragment.list.BaseList;
-import com.easyapp.lib.http.listener.EasyApiCallback;
+import com.easyapp.easyhttp.listener.EasyApiCallback;
 import com.easyapp.lib.widget.recyclerView.BaseRecyclerViewAdapter;
 
 /**

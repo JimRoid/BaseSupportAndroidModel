@@ -2,6 +2,7 @@ package com.easyapp.baseproject_sample.http.api;
 
 
 import com.easyapp.baseproject_sample.http.entity.ItemProduct;
+import com.easyapp.easyhttp.EasyCall;
 
 import retrofit2.Call;
 import retrofit2.http.Field;
@@ -23,6 +24,6 @@ public interface ApiService {
      */
     @POST("production/list")
     @FormUrlEncoded
-    Call<ItemProduct> getProductList(@Field("type") String type, @Field("p_name") String p_name, @Field("page") String page, @Field("limit") String limit);
+    EasyCall<ItemProduct> getProductList(@Field("type") String type, @Field("p_name") String p_name, @Field("page") String page, @Field("limit") String limit);
 
 }

@@ -4,9 +4,10 @@ package com.easyapp.baseproject_sample.http.api;
 import android.content.Context;
 
 import com.easyapp.baseproject_sample.http.entity.ItemProduct;
-import com.easyapp.lib.http.BaseApiTool;
-import com.easyapp.lib.http.listener.EasyApiCallback;
-import com.easyapp.lib.http.listener.OnResponseListener;
+
+import com.easyapp.easyhttp.BaseApiTool;
+import com.easyapp.easyhttp.listener.EasyApiCallback;
+import com.easyapp.easyhttp.listener.OnResponseListener;
 import com.google.gson.Gson;
 import com.orhanobut.logger.Logger;
 
@@ -48,6 +49,8 @@ public class ApiTool extends BaseApiTool<ApiService> {
      */
     public void getProductList(String type, String p_name, String page, EasyApiCallback<ItemProduct> callback) {
         runCall(getServices().getProductList(type, p_name, page, "40"), callback);
+
+//        getServices().getProductList(type, p_name, page, "40").enqueue(callback);
     }
 
 

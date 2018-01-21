@@ -1,1 +1,1 @@
-include ':lib', ':app', ':lib_file'
+include ':lib', ':app', ':lib_file', ':easyhttp'

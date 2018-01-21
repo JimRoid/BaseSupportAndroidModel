@@ -1,13 +1,11 @@
-package com.easyapp.lib.http;
+package com.easyapp.easyhttp;
 
 import android.content.Context;
 import android.widget.Toast;
 
-import com.easyapp.lib.BuildConfig;
-import com.easyapp.lib.R;
-import com.easyapp.lib.http.listener.EasyApiCallback;
-import com.easyapp.lib.http.listener.OnFailureListener;
-import com.easyapp.lib.http.listener.OnResponseListener;
+import com.easyapp.easyhttp.listener.EasyApiCallback;
+import com.easyapp.easyhttp.listener.OnFailureListener;
+import com.easyapp.easyhttp.listener.OnResponseListener;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -23,21 +21,15 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 import retrofit2.converter.scalars.ScalarsConverterFactory;
 
-import static com.easyapp.lib.http.Utils.validateServiceInterface;
-
 /**
  * 提供基本的 retrofit2 泛型callback
  * <p>
  * example: new initCallback<T>().getCallback(callback);
  */
-public abstract class BaseApiTool<TServices> {
-
-    private ArrayList<Call> callArrayList;
+public abstract class BaseApiTool<TServices>{
 
     private ArrayList<OnResponseListener> onResponseListeners;
     private ArrayList<OnFailureListener> onFailureListeners;
-
-    private boolean showDebug = true;
 
     private Context context;
 
@@ -64,16 +56,11 @@ public abstract class BaseApiTool<TServices> {
         return services;
     }
 
-    public void setShowDebug(boolean showDebug) {
-        this.showDebug = showDebug;
-    }
-
     public BaseApiTool(Context context) {
         super();
 
         this.context = context;
 
-        callArrayList = new ArrayList<>();
         onResponseListeners = new ArrayList<>();
         onFailureListeners = new ArrayList<>();
 
@@ -85,7 +72,7 @@ public abstract class BaseApiTool<TServices> {
                 .addConverterFactory(GsonConverterFactory.create())
                 .addConverterFactory(ScalarsConverterFactory.create())
                 .build();
-        validateServiceInterface(this.initService());
+        Utils.validateServiceInterface(this.initService());
 
         services = retrofit.create(initService());
     }
@@ -155,8 +142,7 @@ public abstract class BaseApiTool<TServices> {
      * @param <T>
      */
     protected <T> void runCall(Call<T> call, EasyApiCallback<T> easyApiCallback) {
-        callArrayList.add(call);
-        call.enqueue(new initCallback<T>(easyApiCallback));
+        call.enqueue(new initCallback<>(easyApiCallback));
     }
 
     public <T> void addOnResponseListener(OnResponseListener<T> listener) {
@@ -173,18 +159,6 @@ public abstract class BaseApiTool<TServices> {
 
     public void clearOnFailListener() {
         onFailureListeners.clear();
-    }
-
-    /**
-     * 取消所有的請求
-     */
-    public void cancel() {
-        for (Call call : callArrayList) {
-            if (call.isExecuted()) {
-                call.cancel();
-            }
-        }
-        callArrayList.clear();
     }
 
     private class initCallback<T> implements retrofit2.Callback<T> {
@@ -216,16 +190,16 @@ public abstract class BaseApiTool<TServices> {
                 } else {
                     easyApiCallback.onFail(response.body());
                 }
-                call.cancel();
+                easyApiCallback.onComplete();
             } catch (Exception e) {
                 e.printStackTrace();
             }
-            easyApiCallback.onComplete();
+
         }
 
         @Override
         public void onFailure(Call<T> call, Throwable t) {
-            if (showDebug) {
+            if (BuildConfig.DEBUG) {
                 t.printStackTrace();
             }
 
@@ -234,13 +208,10 @@ public abstract class BaseApiTool<TServices> {
                 onFailureListener.onFailure(call, t);
             }
 
-            call.cancel();
             try {
                 easyApiCallback.onFail(t);
                 easyApiCallback.onComplete();
-
                 if (!Utils.isNetworkAvailable(getContext())) {
-                    cancel();
                     Toast.makeText(getContext(), getContext().getString(R.string.network_message_content), Toast.LENGTH_SHORT).show();
                 }
             } catch (Exception e) {
@@ -254,7 +225,7 @@ public abstract class BaseApiTool<TServices> {
      */
     public class RetryInterceptor implements Interceptor {
 
-        public int maxRetry;
+        private int maxRetry;
         private int retryNum = 0;
 
         public RetryInterceptor(int maxRetry) {
@@ -264,7 +235,6 @@ public abstract class BaseApiTool<TServices> {
         @Override
         public okhttp3.Response intercept(Chain chain) throws IOException {
             Request request = chain.request();
-            System.out.println("retryNum=" + retryNum);
 
             okhttp3.Response response = chain.proceed(request);
 
@@ -275,5 +245,4 @@ public abstract class BaseApiTool<TServices> {
             return response;
         }
     }
-
 }

@@ -10,7 +10,7 @@ import com.easyapp.baseproject_sample.http.api.ApiTool;
 import com.easyapp.baseproject_sample.http.entity.ItemProduct;
 import com.easyapp.baseproject_sample.screen.BlankFragment;
 import com.easyapp.lib.base.fragment.list.BaseHeadList;
-import com.easyapp.lib.http.listener.EasyApiCallback;
+import com.easyapp.easyhttp.listener.EasyApiCallback;
 import com.easyapp.lib.widget.recyclerView.BaseRecyclerViewAdapter;
 import com.orhanobut.logger.Logger;
 

@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">easyHttp</string>
+
+    <!-- network tool -->
+    <string name="network_message_title">網路</string>
+    <string name="network_message_content">請檢查網路是否連線成功</string>
+</resources>

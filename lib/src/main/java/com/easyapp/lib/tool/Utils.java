@@ -2,6 +2,8 @@ package com.easyapp.lib.tool;
 
 import android.content.Context;
 import android.content.res.TypedArray;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 
 import com.easyapp.lib.R;
 
@@ -19,5 +21,20 @@ public class Utils {
         return (int) context.getResources().getDimension(dimen);
     }
 
+    /**
+     * 檢查有無網路
+     *
+     * @param context
+     * @return
+     */
+    public static boolean isNetworkAvailable(Context context) {
+        ConnectivityManager cm = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo activeNetwork = cm.getActiveNetworkInfo();
+        if (activeNetwork != null) { // connected to the internet
+            return true;
+        } else {
+            return false;
+        }
+    }
 
 }

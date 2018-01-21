@@ -8,7 +8,8 @@ import android.support.annotation.Nullable;
 
 import com.easyapp.lib.R;
 import com.easyapp.lib.dialogFactory.SimpleDialog;
-import com.easyapp.lib.http.Utils;
+import com.easyapp.lib.tool.Utils;
+
 
 /**
  * 基本的啟動activity

@@ -1,4 +1,4 @@
-package com.easyapp.lib.http.model;
+package com.easyapp.easyhttp.model;
 
 import com.google.gson.annotations.SerializedName;
 

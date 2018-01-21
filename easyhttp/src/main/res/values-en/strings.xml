@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">easyHttp</string>
+
+    <!-- network tool -->
+    <string name="network_message_title">Network</string>
+    <string name="network_message_content">please check your internet</string>
+</resources>
