@@ -1,6 +1,7 @@
 package com.easyapp.easyhttp;
 
 import android.content.Context;
+import android.util.Log;
 import android.widget.Toast;
 
 import com.easyapp.easyhttp.listener.EasyApiCallback;
@@ -26,10 +27,12 @@ import retrofit2.converter.scalars.ScalarsConverterFactory;
  * <p>
  * example: new initCallback<T>().getCallback(callback);
  */
-public abstract class BaseApiTool<TServices>{
+public abstract class BaseApiTool<TServices> {
 
     private ArrayList<OnResponseListener> onResponseListeners;
     private ArrayList<OnFailureListener> onFailureListeners;
+
+    private ArrayList<Call> callArrayList;
 
     private Context context;
 
@@ -61,6 +64,7 @@ public abstract class BaseApiTool<TServices>{
 
         this.context = context;
 
+        callArrayList = new ArrayList<>();
         onResponseListeners = new ArrayList<>();
         onFailureListeners = new ArrayList<>();
 
@@ -142,6 +146,22 @@ public abstract class BaseApiTool<TServices>{
      * @param <T>
      */
     protected <T> void runCall(Call<T> call, EasyApiCallback<T> easyApiCallback) {
+        if (callArrayList.size() > 0) {
+            if (call.request().url().toString().equals(callArrayList.get(callArrayList.size() - 1).request().url().toString())) {
+                Log.e("HttpService", "is running");
+                return;
+            }
+        }
+        callArrayList.add(call);
+        call.enqueue(new initCallback<>(easyApiCallback));
+    }
+
+    protected <T> void runCallSingle(Call<T> call, EasyApiCallback<T> easyApiCallback) {
+        if (callArrayList.size() > 0) {
+            Log.e("HttpService", "is running");
+            return;
+        }
+        callArrayList.add(call);
         call.enqueue(new initCallback<>(easyApiCallback));
     }
 
@@ -194,7 +214,8 @@ public abstract class BaseApiTool<TServices>{
             } catch (Exception e) {
                 e.printStackTrace();
             }
-
+            callArrayList.clear();
+            call.cancel();
         }
 
         @Override
@@ -217,6 +238,8 @@ public abstract class BaseApiTool<TServices>{
             } catch (Exception e) {
                 e.printStackTrace();
             }
+            callArrayList.clear();
+            call.cancel();
         }
     }
 
