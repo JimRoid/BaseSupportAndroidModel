@@ -97,7 +97,7 @@ public abstract class BaseActivity extends AppCompatActivity implements iLoading
         }
 
         InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
-        if (imm.isActive()) {
+        if (imm != null && imm.isActive()) {
             imm.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(), 0);
         }
     }

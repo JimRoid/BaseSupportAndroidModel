@@ -17,8 +17,7 @@ public abstract class BaseSupportActivity extends BaseActivity implements iFragm
 
     protected final static String FADE = "FADE";
     protected final static String SLIDE = "SLIDE";
-    protected final static String SLIDE_POP = "SLIDE_POP";
-    protected final static String PUSH = "PUSH";
+    protected final static String SLIDE_UP = "SLIDE_UP";
 
 
     protected int containerId = 0;
@@ -59,11 +58,17 @@ public abstract class BaseSupportActivity extends BaseActivity implements iFragm
         }
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
         if (anim.equals(SLIDE)) {
-            fragmentTransaction.setCustomAnimations(R.animator.enter_from_right, R.animator.exit_to_right, R.animator.enter_from_left, R.animator.exit_to_left);
-        } else if (anim.equals(PUSH)) {
-            fragmentTransaction.setCustomAnimations(R.animator.slide_out_up, R.animator.slide_in_up, R.animator.slide_out_up, R.animator.slide_in_up);
+            fragmentTransaction.setCustomAnimations(
+                    R.animator.fragment_slide_left_enter,
+                    R.animator.fragment_slide_left_exit,
+                    R.animator.fragment_slide_right_enter,
+                    R.animator.fragment_slide_right_exit);
+        } else if (anim.equals(SLIDE_UP)) {
+            fragmentTransaction.setCustomAnimations(
+                    R.animator.slide_fragment_in,
+                    R.animator.slide_fragment_out);
         } else if (anim.equals(FADE)) {
-            fragmentTransaction.setCustomAnimations(R.animator.zoom_in, 0, 0, R.animator.zoom_out);
+            fragmentTransaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
         } else if (anim.equals("")) {
 
         }
@@ -73,7 +78,7 @@ public abstract class BaseSupportActivity extends BaseActivity implements iFragm
 
     @Override
     public void AddFragmentZoom(Fragment fragment, int container) {
-        fragmentManager.beginTransaction().setCustomAnimations(R.animator.zoom_in, 0, 0, R.animator.zoom_out).replace(container, fragment, "main").addToBackStack("main_interface").commitAllowingStateLoss();
+        fragmentManager.beginTransaction().setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE).replace(container, fragment, "main").addToBackStack("main_interface").commitAllowingStateLoss();
         OnAddFragment();
     }
 
@@ -90,7 +95,13 @@ public abstract class BaseSupportActivity extends BaseActivity implements iFragm
         }
         Fragment originalFragment = fragmentManager.findFragmentById(container);
         if (!fragment.getClass().equals(originalFragment.getClass())) {
-            fragmentManager.beginTransaction().setCustomAnimations(R.animator.slide_out_up, R.animator.slide_in_up, R.animator.slide_out_up, R.animator.slide_in_up).replace(container, fragment, "main").addToBackStack("main_interface").commitAllowingStateLoss();
+            fragmentManager.beginTransaction().setCustomAnimations(
+                    R.animator.slide_fragment_in,
+                    R.animator.slide_fragment_out,
+                    R.animator.slide_fragment_in,
+                    R.animator.slide_fragment_out)
+                    .replace(container, fragment, "main")
+                    .addToBackStack("main_interface").commitAllowingStateLoss();
         }
         OnAddFragment();
     }
@@ -121,13 +132,19 @@ public abstract class BaseSupportActivity extends BaseActivity implements iFragm
         PopAllBackStack();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
         if (anim.equals(SLIDE)) {
-            fragmentTransaction.setCustomAnimations(R.animator.enter_from_right, R.animator.exit_to_right, R.animator.enter_from_left, R.animator.exit_to_left);
-        } else if (anim.equals(SLIDE_POP)) {
-            fragmentTransaction.setCustomAnimations(R.animator.enter_from_left, R.animator.exit_to_left, R.animator.enter_from_right, R.animator.exit_to_right);
-        } else if (anim.equals(PUSH)) {
-            fragmentTransaction.setCustomAnimations(R.animator.slide_out_up, R.animator.slide_in_up, R.animator.slide_out_up, R.animator.slide_in_up);
+            fragmentTransaction.setCustomAnimations(
+                    R.animator.fragment_slide_left_enter,
+                    R.animator.fragment_slide_left_exit,
+                    R.animator.fragment_slide_right_exit,
+                    R.animator.fragment_slide_right_enter);
+        } else if (anim.equals(SLIDE_UP)) {
+            fragmentTransaction.setCustomAnimations(
+                    R.animator.slide_fragment_in,
+                    R.animator.slide_fragment_out,
+                    R.animator.slide_fragment_in,
+                    R.animator.slide_fragment_out);
         } else if (anim.equals(FADE)) {
-            fragmentTransaction.setCustomAnimations(R.animator.zoom_in, 0, 0, R.animator.zoom_out);
+            fragmentTransaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
         } else if (anim.equals("")) {
 
         }

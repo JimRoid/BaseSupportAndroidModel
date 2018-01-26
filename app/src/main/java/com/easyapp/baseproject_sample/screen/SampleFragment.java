@@ -11,6 +11,7 @@ import android.widget.Toast;
 
 import com.easyapp.baseproject_sample.R;
 import com.easyapp.baseproject_sample.activityDrawer.DrawerViewActivity;
+import com.easyapp.baseproject_sample.loginView.Login;
 import com.easyapp.baseproject_sample.loginView.LoginActivity;
 import com.easyapp.baseproject_sample.screen.list.PostsList;
 import com.easyapp.baseproject_sample.screen.list.PostsStaggeredList;
@@ -85,7 +86,8 @@ public class SampleFragment extends BaseToolbarFragment {
                 AddToDotView2();
                 break;
             case R.id.bt_loginView:
-                OpenData.StartActivity(getActivity(), LoginActivity.class);
+                AddFragment(new Login(),"SLIDE_UP");
+//                OpenData.StartActivity(getActivity(), LoginActivity.class);
                 break;
             case R.id.bt_touch_view:
                 ArrayList<String> arrayList = new ArrayList<>();
