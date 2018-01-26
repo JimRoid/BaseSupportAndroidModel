@@ -7,16 +7,16 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.easyapp.baseproject_sample.R;
 import com.easyapp.baseproject_sample.http.api.ApiTool;
-import com.easyapp.baseproject_sample.http.entity.ItemProduct;
+import com.easyapp.baseproject_sample.http.entity.ItemSchool;
 import com.easyapp.baseproject_sample.screen.SampleFragment;
-import com.easyapp.lib.base.fragment.list.BaseList;
 import com.easyapp.easyhttp.listener.EasyApiCallback;
+import com.easyapp.lib.base.fragment.list.BaseList;
 import com.easyapp.lib.widget.recyclerView.BaseRecyclerViewAdapter;
 
 /**
  * Created by easyapp_jim on 2016/5/3.
  */
-public class ListSample extends BaseList<ListSample.AdapterItemHolder, ItemProduct.DataBean.ContentBean> {
+public class ListSample extends BaseList<ListSample.AdapterItemHolder, ItemSchool.DataBean> {
 
     private ApiTool apiTool;
 
@@ -37,10 +37,10 @@ public class ListSample extends BaseList<ListSample.AdapterItemHolder, ItemProdu
 
     @Override
     protected void onLoadMore() {
-        apiTool.getProductList("", "", "", new EasyApiCallback<ItemProduct>() {
+        apiTool.getSchool(new EasyApiCallback<ItemSchool>() {
             @Override
-            public void onCallback(ItemProduct itemProduct) {
-                addAll(itemProduct.getData().getContent());
+            public void onCallback(ItemSchool itemSchool) {
+                addAll(itemSchool.getData());
             }
         });
     }
@@ -61,9 +61,9 @@ public class ListSample extends BaseList<ListSample.AdapterItemHolder, ItemProdu
     }
 
     @Override
-    protected void getBindViewHolder(AdapterItemHolder holder, ItemProduct.DataBean.ContentBean photo) {
-        Glide.with(getContext()).load(photo.getS_pic()).into(holder.iv_picture);
-        holder.textView.setText(photo.getName());
+    protected void getBindViewHolder(AdapterItemHolder holder, ItemSchool.DataBean dataBean) {
+        Glide.with(this).load(dataBean.getPicture()).into(holder.iv_picture);
+        holder.textView.setText(dataBean.getName());
         holder.content.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

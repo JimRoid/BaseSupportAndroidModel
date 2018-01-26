@@ -1,7 +1,7 @@
 package com.easyapp.lib.base.activity;
 
+import android.app.Fragment;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -76,11 +76,6 @@ public abstract class BaseDrawerMainActivity extends BaseMainActivity implements
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
 
-    @Override
-    public void ReplaceFragment(Fragment fragment, Bundle bundle) {
-        super.ReplaceFragment(fragment, bundle);
-        showBack(false);
-    }
 
     @Override
     public void ReplaceFragment(Fragment fragment) {
@@ -91,12 +86,6 @@ public abstract class BaseDrawerMainActivity extends BaseMainActivity implements
     @Override
     public void ReplaceFragment(Fragment fragment, String anim) {
         super.ReplaceFragment(fragment, anim);
-        showBack(false);
-    }
-
-    @Override
-    public void ReplaceFragment(Fragment fragment, String anim, Bundle bundle) {
-        super.ReplaceFragment(fragment, anim, bundle);
         showBack(false);
     }
 
@@ -129,12 +118,12 @@ public abstract class BaseDrawerMainActivity extends BaseMainActivity implements
 
     @Override
     public void addLeftDrawer(Fragment fragment) {
-        getSupportFragmentManager().beginTransaction().replace(R.id.fl_drawer_left, fragment, "left").commitAllowingStateLoss();
+        getFragmentManager().beginTransaction().replace(R.id.fl_drawer_left, fragment, "left").commitAllowingStateLoss();
     }
 
     @Override
     public void addRightDrawer(Fragment fragment) {
-        getSupportFragmentManager().beginTransaction().replace(R.id.fl_drawer_right, fragment, "left").commitAllowingStateLoss();
+        getFragmentManager().beginTransaction().replace(R.id.fl_drawer_right, fragment, "left").commitAllowingStateLoss();
     }
 
     @Override

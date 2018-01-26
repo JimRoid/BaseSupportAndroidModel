@@ -9,16 +9,16 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.easyapp.baseproject_sample.R;
 import com.easyapp.baseproject_sample.http.api.ApiTool;
-import com.easyapp.baseproject_sample.http.entity.ItemProduct;
+import com.easyapp.baseproject_sample.http.entity.ItemSchool;
 import com.easyapp.baseproject_sample.screen.SampleFragment;
-import com.easyapp.lib.base.fragment.list.BaseWaterFull;
 import com.easyapp.easyhttp.listener.EasyApiCallback;
+import com.easyapp.lib.base.fragment.list.BaseWaterFull;
 import com.easyapp.lib.widget.recyclerView.BaseRecyclerViewAdapter;
 
 /**
  * 測試用列表
  */
-public class PostsStaggeredList extends BaseWaterFull<PostsStaggeredList.AdapterItemHolder, ItemProduct.DataBean.ContentBean> {
+public class PostsStaggeredList extends BaseWaterFull<PostsStaggeredList.AdapterItemHolder, ItemSchool.DataBean> {
 
     private ApiTool apiTool;
 
@@ -40,11 +40,11 @@ public class PostsStaggeredList extends BaseWaterFull<PostsStaggeredList.Adapter
 
     @Override
     protected void onLoadMore() {
-        apiTool.getProductList("", "", "", new EasyApiCallback<ItemProduct>() {
+        apiTool.getSchool(new EasyApiCallback<ItemSchool>() {
             @Override
-            public void onCallback(ItemProduct itemProduct) {
-                super.onCallback(itemProduct);
-                addAll(itemProduct.getData().getContent());
+            public void onCallback(ItemSchool itemSchool) {
+                super.onCallback(itemSchool);
+                addAll(itemSchool.getData());
             }
         });
     }
@@ -65,8 +65,8 @@ public class PostsStaggeredList extends BaseWaterFull<PostsStaggeredList.Adapter
     }
 
     @Override
-    protected void getBindViewHolder(AdapterItemHolder holder, ItemProduct.DataBean.ContentBean bean) {
-        Glide.with(getContext()).load(bean.getS_pic()).into(holder.iv_picture);
+    protected void getBindViewHolder(AdapterItemHolder holder, ItemSchool.DataBean bean) {
+        Glide.with(getContext()).load(bean.getPicture()).into(holder.iv_picture);
         holder.textView.setText(bean.getName());
         holder.content.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -85,8 +85,8 @@ public class PostsStaggeredList extends BaseWaterFull<PostsStaggeredList.Adapter
         public AdapterItemHolder(View itemView) {
             super(itemView);
             content = itemView.findViewById(R.id.content);
-            textView = (TextView) itemView.findViewById(R.id.tv_title);
-            iv_picture = (ImageView) itemView.findViewById(R.id.iv_picture);
+            textView = itemView.findViewById(R.id.tv_title);
+            iv_picture = itemView.findViewById(R.id.iv_picture);
         }
     }
 }

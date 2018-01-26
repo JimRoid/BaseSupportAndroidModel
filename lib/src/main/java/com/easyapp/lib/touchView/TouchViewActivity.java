@@ -5,9 +5,8 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 
 import com.easyapp.lib.R;
-import com.easyapp.lib.widget.viewpager.adapter.v4.FragmentPagerItem;
-import com.easyapp.lib.widget.viewpager.adapter.v4.FragmentPagerItemAdapter;
-import com.easyapp.lib.widget.viewpager.adapter.v4.FragmentPagerItems;
+import com.easyapp.lib.widget.viewPager.EasyFragmentPagerAdapter;
+
 
 import java.util.ArrayList;
 
@@ -28,7 +27,7 @@ public class TouchViewActivity extends AppCompatActivity {
     }
 
     private void initView() {
-        viewPager = (ViewPager) findViewById(R.id.easyapp_viewpager);
+        viewPager = findViewById(R.id.easyapp_viewpager);
         initData();
     }
 
@@ -38,18 +37,14 @@ public class TouchViewActivity extends AppCompatActivity {
         ArrayList<String> data = new ArrayList<>();
         data.addAll(bundle.getStringArrayList("PATH"));
 
-        FragmentPagerItems pages = new FragmentPagerItems(this);
+
+        EasyFragmentPagerAdapter adapter = new EasyFragmentPagerAdapter(getFragmentManager());
         for (String resource : data) {
-            bundle = new Bundle();
-            bundle.putString("PATH", resource);
-            pages.add(FragmentPagerItem.of("", FragmentTouchView.class, bundle));
+            adapter.addFragment(FragmentTouchView.instance(resource));
         }
 
-        FragmentPagerItemAdapter adapter = new FragmentPagerItemAdapter(
-                getSupportFragmentManager(), pages);
-
         viewPager.setAdapter(adapter);
-        if (position > pages.size()) {
+        if (position >= adapter.getCount()) {
             viewPager.setCurrentItem(0);
         } else {
             viewPager.setCurrentItem(position);

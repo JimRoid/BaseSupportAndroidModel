@@ -7,7 +7,7 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.easyapp.baseproject_sample.R;
 import com.easyapp.baseproject_sample.http.api.ApiTool;
-import com.easyapp.baseproject_sample.http.entity.ItemProduct;
+import com.easyapp.baseproject_sample.http.entity.ItemSchool;
 import com.easyapp.baseproject_sample.screen.BlankFragment;
 import com.easyapp.lib.base.fragment.list.BaseHeadList;
 import com.easyapp.easyhttp.listener.EasyApiCallback;
@@ -17,7 +17,10 @@ import com.orhanobut.logger.Logger;
 /**
  * 測試用列表
  */
-public class PostsList extends BaseHeadList<PostsList.AdapterItemHolder, PostsList.AdapterItemHolder, ItemProduct.DataBean.ContentBean, ItemProduct.DataBean.ContentBean> {
+public class PostsList extends BaseHeadList<PostsList.AdapterItemHolder,
+        PostsList.AdapterItemHolder,
+        ItemSchool.DataBean,
+        ItemSchool.DataBean> {
 
     private ApiTool apiTool;
 
@@ -37,7 +40,7 @@ public class PostsList extends BaseHeadList<PostsList.AdapterItemHolder, PostsLi
                 Logger.d("fab on click");
             }
         });
-        ItemProduct.DataBean.ContentBean contentBean = new ItemProduct.DataBean.ContentBean();
+        ItemSchool.DataBean contentBean = new ItemSchool.DataBean();
         addHead(contentBean);
         onRefresh();
 
@@ -45,7 +48,7 @@ public class PostsList extends BaseHeadList<PostsList.AdapterItemHolder, PostsLi
 
     @Override
     protected void onLoadMore() {
-        apiTool.getProductList("", "", "", new EasyApiCallback<ItemProduct>() {
+        apiTool.getSchool(new EasyApiCallback<ItemSchool>() {
             @Override
             public void initial() {
                 showLoading();
@@ -57,8 +60,8 @@ public class PostsList extends BaseHeadList<PostsList.AdapterItemHolder, PostsLi
             }
 
             @Override
-            public void onCallback(ItemProduct itemProduct) {
-                addAll(itemProduct.getData().getContent());
+            public void onCallback(ItemSchool itemSchool) {
+                addAll(itemSchool.getData());
             }
         });
     }
@@ -84,8 +87,8 @@ public class PostsList extends BaseHeadList<PostsList.AdapterItemHolder, PostsLi
     }
 
     @Override
-    protected void getBindViewHolder(AdapterItemHolder holder, ItemProduct.DataBean.ContentBean photo) {
-        Glide.with(getContext()).load(photo.getS_pic()).into(holder.iv_picture);
+    protected void getBindViewHolder(AdapterItemHolder holder, ItemSchool.DataBean photo) {
+        Glide.with(getContext()).load(photo.getPicture()).into(holder.iv_picture);
         holder.textView.setText(photo.getName());
         holder.content.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -96,8 +99,8 @@ public class PostsList extends BaseHeadList<PostsList.AdapterItemHolder, PostsLi
     }
 
     @Override
-    protected void getBindHeaderViewHolder(AdapterItemHolder holder, ItemProduct.DataBean.ContentBean obj) {
-        holder.textView.setText("asdfasdg");
+    protected void getBindHeaderViewHolder(AdapterItemHolder holder, ItemSchool.DataBean dataBean) {
+        holder.textView.setText(dataBean.getEmail());
     }
 
     public class AdapterItemHolder extends BaseRecyclerViewAdapter.ItemHolder {
@@ -108,8 +111,8 @@ public class PostsList extends BaseHeadList<PostsList.AdapterItemHolder, PostsLi
         public AdapterItemHolder(View itemView) {
             super(itemView);
             content = itemView.findViewById(R.id.content);
-            textView = (TextView) itemView.findViewById(R.id.tv_title);
-            iv_picture = (ImageView) itemView.findViewById(R.id.iv_picture);
+            textView = itemView.findViewById(R.id.tv_title);
+            iv_picture = itemView.findViewById(R.id.iv_picture);
         }
     }
 }

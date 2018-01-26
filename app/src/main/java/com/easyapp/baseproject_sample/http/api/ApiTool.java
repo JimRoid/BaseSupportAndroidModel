@@ -3,8 +3,9 @@ package com.easyapp.baseproject_sample.http.api;
 
 import android.content.Context;
 
-import com.easyapp.baseproject_sample.http.entity.ItemProduct;
 
+
+import com.easyapp.baseproject_sample.http.entity.ItemSchool;
 import com.easyapp.easyhttp.BaseApiTool;
 import com.easyapp.easyhttp.listener.EasyApiCallback;
 import com.easyapp.easyhttp.listener.OnResponseListener;
@@ -31,7 +32,7 @@ public class ApiTool extends BaseApiTool<ApiService> {
 
     @Override
     protected String initUrl() {
-        return "http://139.59.246.193/treasure/api/v1/index.php/";
+        return "https://test2.easyapp.com.tw/easy-school/api/";
     }
 
     @Override
@@ -47,10 +48,8 @@ public class ApiTool extends BaseApiTool<ApiService> {
      * @param page
      * @param callback
      */
-    public void getProductList(String type, String p_name, String page, EasyApiCallback<ItemProduct> callback) {
-        runCall(getServices().getProductList(type, p_name, page, "40"), callback);
-
-//        getServices().getProductList(type, p_name, page, "40").enqueue(callback);
+    public void getSchool(EasyApiCallback<ItemSchool> callback) {
+        runCall(getServices().getSchool(), callback);
     }
 
 

@@ -13,7 +13,8 @@
             android:id="@+id/easyapp_recycler_view"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layoutAnimation="@anim/grid_layout_animation" />
+            />
+        <!--android:layoutAnimation="@animator/grid_layout_animation"-->
 
 
     </android.support.v4.widget.SwipeRefreshLayout>

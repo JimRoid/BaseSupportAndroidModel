@@ -1,8 +1,8 @@
 package com.easyapp.baseproject_sample.screen;
 
 
+import android.app.Fragment;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,10 +10,9 @@ import android.view.ViewGroup;
 
 import com.easyapp.baseproject_sample.R;
 import com.easyapp.baseproject_sample.screen.list.PostsList;
-import com.easyapp.lib.widget.viewpager.SlidingTabLayout;
-import com.easyapp.lib.widget.viewpager.adapter.v4.FragmentPagerItem;
-import com.easyapp.lib.widget.viewpager.adapter.v4.FragmentPagerItemAdapter;
-import com.easyapp.lib.widget.viewpager.adapter.v4.FragmentPagerItems;
+import com.easyapp.lib.touchView.FragmentTouchView;
+import com.easyapp.lib.widget.viewPager.EasyFragmentPagerAdapter;
+import com.easyapp.lib.widget.viewPager.PagerBullet;
 
 
 /**
@@ -34,17 +33,19 @@ public class FragmentViewPageCircle extends Fragment {
     }
 
     private void initView() {
-        FragmentPagerItems fragmentPagerItems = new FragmentPagerItems(getContext());
-        fragmentPagerItems.add(FragmentPagerItem.of("", PostsList.class));
-        fragmentPagerItems.add(FragmentPagerItem.of("", PostsList.class));
-        fragmentPagerItems.add(FragmentPagerItem.of("", PostsList.class));
 
-        ViewPager viewPager = (ViewPager) view.findViewById(R.id.viewpager);
-        FragmentPagerItemAdapter fragmentPagerItemAdapter = new FragmentPagerItemAdapter(getChildFragmentManager(), fragmentPagerItems);
-
+        ViewPager viewPager = view.findViewById(R.id.viewpager);
+        EasyFragmentPagerAdapter fragmentPagerItemAdapter = new EasyFragmentPagerAdapter(getFragmentManager());
+//
+        fragmentPagerItemAdapter.addFragment(new PostsList());
+        fragmentPagerItemAdapter.addFragment(FragmentTouchView.instance("http://i.imgur.com/1cULBoj.jpg"));
+        fragmentPagerItemAdapter.addFragment(new PostsList());
         viewPager.setAdapter(fragmentPagerItemAdapter);
-        SlidingTabLayout tabLayout = (SlidingTabLayout)view.findViewById(R.id.slidingTabLayout);
-        tabLayout.setViewPager(viewPager);
+
+        PagerBullet pagerBullet = new PagerBullet(this.getActivity(), viewPager, view);
+
+
+        pagerBullet.invalidateBullets();
     }
 
 }

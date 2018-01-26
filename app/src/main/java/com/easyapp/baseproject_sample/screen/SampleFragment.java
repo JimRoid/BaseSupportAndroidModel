@@ -7,10 +7,10 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.easyapp.baseproject_sample.R;
 import com.easyapp.baseproject_sample.activityDrawer.DrawerViewActivity;
-import com.easyapp.baseproject_sample.activityTab.TabActivity;
 import com.easyapp.baseproject_sample.loginView.LoginActivity;
 import com.easyapp.baseproject_sample.screen.list.PostsList;
 import com.easyapp.baseproject_sample.screen.list.PostsStaggeredList;
@@ -28,8 +28,6 @@ import butterknife.OnClick;
  * A simple {@link Fragment} subclass.
  */
 public class SampleFragment extends BaseToolbarFragment {
-
-
 
 
     @Override
@@ -64,10 +62,6 @@ public class SampleFragment extends BaseToolbarFragment {
         AddFragment(new FragmentViewPageCircle());
     }
 
-    protected void OpenTabActivity() {
-        OpenData.StartActivity(getActivity(), TabActivity.class);
-    }
-
     protected void OpenDrawerViewActivity() {
         OpenData.StartActivity(getActivity(), DrawerViewActivity.class);
     }
@@ -79,7 +73,7 @@ public class SampleFragment extends BaseToolbarFragment {
                 AddToList();
                 break;
             case R.id.bt_tab:
-                OpenTabActivity();
+                Toast.makeText(getActivity(), "目前沒有", Toast.LENGTH_LONG).show();
                 break;
             case R.id.bt_drawerView:
                 OpenDrawerViewActivity();

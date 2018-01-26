@@ -1,9 +1,10 @@
 package com.easyapp.lib.base.activity;
 
+import android.app.Fragment;
+import android.app.FragmentManager;
+import android.app.FragmentTransaction;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentTransaction;
+import android.support.annotation.Nullable;
 import android.widget.Toast;
 
 import com.easyapp.lib.R;
@@ -21,18 +22,18 @@ public abstract class BaseSupportActivity extends BaseActivity implements iFragm
 
 
     protected int containerId = 0;
-    protected FragmentManager fragmentManager = getSupportFragmentManager();
+    protected FragmentManager fragmentManager;
 
+    @Override
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        fragmentManager = getFragmentManager();
+    }
 
     protected void setContainer(int container_id) {
         this.containerId = container_id;
     }
 
-    @Override
-    public void AddFragment(Fragment fragment, Bundle bundle) {
-        fragment.setArguments(bundle);
-        AddFragment(fragment);
-    }
 
     @Override
     public void AddFragment(Fragment fragment) {
@@ -58,11 +59,11 @@ public abstract class BaseSupportActivity extends BaseActivity implements iFragm
         }
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
         if (anim.equals(SLIDE)) {
-            fragmentTransaction.setCustomAnimations(R.anim.enter_from_right, R.anim.exit_to_right, R.anim.enter_from_left, R.anim.exit_to_left);
+            fragmentTransaction.setCustomAnimations(R.animator.enter_from_right, R.animator.exit_to_right, R.animator.enter_from_left, R.animator.exit_to_left);
         } else if (anim.equals(PUSH)) {
-            fragmentTransaction.setCustomAnimations(R.anim.slide_out_up, R.anim.slide_in_up, R.anim.slide_out_up, R.anim.slide_in_up);
+            fragmentTransaction.setCustomAnimations(R.animator.slide_out_up, R.animator.slide_in_up, R.animator.slide_out_up, R.animator.slide_in_up);
         } else if (anim.equals(FADE)) {
-            fragmentTransaction.setCustomAnimations(R.anim.zoom_in, 0, 0, R.anim.zoom_out);
+            fragmentTransaction.setCustomAnimations(R.animator.zoom_in, 0, 0, R.animator.zoom_out);
         } else if (anim.equals("")) {
 
         }
@@ -72,7 +73,7 @@ public abstract class BaseSupportActivity extends BaseActivity implements iFragm
 
     @Override
     public void AddFragmentZoom(Fragment fragment, int container) {
-        fragmentManager.beginTransaction().setCustomAnimations(R.anim.zoom_in, 0, 0, R.anim.zoom_out).replace(container, fragment, "main").addToBackStack("main_interface").commitAllowingStateLoss();
+        fragmentManager.beginTransaction().setCustomAnimations(R.animator.zoom_in, 0, 0, R.animator.zoom_out).replace(container, fragment, "main").addToBackStack("main_interface").commitAllowingStateLoss();
         OnAddFragment();
     }
 
@@ -89,16 +90,11 @@ public abstract class BaseSupportActivity extends BaseActivity implements iFragm
         }
         Fragment originalFragment = fragmentManager.findFragmentById(container);
         if (!fragment.getClass().equals(originalFragment.getClass())) {
-            fragmentManager.beginTransaction().setCustomAnimations(R.anim.slide_out_up, R.anim.slide_in_up, R.anim.slide_out_up, R.anim.slide_in_up).replace(container, fragment, "main").addToBackStack("main_interface").commitAllowingStateLoss();
+            fragmentManager.beginTransaction().setCustomAnimations(R.animator.slide_out_up, R.animator.slide_in_up, R.animator.slide_out_up, R.animator.slide_in_up).replace(container, fragment, "main").addToBackStack("main_interface").commitAllowingStateLoss();
         }
         OnAddFragment();
     }
 
-    @Override
-    public void ReplaceFragment(Fragment fragment, Bundle bundle) {
-        fragment.setArguments(bundle);
-        ReplaceFragment(fragment);
-    }
 
     @Override
     public void ReplaceFragment(Fragment fragment) {
@@ -110,11 +106,6 @@ public abstract class BaseSupportActivity extends BaseActivity implements iFragm
         ReplaceFragment(fragment, containerId, anim);
     }
 
-    @Override
-    public void ReplaceFragment(Fragment fragment, String anim, Bundle bundle) {
-        fragment.setArguments(bundle);
-        ReplaceFragment(fragment, containerId, anim);
-    }
 
     @Override
     public void ReplaceFragment(Fragment fragment, int container) {
@@ -130,13 +121,13 @@ public abstract class BaseSupportActivity extends BaseActivity implements iFragm
         PopAllBackStack();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
         if (anim.equals(SLIDE)) {
-            fragmentTransaction.setCustomAnimations(R.anim.enter_from_right, R.anim.exit_to_right, R.anim.enter_from_left, R.anim.exit_to_left);
+            fragmentTransaction.setCustomAnimations(R.animator.enter_from_right, R.animator.exit_to_right, R.animator.enter_from_left, R.animator.exit_to_left);
         } else if (anim.equals(SLIDE_POP)) {
-            fragmentTransaction.setCustomAnimations(R.anim.enter_from_left, R.anim.exit_to_left, R.anim.enter_from_right, R.anim.exit_to_right);
+            fragmentTransaction.setCustomAnimations(R.animator.enter_from_left, R.animator.exit_to_left, R.animator.enter_from_right, R.animator.exit_to_right);
         } else if (anim.equals(PUSH)) {
-            fragmentTransaction.setCustomAnimations(R.anim.slide_out_up, R.anim.slide_in_up, R.anim.slide_out_up, R.anim.slide_in_up);
+            fragmentTransaction.setCustomAnimations(R.animator.slide_out_up, R.animator.slide_in_up, R.animator.slide_out_up, R.animator.slide_in_up);
         } else if (anim.equals(FADE)) {
-            fragmentTransaction.setCustomAnimations(R.anim.zoom_in, 0, 0, R.anim.zoom_out);
+            fragmentTransaction.setCustomAnimations(R.animator.zoom_in, 0, 0, R.animator.zoom_out);
         } else if (anim.equals("")) {
 
         }

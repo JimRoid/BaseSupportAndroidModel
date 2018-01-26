@@ -10,11 +10,6 @@
         android:layout_height="wrap_content" />
 
 
-    <com.easyapp.lib.widget.viewpager.SlidingTabLayout xmlns:app="http://schemas.android.com/apk/res-auto"
-        android:id="@+id/slidingTabLayout"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        app:customTabTextLayoutId="@layout/item_circle" />
+    <include layout="@layout/layout_view_page_dot" />
 
 </FrameLayout>

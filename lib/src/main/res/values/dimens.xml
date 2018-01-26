@@ -3,10 +3,15 @@
     <dimen name="activity_horizontal_margin">16dp</dimen>
     <dimen name="activity_vertical_margin">16dp</dimen>
     <dimen name="actionbar_title_size">14sp</dimen>
+
+    <!--page dot -->
+    <dimen name="pager_bullet_indicator_height">52dp</dimen>
+    <dimen name="pager_bullet_indicator_dot_margin">4dp</dimen>
+    <dimen name="pager_bullet_indicator_active_dot_diameter">12dp</dimen>
+    <dimen name="pager_bullet_indicator_inactive_dot_diameter">8dp</dimen>
+
     <dimen name="fab_margin">16dp</dimen>
     <dimen name="square_width">80dp</dimen>
-
-    <dimen name="tab_host_height">60dp</dimen>
 
     <dimen name="menu_height">48dp</dimen>
     <dimen name="drawer_width">270dp</dimen>
