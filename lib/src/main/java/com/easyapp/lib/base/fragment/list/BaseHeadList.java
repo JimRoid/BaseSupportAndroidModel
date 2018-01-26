@@ -1,5 +1,6 @@
 package com.easyapp.lib.base.fragment.list;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.res.ColorStateList;
 import android.os.Bundle;
@@ -44,9 +45,9 @@ public abstract class BaseHeadList<VHead extends BaseRecyclerViewAdapter.ItemHol
     protected int page = 0;
 
     @Override
-    public void onAttach(Context context) {
-        super.onAttach(context);
-        setToolbarCallback(context);
+    public void onAttach(Activity activity) {
+        super.onAttach(activity);
+        setToolbarCallback(activity);
     }
 
     @Override

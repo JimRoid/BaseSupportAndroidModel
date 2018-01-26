@@ -52,7 +52,7 @@ public abstract class BaseFragment extends Fragment {
         if (toast != null) {
             toast.cancel();
         }
-        toast = Toast.makeText(getContext(), content, isLong ? Toast.LENGTH_SHORT : Toast.LENGTH_LONG);
+        toast = Toast.makeText(getActivity(), content, isLong ? Toast.LENGTH_SHORT : Toast.LENGTH_LONG);
         toast.show();
     }
 
@@ -61,7 +61,7 @@ public abstract class BaseFragment extends Fragment {
             return;
         }
         InputMethodManager imm = (InputMethodManager) getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
-        if (imm.isActive()) {
+        if (imm != null && imm.isActive()) {
             imm.hideSoftInputFromWindow(getView().getWindowToken(), 0);
         }
     }

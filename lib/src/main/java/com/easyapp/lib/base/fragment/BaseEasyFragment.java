@@ -1,5 +1,6 @@
 package com.easyapp.lib.base.fragment;
 
+import android.app.Activity;
 import android.app.Fragment;
 import android.app.FragmentManager;
 import android.content.Context;
@@ -16,12 +17,12 @@ public abstract class BaseEasyFragment extends BaseFragment {
 
 
     @Override
-    public void onAttach(Context context) {
-        super.onAttach(context);
+    public void onAttach(Activity activity) {
+        super.onAttach(activity);
         try {
-            onFragmentTransactionListener = (iFragmentTransactionListener) context;
+            onFragmentTransactionListener = (iFragmentTransactionListener) activity;
         } catch (ClassCastException e) {
-            throw new ClassCastException(context.toString()
+            throw new ClassCastException(activity.toString()
                     + " must implement OnHeadlineSelectedListener");
         }
     }
