@@ -70,15 +70,15 @@ public abstract class BaseHeadList<VHead extends BaseRecyclerViewAdapter.ItemHol
     protected void initView() {
         initEmptyView();
         initFab();
-        progressBar = (ProgressBar) view.findViewById(R.id.progress_bar);
+        progressBar = view.findViewById(R.id.progress_bar);
         progressBar.getIndeterminateDrawable().setColorFilter(
                 getResources().getColor(R.color.light_blue),
                 android.graphics.PorterDuff.Mode.SRC_IN);
 
 
-        swipeRefreshLayout = (SwipeRefreshLayout) view.findViewById(R.id.easyapp_swiperefresh_layout);
+        swipeRefreshLayout = view.findViewById(R.id.easyapp_swiperefresh_layout);
         swipeRefreshLayout.setOnRefreshListener(this);
-        recyclerView = (RecyclerView) view.findViewById(R.id.easyapp_recycler_view);
+        recyclerView = view.findViewById(R.id.easyapp_recycler_view);
         gridLayoutManager = new GridLayoutManager(getActivity(), setGridLayoutSpanCount());
         recyclerView.setLayoutManager(gridLayoutManager);
     }
@@ -87,13 +87,13 @@ public abstract class BaseHeadList<VHead extends BaseRecyclerViewAdapter.ItemHol
      * 設定成橫向
      */
     protected void setHorizontal() {
-        gridLayoutManager = new GridLayoutManager(getContext(), 1, GridLayoutManager.HORIZONTAL, false);
+        gridLayoutManager = new GridLayoutManager(getActivity(), 1, GridLayoutManager.HORIZONTAL, false);
         recyclerView.setLayoutManager(gridLayoutManager);
         recyclerView.setHasFixedSize(true);
     }
 
     protected void initFab() {
-        floatingActionButton = (FloatingActionButton) view.findViewById(R.id.fab);
+        floatingActionButton = view.findViewById(R.id.fab);
     }
 
     /**

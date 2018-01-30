@@ -60,7 +60,7 @@ public abstract class BaseFragment extends Fragment {
         if (getView() == null) {
             return;
         }
-        InputMethodManager imm = (InputMethodManager) getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
+        InputMethodManager imm = (InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
         if (imm != null && imm.isActive()) {
             imm.hideSoftInputFromWindow(getView().getWindowToken(), 0);
         }
