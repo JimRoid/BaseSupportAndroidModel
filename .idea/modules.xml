@@ -5,7 +5,6 @@
       <module fileurl="file://$PROJECT_DIR$/BaseSupportAndroidModel.iml" filepath="$PROJECT_DIR$/BaseSupportAndroidModel.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
       <module fileurl="file://$PROJECT_DIR$/easyhttp/easyhttp.iml" filepath="$PROJECT_DIR$/easyhttp/easyhttp.iml" />
-      <module fileurl="file://$PROJECT_DIR$/easypager/easypager.iml" filepath="$PROJECT_DIR$/easypager/easypager.iml" />
       <module fileurl="file://$PROJECT_DIR$/lib/lib.iml" filepath="$PROJECT_DIR$/lib/lib.iml" />
       <module fileurl="file://$PROJECT_DIR$/lib_file/lib_file.iml" filepath="$PROJECT_DIR$/lib_file/lib_file.iml" />
     </modules>

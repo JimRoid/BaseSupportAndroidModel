@@ -4,7 +4,7 @@ import android.os.Bundle;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 
-import com.easyapp.easypager.EasyFragmentPagerAdapter;
+import com.easyapp.lib.widget.viewPager.EasyPagerAdapter;
 import com.easyapp.lib.R;
 
 import java.util.ArrayList;
@@ -37,7 +37,7 @@ public class TouchViewActivity extends AppCompatActivity {
         data.addAll(bundle.getStringArrayList("PATH"));
 
 
-        EasyFragmentPagerAdapter adapter = new EasyFragmentPagerAdapter(getFragmentManager());
+        EasyPagerAdapter adapter = new EasyPagerAdapter(getFragmentManager());
         for (String resource : data) {
             adapter.addFragment(FragmentTouchView.instance(resource));
         }

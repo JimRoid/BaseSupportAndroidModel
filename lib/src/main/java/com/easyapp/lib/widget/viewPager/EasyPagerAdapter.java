@@ -1,4 +1,4 @@
-package com.easyapp.easypager;
+package com.easyapp.lib.widget.viewPager;
 
 import android.app.Fragment;
 import android.app.FragmentManager;
@@ -12,12 +12,12 @@ import java.util.ArrayList;
  * adapter
  */
 
-public class EasyFragmentPagerAdapter extends FragmentStatePagerAdapter {
+public class EasyPagerAdapter extends FragmentStatePagerAdapter {
 
     private ArrayList<Fragment> fragments;
     private ArrayList<String> titles;
 
-    public EasyFragmentPagerAdapter(FragmentManager fm) {
+    public EasyPagerAdapter(FragmentManager fm) {
         super(fm);
         titles = new ArrayList<>();
         fragments = new ArrayList<>();

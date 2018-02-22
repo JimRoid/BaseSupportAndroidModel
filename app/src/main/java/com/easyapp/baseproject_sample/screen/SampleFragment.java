@@ -74,7 +74,8 @@ public class SampleFragment extends BaseToolbarFragment {
                 AddToList();
                 break;
             case R.id.bt_tab:
-                Toast.makeText(getActivity(), "目前沒有", Toast.LENGTH_LONG).show();
+                AddFragment(TabSample.instance());
+//                Toast.makeText(getActivity(), "目前沒有", Toast.LENGTH_LONG).show();
                 break;
             case R.id.bt_drawerView:
                 OpenDrawerViewActivity();

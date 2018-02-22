@@ -57,7 +57,4 @@
         <attr name="cpv_startAngle" format="float" />
     </declare-styleable>
 
-    <declare-styleable name="PagerBullet">
-        <attr name="panelHeightInDp" format="dimension" />
-    </declare-styleable>
 </resources>
