@@ -5,8 +5,6 @@
     <string name="navigation_drawer_close">close</string>
 
 
-    <!--view pager %s-->
-    <string name="pager_bullet_separator" formatted="false">%s / %s</string>
 
     <!-- common text -->
     <string name="not_found">目前沒有資料</string>

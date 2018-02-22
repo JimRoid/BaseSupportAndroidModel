@@ -34,10 +34,6 @@
         <attr name="circularImageViewDefault" format="reference"/>
     </declare-styleable>
 
-    <declare-styleable name="SlidingTabLayout">
-        <attr name="customTabTextLayoutId" format="reference"/>
-    </declare-styleable>
-
     <declare-styleable name="BlurDrawerLayout">
         <attr name="blurRadius" format="integer" />
         <attr name="downScaleFactor" format="float" />

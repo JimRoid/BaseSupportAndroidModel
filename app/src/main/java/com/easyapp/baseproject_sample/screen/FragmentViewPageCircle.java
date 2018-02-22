@@ -10,9 +10,10 @@ import android.view.ViewGroup;
 
 import com.easyapp.baseproject_sample.R;
 import com.easyapp.baseproject_sample.screen.list.PostsList;
+import com.easyapp.easypager.EasyFragmentPagerAdapter;
+import com.easyapp.easypager.PagerBullet;
 import com.easyapp.lib.touchView.FragmentTouchView;
-import com.easyapp.lib.widget.viewPager.EasyFragmentPagerAdapter;
-import com.easyapp.lib.widget.viewPager.PagerBullet;
+
 
 
 /**
@@ -33,10 +34,9 @@ public class FragmentViewPageCircle extends Fragment {
     }
 
     private void initView() {
-
         ViewPager viewPager = view.findViewById(R.id.viewpager);
         EasyFragmentPagerAdapter fragmentPagerItemAdapter = new EasyFragmentPagerAdapter(getFragmentManager());
-//
+
         fragmentPagerItemAdapter.addFragment(new PostsList());
         fragmentPagerItemAdapter.addFragment(FragmentTouchView.instance("http://i.imgur.com/1cULBoj.jpg"));
         fragmentPagerItemAdapter.addFragment(new PostsList());

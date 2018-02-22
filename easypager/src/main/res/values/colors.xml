@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <color name="colorPrimary">#065E52</color>
+    <color name="colorPrimaryDark">#054E43</color>
+    <color name="colorAccent">#96BCB7</color>
+
+    <color name="colorTextPrimary">#FFFFFF</color>
+    <color name="colorTextDisable">#66FFFFFF</color>
+
+    <color name="pager_bullet_active">#836556</color>
+    <color name="pager_bullet_inactive">#219382</color>
+    <color name="pager_bullet_text_indicator">#ffffff</color>
+
+</resources>

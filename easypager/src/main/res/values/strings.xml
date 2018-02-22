@@ -1,3 +1,6 @@
 <resources>
     <string name="app_name">easyPager</string>
+    <!--view pager %s-->
+    <string name="pager_bullet_separator" formatted="false">%s / %s</string>
+
 </resources>

@@ -4,9 +4,8 @@ import android.os.Bundle;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 
+import com.easyapp.easypager.EasyFragmentPagerAdapter;
 import com.easyapp.lib.R;
-import com.easyapp.lib.widget.viewPager.EasyFragmentPagerAdapter;
-
 
 import java.util.ArrayList;
 

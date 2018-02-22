@@ -1,4 +1,4 @@
-package com.easyapp.lib.widget.viewPager;
+package com.easyapp.easypager;
 
 import android.content.Context;
 import android.content.res.TypedArray;
@@ -16,7 +16,8 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.easyapp.lib.R;
+
+
 
 /**
  * Created by vadim on 15.06.16.

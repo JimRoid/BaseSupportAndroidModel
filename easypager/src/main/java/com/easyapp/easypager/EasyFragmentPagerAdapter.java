@@ -1,27 +1,42 @@
-package com.easyapp.lib.widget.viewPager;
+package com.easyapp.easypager;
 
 import android.app.Fragment;
 import android.app.FragmentManager;
+import android.support.annotation.Nullable;
 import android.support.v13.app.FragmentStatePagerAdapter;
 import android.widget.Toast;
 
 import java.util.ArrayList;
 
 /**
- * Created by jim on 2018/1/26.
+ * adapter
  */
 
 public class EasyFragmentPagerAdapter extends FragmentStatePagerAdapter {
 
     private ArrayList<Fragment> fragments;
+    private ArrayList<String> titles;
 
     public EasyFragmentPagerAdapter(FragmentManager fm) {
         super(fm);
+        titles = new ArrayList<>();
         fragments = new ArrayList<>();
     }
 
     public void addFragment(Fragment fragment) {
         fragments.add(fragment);
+        titles.add("");
+    }
+
+    public void addFragment(Fragment fragment, String title) {
+        fragments.add(fragment);
+        titles.add(title);
+    }
+
+    @Nullable
+    @Override
+    public CharSequence getPageTitle(int position) {
+        return titles.get(position);
     }
 
     @Override
