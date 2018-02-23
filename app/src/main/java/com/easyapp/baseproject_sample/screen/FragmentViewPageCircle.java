@@ -35,7 +35,7 @@ public class FragmentViewPageCircle extends Fragment {
 
     private void initView() {
         ViewPager viewPager = view.findViewById(R.id.viewpager);
-        TabLayout tabLayout = view.findViewById(R.id.tab_layout);
+
 
         EasyPagerAdapter fragmentPagerItemAdapter = new EasyPagerAdapter(getFragmentManager());
 
@@ -43,7 +43,7 @@ public class FragmentViewPageCircle extends Fragment {
         fragmentPagerItemAdapter.addFragment(FragmentTouchView.instance("http://i.imgur.com/1cULBoj.jpg"));
         fragmentPagerItemAdapter.addFragment(new PostsList());
         viewPager.setAdapter(fragmentPagerItemAdapter);
-
+        TabLayout tabLayout = view.findViewById(R.id.tab_layout);
         tabLayout.setupWithViewPager(viewPager);
     }
 

@@ -3,7 +3,7 @@
   <groupId>com.easyapp.lib</groupId>
   <artifactId>BaseSupport</artifactId>
   <versioning>
-    <release>10.2.0</release>
+    <release>10.2.1</release>
     <versions>
       <version>6.3.2</version>
       <version>6.3.3</version>
@@ -119,7 +119,8 @@
       <version>10.1.2</version>
       <version>10.1.3</version>
       <version>10.2.0</version>
+      <version>10.2.1</version>
     </versions>
-    <lastUpdated>20180222085530</lastUpdated>
+    <lastUpdated>20180223031501</lastUpdated>
   </versioning>
 </metadata>

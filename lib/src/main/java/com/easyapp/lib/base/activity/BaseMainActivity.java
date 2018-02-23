@@ -43,7 +43,7 @@ public abstract class BaseMainActivity extends BaseSupportActivity implements iT
     protected abstract void initial();
 
     protected void initView() {
-        toolbar = (Toolbar) findViewById(R.id.toolbar);
+        toolbar =  findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         if (getSupportActionBar() != null) {
             getSupportActionBar().setDisplayShowTitleEnabled(false);
@@ -56,10 +56,10 @@ public abstract class BaseMainActivity extends BaseSupportActivity implements iT
         });
 
         container = findViewById(containerId);
-        ivTitle = (ImageView) toolbar.findViewById(R.id.iv_title);
-        tvTitle = (TextView) toolbar.findViewById(R.id.tv_title);
-        flRight = (LinearLayout) toolbar.findViewById(R.id.fl_right);
-        flLeft = (LinearLayout) toolbar.findViewById(R.id.fl_left);
+        ivTitle =  toolbar.findViewById(R.id.iv_title);
+        tvTitle =  toolbar.findViewById(R.id.tv_title);
+        flRight =  toolbar.findViewById(R.id.fl_right);
+        flLeft =  toolbar.findViewById(R.id.fl_left);
     }
 
 
@@ -141,5 +141,18 @@ public abstract class BaseMainActivity extends BaseSupportActivity implements iT
     @Override
     public void hideToolbar() {
         toolbar.setVisibility(View.GONE);
+    }
+
+    @Override
+    public void onBackPressed() {
+        cancelLoading();
+        if (getFragmentManager().getBackStackEntryCount() > 0) {
+            if (getFragmentManager().getBackStackEntryCount() == 1) {
+                showBack(false);
+            }
+            super.onBackPressed();
+        } else {
+            super.onBackPressed();
+        }
     }
 }
