@@ -1,9 +1,10 @@
 package com.easyapp.baseproject_sample.screen;
 
 
-import android.app.Fragment;
+
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
+import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -17,7 +18,7 @@ import com.easyapp.lib.touchView.FragmentTouchView;
 
 
 /**
- * A simple {@link Fragment} subclass.
+ * test dot view pager
  */
 public class FragmentViewPageCircle extends Fragment {
 

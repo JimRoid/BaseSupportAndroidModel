@@ -1,10 +1,11 @@
 package com.easyapp.lib.base.activity;
 
-import android.app.Fragment;
-import android.app.FragmentManager;
-import android.app.FragmentTransaction;
+
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.widget.Toast;
 
 import com.easyapp.lib.R;
@@ -26,7 +27,7 @@ public abstract class BaseSupportActivity extends BaseActivity implements iFragm
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        fragmentManager = getFragmentManager();
+        fragmentManager = getSupportFragmentManager();
     }
 
     protected void setContainer(int container_id) {

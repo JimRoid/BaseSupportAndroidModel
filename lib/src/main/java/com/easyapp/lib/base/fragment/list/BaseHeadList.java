@@ -1,7 +1,6 @@
 package com.easyapp.lib.base.fragment.list;
 
 import android.app.Activity;
-import android.content.Context;
 import android.content.res.ColorStateList;
 import android.os.Bundle;
 import android.support.annotation.Nullable;

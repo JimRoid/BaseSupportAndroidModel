@@ -14,7 +14,7 @@ public class TabSample extends BaseTabFragment {
 
     @Override
     public void initialAdapter() {
-        getPagerAdapter().addFragment(new Detail(),"測試1");
+        getPagerAdapter().addFragment(new BlankFragment(),"測試1");
         getPagerAdapter().addFragment(new Detail(),"測試2");
         getPagerAdapter().addFragment(new Detail(),"測試2");
     }

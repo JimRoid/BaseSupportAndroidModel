@@ -1,7 +1,8 @@
 package com.easyapp.lib.base.fragment;
 
-import android.app.Fragment;
+
 import android.content.Context;
+import android.support.v4.app.Fragment;
 import android.support.v7.app.ActionBarDrawerToggle;
 
 import com.easyapp.lib.callback.iDrawerCallback;

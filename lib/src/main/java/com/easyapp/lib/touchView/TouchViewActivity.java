@@ -37,7 +37,7 @@ public class TouchViewActivity extends AppCompatActivity {
         data.addAll(bundle.getStringArrayList("PATH"));
 
 
-        EasyPagerAdapter adapter = new EasyPagerAdapter(getFragmentManager());
+        EasyPagerAdapter adapter = new EasyPagerAdapter(getSupportFragmentManager());
         for (String resource : data) {
             adapter.addFragment(FragmentTouchView.instance(resource));
         }

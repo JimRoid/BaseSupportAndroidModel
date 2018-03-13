@@ -1,7 +1,7 @@
 package com.easyapp.lib.base.activity;
 
-import android.app.Fragment;
-import android.os.Bundle;
+
+import android.support.v4.app.Fragment;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -118,12 +118,12 @@ public abstract class BaseDrawerMainActivity extends BaseMainActivity implements
 
     @Override
     public void addLeftDrawer(Fragment fragment) {
-        getFragmentManager().beginTransaction().replace(R.id.fl_drawer_left, fragment, "left").commitAllowingStateLoss();
+        getSupportFragmentManager().beginTransaction().replace(R.id.fl_drawer_left, fragment, "left").commitAllowingStateLoss();
     }
 
     @Override
     public void addRightDrawer(Fragment fragment) {
-        getFragmentManager().beginTransaction().replace(R.id.fl_drawer_right, fragment, "left").commitAllowingStateLoss();
+        getSupportFragmentManager().beginTransaction().replace(R.id.fl_drawer_right, fragment, "left").commitAllowingStateLoss();
     }
 
     @Override
