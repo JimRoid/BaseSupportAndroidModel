@@ -4,7 +4,6 @@ package com.easyapp.baseproject_sample.http.api;
 import android.content.Context;
 
 
-
 import com.easyapp.baseproject_sample.http.entity.ItemSchool;
 import com.easyapp.easyhttp.BaseApiTool;
 import com.easyapp.easyhttp.listener.EasyApiCallback;
@@ -43,9 +42,6 @@ public class ApiTool extends BaseApiTool<ApiService> {
     /**
      * 取回商品列表資料
      *
-     * @param type
-     * @param p_name
-     * @param page
      * @param callback
      */
     public void getSchool(EasyApiCallback<ItemSchool> callback) {

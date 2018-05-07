@@ -21,14 +21,11 @@ import com.easyapp.lib.widget.MenuView;
 
 import java.util.ArrayList;
 
-import butterknife.ButterKnife;
-import butterknife.OnClick;
-
 
 /**
  * A simple {@link Fragment} subclass.
  */
-public class SampleFragment extends BaseToolbarFragment {
+public class SampleFragment extends BaseToolbarFragment implements View.OnClickListener {
 
 
     @Override
@@ -41,7 +38,7 @@ public class SampleFragment extends BaseToolbarFragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_sample, container, false);
-        ButterKnife.bind(this, view);
+
         MenuView menuView = new MenuView();
         menuView.Builder(getActivity());
         menuView.setMenuText("儲存");
@@ -67,7 +64,6 @@ public class SampleFragment extends BaseToolbarFragment {
         OpenData.StartActivity(getActivity(), DrawerViewActivity.class);
     }
 
-    @OnClick({R.id.bt_touch_view, R.id.bt_loginView, R.id.bt_list, R.id.bt_tab, R.id.bt_drawerView, R.id.bt_staggered_list, R.id.dot_viewpager})
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.bt_list:
@@ -87,7 +83,7 @@ public class SampleFragment extends BaseToolbarFragment {
                 AddToDotView2();
                 break;
             case R.id.bt_loginView:
-                AddFragment(new Login(),"SLIDE_UP");
+                AddFragment(new Login(), "SLIDE_UP");
 //                OpenData.StartActivity(getActivity(), LoginActivity.class);
                 break;
             case R.id.bt_touch_view:

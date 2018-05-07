@@ -58,6 +58,7 @@ public abstract class BaseSupportActivity extends BaseActivity implements iFragm
             return;
         }
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+
         if (anim.equals(SLIDE)) {
             fragmentTransaction.setCustomAnimations(
                     R.animator.fragment_slide_left_enter,

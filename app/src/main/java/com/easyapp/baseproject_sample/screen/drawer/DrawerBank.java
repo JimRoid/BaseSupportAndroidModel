@@ -11,18 +11,12 @@ import android.widget.Button;
 import com.easyapp.baseproject_sample.R;
 import com.easyapp.lib.base.fragment.BaseDrawerFragment;
 
-import butterknife.BindView;
-import butterknife.ButterKnife;
-import butterknife.OnClick;
 
 /**
  *
  */
-public class DrawerBank extends BaseDrawerFragment {
+public class DrawerBank extends BaseDrawerFragment implements View.OnClickListener {
 
-
-    @BindView(R.id.bt_toggle)
-    Button btToggle;
 
     boolean isboolean = true;
 
@@ -31,7 +25,12 @@ public class DrawerBank extends BaseDrawerFragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_drawer_bank, container, false);
-        ButterKnife.bind(this, view);
+        Button btToggle = view.findViewById(R.id.bt_toggle);
+        Button btToggleFalse = view.findViewById(R.id.bt_toggle_false);
+        Button add = view.findViewById(R.id.bt_add);
+        add.setOnClickListener(this);
+        btToggle.setOnClickListener(this);
+        btToggleFalse.setOnClickListener(this);
         return view;
     }
 
@@ -43,7 +42,7 @@ public class DrawerBank extends BaseDrawerFragment {
 
     }
 
-    @OnClick({R.id.bt_toggle, R.id.bt_toggle_false, R.id.bt_add})
+    @Override
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.bt_toggle:

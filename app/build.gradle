@@ -6,7 +6,7 @@ android {
 
     defaultConfig {
         applicationId "com.easyapp.baseproject_sample"
-        minSdkVersion 17
+        minSdkVersion 19
         targetSdkVersion 27
         versionCode 1
         versionName "1.0"
@@ -20,10 +20,6 @@ android {
 }
 
 dependencies {
-    compile fileTree(dir: 'libs', include: ['*.jar'])
-    compile project(':lib')
-    compile project(':easyhttp')
-    compile 'com.jakewharton:butterknife:8.8.1'
-    testCompile 'junit:junit:4.12'
-    annotationProcessor 'com.jakewharton:butterknife-compiler:8.8.1'
+    api project(':lib')
+    api project(':easyhttp')
 }

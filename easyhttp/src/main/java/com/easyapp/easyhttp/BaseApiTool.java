@@ -7,6 +7,8 @@ import android.widget.Toast;
 import com.easyapp.easyhttp.listener.EasyApiCallback;
 import com.easyapp.easyhttp.listener.OnFailureListener;
 import com.easyapp.easyhttp.listener.OnResponseListener;
+import com.easyapp.easyhttp.model.ResponseBase;
+import com.google.gson.Gson;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -206,7 +208,14 @@ public abstract class BaseApiTool<TServices> {
                 }
 
                 if (response.isSuccessful() && response.code() == 200) {
-                    easyApiCallback.onCallback(response.body());
+                    Gson gson = new Gson();
+                    String value = gson.toJson(response.body());
+                    ResponseBase responseBase = gson.fromJson(value, ResponseBase.class);
+                    if (responseBase.getStatus() == 200) {
+                        easyApiCallback.onCallback(response.body());
+                    } else {
+                        easyApiCallback.onFail(response.body());
+                    }
                 } else {
                     easyApiCallback.onFail(response.body());
                 }
