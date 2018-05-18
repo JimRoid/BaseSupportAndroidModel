@@ -7,12 +7,4 @@
     <string name="photo_unit">Shot</string>
     <string name="tip_take_photo">Take photo</string>
 
-    <string name="crop__saving">Saving picture…</string>
-    <string name="crop__wait">Please wait…</string>
-    <string name="crop__pick_error">No image sources available</string>
-
-    <string name="result_image_desc">crop result</string>
-
-    <string name="crop__done">DONE</string>
-    <string name="crop__cancel" tools:ignore="ButtonCase">CANCEL</string>
 </resources>

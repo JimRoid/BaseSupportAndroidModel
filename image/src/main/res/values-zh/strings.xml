@@ -8,13 +8,4 @@
     <string name="photo_unit">張</string>
     <string name="tip_take_photo">拍攝照片</string>
 
-    <string name="crop__saving">儲存照片中</string>
-    <string name="crop__wait">請稍等…</string>
-    <string name="crop__pick_error">沒有任何圖片來源</string>
-
-    <string name="result_image_desc">裁切結果</string>
-
-    <string name="crop__done">完成</string>
-    <string name="crop__cancel" tools:ignore="ButtonCase">關閉</string>
-
 </resources>

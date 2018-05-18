@@ -46,6 +46,7 @@ dependencies {
     implementation 'com.google.code.gson:gson:2.8.4'
 
     implementation project(':lib')
+    implementation project(':file')
     implementation project(':http')
     implementation project(':image')
     implementation project(':database')
