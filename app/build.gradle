@@ -5,8 +5,8 @@ android {
     buildToolsVersion '27.0.3'
 
     defaultConfig {
-        applicationId "com.easyapp.baseproject_sample"
-        minSdkVersion 19
+        applicationId "com.easyapp.sample"
+        minSdkVersion 21
         targetSdkVersion 27
         versionCode 1
         versionName "1.0"
@@ -15,11 +15,41 @@ android {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            buildConfigField("String", "ApiDomain", '"https://test2.easyapp.com.tw/easy-chat/api/"')
         }
+        debug {
+            buildConfigField("String", "ApiDomain", '"https://test2.easyapp.com.tw/easy-chat/api/"')
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_7
+        targetCompatibility JavaVersion.VERSION_1_7
     }
 }
 
 dependencies {
-    api project(':lib')
-    api project(':easyhttp')
+
+    implementation "com.android.support:appcompat-v7:27.1.1"
+    implementation "com.android.support:cardview-v7:27.1.1"
+    implementation "com.android.support:support-v4:27.1.1"
+    implementation "com.android.support:design:27.1.1"
+    implementation 'com.orhanobut:logger:2.2.0'
+    implementation 'com.github.bumptech.glide:glide:4.7.1'
+    annotationProcessor 'com.github.bumptech.glide:compiler:4.7.1'
+
+    implementation 'com.squareup.retrofit2:retrofit:2.4.0'
+    implementation 'com.squareup.retrofit2:converter-scalars:2.4.0'
+    implementation 'com.squareup.retrofit2:converter-gson:2.4.0'
+    implementation 'com.squareup.okhttp3:logging-interceptor:3.10.0'
+
+    implementation 'com.google.code.gson:gson:2.8.4'
+
+    implementation project(':lib')
+    implementation project(':http')
+    implementation project(':image')
+    implementation project(':database')
+
+    implementation 'com.jakewharton:butterknife:8.8.1'
+    annotationProcessor 'com.jakewharton:butterknife-compiler:8.8.1'
 }
