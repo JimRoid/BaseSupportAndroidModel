@@ -1,9 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ImageView xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/ivPicture"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:adjustViewBounds="true"
-    android:scaleType="fitCenter">
+    android:layout_height="match_parent">
 
-</ImageView>
+    <com.easyapp.lib.widget.anim.CircularProgressView
+        android:id="@+id/progressView"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:layout_gravity="center"
+        app:cpv_animAutostart="true"
+        app:cpv_color="@color/light_blue"
+        app:cpv_indeterminate="true" />
+
+    <ImageView
+        android:id="@+id/ivPicture"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:adjustViewBounds="true"
+        android:scaleType="fitCenter">
+
+    </ImageView>
+</FrameLayout>

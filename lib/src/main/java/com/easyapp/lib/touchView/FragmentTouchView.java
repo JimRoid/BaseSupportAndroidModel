@@ -3,6 +3,7 @@ package com.easyapp.lib.touchView;
 
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -12,6 +13,8 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.target.SimpleTarget;
+import com.bumptech.glide.request.transition.Transition;
 import com.easyapp.lib.R;
 import com.easyapp.lib.tool.Base64Tool;
 import com.easyapp.lib.widget.anim.CircularProgressView;
@@ -43,9 +46,9 @@ public class FragmentTouchView extends Fragment {
     }
 
     private void initView(View view) {
-        touchImageView = view.findViewById(R.id.iv_touch);
+        touchImageView = view.findViewById(R.id.ivTouch);
         progressView = view.findViewById(R.id.loading);
-        progressView.setVisibility(View.GONE);
+        cancelLoading();
         getExtraIntent();
     }
 
@@ -56,29 +59,15 @@ public class FragmentTouchView extends Fragment {
             touchImageView.setImageResource(R.drawable.icon_empty);
             return;
         }
-
+        showLoading();
         if (path.contains("http")) {
-            Glide.with(this).load(path).into(touchImageView);
-//            GlideApp.with(this).load(path).error(R.drawable.icon_empty).into(new GlideDrawableImageViewTarget(touchImageView) {
-//                @Override
-//                public void onStart() {
-//                    super.onStart();
-//                    showLoading();
-//                }
-//
-//                @Override
-//                public void onResourceReady(GlideDrawable resource, GlideAnimation<? super GlideDrawable> animation) {
-//                    super.onResourceReady(resource, animation);
-//                    touchImageView.setImageDrawable(resource);
-//                    cancelLoading();
-//                }
-//
-//                @Override
-//                public void onLoadFailed(Exception e, Drawable errorDrawable) {
-//                    super.onLoadFailed(e, errorDrawable);
-//                    cancelLoading();
-//                }
-//            });
+            Glide.with(this).load(path).into(new SimpleTarget<Drawable>() {
+                @Override
+                public void onResourceReady(@NonNull Drawable resource, @Nullable Transition<? super Drawable> transition) {
+                    cancelLoading();
+                    touchImageView.setImageDrawable(resource);
+                }
+            });
         } else if (path.contains("/storage")) {
             File file = new File(path);
             if (file.exists()) {

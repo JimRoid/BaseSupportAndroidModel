@@ -1,31 +1,16 @@
-<com.easyapp.lib.widget.drawerView.BlurDrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<com.easyapp.lib.drawer.BlurDrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/drawerLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
     app:blurRadius="5"
     app:downScaleFactor="5.0"
-    android:id="@+id/drawer_layout"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
-
+    tools:openDrawer="start">
 
     <include layout="@layout/layout_base_toolbar" />
 
-    <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        android:id="@+id/fl_drawer_right"
-        android:layout_width="@dimen/drawer_width"
-        android:layout_height="match_parent"
-        android:layout_gravity="right|end"
-        android:background="@color/transparent_black"
-        android:clickable="true"/>
+    <include layout="@layout/layout_navigation_view" />
 
-    <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        android:id="@+id/fl_drawer_left"
-        android:layout_width="@dimen/drawer_width"
-        android:layout_height="match_parent"
-        android:layout_gravity="left|start"
-        android:background="@color/transparent_black"
-        android:clickable="true"/>
-
-
-
-</com.easyapp.lib.widget.drawerView.BlurDrawerLayout>
+</com.easyapp.lib.drawer.BlurDrawerLayout>

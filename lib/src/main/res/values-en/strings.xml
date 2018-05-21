@@ -1,5 +1,5 @@
 <resources>
-    <string name="ScrollAwareFABBehavior">com.easyapp.lib.widget.ScrollAwareFABBehavior</string>
+    <string name="ScrollAwareFABBehavior">com.easyapp.lib.widget.ScrollAwareFABBehaviorDefault</string>
     <string name="navigation_drawer_open">open</string>
     <string name="navigation_drawer_close">close</string>
 

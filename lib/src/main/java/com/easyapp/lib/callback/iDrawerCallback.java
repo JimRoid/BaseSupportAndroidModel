@@ -16,10 +16,6 @@ public interface iDrawerCallback {
 
     void closeDrawer(int gravity);
 
-    void addLeftDrawer(Fragment fragment);
-
-    void addRightDrawer(Fragment fragment);
-
     void setDrawerLock();
 
     void setDrawerUnLock();

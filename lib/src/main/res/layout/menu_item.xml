@@ -8,14 +8,14 @@
     android:minWidth="48dp">
 
     <TextView
-        android:id="@+id/tv_title"
+        android:id="@+id/tvTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:visibility="gone" />
 
     <ImageView
-        android:id="@+id/iv_menu"
+        android:id="@+id/ivMenu"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"

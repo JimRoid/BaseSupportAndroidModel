@@ -2,7 +2,9 @@ package com.easyapp.lib.widget.viewPager;
 
 import android.app.Activity;
 import android.content.Context;
+import android.graphics.drawable.Drawable;
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
@@ -13,6 +15,8 @@ import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
+import com.bumptech.glide.request.target.SimpleTarget;
+import com.bumptech.glide.request.transition.Transition;
 import com.easyapp.lib.R;
 import com.easyapp.lib.tool.OpenData;
 
@@ -29,6 +33,7 @@ public class EasyImageViewPagerAdapter extends PagerAdapter {
 
     private int layout = R.layout.layout_image_view;
     private int imageViewLayoutId = R.id.ivPicture;
+    private int layoutLoad = R.id.progressView;
 
     public static void initial(Activity activity,
                                Collection<? extends String> collection,
@@ -80,15 +85,25 @@ public class EasyImageViewPagerAdapter extends PagerAdapter {
         return urls.size();
     }
 
+    @NonNull
     public View instantiateItem(@NonNull ViewGroup container, final int position) {
         int rootLayout = layout;
         View currentView = inflater.inflate(rootLayout, container, false);
-        ImageView imageView = currentView.findViewById(imageViewLayoutId);
+        final ImageView imageView = currentView.findViewById(imageViewLayoutId);
+        final View progressView = currentView.findViewById(layoutLoad);
+
+        progressView.setVisibility(View.VISIBLE);
         Glide.with(context)
                 .load(urls.get(position))
                 .apply(new RequestOptions()
                         .centerCrop())
-                .into(imageView);
+                .into(new SimpleTarget<Drawable>() {
+                    @Override
+                    public void onResourceReady(@NonNull Drawable resource, @Nullable Transition<? super Drawable> transition) {
+                        progressView.setVisibility(View.GONE);
+                        imageView.setImageDrawable(resource);
+                    }
+                });
 
         currentView.setOnClickListener(new View.OnClickListener() {
             @Override

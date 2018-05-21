@@ -1,6 +1,6 @@
 package com.easyapp.sample.loginView;
 
-import com.easyapp.lib.base.activity.BaseMainActivity;
+import com.easyapp.lib.activity.BaseMainActivity;
 
 /**
  * Created by easyapp_jim on 2016/7/27.
