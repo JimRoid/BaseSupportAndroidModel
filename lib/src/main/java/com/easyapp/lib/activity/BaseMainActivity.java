@@ -62,6 +62,10 @@ public abstract class BaseMainActivity extends BaseSupportActivity implements iT
         flLeft = toolbar.findViewById(R.id.flLeft);
     }
 
+    @Override
+    public Toolbar getToolbar() {
+        return toolbar;
+    }
 
     @Override
     public void setTitleImageResource(int resId) {

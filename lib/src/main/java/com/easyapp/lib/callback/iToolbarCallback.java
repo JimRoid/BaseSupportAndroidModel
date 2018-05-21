@@ -1,5 +1,6 @@
 package com.easyapp.lib.callback;
 
+import android.support.v7.widget.Toolbar;
 import android.view.View;
 
 /**
@@ -30,4 +31,6 @@ public interface iToolbarCallback {
     void showToolbar();
 
     void hideToolbar();
+
+    Toolbar getToolbar();
 }

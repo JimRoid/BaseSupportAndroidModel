@@ -202,6 +202,9 @@ public abstract class BaseHeadList<
     }
 
 
+
+
+
     /**
      * 設定單筆的訊息改變
      *

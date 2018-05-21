@@ -19,7 +19,7 @@ public abstract class BaseDrawerMainActivity extends BaseMainActivity implements
 
     protected DrawerLayout drawerLayout;
     protected NavigationView navView;
-    protected ActionBarDrawerToggle mDrawerToggle;
+    protected ActionBarDrawerToggle actionBarDrawerToggle;
 
     @Override
     protected int getLayoutId() {
@@ -32,14 +32,11 @@ public abstract class BaseDrawerMainActivity extends BaseMainActivity implements
         drawerLayout = findViewById(R.id.drawerLayout);
         navView = findViewById(R.id.navView);
 
-        mDrawerToggle = new ActionBarDrawerToggle(
+        actionBarDrawerToggle = new ActionBarDrawerToggle(
                 this, drawerLayout, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
-        drawerLayout.addDrawerListener(mDrawerToggle);
-        mDrawerToggle.syncState();
-
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setHomeButtonEnabled(true);
-        mDrawerToggle.setDrawerIndicatorEnabled(true);
+        drawerLayout.addDrawerListener(actionBarDrawerToggle);
+        actionBarDrawerToggle.syncState();
+        actionBarDrawerToggle.setDrawerIndicatorEnabled(true);
     }
 
     @Override
@@ -53,44 +50,8 @@ public abstract class BaseDrawerMainActivity extends BaseMainActivity implements
     }
 
     @Override
-    public void showBack(boolean value) {
-        if (value) {
-            getDrawerToggle().setDrawerIndicatorEnabled(false);
-        } else {
-            getDrawerToggle().setDrawerIndicatorEnabled(true);
-        }
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-    }
-
-
-    @Override
-    public void ReplaceFragment(Fragment fragment) {
-        super.ReplaceFragment(fragment);
-        showBack(false);
-    }
-
-    @Override
-    public void ReplaceFragment(Fragment fragment, String anim) {
-        super.ReplaceFragment(fragment, anim);
-        showBack(false);
-    }
-
-    @Override
-    public void ReplaceFragment(Fragment fragment, int container) {
-        super.ReplaceFragment(fragment, container);
-        showBack(false);
-    }
-
-    @Override
-    public void ReplaceFragment(Fragment fragment, int container, String anim) {
-        super.ReplaceFragment(fragment, container, anim);
-        showBack(false);
-    }
-
-
-    @Override
     public ActionBarDrawerToggle getDrawerToggle() {
-        return mDrawerToggle;
+        return actionBarDrawerToggle;
     }
 
 

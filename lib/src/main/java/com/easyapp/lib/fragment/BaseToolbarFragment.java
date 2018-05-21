@@ -1,6 +1,7 @@
 package com.easyapp.lib.fragment;
 
 import android.content.Context;
+import android.support.v7.widget.Toolbar;
 import android.view.View;
 
 import com.easyapp.lib.callback.iToolbarCallback;
@@ -19,6 +20,13 @@ public class BaseToolbarFragment extends BaseEasyFragment {
             throw new ClassCastException(context.toString()
                     + " must implement OnHeadlineSelectedListener");
         }
+    }
+
+    protected Toolbar getToolbar() {
+        if (toolbarCallback == null) {
+            return null;
+        }
+        return toolbarCallback.getToolbar();
     }
 
     protected void setTitle(CharSequence title) {
