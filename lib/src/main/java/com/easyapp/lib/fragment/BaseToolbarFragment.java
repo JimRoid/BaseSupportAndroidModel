@@ -1,9 +1,11 @@
 package com.easyapp.lib.fragment;
 
 import android.content.Context;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 
+import com.easyapp.lib.callback.iFloatingActionButton;
 import com.easyapp.lib.callback.iToolbarCallback;
 
 /**
@@ -12,14 +14,37 @@ import com.easyapp.lib.callback.iToolbarCallback;
 public class BaseToolbarFragment extends BaseEasyFragment {
 
     protected iToolbarCallback toolbarCallback;
+    protected iFloatingActionButton floatingActionButton;
 
     protected void setToolbarCallback(Context context) {
         try {
             toolbarCallback = (iToolbarCallback) context;
+            floatingActionButton = (iFloatingActionButton) context;
         } catch (ClassCastException e) {
             throw new ClassCastException(context.toString()
                     + " must implement OnHeadlineSelectedListener");
         }
+    }
+
+    protected FloatingActionButton getFab() {
+        if (floatingActionButton == null) {
+            return null;
+        }
+        return floatingActionButton.getFab();
+    }
+
+    protected void showFab() {
+        if (floatingActionButton == null) {
+            return;
+        }
+        floatingActionButton.showFab();
+    }
+
+    protected void hideFab() {
+        if (floatingActionButton == null) {
+            return;
+        }
+        floatingActionButton.hideFab();
     }
 
     protected Toolbar getToolbar() {

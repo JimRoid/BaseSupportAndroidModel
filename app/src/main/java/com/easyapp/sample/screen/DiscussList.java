@@ -27,7 +27,15 @@ public class DiscussList extends BaseList<DiscussList.ViewHolder, EntityDiscuss.
     protected void init() {
         setTitle("討論區");
         apiTool = new ApiTool(getContext());
-        onRefresh();
+        showFab();
+        getFab().setImageResource(R.drawable.icon_add_white);
+        getFab().setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Logger.d("hello");
+                AddFragment(new DiscussCreate());
+            }
+        });
     }
 
 

@@ -1,6 +1,7 @@
 package com.easyapp.lib.activity;
 
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.ImageView;
@@ -8,17 +9,19 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.easyapp.lib.R;
+import com.easyapp.lib.callback.iFloatingActionButton;
 import com.easyapp.lib.callback.iToolbarCallback;
 
 /**
  * 提供一般 基本 toolbar main activity layout
  */
-public abstract class BaseMainActivity extends BaseSupportActivity implements iToolbarCallback {
+public abstract class BaseMainActivity extends BaseSupportActivity implements iToolbarCallback, iFloatingActionButton {
     protected Toolbar toolbar;
     protected ImageView ivTitle;
     protected TextView tvTitle;
     protected LinearLayout flRight, flLeft;
     protected View container;
+    protected FloatingActionButton floatingActionButton;
 
 
     @Override
@@ -60,6 +63,7 @@ public abstract class BaseMainActivity extends BaseSupportActivity implements iT
         tvTitle = toolbar.findViewById(R.id.tvTitle);
         flRight = toolbar.findViewById(R.id.flRight);
         flLeft = toolbar.findViewById(R.id.flLeft);
+        floatingActionButton = findViewById(R.id.floatingActionButton);
     }
 
     @Override
@@ -147,6 +151,21 @@ public abstract class BaseMainActivity extends BaseSupportActivity implements iT
     @Override
     public void hideToolbar() {
         toolbar.setVisibility(View.GONE);
+    }
+
+    @Override
+    public FloatingActionButton getFab() {
+        return floatingActionButton;
+    }
+
+    @Override
+    public void showFab() {
+        floatingActionButton.setVisibility(View.VISIBLE);
+    }
+
+    @Override
+    public void hideFab() {
+        floatingActionButton.setVisibility(View.INVISIBLE);
     }
 
     @Override

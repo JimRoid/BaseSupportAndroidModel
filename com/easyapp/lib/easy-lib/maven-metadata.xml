@@ -3,13 +3,14 @@
   <groupId>com.easyapp.lib</groupId>
   <artifactId>easy-lib</artifactId>
   <versioning>
-    <release>16.0</release>
+    <release>17.0</release>
     <versions>
       <version>14.0</version>
       <version>14.1</version>
       <version>15.0</version>
       <version>16.0</version>
+      <version>17.0</version>
     </versions>
-    <lastUpdated>20180521032537</lastUpdated>
+    <lastUpdated>20180521035648</lastUpdated>
   </versioning>
 </metadata>
