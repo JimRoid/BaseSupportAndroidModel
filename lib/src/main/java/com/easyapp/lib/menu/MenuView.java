@@ -25,6 +25,9 @@ public class MenuView {
     public MenuView(Context context) {
         super();
         setContext(context);
+        menu = LayoutInflater.from(getContext()).inflate(R.layout.menu_item, null, false);
+        textView = menu.findViewById(R.id.tvTitle);
+        imageView = menu.findViewById(R.id.ivMenu);
     }
 
     public Context getContext() {
@@ -33,15 +36,6 @@ public class MenuView {
 
     public void setContext(Context context) {
         this.context = context;
-    }
-
-    public MenuView into(ViewGroup root) {
-        if (getContext() != null) {
-            menu = LayoutInflater.from(getContext()).inflate(R.layout.menu_item, root, false);
-            textView = menu.findViewById(R.id.tvTitle);
-            imageView = menu.findViewById(R.id.ivMenu);
-        }
-        return this;
     }
 
     public MenuView setMenuImage(int res) {

@@ -1,10 +1,13 @@
 package com.easyapp.lib.fragment;
 
 import android.content.Context;
+import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.view.ViewGroup;
 
 import com.easyapp.lib.callback.iFloatingActionButton;
 import com.easyapp.lib.callback.iToolbarCallback;
@@ -25,6 +28,12 @@ public class BaseToolbarFragment extends BaseEasyFragment {
             throw new ClassCastException(context.toString()
                     + " must implement OnHeadlineSelectedListener");
         }
+    }
+
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        setToolbarCallback(context);
     }
 
     protected void autoHideToolbar() {
@@ -93,51 +102,6 @@ public class BaseToolbarFragment extends BaseEasyFragment {
         toolbarCallback.showBack(value);
     }
 
-    protected void cancelRight() {
-        if (toolbarCallback == null) {
-            return;
-        }
-        toolbarCallback.cancelRight();
-    }
-
-    protected void cancelLeft() {
-        if (toolbarCallback == null) {
-            return;
-        }
-        toolbarCallback.cancelLeft();
-    }
-
-    protected void setLeft(View view) {
-        if (toolbarCallback == null) {
-            return;
-        }
-        toolbarCallback.setLeft(view);
-    }
-
-
-    protected void setRight(View view) {
-        if (toolbarCallback == null) {
-            return;
-        }
-        toolbarCallback.setRight(view);
-    }
-
-
-    protected void setLeft(View[] views) {
-        if (toolbarCallback == null) {
-            return;
-        }
-        toolbarCallback.setLeft(views);
-    }
-
-    protected void setRight(View[] views) {
-        if (toolbarCallback == null) {
-            return;
-        }
-        toolbarCallback.setRight(views);
-    }
-
-
     protected void showToolbar() {
         if (toolbarCallback == null) {
             return;
@@ -145,11 +109,47 @@ public class BaseToolbarFragment extends BaseEasyFragment {
         toolbarCallback.showToolbar();
     }
 
-
     protected void hideToolbar() {
         if (toolbarCallback == null) {
             return;
         }
         toolbarCallback.hideToolbar();
+    }
+
+
+    public void clearRightMenu() {
+        if (toolbarCallback == null) {
+            return;
+        }
+        toolbarCallback.clearRightMenu();
+    }
+
+    public void clearLeftMenu() {
+        if (toolbarCallback == null) {
+            return;
+        }
+        toolbarCallback.clearLeftMenu();
+    }
+
+    public void clearMenu() {
+        if (toolbarCallback == null) {
+            return;
+        }
+        toolbarCallback.clearMenu();
+    }
+
+    public ViewGroup getLeftMenu() {
+        if (toolbarCallback == null) {
+            return null;
+        }
+        return toolbarCallback.getLeftMenu();
+    }
+
+
+    public ViewGroup getRightMenu() {
+        if (toolbarCallback == null) {
+            return null;
+        }
+        return toolbarCallback.getRightMenu();
     }
 }

@@ -23,6 +23,16 @@ public abstract class BaseDrawerFragment extends BaseToolbarFragment {
         }
     }
 
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        try {
+            setDrawerCallback(context);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
     protected ActionBarDrawerToggle getDrawerToggle() {
         return drawerCallback.getDrawerToggle();
     }

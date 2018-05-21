@@ -2,23 +2,12 @@ package com.easyapp.lib.callback;
 
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.view.ViewGroup;
 
 /**
  * toolbar callback 回傳
  */
 public interface iToolbarCallback {
-
-    void setLeft(View view);
-
-    void setRight(View view);
-
-    void setLeft(View view[]);
-
-    void setRight(View view[]);
-
-    void cancelRight();
-
-    void cancelLeft();
 
     void showBack(boolean value);
 
@@ -33,4 +22,14 @@ public interface iToolbarCallback {
     void hideToolbar();
 
     Toolbar getToolbar();
+
+    void clearRightMenu();
+
+    void clearLeftMenu();
+
+    void clearMenu();
+
+    ViewGroup getLeftMenu();
+
+    ViewGroup getRightMenu();
 }

@@ -15,6 +15,7 @@ import android.view.ViewGroup;
 import com.easyapp.image.MultiImageSelectorActivity;
 import com.easyapp.lib.fragment.BaseFragment;
 import com.easyapp.lib.fragment.BaseToolbarFragment;
+import com.easyapp.lib.menu.MenuView;
 import com.easyapp.sample.R;
 import com.orhanobut.logger.Logger;
 
@@ -25,7 +26,7 @@ import butterknife.OnClick;
 import butterknife.Unbinder;
 
 /**
- * A simple {@link Fragment} subclass.
+ * 討論區
  */
 public class DiscussCreate extends BaseToolbarFragment {
 
@@ -46,14 +47,23 @@ public class DiscussCreate extends BaseToolbarFragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_discuss_create, container, false);
         cancelHideToolbar();
+        initMenu();
         unbinder = ButterKnife.bind(this, view);
         imagePath = new ArrayList<>();
         return view;
     }
 
+    private void initMenu() {
+        MenuView menuView = new MenuView(getContext());
+        menuView.setMenuText("說明");
+        menuView.setMenuTextColor(R.color.black);
+        getLeftMenu().addView(menuView.getMenu());
+    }
+
     @Override
     public void onDestroyView() {
         super.onDestroyView();
+        clearMenu();
         unbinder.unbind();
     }
 

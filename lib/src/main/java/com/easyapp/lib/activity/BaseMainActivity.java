@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -100,47 +101,34 @@ public abstract class BaseMainActivity extends BaseSupportActivity implements iT
     }
 
     @Override
-    public void cancelRight() {
+    public void OnAddFragment() {
+        showBack(true);
+    }
+
+    @Override
+    public void clearRightMenu() {
         flRight.removeAllViews();
-        flRight.setVisibility(View.GONE);
     }
 
     @Override
-    public void cancelLeft() {
+    public void clearLeftMenu() {
         flLeft.removeAllViews();
-        flLeft.setVisibility(View.GONE);
     }
 
     @Override
-    public void setLeft(View view) {
-        flLeft.removeAllViews();
-        flLeft.setVisibility(View.VISIBLE);
-        flLeft.addView(view);
+    public void clearMenu() {
+        clearLeftMenu();
+        clearRightMenu();
     }
 
     @Override
-    public void setRight(View view) {
-        flRight.removeAllViews();
-        flRight.setVisibility(View.VISIBLE);
-        flRight.addView(view);
+    public ViewGroup getLeftMenu() {
+        return flLeft;
     }
 
     @Override
-    public void setLeft(View[] views) {
-        flLeft.removeAllViews();
-        flLeft.setVisibility(View.VISIBLE);
-        for (int i = views.length - 1; i >= 0; i--) {
-            flLeft.addView(views[i]);
-        }
-    }
-
-    @Override
-    public void setRight(View[] views) {
-        flRight.removeAllViews();
-        flRight.setVisibility(View.VISIBLE);
-        for (int i = views.length - 1; i >= 0; i--) {
-            flRight.addView(views[i]);
-        }
+    public ViewGroup getRightMenu() {
+        return flRight;
     }
 
     @Override
@@ -171,8 +159,8 @@ public abstract class BaseMainActivity extends BaseSupportActivity implements iT
     @Override
     public void onBackPressed() {
         cancelLoading();
-        if (getFragmentManager().getBackStackEntryCount() > 0) {
-            if (getFragmentManager().getBackStackEntryCount() == 1) {
+        if (getSupportFragmentManager().getBackStackEntryCount() > 0) {
+            if (getSupportFragmentManager().getBackStackEntryCount() == 1) {
                 showBack(false);
             }
             super.onBackPressed();

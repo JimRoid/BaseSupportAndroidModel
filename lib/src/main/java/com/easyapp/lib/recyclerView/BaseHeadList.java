@@ -37,12 +37,6 @@ public abstract class BaseHeadList<
     protected GridLayoutManager gridLayoutManager;
 
     @Override
-    public void onAttach(Activity activity) {
-        super.onAttach(activity);
-        setToolbarCallback(activity);
-    }
-
-    @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, @Nullable Bundle savedInstanceState) {
         view = inflater.inflate(getLayoutId(), container, false);
         initView();
@@ -200,9 +194,6 @@ public abstract class BaseHeadList<
         baseRecycleViewAdapter.add(o);
         baseRecycleViewAdapter.notifyDataSetChanged();
     }
-
-
-
 
 
     /**
