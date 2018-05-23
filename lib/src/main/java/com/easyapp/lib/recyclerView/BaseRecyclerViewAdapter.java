@@ -92,6 +92,13 @@ public class BaseRecyclerViewAdapter<VHead extends BaseRecyclerViewAdapter.ViewH
         notifyDataSetChanged();
     }
 
+    public void addHead(THead head) {
+        ViewHolderData<THead, T> viewHolderData = new ViewHolderData<>();
+        viewHolderData.setHead(head);
+        viewHolderDataList.add(viewHolderData);
+        notifyDataSetChanged();
+    }
+
     public void add(T t) {
         ViewHolderData<THead, T> viewHolderData = new ViewHolderData<>();
         viewHolderData.setT(t);

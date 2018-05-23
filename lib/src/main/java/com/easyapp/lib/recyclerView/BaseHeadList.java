@@ -190,6 +190,12 @@ public abstract class BaseHeadList<
         emptyViewShow();
     }
 
+    protected void addHead(THead head) {
+        swipeRefreshLayout.setRefreshing(false);
+        baseRecycleViewAdapter.addHead(head);
+        baseRecycleViewAdapter.notifyDataSetChanged();
+    }
+
     protected void add(T o) {
         swipeRefreshLayout.setRefreshing(false);
         baseRecycleViewAdapter.add(o);
