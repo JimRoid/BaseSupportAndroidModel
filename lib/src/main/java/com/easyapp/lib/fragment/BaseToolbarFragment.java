@@ -152,4 +152,11 @@ public class BaseToolbarFragment extends BaseEasyFragment {
         }
         return toolbarCallback.getRightMenu();
     }
+
+    public AppBarLayout getAppBarLayout() {
+        if (toolbarCallback == null) {
+            return null;
+        }
+        return toolbarCallback.getAppBarLayout();
+    }
 }

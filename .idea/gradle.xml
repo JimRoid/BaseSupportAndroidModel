@@ -16,7 +16,8 @@
             <option value="$PROJECT_DIR$/lib" />
             <option value="$PROJECT_DIR$/sample-drawer" />
             <option value="$PROJECT_DIR$/sample-login" />
-            <option value="$PROJECT_DIR$/sample-tab" />
+            <option value="$PROJECT_DIR$/sample-pager" />
+            <option value="$PROJECT_DIR$/sample-toolbar" />
           </set>
         </option>
         <option name="resolveModulePerSourceSet" value="false" />

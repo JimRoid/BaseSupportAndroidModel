@@ -1,6 +1,7 @@
 package com.easyapp.lib.activity;
 
 import android.os.Bundle;
+import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
@@ -17,6 +18,8 @@ import com.easyapp.lib.callback.iToolbarCallback;
  * 提供一般 基本 toolbar main activity layout
  */
 public abstract class BaseMainActivity extends BaseSupportActivity implements iToolbarCallback, iFloatingActionButton {
+
+    protected AppBarLayout appBar;
     protected Toolbar toolbar;
     protected ImageView ivTitle;
     protected TextView tvTitle;
@@ -47,6 +50,7 @@ public abstract class BaseMainActivity extends BaseSupportActivity implements iT
     protected abstract void initial();
 
     protected void initView() {
+        appBar = findViewById(R.id.appBar);
         toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         if (getSupportActionBar() != null) {
@@ -98,6 +102,11 @@ public abstract class BaseMainActivity extends BaseSupportActivity implements iT
         if (getSupportActionBar() != null) {
             getSupportActionBar().setDisplayHomeAsUpEnabled(value);
         }
+    }
+
+    @Override
+    public AppBarLayout getAppBarLayout() {
+        return appBar;
     }
 
     @Override

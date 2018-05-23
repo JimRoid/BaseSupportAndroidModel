@@ -11,7 +11,8 @@
       <module fileurl="file://$PROJECT_DIR$/lib/lib.iml" filepath="$PROJECT_DIR$/lib/lib.iml" />
       <module fileurl="file://$PROJECT_DIR$/sample-drawer/sample-drawer.iml" filepath="$PROJECT_DIR$/sample-drawer/sample-drawer.iml" />
       <module fileurl="file://$PROJECT_DIR$/sample-login/sample-login.iml" filepath="$PROJECT_DIR$/sample-login/sample-login.iml" />
-      <module fileurl="file://$PROJECT_DIR$/sample-tab/sample-tab.iml" filepath="$PROJECT_DIR$/sample-tab/sample-tab.iml" />
+      <module fileurl="file://$PROJECT_DIR$/sample-pager/sample-pager.iml" filepath="$PROJECT_DIR$/sample-pager/sample-pager.iml" />
+      <module fileurl="file://$PROJECT_DIR$/sample-toolbar/sample-toolbar.iml" filepath="$PROJECT_DIR$/sample-toolbar/sample-toolbar.iml" />
     </modules>
   </component>
 </project>

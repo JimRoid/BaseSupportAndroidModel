@@ -1,5 +1,6 @@
 package com.easyapp.lib.callback;
 
+import android.support.design.widget.AppBarLayout;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.view.ViewGroup;
@@ -22,6 +23,8 @@ public interface iToolbarCallback {
     void hideToolbar();
 
     Toolbar getToolbar();
+
+    AppBarLayout getAppBarLayout();
 
     void clearRightMenu();
 

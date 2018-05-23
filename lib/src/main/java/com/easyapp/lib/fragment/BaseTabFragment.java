@@ -1,14 +1,20 @@
 package com.easyapp.lib.fragment;
 
 
+import android.animation.ObjectAnimator;
+import android.animation.StateListAnimator;
+import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.easyapp.lib.tool.DisplayUtil;
+import com.easyapp.lib.tool.Utils;
 import com.easyapp.lib.widget.viewPager.EasyPagerAdapter;
 import com.easyapp.lib.R;
 
@@ -25,11 +31,26 @@ public abstract class BaseTabFragment extends BaseToolbarFragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        view = inflater.inflate(R.layout.easyapp_base_tab, container, false);
+        hideAppbarElevation();
+        view = inflater.inflate(R.layout.layout_base_tab, container, false);
         pagerAdapter = new EasyPagerAdapter(getChildFragmentManager());
         initialAdapter();
         initialView();
         return view;
+    }
+
+    private void hideAppbarElevation() {
+        StateListAnimator stateListAnimator = new StateListAnimator();
+        stateListAnimator.addState(new int[0], ObjectAnimator.ofFloat(view, "elevation", 0));
+        getAppBarLayout().setStateListAnimator(stateListAnimator);
+    }
+    
+    @Override
+    public void onDestroyView() {
+        if (getActivity() != null) {
+            getAppBarLayout().setElevation(DisplayUtil.dpToPx(getActivity(), 8));
+        }
+        super.onDestroyView();
     }
 
     private void initialView() {

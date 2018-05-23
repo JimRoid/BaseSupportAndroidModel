@@ -25,6 +25,10 @@ public class DiscussList extends BaseList<DiscussList.ViewHolder, EntityDiscuss.
 
     private ApiTool apiTool;
 
+    public static DiscussList instance() {
+        return new DiscussList();
+    }
+
     @Override
     protected void init() {
         setTitle("討論區");
