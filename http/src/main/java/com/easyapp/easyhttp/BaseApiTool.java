@@ -8,13 +8,11 @@ import com.easyapp.easyhttp.model.ResponseBase;
 import com.google.gson.Gson;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.concurrent.TimeUnit;
 
 import okhttp3.Interceptor;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
-import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Call;
 import retrofit2.Response;
 import retrofit2.Retrofit;
@@ -28,22 +26,50 @@ import retrofit2.converter.scalars.ScalarsConverterFactory;
  */
 public abstract class BaseApiTool<TServices> {
 
-
-    private ArrayList<Call> callArrayList;
-
     private Context context;
-
-    protected Retrofit retrofit;
-
-    protected abstract String initUrl();
-
-    protected abstract Class<TServices> initService();
-
-    private TServices services;
-
+    private Retrofit retrofit;
     private OkHttpClient.Builder httpClient;
+    private TServices services;
+    private Class<TServices> typeClass;
 
-    public Context getContext() {
+
+    public BaseApiTool(Context context, Class<TServices> typeClass) {
+        super();
+        setContext(context);
+        setTypeClass(typeClass);
+        initHttpClient();
+        Utils.validateServiceInterface(typeClass);
+
+        retrofit = new Retrofit.Builder()
+                .baseUrl(initUrl())
+                .client(getOkHttpClient())
+                .addConverterFactory(GsonConverterFactory.create())
+                .addConverterFactory(ScalarsConverterFactory.create())
+                .build();
+        services = retrofit.create(typeClass);
+    }
+
+    public void setServices(TServices services) {
+        this.services = services;
+    }
+
+    public Class<TServices> getTypeClass() {
+        return typeClass;
+    }
+
+    public void setTypeClass(Class<TServices> typeClass) {
+        this.typeClass = typeClass;
+    }
+
+    public Retrofit getRetrofit() {
+        return retrofit;
+    }
+
+    private void setContext(Context context) {
+        this.context = context;
+    }
+
+    protected Context getContext() {
         return context;
     }
 
@@ -56,33 +82,11 @@ public abstract class BaseApiTool<TServices> {
         return services;
     }
 
-    public BaseApiTool(Context context) {
-        super();
-        this.context = context;
-        callArrayList = new ArrayList<>();
-        initHttpClient();
-
-        retrofit = new Retrofit.Builder()
-                .baseUrl(initUrl())
-                .client(getOkHttpClient())
-                .addConverterFactory(GsonConverterFactory.create())
-                .addConverterFactory(ScalarsConverterFactory.create())
-                .build();
-        Utils.validateServiceInterface(this.initService());
-
-        services = retrofit.create(initService());
-    }
-
     /**
      * 初始化ok http
      */
     private void initHttpClient() {
         httpClient = new OkHttpClient.Builder();
-
-        if (BuildConfig.DEBUG) {
-            httpClient.addInterceptor(new HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BASIC));
-        }
-
         // 重跑 api 的初始化
         httpClient.addInterceptor(new RetryInterceptor(getTotalRetries()));
 
@@ -137,29 +141,14 @@ public abstract class BaseApiTool<TServices> {
      * @param <T>
      */
     protected <T> void runCall(Call<T> call, EasyApiCallback<T> easyApiCallback) {
-        if (callArrayList.size() > 0) {
-            if (call.request().url().toString().equals(callArrayList.get(callArrayList.size() - 1).request().url().toString())) {
-                return;
-            }
-        }
-        callArrayList.add(call);
         call.enqueue(new initCallback<>(easyApiCallback));
     }
-
-    protected <T> void runCallSingle(Call<T> call, EasyApiCallback<T> easyApiCallback) {
-        if (callArrayList.size() > 0) {
-            return;
-        }
-        callArrayList.add(call);
-        call.enqueue(new initCallback<>(easyApiCallback));
-    }
-
 
     private class initCallback<T> implements retrofit2.Callback<T> {
 
         private EasyApiCallback<T> easyApiCallback;
 
-        initCallback(EasyApiCallback<T> easyApiCallback) {
+        private initCallback(EasyApiCallback<T> easyApiCallback) {
             super();
             this.easyApiCallback = easyApiCallback;
             try {
@@ -173,7 +162,6 @@ public abstract class BaseApiTool<TServices> {
         public void onResponse(Call<T> call, Response<T> response) {
             try {
                 easyApiCallback.onResponse(call, response);
-
                 if (response.isSuccessful() && response.code() == 200) {
                     Gson gson = new Gson();
                     String value = gson.toJson(response.body());
@@ -190,8 +178,6 @@ public abstract class BaseApiTool<TServices> {
             } catch (Exception e) {
                 e.printStackTrace();
             }
-            callArrayList.clear();
-            call.cancel();
         }
 
         @Override
@@ -199,7 +185,6 @@ public abstract class BaseApiTool<TServices> {
             if (BuildConfig.DEBUG) {
                 t.printStackTrace();
             }
-
             try {
                 easyApiCallback.onFail(t);
                 easyApiCallback.onComplete();
@@ -209,8 +194,6 @@ public abstract class BaseApiTool<TServices> {
             } catch (Exception e) {
                 e.printStackTrace();
             }
-            callArrayList.clear();
-            call.cancel();
         }
     }
 
@@ -239,4 +222,7 @@ public abstract class BaseApiTool<TServices> {
             return response;
         }
     }
+
+    protected abstract String initUrl();
+
 }

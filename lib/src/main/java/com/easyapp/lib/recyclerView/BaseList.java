@@ -8,7 +8,7 @@ import android.view.View;
  * 基本列表 List
  */
 
-public abstract class BaseList<VH extends BaseRecyclerViewAdapter.ViewHolder, T> extends BaseHeadList<VH, VH, T> {
+public abstract class BaseList<VH extends BaseRecyclerViewAdapter.ViewHolder, T> extends BaseHeadList<VH, VH, T, T> {
     @Override
     public int onViewHolderLayoutHead() {
         return onViewHolderLayoutContent();

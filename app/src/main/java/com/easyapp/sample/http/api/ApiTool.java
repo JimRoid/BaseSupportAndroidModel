@@ -2,6 +2,7 @@ package com.easyapp.sample.http.api;
 
 
 import android.content.Context;
+import android.util.Log;
 
 
 import com.easyapp.database.EasyDB;
@@ -20,26 +21,23 @@ import java.util.List;
 import okhttp3.MediaType;
 import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
+import retrofit2.Call;
 
 /**
  * Created by easyapp_jim on 2016/6/13.
  */
 public class ApiTool extends BaseApiTool<ApiService> {
 
+    private final String TAG = "ApiTool.class";
     public final static String HeadAuthorization = "Authorization";
 
     public ApiTool(Context context) {
-        super(context);
+        super(context, ApiService.class);
     }
 
     @Override
     protected String initUrl() {
         return BuildConfig.ApiDomain;
-    }
-
-    @Override
-    protected Class<ApiService> initService() {
-        return ApiService.class;
     }
 
     public void login(String account, String password, EasyApiCallback<EntityLogin> apiCallback) {
@@ -55,7 +53,6 @@ public class ApiTool extends BaseApiTool<ApiService> {
     }
 
     public void discussCreate(String title, String content, ArrayList<String> imagePath, EasyApiCallback<ResponseBase> apiCallback) {
-
         List<MultipartBody.Part> map = new ArrayList<>();
         for (int i = 0; i < imagePath.size(); i++) {
             File file = new File(imagePath.get(i));
@@ -74,6 +71,5 @@ public class ApiTool extends BaseApiTool<ApiService> {
         RequestBody rContent = RequestBody.create(MediaType.parse("text/plain"), content);
         runCall(getServices().discussCreate(EasyDB.getToken(getContext()), rTitle, rContent, map), apiCallback);
     }
-
 
 }

@@ -22,10 +22,11 @@ import java.util.List;
 public abstract class BaseHeadList<
         VHead extends BaseRecyclerViewAdapter.ViewHolder,
         VH extends BaseRecyclerViewAdapter.ViewHolder,
+        THead,
         T> extends BaseDrawerFragment
         implements
         SwipeRefreshLayout.OnRefreshListener,
-        BaseRecyclerViewAdapter.OnBindViewHolder<VHead, VH, T>,
+        BaseRecyclerViewAdapter.OnBindViewHolder<VHead, VH, THead, T>,
         BaseRecyclerViewAdapter.OnCreateViewHolder<VHead, VH>,
         BaseRecyclerViewAdapter.OnViewHolderLayout {
 
@@ -33,7 +34,7 @@ public abstract class BaseHeadList<
     protected View emptyView;
     protected RecyclerView recyclerView;
     protected SwipeRefreshLayout swipeRefreshLayout;
-    protected BaseRecyclerViewAdapter<VHead, VH, T> baseRecycleViewAdapter;
+    protected BaseRecyclerViewAdapter<VHead, VH, THead, T> baseRecycleViewAdapter;
     protected GridLayoutManager gridLayoutManager;
 
     @Override
@@ -111,7 +112,7 @@ public abstract class BaseHeadList<
             }
 
         };
-        baseRecycleViewAdapter = new BaseRecyclerViewAdapter<VHead, VH, T>();
+        baseRecycleViewAdapter = new BaseRecyclerViewAdapter<>();
         baseRecycleViewAdapter.setContext(getContext());
         baseRecycleViewAdapter.setRecyclerOnScrollListener(endlessRecyclerOnScrollListener);
         baseRecycleViewAdapter.setOnViewHolderLayout(this);
@@ -215,7 +216,7 @@ public abstract class BaseHeadList<
         baseRecycleViewAdapter.remove(position);
     }
 
-    protected BaseRecyclerViewAdapter<VHead, VH, T> getAdapter() {
+    protected BaseRecyclerViewAdapter<VHead, VH, THead, T> getAdapter() {
         return baseRecycleViewAdapter;
     }
 

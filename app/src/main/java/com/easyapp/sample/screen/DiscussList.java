@@ -16,6 +16,8 @@ import com.easyapp.sample.http.api.ApiTool;
 import com.easyapp.sample.http.entity.EntityDiscuss;
 import com.orhanobut.logger.Logger;
 
+import java.util.Collections;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
@@ -50,13 +52,13 @@ public class DiscussList extends BaseList<DiscussList.ViewHolder, EntityDiscuss.
             @Override
             public void onComplete() {
                 cancelLoading();
+                addAll(Collections.<EntityDiscuss.DataBean>emptyList());
             }
 
             @Override
             public void onCallback(EntityDiscuss entityDiscuss) {
                 showToast(entityDiscuss.getMessage(), true);
                 addAll(entityDiscuss.getData());
-//                addAll(Collections.<EntityDiscuss.DataBean>emptyList());
             }
         });
     }

@@ -1,6 +1,7 @@
 // Top-level build file where you can add configuration options common to all sub-projects/modules.
 
 buildscript {
+    project.apply from: "${rootDir}/constants.gradle"
     repositories {
         jcenter()
         google()
@@ -17,9 +18,11 @@ allprojects {
         jcenter()
         google()
     }
+    project.apply from: "${rootDir}/constants.gradle"
 }
 
 subprojects {
+    project.apply from: "${rootDir}/constants.gradle"
     tasks.withType(JavaCompile) {
         sourceCompatibility = 1.7
         targetCompatibility = 1.7

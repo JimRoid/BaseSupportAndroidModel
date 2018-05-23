@@ -1,14 +1,22 @@
 apply plugin: 'com.android.library'
 apply plugin: 'maven'
 
+project.ext {
+    versionCode = 3
+    versionName = "3.0"
+    groupId = "com.easyapp.database"
+    artifactId = "easy-database"
+}
+
 android {
-    compileSdkVersion 27
+    compileSdkVersion project.ext.COMPILE_SDK_VERSION
+    buildToolsVersion project.ext.BUILD_TOOLS_VERSION
 
     defaultConfig {
-        minSdkVersion 21
-        targetSdkVersion 27
-        versionCode 1
-        versionName "1.0"
+        minSdkVersion project.ext.minSdkVersion
+        targetSdkVersion project.ext.targetSdkVersion
+        versionCode project.ext.versionCode
+        versionName project.ext.versionName
 
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
 
@@ -24,7 +32,7 @@ android {
 }
 
 dependencies {
-    implementation 'com.google.code.gson:gson:2.8.4'
+    implementation "com.google.code.gson:gson:${project.ext.GSON_VERSION}"
 }
 
 def repo = new File(rootDir, "")
@@ -33,9 +41,9 @@ uploadArchives {
     repositories {
         mavenDeployer {
             repository url: "file://${repo.absolutePath}"
-            pom.version = '1.0'
-            pom.groupId = 'com.easyapp.database'
-            pom.artifactId = 'easy-database'
+            pom.version = project.ext.versionName
+            pom.groupId = project.ext.groupId
+            pom.artifactId = project.ext.artifactId
         }
     }
 }

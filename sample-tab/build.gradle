@@ -1,7 +1,8 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion 27
+    compileSdkVersion project.ext.COMPILE_SDK_VERSION
+    buildToolsVersion project.ext.BUILD_TOOLS_VERSION
 
     defaultConfig {
         applicationId "com.jim.sample_tab"
@@ -26,9 +27,9 @@ android {
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
-    implementation 'com.android.support:appcompat-v7:27.1.1'
-    implementation 'com.android.support.constraint:constraint-layout:1.1.0'
-    implementation 'com.android.support:design:27.1.1'
+    implementation "com.android.support:appcompat-v7:${project.ext.ANDROID_SUPPORT_VERSION}"
+    implementation "com.android.support:design:${project.ext.ANDROID_SUPPORT_VERSION}"
+    implementation "com.android.support.constraint:constraint-layout:1.1.0"
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'

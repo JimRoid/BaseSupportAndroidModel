@@ -1,15 +1,22 @@
 apply plugin: 'com.android.library'
 apply plugin: 'maven'
 
+project.ext {
+    versionCode = 4
+    versionName = "4.0"
+    groupId = 'com.easyapp.image'
+    artifactId = 'easy-image'
+}
 
 android {
-    compileSdkVersion 27
+    compileSdkVersion project.ext.COMPILE_SDK_VERSION
+    buildToolsVersion project.ext.BUILD_TOOLS_VERSION
 
     defaultConfig {
-        minSdkVersion 21
-        targetSdkVersion 27
-        versionCode 2
-        versionName "2.0"
+        minSdkVersion project.ext.minSdkVersion
+        targetSdkVersion project.ext.targetSdkVersion
+        versionCode project.ext.versionCode
+        versionName project.ext.versionName
 
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
 
@@ -26,8 +33,8 @@ android {
 
 dependencies {
     implementation 'pub.devrel:easypermissions:1.2.0'
-    implementation 'com.github.bumptech.glide:glide:4.7.1'
-    annotationProcessor 'com.github.bumptech.glide:compiler:4.7.1'
+    implementation "com.github.bumptech.glide:glide:${project.ext.GLIDE_VERSION}"
+    annotationProcessor "com.github.bumptech.glide:compiler:${project.ext.GLIDE_VERSION}"
 }
 
 def repo = new File(rootDir, "")
@@ -36,9 +43,9 @@ uploadArchives {
     repositories {
         mavenDeployer {
             repository url: "file://${repo.absolutePath}"
-            pom.version = '2.0'
-            pom.groupId = 'com.easyapp.image'
-            pom.artifactId = 'easy-image'
+            pom.version = project.ext.versionName
+            pom.groupId = project.ext.groupId
+            pom.artifactId = project.ext.artifactId
         }
     }
 }
