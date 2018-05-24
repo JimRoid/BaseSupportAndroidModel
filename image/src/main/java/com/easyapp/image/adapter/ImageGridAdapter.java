@@ -2,6 +2,7 @@ package com.easyapp.image.adapter;
 
 import android.content.Context;
 import android.graphics.Point;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -36,17 +37,15 @@ public class ImageGridAdapter extends BaseAdapter {
     private List<Image> mImages = new ArrayList<>();
     private List<Image> mSelectedImages = new ArrayList<>();
 
-    private final int mGridWidth;
+    public ImageGridAdapter(Context context) {
+        mContext = context;
+        mInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+    }
 
-    public ImageGridAdapter(Context context, boolean showCamera, int column) {
+    public ImageGridAdapter(Context context, boolean showCamera) {
         mContext = context;
         mInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         this.showCamera = showCamera;
-        WindowManager wm = (WindowManager) context.getSystemService(Context.WINDOW_SERVICE);
-        Point size = new Point();
-        wm.getDefaultDisplay().getSize(size);
-        int width = size.x;
-        mGridWidth = width / column;
     }
 
     /**
@@ -191,14 +190,16 @@ public class ImageGridAdapter extends BaseAdapter {
         View mask;
 
         ViewHolder(View view) {
-            image = (ImageView) view.findViewById(R.id.image);
-            indicator = (ImageView) view.findViewById(R.id.checkmark);
+            image = view.findViewById(R.id.image);
+            indicator = view.findViewById(R.id.checkmark);
             mask = view.findViewById(R.id.mask);
             view.setTag(this);
         }
 
         void bindData(final Image data) {
-            if (data == null) return;
+            if (data == null) {
+                return;
+            }
             // 處理單選和多選狀態
             if (showSelectIndicator) {
                 indicator.setVisibility(View.VISIBLE);
@@ -218,10 +219,9 @@ public class ImageGridAdapter extends BaseAdapter {
             if (imageFile.exists()) {
                 // 顯示圖片
                 Glide.with(mContext)
-                        .load(imageFile)
+                        .load(data.path)
                         .apply(new RequestOptions()
                                 .placeholder(R.drawable.default_error)
-                                .override(mGridWidth)
                                 .centerCrop())
                         .into(image);
             } else {

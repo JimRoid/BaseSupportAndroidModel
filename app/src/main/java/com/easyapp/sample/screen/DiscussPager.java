@@ -8,4 +8,6 @@ public class DiscussPager extends BaseTabFragment {
         getPagerAdapter().addFragment(DiscussList.instance(), "所有討論");
         getPagerAdapter().addFragment(DiscussList.instance(), "我的發問");
     }
+
+
 }

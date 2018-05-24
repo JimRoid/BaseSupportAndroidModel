@@ -10,9 +10,9 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:clipToPadding="false"
-        android:columnWidth="@dimen/image_size"
         android:horizontalSpacing="@dimen/space_size"
         android:numColumns="auto_fit"
+        android:columnWidth="@dimen/image_size"
         android:paddingBottom="?android:attr/actionBarSize"
         android:verticalSpacing="@dimen/space_size" />
 
@@ -37,7 +37,6 @@
             android:paddingLeft="16dp"
             android:paddingRight="16dp"
             android:singleLine="true"
-            android:textAllCaps="false"
             android:textColor="@color/folder_text_color"
             android:textSize="16sp"
             tools:text="所有图片" />

@@ -2,6 +2,7 @@ package com.easyapp.image.adapter;
 
 import android.content.Context;
 import android.os.Environment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,6 +19,7 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
+import java.util.logging.Logger;
 
 
 /**
@@ -38,10 +40,8 @@ public class FolderAdapter extends BaseAdapter {
         mContext = context;
         mInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         glideOptions = new RequestOptions()
-                .error(R.drawable.default_error)
                 .placeholder(R.drawable.default_error)
-                .centerCrop()
-                .override(R.dimen.folder_cover_size);
+                .centerCrop();
     }
 
     /**
@@ -94,7 +94,26 @@ public class FolderAdapter extends BaseAdapter {
                             .into(holder.cover);
                 }
             } else {
-                holder.bindData(getItem(i));
+                if (getItem(i) != null) {
+                    Folder data = getItem(i);
+                    holder.name.setText(data.name);
+                    holder.path.setText(data.path);
+                    if (data.images != null) {
+                        holder.size.setText(String.format(Locale.ENGLISH, "%d%s", data.images.size(), mContext.getResources().getString(R.string.photo_unit)));
+                    } else {
+                        holder.size.setText("*" + mContext.getResources().getString(R.string.photo_unit));
+                    }
+                    Log.d("data.cover.path:", "data.cover.path:" + data.cover.path);
+                    // 顯示圖片
+                    if (data.cover != null) {
+                        Glide.with(mContext)
+                                .load(data.cover.path)
+                                .apply(glideOptions)
+                                .into(holder.cover);
+                    } else {
+                        holder.cover.setImageResource(R.drawable.default_error);
+                    }
+                }
             }
             if (lastSelected == i) {
                 holder.indicator.setVisibility(View.VISIBLE);
@@ -140,28 +159,6 @@ public class FolderAdapter extends BaseAdapter {
             size = view.findViewById(R.id.size);
             indicator = view.findViewById(R.id.indicator);
             view.setTag(this);
-        }
-
-        void bindData(Folder data) {
-            if (data == null) {
-                return;
-            }
-            name.setText(data.name);
-            path.setText(data.path);
-            if (data.images != null) {
-                size.setText(String.format(Locale.ENGLISH, "%d%s", data.images.size(), mContext.getResources().getString(R.string.photo_unit)));
-            } else {
-                size.setText("*" + mContext.getResources().getString(R.string.photo_unit));
-            }
-            // 顯示圖片
-            if (data.cover != null) {
-                Glide.with(mContext)
-                        .load(new File(data.cover.path))
-                        .apply(glideOptions)
-                        .into(cover);
-            } else {
-                cover.setImageResource(R.drawable.default_error);
-            }
         }
     }
 

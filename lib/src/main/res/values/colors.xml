@@ -4,24 +4,12 @@
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
 
-    <color name="pager_bullet_active">#836556</color>
-    <color name="pager_bullet_inactive">#219382</color>
-    <color name="pager_bullet_text_indicator">#ffffff</color>
-    <!-- common configure -->
-    <color name="text_color_hint">#9A9A9A</color>
-    <!-- common toolbar -->
-    <color name="toolbar_title_color">#fff</color>
-    <!-- common background -->
-    <color name="list_item_background_normal">#ffffff</color>
+    <color name="black">#000</color>
+    <color name="white">#FFF</color>
     <color name="transparent">#00ffffff</color>
+    <color name="transparentHalfBlack">#55000000</color>
+    <color name="toolbarTitleColor">#fff</color>
+    <color name="lightBlue">#6BBEE5</color>
 
-    <!--commmon colors-->
-    <color name="black">#000000</color>
-    <color name="white">#FFFFFF</color>
-    <color name="transparent_black">#55000000</color>
-    <color name="light_blue">#6BBEE5</color>
-
-    <!--dialog default color-->
-    <color name="spots_dialog_color">#ff0099cc</color>
 
 </resources>

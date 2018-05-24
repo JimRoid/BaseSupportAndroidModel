@@ -22,6 +22,7 @@ import android.support.v4.content.FileProvider;
 import android.support.v4.content.Loader;
 import android.support.v7.widget.ListPopupWindow;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -110,7 +111,7 @@ public class MultiImageSelectorFragment extends Fragment implements EasyPermissi
     private Button mPreviewBtn;
     private View mPopupAnchorView;
 
-    private int mDesireImageCount;
+    private int mDesireImageCount = 5;
 
     private boolean hasFolderGened = false;
     private boolean mIsShowCamera = false;
@@ -137,8 +138,9 @@ public class MultiImageSelectorFragment extends Fragment implements EasyPermissi
         super.onViewCreated(view, savedInstanceState);
 
         // 選擇圖片數量
-        mDesireImageCount = getArguments().getInt(EXTRA_SELECT_COUNT);
-
+        if (getArguments() != null) {
+            mDesireImageCount = getArguments().getInt(EXTRA_SELECT_COUNT);
+        }
         // 圖片選擇mode
         final int mode = getArguments().getInt(EXTRA_SELECT_MODE);
 
@@ -150,9 +152,13 @@ public class MultiImageSelectorFragment extends Fragment implements EasyPermissi
             }
         }
 
+        if (getActivity() == null) {
+            return;
+        }
+
         // 是否顯示照相機
         mIsShowCamera = getArguments().getBoolean(EXTRA_SHOW_CAMERA, true);
-        mImageAdapter = new ImageGridAdapter(getActivity(), mIsShowCamera, 3);
+        mImageAdapter = new ImageGridAdapter(getActivity(), mIsShowCamera);
         // 是否顯示選擇指示
         mImageAdapter.showSelectIndicator(mode == MODE_MULTI);
 
@@ -202,8 +208,6 @@ public class MultiImageSelectorFragment extends Fragment implements EasyPermissi
                     // 如果顯示照相機，則第一個grid顯示為照相機，處理特殊邏輯
                     if (i == 0) {
                         checkCameraPermission();
-//                            showCameraAction();
-//
                     } else {
                         // 正常操作
                         Image image = (Image) adapterView.getAdapter().getItem(i);
@@ -216,22 +220,6 @@ public class MultiImageSelectorFragment extends Fragment implements EasyPermissi
                 }
             }
         });
-        mGridView.setOnScrollListener(new AbsListView.OnScrollListener() {
-            @Override
-            public void onScrollStateChanged(AbsListView view, int scrollState) {
-                if (scrollState == SCROLL_STATE_FLING) {
-//                    Glide.with(view.getContext()).pauseTag(TAG);
-                } else {
-//                    Picasso.with(view.getContext()).resumeTag(TAG);
-                }
-            }
-
-            @Override
-            public void onScroll(AbsListView view, int firstVisibleItem, int visibleItemCount, int totalItemCount) {
-
-            }
-        });
-
         mFolderAdapter = new FolderAdapter(getActivity());
     }
 
@@ -239,6 +227,10 @@ public class MultiImageSelectorFragment extends Fragment implements EasyPermissi
      * 创建弹出的ListView
      */
     private void createPopupFolderList() {
+        if (getActivity() == null) {
+            return;
+        }
+
         Point point = ScreenUtils.getScreenSize(getActivity());
         int width = point.x;
         int height = (int) (point.y * (4.5f / 8.0f));
@@ -295,7 +287,7 @@ public class MultiImageSelectorFragment extends Fragment implements EasyPermissi
     }
 
     @Override
-    public void onSaveInstanceState(Bundle outState) {
+    public void onSaveInstanceState(@NonNull Bundle outState) {
         super.onSaveInstanceState(outState);
         outState.putSerializable(KEY_TEMP_FILE, mTmpFile);
     }
@@ -311,6 +303,9 @@ public class MultiImageSelectorFragment extends Fragment implements EasyPermissi
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
+        if (getActivity() == null) {
+            return;
+        }
         // 首次載入所有圖片
         //new LoadImageTask().execute();
         getActivity().getSupportLoaderManager().initLoader(LOADER_ALL, null, mLoaderCallback);
@@ -350,6 +345,10 @@ public class MultiImageSelectorFragment extends Fragment implements EasyPermissi
 
     @AfterPermissionGranted(CAMERA)
     private void checkCameraPermission() {
+        if (getContext() == null) {
+            return;
+        }
+
         String[] params = {Manifest.permission.CAMERA};
         if (EasyPermissions.hasPermissions(getContext(), params)) {
             showCameraAction();
@@ -388,6 +387,13 @@ public class MultiImageSelectorFragment extends Fragment implements EasyPermissi
      * 選擇相機
      */
     private void showCameraAction() {
+        if (getActivity() == null) {
+            return;
+        }
+
+        if (getContext() == null) {
+            return;
+        }
         // 開啟系統相機
         Intent cameraIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
         if (cameraIntent.resolveActivity(getActivity().getPackageManager()) != null) {
@@ -399,18 +405,11 @@ public class MultiImageSelectorFragment extends Fragment implements EasyPermissi
                 e.printStackTrace();
             }
             if (mTmpFile != null && mTmpFile.exists()) {
-//                Uri photoUri = FileProvider.getUriForFile(
-//                        getContext(),
-//                        getContext().getPackageName() + ".provider",
-//                        mTmpFile);
-//                cameraIntent.putExtra(MediaStore.EXTRA_OUTPUT, photoUri);
-//                Log.d("tag", getContext().getPackageName());
                 String authority = getContext().getPackageName() + ".fileProvider";
                 Uri photoURI = FileProvider.getUriForFile(getContext(), authority, mTmpFile);
                 if (photoURI != null) {
                     cameraIntent.putExtra(MediaStore.EXTRA_OUTPUT, photoURI);
                 }
-//                cameraIntent.putExtra(MediaStore.EXTRA_OUTPUT, Uri.fromFile(mTmpFile));
                 startActivityForResult(cameraIntent, REQUEST_CAMERA);
             } else {
                 Toast.makeText(getActivity(), "圖片錯誤", Toast.LENGTH_SHORT).show();
@@ -499,7 +498,8 @@ public class MultiImageSelectorFragment extends Fragment implements EasyPermissi
         }
 
         @Override
-        public void onLoadFinished(Loader<Cursor> loader, Cursor data) {
+        public void onLoadFinished(@NonNull Loader<Cursor> loader, Cursor data) {
+            Log.d("onLoadFinished", "onLoadFinished");
             if (data != null) {
                 if (data.getCount() > 0) {
                     List<Image> images = new ArrayList<>();

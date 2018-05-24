@@ -36,6 +36,12 @@ public class BaseToolbarFragment extends BaseEasyFragment {
         setToolbarCallback(context);
     }
 
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        clearMenu();
+    }
+
     protected void autoHideToolbar() {
         AppBarLayout.LayoutParams params = (AppBarLayout.LayoutParams) getToolbar().getLayoutParams();
         params.setScrollFlags(AppBarLayout.LayoutParams.SCROLL_FLAG_SCROLL | AppBarLayout.LayoutParams.SCROLL_FLAG_ENTER_ALWAYS);

@@ -20,8 +20,10 @@ public class TouchViewActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setTheme(android.R.style.Theme_Black_NoTitleBar_Fullscreen);
-        setContentView(R.layout.easyapp_pager_touchview);
+        setContentView(R.layout.layout_pager_touchview);
+        if (getSupportActionBar() != null) {
+            getSupportActionBar().hide();
+        }
         initView();
     }
 
@@ -32,6 +34,9 @@ public class TouchViewActivity extends AppCompatActivity {
 
     private void initData() {
         Bundle bundle = getIntent().getExtras();
+        if (bundle == null) {
+            return;
+        }
         int position = bundle.getInt("POSITION", 0);
         ArrayList<String> data = new ArrayList<>();
         data.addAll(bundle.getStringArrayList("PATH"));

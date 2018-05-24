@@ -96,21 +96,14 @@ public class CircularProgressView extends View {
         // If color explicitly provided
         if (a.hasValue(R.styleable.CircularProgressView_cpv_color)) {
             color = a.getColor(R.styleable.CircularProgressView_cpv_color, resources.getColor(R.color.cpv_default_color));
-        }
-        // If using support library v7 accentColor
-        else if (accentColor != 0) {
+        } else if (accentColor != 0) {
             TypedValue t = new TypedValue();
             getContext().getTheme().resolveAttribute(accentColor, t, true);
             color = t.data;
         }
-        // If using native accentColor (SDK >21)
-        else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            TypedArray t = getContext().obtainStyledAttributes(new int[]{android.R.attr.colorAccent});
-            color = t.getColor(0, resources.getColor(R.color.cpv_default_color));
-        } else {
-            //Use default color
-            color = resources.getColor(R.color.cpv_default_color);
-        }
+
+        TypedArray t = getContext().obtainStyledAttributes(new int[]{android.R.attr.colorAccent});
+        color = t.getColor(0, resources.getColor(R.color.cpv_default_color));
 
         animDuration = a.getInteger(R.styleable.CircularProgressView_cpv_animDuration,
                 resources.getInteger(R.integer.cpv_default_anim_duration));

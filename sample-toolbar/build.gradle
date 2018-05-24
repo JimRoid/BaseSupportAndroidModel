@@ -6,8 +6,8 @@ android {
 
     defaultConfig {
         applicationId "com.jim.sample_tab"
-        minSdkVersion 21
-        targetSdkVersion 27
+        minSdkVersion project.ext.minSdkVersion
+        targetSdkVersion project.ext.targetSdkVersion
         versionCode 1
         versionName "1.0"
 

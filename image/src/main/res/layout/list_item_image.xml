@@ -7,6 +7,7 @@
         android:id="@+id/image"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:adjustViewBounds="true"
         android:scaleType="centerInside"
         android:src="@drawable/default_error" />
 
@@ -24,6 +25,7 @@
         android:layout_gravity="top|right"
         android:layout_marginRight="5.5dp"
         android:layout_marginTop="5.5dp"
+        android:adjustViewBounds="true"
         android:src="@drawable/btn_unselected" />
 
 </com.easyapp.image.view.SquareFrameLayout>
