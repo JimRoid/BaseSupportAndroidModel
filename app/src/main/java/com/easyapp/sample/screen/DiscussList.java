@@ -31,6 +31,7 @@ public class DiscussList extends BaseList<DiscussList.ViewHolder, EntityDiscuss.
 
     @Override
     protected void init() {
+        cancelHideToolbar();
         setTitle("討論區");
         apiTool = new ApiTool(getContext());
         showFab();
@@ -44,6 +45,10 @@ public class DiscussList extends BaseList<DiscussList.ViewHolder, EntityDiscuss.
         });
     }
 
+    @Override
+    protected int getLayoutId() {
+        return R.layout.fragment_discuss_list;
+    }
 
     @Override
     protected void onLoad() {

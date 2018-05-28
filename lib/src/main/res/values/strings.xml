@@ -1,6 +1,7 @@
 <resources>
 
     <string name="ScrollAwareFABBehavior">com.easyapp.lib.widget.ScrollAwareFABBehaviorDefault</string>
+    <string name="AppBarLayoutScrollingViewBehavior">com.easyapp.lib.fragment.AppBarLayoutScrollingViewBehavior</string>
     <string name="navigation_drawer_open">open</string>
     <string name="navigation_drawer_close">close</string>
 

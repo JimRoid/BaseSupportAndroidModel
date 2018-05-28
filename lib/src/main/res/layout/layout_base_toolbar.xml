@@ -3,7 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/white">
 
     <android.support.design.widget.CoordinatorLayout
         android:layout_width="match_parent"
@@ -20,17 +21,14 @@
 
         </android.support.design.widget.AppBarLayout>
 
+
         <FrameLayout
+            android:id="@+id/container"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            app:layout_behavior="@string/appbar_scrolling_view_behavior">
-
-            <FrameLayout
-                android:id="@+id/container"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent" />
-
-        </FrameLayout>
+            app:layout_behavior="@string/appbar_scrolling_view_behavior" />
+        <!--app:layout_behavior="@string/AppBarLayoutScrollingViewBehavior"-->
+        <!--app:layout_behavior="@string/appbar_scrolling_view_behavior"-->
 
         <android.support.design.widget.FloatingActionButton
             android:id="@+id/floatingActionButton"

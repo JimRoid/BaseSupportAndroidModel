@@ -32,7 +32,6 @@ public abstract class BaseApiTool<TServices> {
     private TServices services;
     private Class<TServices> typeClass;
 
-
     public BaseApiTool(Context context, Class<TServices> typeClass) {
         super();
         setContext(context);
@@ -225,4 +224,7 @@ public abstract class BaseApiTool<TServices> {
 
     protected abstract String initUrl();
 
+    public interface Callback<T> {
+        void onResponse(Call<T> call, Response<T> response);
+    }
 }

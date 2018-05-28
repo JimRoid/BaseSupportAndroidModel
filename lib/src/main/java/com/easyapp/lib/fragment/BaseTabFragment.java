@@ -44,7 +44,7 @@ public abstract class BaseTabFragment extends BaseToolbarFragment {
         stateListAnimator.addState(new int[0], ObjectAnimator.ofFloat(view, "elevation", 0));
         getAppBarLayout().setStateListAnimator(stateListAnimator);
     }
-    
+
     @Override
     public void onDestroyView() {
         if (getActivity() != null) {
@@ -64,6 +64,7 @@ public abstract class BaseTabFragment extends BaseToolbarFragment {
 
         viewPager.setAdapter(pagerAdapter);
         viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
+        tabLayout.addOnTabSelectedListener(new TabLayout.ViewPagerOnTabSelectedListener(viewPager));
     }
 
     abstract public void initialAdapter();
