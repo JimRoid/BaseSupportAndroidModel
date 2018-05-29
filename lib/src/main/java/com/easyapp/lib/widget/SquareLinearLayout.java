@@ -20,13 +20,8 @@ public class SquareLinearLayout extends LinearLayout {
 
     @Override
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
-        if (widthMeasureSpec > heightMeasureSpec) {
-            super.onMeasure(widthMeasureSpec, widthMeasureSpec);
-            setMeasuredDimension(getMeasuredWidth(), getMeasuredWidth());
-        } else {
-            super.onMeasure(heightMeasureSpec, heightMeasureSpec);
-            setMeasuredDimension(getMeasuredHeight(), getMeasuredHeight());
-        }
+        super.onMeasure(widthMeasureSpec, widthMeasureSpec);
+        setMeasuredDimension(getMeasuredWidth(), getMeasuredWidth());
     }
 
 }

@@ -45,7 +45,7 @@ public class EasyImageViewPagerAdapter extends PagerAdapter {
         tabLayout.setupWithViewPager(viewPager);
     }
 
-    public EasyImageViewPagerAdapter(final Activity activity) {
+    private EasyImageViewPagerAdapter(final Activity activity) {
         super();
         urls = new ArrayList<>();
         context = activity;

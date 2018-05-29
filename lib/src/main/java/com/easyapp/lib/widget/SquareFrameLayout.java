@@ -20,11 +20,8 @@ public class SquareFrameLayout extends FrameLayout {
 
     @Override
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
-        if (widthMeasureSpec > heightMeasureSpec) {
-            super.onMeasure(widthMeasureSpec, widthMeasureSpec);
-        } else {
-            super.onMeasure(heightMeasureSpec, heightMeasureSpec);
-        }
+        super.onMeasure(widthMeasureSpec, widthMeasureSpec);
+        setMeasuredDimension(getMeasuredWidth(), getMeasuredWidth());
     }
 
 }
