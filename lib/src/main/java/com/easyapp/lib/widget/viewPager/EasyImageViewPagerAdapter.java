@@ -15,6 +15,7 @@ import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
+import com.bumptech.glide.request.target.DrawableImageViewTarget;
 import com.bumptech.glide.request.target.SimpleTarget;
 import com.bumptech.glide.request.transition.Transition;
 import com.easyapp.lib.R;
@@ -97,11 +98,11 @@ public class EasyImageViewPagerAdapter extends PagerAdapter {
                 .load(urls.get(position))
                 .apply(new RequestOptions()
                         .centerCrop())
-                .into(new SimpleTarget<Drawable>() {
+                .into(new DrawableImageViewTarget(imageView) {
                     @Override
                     public void onResourceReady(@NonNull Drawable resource, @Nullable Transition<? super Drawable> transition) {
+                        super.onResourceReady(resource, transition);
                         progressView.setVisibility(View.GONE);
-                        imageView.setImageDrawable(resource);
                     }
                 });
 

@@ -3,7 +3,7 @@ apply plugin: 'maven'
 
 project.ext {
     versionCode = 243
-    versionName = "23.5"
+    versionName = "23.6"
     groupId = 'com.easyapp.lib'
     artifactId = 'easy-lib'
 }

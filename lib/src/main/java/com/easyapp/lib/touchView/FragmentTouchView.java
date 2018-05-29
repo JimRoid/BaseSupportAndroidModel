@@ -13,6 +13,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.target.DrawableImageViewTarget;
 import com.bumptech.glide.request.target.SimpleTarget;
 import com.bumptech.glide.request.transition.Transition;
 import com.easyapp.lib.R;
@@ -61,18 +62,23 @@ public class FragmentTouchView extends Fragment {
         }
         showLoading();
         if (path.contains("http")) {
-            Glide.with(this).load(path).into(new SimpleTarget<Drawable>() {
+            Glide.with(this).load(path).into(new DrawableImageViewTarget(touchImageView) {
                 @Override
                 public void onResourceReady(@NonNull Drawable resource, @Nullable Transition<? super Drawable> transition) {
+                    super.onResourceReady(resource, transition);
                     cancelLoading();
-                    touchImageView.setImageDrawable(resource);
                 }
             });
         } else if (path.contains("/storage")) {
             File file = new File(path);
             if (file.exists()) {
-                Bitmap bitmap = BitmapFactory.decodeFile(path);
-                touchImageView.setImageBitmap(bitmap);
+                Glide.with(this).load(path).into(new DrawableImageViewTarget(touchImageView) {
+                    @Override
+                    public void onResourceReady(@NonNull Drawable resource, @Nullable Transition<? super Drawable> transition) {
+                        super.onResourceReady(resource, transition);
+                        cancelLoading();
+                    }
+                });
             }
         } else {
             byte[] decodedString = Base64Tool.decodeBase64(path);
