@@ -103,7 +103,6 @@ public class FolderAdapter extends BaseAdapter {
                     } else {
                         holder.size.setText("*" + mContext.getResources().getString(R.string.photo_unit));
                     }
-                    Log.d("data.cover.path:", "data.cover.path:" + data.cover.path);
                     // 顯示圖片
                     if (data.cover != null) {
                         Glide.with(mContext)

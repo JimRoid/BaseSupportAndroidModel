@@ -4,13 +4,11 @@ package com.easyapp.lib.recyclerView;
 import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
 
 /**
@@ -172,7 +170,6 @@ public class BaseRecyclerViewAdapter<VHead extends BaseRecyclerViewAdapter.ViewH
     @SuppressWarnings("unchecked")
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         if (onBindViewHolder != null) {
-            Log.d("onBindViewHolder", "holder.getItemViewType():" + holder.getItemViewType());
             if (holder.getItemViewType() == TYPE_HEADER) {
                 THead tHead = getHead(position);
                 if (tHead == null) {

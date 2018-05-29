@@ -499,7 +499,6 @@ public class MultiImageSelectorFragment extends Fragment implements EasyPermissi
 
         @Override
         public void onLoadFinished(@NonNull Loader<Cursor> loader, Cursor data) {
-            Log.d("onLoadFinished", "onLoadFinished");
             if (data != null) {
                 if (data.getCount() > 0) {
                     List<Image> images = new ArrayList<>();
