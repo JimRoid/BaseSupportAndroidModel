@@ -10,7 +10,8 @@ import com.easyapp.sample.screen.DiscussPager;
 /**
  *
  */
-public class MainActivity extends BaseMainActivity {
+//public class MainActivity extends BaseMainActivity {
+public class MainActivity extends BaseDrawerMainActivity {
 
     @Override
     protected void initial() {

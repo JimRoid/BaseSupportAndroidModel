@@ -15,11 +15,13 @@ public abstract class BaseDrawerFragment extends BaseToolbarFragment {
     private iDrawerCallback drawerCallback;
 
     protected void setDrawerCallback(Context context) {
-        try {
-            drawerCallback = (iDrawerCallback) context;
-        } catch (ClassCastException e) {
-            throw new ClassCastException(context.toString()
-                    + " must implement OnHeadlineSelectedListener");
+        if (context instanceof BaseDrawerMainActivity) {
+            try {
+                drawerCallback = (iDrawerCallback) context;
+            } catch (ClassCastException e) {
+                throw new ClassCastException(context.toString()
+                        + " must implement OnHeadlineSelectedListener");
+            }
         }
     }
 
