@@ -2,8 +2,8 @@ apply plugin: 'com.android.library'
 apply plugin: 'maven'
 
 project.ext {
-    versionCode = 242
-    versionName = "23.4"
+    versionCode = 243
+    versionName = "23.5"
     groupId = 'com.easyapp.lib'
     artifactId = 'easy-lib'
 }
