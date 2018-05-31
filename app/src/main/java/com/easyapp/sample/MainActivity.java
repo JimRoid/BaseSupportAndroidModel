@@ -15,8 +15,8 @@ public class MainActivity extends BaseDrawerMainActivity {
 
     @Override
     protected void initial() {
-//        ReplaceFragment(new DiscussList());
-        ReplaceFragment(new DiscussPager());
+        ReplaceFragment(new DiscussList());
+//        ReplaceFragment(new DiscussPager());
 //        ReplaceFragment(new DiscussCreate());
     }
 }

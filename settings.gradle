@@ -1,1 +1,1 @@
-include ':lib', ':app', ':file', ':http', ':image', ':database', ':sample-toolbar', ':sample-drawer', ':sample-login', ':sample-pager'
+include ':lib', ':app', ':file', ':http', ':image', ':database', ':sample-toolbar', ':sample-drawer', ':sample-login', ':sample-pager', ':sample-detail'

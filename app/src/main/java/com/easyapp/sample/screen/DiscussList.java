@@ -4,6 +4,7 @@ import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.support.v7.widget.CardView;
 import android.view.View;
+import android.widget.FrameLayout;
 import android.widget.TextView;
 
 import com.easyapp.easyhttp.listener.EasyApiCallback;
@@ -79,7 +80,7 @@ public class DiscussList extends BaseList<DiscussList.ViewHolder, EntityDiscuss.
 
     @Override
     public int onViewHolderLayoutContent() {
-        return R.layout.item_discuss;
+        return R.layout.card_discuss;
     }
 
     @Override
@@ -100,13 +101,13 @@ public class DiscussList extends BaseList<DiscussList.ViewHolder, EntityDiscuss.
         });
 
         if (dataBean.getPicture().size() > 0) {
-            holder.squareFrameLayout.setVisibility(View.VISIBLE);
+            holder.frameLayout.setVisibility(View.VISIBLE);
             EasyImageViewPagerAdapter.initial(getActivity(),
                     dataBean.getPicture(),
                     holder.viewPager,
                     holder.tabLayout);
         } else {
-            holder.squareFrameLayout.setVisibility(View.GONE);
+            holder.frameLayout.setVisibility(View.GONE);
         }
     }
 
@@ -124,8 +125,8 @@ public class DiscussList extends BaseList<DiscussList.ViewHolder, EntityDiscuss.
         ViewPager viewPager;
         @BindView(R.id.tabLayout)
         TabLayout tabLayout;
-        @BindView(R.id.squareFrameLayout)
-        SquareFrameLayout squareFrameLayout;
+        @BindView(R.id.frameLayout)
+        FrameLayout frameLayout;
 
         ViewHolder(View view) {
             super(view);
