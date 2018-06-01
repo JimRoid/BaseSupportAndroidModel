@@ -38,11 +38,14 @@ public class TouchViewActivity extends AppCompatActivity {
             return;
         }
         int position = bundle.getInt("POSITION", 0);
-        ArrayList<String> data = new ArrayList<>();
-        data.addAll(bundle.getStringArrayList("PATH"));
-
-
+        if (bundle.getStringArrayList("PATH") == null) {
+            return;
+        }
+        ArrayList<String> data = bundle.getStringArrayList("PATH");
         EasyPagerAdapter adapter = new EasyPagerAdapter(getSupportFragmentManager());
+        if (data == null) {
+            return;
+        }
         for (String resource : data) {
             adapter.addFragment(FragmentTouchView.instance(resource));
         }

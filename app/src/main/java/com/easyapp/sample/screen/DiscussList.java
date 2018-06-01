@@ -10,7 +10,6 @@ import android.widget.TextView;
 import com.easyapp.easyhttp.listener.EasyApiCallback;
 import com.easyapp.lib.recyclerView.BaseList;
 import com.easyapp.lib.recyclerView.BaseRecyclerViewAdapter;
-import com.easyapp.lib.widget.SquareFrameLayout;
 import com.easyapp.lib.widget.viewPager.EasyImageViewPagerAdapter;
 import com.easyapp.sample.R;
 import com.easyapp.sample.http.api.ApiTool;
@@ -36,7 +35,7 @@ public class DiscussList extends BaseList<DiscussList.ViewHolder, EntityDiscuss.
         setTitle("討論區");
         apiTool = new ApiTool(getContext());
         showFab();
-        getFab().setImageResource(R.drawable.icon_add_white);
+        getFab().setImageResource(R.drawable.ic_add_white);
         getFab().setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

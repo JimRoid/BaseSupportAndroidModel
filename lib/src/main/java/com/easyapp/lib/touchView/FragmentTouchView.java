@@ -13,14 +13,12 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.RequestOptions;
 import com.bumptech.glide.request.target.DrawableImageViewTarget;
-import com.bumptech.glide.request.target.SimpleTarget;
 import com.bumptech.glide.request.transition.Transition;
 import com.easyapp.lib.R;
 import com.easyapp.lib.tool.Base64Tool;
 import com.easyapp.lib.widget.anim.CircularProgressView;
-
-import java.io.File;
 
 /**
  * 建立touch view
@@ -54,32 +52,32 @@ public class FragmentTouchView extends Fragment {
     }
 
     protected void getExtraIntent() {
+
         Bundle bundle = getArguments();
+        if (bundle == null) {
+            return;
+        }
+
         String path = bundle.getString("PATH", "");
         if (path == null) {
-            touchImageView.setImageResource(R.drawable.icon_empty);
+            touchImageView.setImageResource(R.drawable.ic_empty);
             return;
         }
         showLoading();
-        if (path.contains("http")) {
-            Glide.with(this).load(path).into(new DrawableImageViewTarget(touchImageView) {
+        if (path.contains("http") || path.contains("/storage")) {
+            Glide.with(this).load(path).apply(new RequestOptions().error(R.drawable.ic_empty)).into(new DrawableImageViewTarget(touchImageView) {
                 @Override
                 public void onResourceReady(@NonNull Drawable resource, @Nullable Transition<? super Drawable> transition) {
                     super.onResourceReady(resource, transition);
                     cancelLoading();
                 }
+
+                @Override
+                public void onLoadFailed(@Nullable Drawable errorDrawable) {
+                    cancelLoading();
+                    getView().setImageResource(R.drawable.ic_empty);
+                }
             });
-        } else if (path.contains("/storage")) {
-            File file = new File(path);
-            if (file.exists()) {
-                Glide.with(this).load(path).into(new DrawableImageViewTarget(touchImageView) {
-                    @Override
-                    public void onResourceReady(@NonNull Drawable resource, @Nullable Transition<? super Drawable> transition) {
-                        super.onResourceReady(resource, transition);
-                        cancelLoading();
-                    }
-                });
-            }
         } else {
             byte[] decodedString = Base64Tool.decodeBase64(path);
             Bitmap decodedByte = BitmapFactory.decodeByteArray(decodedString, 0, decodedString.length);
