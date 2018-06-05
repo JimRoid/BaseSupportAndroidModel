@@ -1,0 +1,35 @@
+apply plugin: 'com.android.library'
+apply plugin: 'maven'
+
+project.ext {
+    versionCode = 1
+    versionName = "1.0"
+    groupId = "com.easyapp.ble"
+    artifactId = "easy-ble"
+}
+
+android {
+    compileSdkVersion project.ext.COMPILE_SDK_VERSION
+    buildToolsVersion project.ext.BUILD_TOOLS_VERSION
+
+    defaultConfig {
+        minSdkVersion project.ext.minSdkVersion
+        targetSdkVersion project.ext.targetSdkVersion
+        versionCode project.ext.versionCode
+        versionName project.ext.versionName
+
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+
+}
+
+dependencies {
+
+}
