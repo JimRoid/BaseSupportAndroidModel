@@ -2,8 +2,8 @@ apply plugin: 'com.android.library'
 apply plugin: 'maven'
 
 project.ext {
-    versionCode = 1
-    versionName = "1.0"
+    versionCode = 3
+    versionName = "1.2"
     groupId = "com.easyapp.ble"
     artifactId = "easy-ble"
 }
@@ -31,5 +31,18 @@ android {
 }
 
 dependencies {
+    implementation 'pub.devrel:easypermissions:1.2.0'
+}
 
+def repo = new File(rootDir, "")
+
+uploadArchives {
+    repositories {
+        mavenDeployer {
+            repository url: "file://${repo.absolutePath}"
+            pom.version = project.ext.versionName
+            pom.groupId = project.ext.groupId
+            pom.artifactId = project.ext.artifactId
+        }
+    }
 }

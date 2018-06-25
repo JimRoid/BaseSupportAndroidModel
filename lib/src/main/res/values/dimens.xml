@@ -2,14 +2,23 @@
     <!-- Default screen margins, per the Android Design guidelines. -->
     <dimen name="activity_horizontal_margin">16dp</dimen>
     <dimen name="activity_vertical_margin">16dp</dimen>
+
+    <dimen name="badgeWidth">36dp</dimen>
+
+    <dimen name="activity_horizontal_margin_half">8dp</dimen>
+    <dimen name="activity_vertical_margin_half">8dp</dimen>
+
+    <dimen name="cardElevation">4dp</dimen>
+    <dimen name="cardCornerRadius">8dp</dimen>
+
+    <dimen name="squareImageWidthLarge">100dp</dimen>
+
+    <dimen name="circleUserWidthSmall">48dp</dimen>
+    <dimen name="circleUserWidthMedium">64dp</dimen>
+    <dimen name="circleUserWidthLarge">120dp</dimen>
+
     <dimen name="actionbar_title_size">14sp</dimen>
     <dimen name="appbar_padding_top">8dp</dimen>
-
-    <!--page dot -->
-    <dimen name="pager_bullet_indicator_height">52dp</dimen>
-    <dimen name="pager_bullet_indicator_dot_margin">4dp</dimen>
-    <dimen name="pager_bullet_indicator_active_dot_diameter">12dp</dimen>
-    <dimen name="pager_bullet_indicator_inactive_dot_diameter">8dp</dimen>
 
     <dimen name="fab_margin">16dp</dimen>
     <dimen name="square_width">80dp</dimen>

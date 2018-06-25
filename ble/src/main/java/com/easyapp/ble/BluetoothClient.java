@@ -1,6 +1,8 @@
 package com.easyapp.ble;
 
+import android.Manifest;
 import android.content.Context;
+import android.support.annotation.NonNull;
 
 import com.easyapp.ble.connect.listener.BleConnectStatusListener;
 import com.easyapp.ble.connect.listener.BluetoothStateListener;
@@ -19,7 +21,11 @@ import com.easyapp.ble.utils.BluetoothUtils;
 import com.easyapp.ble.utils.ByteUtils;
 import com.easyapp.ble.utils.proxy.ProxyUtils;
 
+import java.util.List;
 import java.util.UUID;
+
+import pub.devrel.easypermissions.AppSettingsDialog;
+import pub.devrel.easypermissions.EasyPermissions;
 
 /**
  * Created by dingjikerbo on 2016/9/1.
@@ -208,4 +214,6 @@ public class BluetoothClient implements IBluetoothClient {
     public void refreshCache(String mac) {
         mClient.refreshCache(mac);
     }
+
+
 }

@@ -32,6 +32,7 @@ dependencies {
     implementation "com.android.support:design:${project.ext.ANDROID_SUPPORT_VERSION}"
     implementation "com.orhanobut:logger:${project.ext.LOGGER_VERSION}"
     implementation "com.github.bumptech.glide:glide:${project.ext.GLIDE_VERSION}"
+    implementation 'com.android.support:support-v4:27.1.1'
     annotationProcessor "com.github.bumptech.glide:compiler:${project.ext.GLIDE_VERSION}"
     implementation "com.squareup.retrofit2:retrofit:${project.ext.RETROFIT_VERSION}"
     implementation "com.squareup.retrofit2:converter-scalars:${project.ext.RETROFIT_VERSION}"

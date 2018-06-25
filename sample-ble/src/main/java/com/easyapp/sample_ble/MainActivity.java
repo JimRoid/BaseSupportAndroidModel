@@ -1,13 +1,13 @@
 package com.easyapp.sample_ble;
 
-import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
+import com.easyapp.lib.activity.BaseMainActivity;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends BaseMainActivity {
+
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+    protected void initial() {
+//        ReplaceFragment(new DeviceList());
+        ReplaceFragment(new Detail());
     }
 }
