@@ -2,6 +2,7 @@ package com.easyapp.ble;
 
 import android.Manifest;
 import android.bluetooth.le.BluetoothLeAdvertiser;
+import android.content.Intent;
 import android.nfc.Tag;
 import android.os.Build;
 import android.support.annotation.NonNull;
@@ -35,6 +36,8 @@ public class SelectBleActivity extends AppCompatActivity implements EasyPermissi
      */
     public static final int ACCESS_COARSE_LOCATION = 1010;
 
+    public static final String EXTRA_RESULT = "select_result";
+
     private SwipeRefreshLayout swipeRefreshLayout;
     private ListView listView;
     private BleAdapter bleAdapter;
@@ -55,8 +58,12 @@ public class SelectBleActivity extends AppCompatActivity implements EasyPermissi
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                stop();
                 SearchResult searchResult = bleAdapter.getItem(position);
-                Log.d(Tag, searchResult.getName());
+                Intent data = new Intent();
+                data.putExtra(EXTRA_RESULT, searchResult);
+                setResult(RESULT_OK, data);
+                finish();
             }
         });
     }
@@ -79,6 +86,12 @@ public class SelectBleActivity extends AppCompatActivity implements EasyPermissi
         } else {
             initBle();
         }
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        stop();
     }
 
     @Override
