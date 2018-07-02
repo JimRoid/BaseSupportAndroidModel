@@ -1,6 +1,7 @@
 package com.easyapp.easyhttp;
 
 import android.content.Context;
+import android.util.Log;
 import android.widget.Toast;
 
 import com.easyapp.easyhttp.listener.EasyApiCallback;
@@ -79,6 +80,22 @@ public abstract class BaseApiTool<TServices> {
      */
     protected TServices getServices() {
         return services;
+    }
+
+    protected void baseBodyCallback(ResponseBase responseBase) {
+        if (BuildConfig.DEBUG) {
+            Log.d("ApiTool.Class", new Gson().toJson(responseBase));
+        }
+    }
+
+    protected void baseBodyCallbackFail(Throwable t) {
+        if (BuildConfig.DEBUG) {
+            try {
+                Log.d("ApiTool.Class", t.getMessage());
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
     }
 
     /**
@@ -165,6 +182,7 @@ public abstract class BaseApiTool<TServices> {
                     Gson gson = new Gson();
                     String value = gson.toJson(response.body());
                     ResponseBase responseBase = gson.fromJson(value, ResponseBase.class);
+                    baseBodyCallback(responseBase);
                     if (responseBase.getStatus() == 200) {
                         easyApiCallback.onCallback(response.body());
                     } else {
@@ -185,6 +203,7 @@ public abstract class BaseApiTool<TServices> {
                 t.printStackTrace();
             }
             try {
+                baseBodyCallbackFail(t);
                 easyApiCallback.onFail(t);
                 easyApiCallback.onComplete();
                 if (!Utils.isNetworkAvailable(getContext())) {
