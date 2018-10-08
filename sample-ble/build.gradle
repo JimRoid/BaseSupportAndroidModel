@@ -1,14 +1,15 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion 27
+    compileSdkVersion project.ext.COMPILE_SDK_VERSION
+    buildToolsVersion project.ext.BUILD_TOOLS_VERSION
 
 
 
     defaultConfig {
         applicationId "com.easyapp.sample_ble"
-        minSdkVersion 19
-        targetSdkVersion 27
+        minSdkVersion project.ext.minSdkVersion
+        targetSdkVersion project.ext.targetSdkVersion
         versionCode 1
         versionName "1.0"
 

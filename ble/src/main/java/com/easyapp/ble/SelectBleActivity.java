@@ -49,6 +49,8 @@ public class SelectBleActivity extends AppCompatActivity implements EasyPermissi
         setContentView(R.layout.activity_select_ble);
         setTitle(R.string.search);
 
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
         bluetoothClient = new BluetoothClient(this);
         bleAdapter = new BleAdapter(this);
         swipeRefreshLayout = findViewById(R.id.swipeRefreshLayout);
@@ -66,6 +68,12 @@ public class SelectBleActivity extends AppCompatActivity implements EasyPermissi
                 finish();
             }
         });
+    }
+
+    @Override
+    public boolean onSupportNavigateUp() {
+        finish();
+        return true;
     }
 
 
