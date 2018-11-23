@@ -7,3 +7,11 @@
 /.idea/libraries
 .DS_Store
 /build
+*.class
+*.aar
+*.md5
+*.sha1
+*.pom
+
+
+
