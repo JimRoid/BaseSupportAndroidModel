@@ -22,6 +22,7 @@
             <option value="$PROJECT_DIR$/sample-login" />
             <option value="$PROJECT_DIR$/sample-pager" />
             <option value="$PROJECT_DIR$/sample-toolbar" />
+            <option value="$PROJECT_DIR$/soap" />
           </set>
         </option>
         <option name="resolveModulePerSourceSet" value="false" />
