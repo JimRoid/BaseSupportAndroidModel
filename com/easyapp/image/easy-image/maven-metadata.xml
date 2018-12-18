@@ -3,7 +3,7 @@
   <groupId>com.easyapp.image</groupId>
   <artifactId>easy-image</artifactId>
   <versioning>
-    <release>6.3</release>
+    <release>6.4</release>
     <versions>
       <version>1.0</version>
       <version>2.0</version>
@@ -12,7 +12,8 @@
       <version>6.0</version>
       <version>6.2</version>
       <version>6.3</version>
+      <version>6.4</version>
     </versions>
-    <lastUpdated>20181218023132</lastUpdated>
+    <lastUpdated>20181218070603</lastUpdated>
   </versioning>
 </metadata>

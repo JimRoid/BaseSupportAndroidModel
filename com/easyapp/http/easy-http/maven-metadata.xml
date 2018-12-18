@@ -3,7 +3,7 @@
   <groupId>com.easyapp.http</groupId>
   <artifactId>easy-http</artifactId>
   <versioning>
-    <release>5.4</release>
+    <release>5.5</release>
     <versions>
       <version>2.0</version>
       <version>4.0</version>
@@ -11,7 +11,8 @@
       <version>5.1</version>
       <version>5.3</version>
       <version>5.4</version>
+      <version>5.5</version>
     </versions>
-    <lastUpdated>20181218023132</lastUpdated>
+    <lastUpdated>20181218070559</lastUpdated>
   </versioning>
 </metadata>

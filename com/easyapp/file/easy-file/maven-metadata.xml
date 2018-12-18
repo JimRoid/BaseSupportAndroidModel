@@ -3,14 +3,15 @@
   <groupId>com.easyapp.file</groupId>
   <artifactId>easy-file</artifactId>
   <versioning>
-    <release>4.3</release>
+    <release>4.4</release>
     <versions>
       <version>2.0</version>
       <version>3.0</version>
       <version>4.0</version>
       <version>4.2</version>
       <version>4.3</version>
+      <version>4.4</version>
     </versions>
-    <lastUpdated>20181218023132</lastUpdated>
+    <lastUpdated>20181218070559</lastUpdated>
   </versioning>
 </metadata>
