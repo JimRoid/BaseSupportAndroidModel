@@ -69,7 +69,7 @@ public class ApiTool extends BaseApiTool<ApiService> {
 
         RequestBody rTitle = RequestBody.create(MediaType.parse("text/plain"), title);
         RequestBody rContent = RequestBody.create(MediaType.parse("text/plain"), content);
-        runCall(getServices().discussCreate(EasyDB.getToken(getContext()), rTitle, rContent, map), apiCallback);
+        runCall(getServices().discussCreate(EasyDB.getToken(), rTitle, rContent, map), apiCallback);
     }
 
 }

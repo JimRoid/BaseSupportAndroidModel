@@ -1,9 +1,11 @@
 package com.easyapp.database;
 
+import android.app.Application;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.text.TextUtils;
 
+import java.lang.ref.WeakReference;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.UUID;
@@ -12,27 +14,27 @@ import java.util.UUID;
  * 以 key value 進行資料儲存處理
  * 可儲存成列表
  */
-public class EasyDB {
+public final class EasyDB {
 
     private static final String LOGIN = "LOGIN";
     private static final String TOKEN = "TOKEN";
 
+    private static WeakReference<Application> applicationWeakReference;
+    private static SharedPreferences sharedPreferences;
 
-    private static SharedPreferences initial(Context context) {
-        try {
-            String packageName = context.getPackageName();
-            return context.getSharedPreferences(packageName, Context.MODE_PRIVATE);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return null;
+
+    public static void init(Application application) {
+        applicationWeakReference = new WeakReference<>(application);
+        String packageName = getContext().getPackageName();
+        sharedPreferences = getContext().getSharedPreferences(packageName, Context.MODE_PRIVATE);
     }
 
-    public void clear(Context context) {
-        SharedPreferences sharedPreferences = initial(context);
-        if (sharedPreferences != null) {
-            sharedPreferences.edit().clear().apply();
-        }
+    static Context getContext() {
+        return applicationWeakReference.get();
+    }
+
+    public void clear() {
+        sharedPreferences.edit().clear().apply();
     }
 
     /**
@@ -50,160 +52,93 @@ public class EasyDB {
      *
      * @param token
      */
-    public static void Login(Context context, String token) {
-        SharedPreferences sharedPreferences = initial(context);
+    public static void Login(String token) {
         if (sharedPreferences != null) {
             sharedPreferences.edit().putBoolean(LOGIN, true).apply();
             sharedPreferences.edit().putString(TOKEN, token).apply();
         }
     }
 
-    public static void Logout(Context context) {
-        SharedPreferences sharedPreferences = initial(context);
-        if (sharedPreferences != null) {
-            sharedPreferences.edit().putBoolean(LOGIN, false).apply();
-            sharedPreferences.edit().putString(TOKEN, "").apply();
-        }
+    public static void Logout() {
+        sharedPreferences.edit().putBoolean(LOGIN, false).apply();
+        sharedPreferences.edit().putString(TOKEN, "").apply();
     }
 
-    public static String getToken(Context context) {
-        SharedPreferences sharedPreferences = initial(context);
-        if (sharedPreferences == null) {
-            return "";
-        }
+    public static String getToken() {
         return sharedPreferences.getString(TOKEN, "");
     }
 
-    public static boolean isLogin(Context context) {
-        SharedPreferences sharedPreferences = initial(context);
-        if (sharedPreferences == null) {
-            return false;
-        }
+    public static boolean isLogin() {
         return sharedPreferences.getBoolean(LOGIN, false);
     }
 
-
-    public static boolean putString(Context context, String key, String value) {
-        SharedPreferences sharedPreferences = initial(context);
-        if (sharedPreferences == null) {
-            return false;
-        }
+    public static boolean putString(String key, String value) {
         return sharedPreferences.edit().putString(key, value).commit();
     }
 
-    public static boolean putBoolean(Context context, String key, boolean value) {
-        SharedPreferences sharedPreferences = initial(context);
-        if (sharedPreferences == null) {
-            return false;
-        }
+    public static boolean putBoolean(String key, boolean value) {
         return sharedPreferences.edit().putBoolean(key, value).commit();
     }
 
-    public static boolean putInt(Context context, String key, int value) {
-        SharedPreferences sharedPreferences = initial(context);
-        if (sharedPreferences == null) {
-            return false;
-        }
+    public static boolean putInt(String key, int value) {
         return sharedPreferences.edit().putInt(key, value).commit();
     }
 
-    public static boolean putLong(Context context, String key, long value) {
-        SharedPreferences sharedPreferences = initial(context);
-        if (sharedPreferences == null) {
-            return false;
-        }
+    public static boolean putLong(String key, long value) {
         return sharedPreferences.edit().putLong(key, value).commit();
     }
 
-    public static boolean putFloat(Context context, String key, float value) {
-        SharedPreferences sharedPreferences = initial(context);
-        if (sharedPreferences == null) {
-            return false;
-        }
+    public static boolean putFloat(String key, float value) {
         return sharedPreferences.edit().putFloat(key, value).commit();
     }
 
-    public static String getStringValue(Context context, String key, String value) {
-        SharedPreferences sharedPreferences = initial(context);
-        if (sharedPreferences == null) {
-            return "";
-        }
+    public static String getString(String key, String value) {
         return sharedPreferences.getString(key, value);
     }
 
 
-    public static String getStringValue(Context context, String key) {
-        return getStringValue(context, key, "");
+    public static String getString(String key) {
+        return getString(key, "");
     }
 
-    public static boolean getBooleanValue(Context context, String key, boolean value) {
-        SharedPreferences sharedPreferences = initial(context);
-        if (sharedPreferences == null) {
-            return false;
-        }
+    public static boolean getBoolean(String key, boolean value) {
         return sharedPreferences.getBoolean(key, value);
     }
 
-    public static boolean getBooleanValue(Context context, String key) {
-        return getBooleanValue(context, key, false);
+    public static boolean getBoolean(String key) {
+        return getBoolean(key, false);
     }
 
-    public static int getIntValue(Context context, String key, int value) {
-        SharedPreferences sharedPreferences = initial(context);
-        if (sharedPreferences == null) {
-            return 0;
-        }
+    public static int getInt(String key, int value) {
         return sharedPreferences.getInt(key, value);
     }
 
-    public static int getIntValue(Context context, String key) {
-        return getIntValue(context, key, 0);
+    public static int getInt(String key) {
+        return getInt(key, 0);
     }
 
-    public static long getLongValue(Context context, String key, long value) {
-        SharedPreferences sharedPreferences = initial(context);
-        if (sharedPreferences == null) {
-            return 0L;
-        }
+    public static long getLong(String key, long value) {
         return sharedPreferences.getLong(key, value);
     }
 
-    public static long getLongValue(Context context, String key) {
-        return getLongValue(context, key, 0);
+    public static long getLong(String key) {
+        return getLong(key, 0);
     }
 
-    public static float getFloatValue(Context context, String key, float value) {
-        SharedPreferences sharedPreferences = initial(context);
-        if (sharedPreferences == null) {
-            return 0f;
-        }
+    public static float getFloat(String key, float value) {
         return sharedPreferences.getFloat(key, value);
     }
 
-    public static float getFloatValue(Context context, String key) {
-        return getFloatValue(context, key, 0f);
+    public static float getFloat(String key) {
+        return getFloat(key, 0f);
     }
 
-    public static boolean putList(Context context, String key, ArrayList<String> strings) {
-        SharedPreferences sharedPreferences = initial(context);
-        if (sharedPreferences == null) {
-            return false;
-        }
-        SharedPreferences.Editor editor = sharedPreferences.edit();
+    public static void putList(String key, ArrayList<String> strings) {
         String[] array = strings.toArray(new String[strings.size()]);
-        // the comma like character used below is not a comma it is the SINGLE
-        // LOW-9 QUOTATION MARK unicode 201A and unicode 2017 they are used for
-        // seprating the items in the list
-        editor.putString(key, TextUtils.join("‚‗‚", array));
-        return editor.commit();
+        sharedPreferences.edit().putString(key, TextUtils.join("‚‗‚", array)).apply();
     }
 
-    public static ArrayList<String> getList(Context context, String key) {
-        SharedPreferences sharedPreferences = initial(context);
-        if (sharedPreferences == null) {
-            return new ArrayList<>();
-        }
-
+    public static ArrayList<String> getList(String key) {
         String[] split = TextUtils.split(sharedPreferences.getString(key, ""), "‚‗‚");
         ArrayList<String> strings = new ArrayList<>();
         if (split.length > 0) {

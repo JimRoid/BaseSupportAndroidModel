@@ -37,19 +37,16 @@ public abstract class Model implements Serializable {
     }
 
 
-    final public void removeAll(Context context) {
-        EasyDB.putList(context, getListKey(), new ArrayList<String>());
+    final public void removeAll() {
+        EasyDB.putList(getListKey(), new ArrayList<String>());
     }
 
 
     /**
      * 取回所有項目
-     *
-     * @param context
-     * @return
      */
-    final public <T extends Model> ArrayList<T> getAll(Context context) {
-        ArrayList<String> arrayList = EasyDB.getList(context, getListKey());
+    final public <T extends Model> ArrayList<T> getAll() {
+        ArrayList<String> arrayList = EasyDB.getList(getListKey());
         ArrayList<T> items = new ArrayList<>();
         Gson gson = new Gson();
 
@@ -64,40 +61,34 @@ public abstract class Model implements Serializable {
 
     /**
      * 從list 刪除項目
-     *
-     * @param context
      */
-    public void delete(Context context) {
-        ArrayList<String> arrayList = EasyDB.getList(context, getListKey());
+    public void delete() {
+        ArrayList<String> arrayList = EasyDB.getList(getListKey());
         Gson gson = new Gson();
         for (int i = 0; i < arrayList.size(); i++) {
             Model item = gson.fromJson(arrayList.get(i), this.getClass());
             if (item.getUniqueId().equals(this.getUniqueId())) {
                 arrayList.remove(i);
-                EasyDB.putList(context, getListKey(), arrayList);
+                EasyDB.putList(getListKey(), arrayList);
             }
         }
     }
 
     /**
      * 儲存項目到list
-     *
-     * @param context
      */
-    final public void save(Context context) {
-        ArrayList<String> arrayList = EasyDB.getList(context, getListKey());
+    final public void save() {
+        ArrayList<String> arrayList = EasyDB.getList(getListKey());
         this.setUniqueId(EasyDB.RandUUID());
         arrayList.add(this.getGson());
-        EasyDB.putList(context, getListKey(), arrayList);
+        EasyDB.putList(getListKey(), arrayList);
     }
 
     /**
      * 更新單一項目儲存到list
-     *
-     * @param context
      */
-    final public void update(Context context) {
-        ArrayList<String> arrayList = EasyDB.getList(context, getListKey());
+    final public void update() {
+        ArrayList<String> arrayList = EasyDB.getList(getListKey());
         int position;
         Gson gson = new Gson();
         for (int i = 0; i < arrayList.size(); i++) {
@@ -105,7 +96,7 @@ public abstract class Model implements Serializable {
             if (item.getUniqueId().equals(this.getUniqueId())) {
                 position = i;
                 arrayList.set(position, this.getGson());
-                EasyDB.putList(context, getListKey(), arrayList);
+                EasyDB.putList(getListKey(), arrayList);
                 return;
             }
         }

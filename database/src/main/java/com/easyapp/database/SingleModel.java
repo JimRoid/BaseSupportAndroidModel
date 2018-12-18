@@ -1,7 +1,5 @@
 package com.easyapp.database;
 
-import android.content.Context;
-
 import com.google.gson.Gson;
 
 import java.lang.reflect.Type;
@@ -35,25 +33,25 @@ public abstract class SingleModel {
 //        return t;
 //    }
 
-    final public <T extends SingleModel> T getStore(Context context) {
-        String value = EasyDB.getStringValue(context, getSingleKey());
+    final public <T extends SingleModel> T getStore() {
+        String value = EasyDB.getString(getSingleKey());
         Gson gson = new Gson();
         Class classOfT = getClass();
         gson.fromJson(value, (Type) classOfT);
         return gson.fromJson(value, (Type) classOfT);
     }
 
-    final public boolean save(Context context) {
+    final public boolean save() {
         String value = getGson();
-        return EasyDB.putString(context, getSingleKey(), value);
+        return EasyDB.putString(getSingleKey(), value);
     }
 
-    final public boolean update(Context context) {
+    final public boolean update() {
         String value = getGson();
-        return EasyDB.putString(context, getSingleKey(), value);
+        return EasyDB.putString(getSingleKey(), value);
     }
 
-    final public boolean clear(Context context) {
-        return EasyDB.putString(context, getSingleKey(), "");
+    final public boolean clear() {
+        return EasyDB.putString(getSingleKey(), "");
     }
 }
