@@ -8,9 +8,6 @@
 .DS_Store
 /build
 *.class
-*.md5
-*.sha1
-*.pom
 
 
 
