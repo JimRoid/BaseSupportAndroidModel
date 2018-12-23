@@ -165,7 +165,6 @@
     <orderEntry type="library" name="Gradle: com.android.support:appcompat-v7-28.0.0" level="project" />
     <orderEntry type="module" module-name="ble" />
     <orderEntry type="module" module-name="image" />
-    <orderEntry type="module" module-name="http" />
     <orderEntry type="module" module-name="file" />
     <orderEntry type="module" module-name="database" />
     <orderEntry type="module" module-name="lib" />

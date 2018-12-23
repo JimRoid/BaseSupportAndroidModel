@@ -1,4 +1,4 @@
-package com.easyapp.easyhttp;
+package com.easyapp.http;
 
 import org.junit.Test;
 

@@ -1,4 +1,4 @@
-package com.easyapp.easyhttp.listener;
+package com.easyapp.http.listener;
 
 import retrofit2.Call;
 import retrofit2.Response;

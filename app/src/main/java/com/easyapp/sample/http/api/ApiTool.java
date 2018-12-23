@@ -2,16 +2,15 @@ package com.easyapp.sample.http.api;
 
 
 import android.content.Context;
-import android.util.Log;
 
 
 import com.easyapp.database.EasyDB;
-import com.easyapp.easyhttp.model.ResponseBase;
+import com.easyapp.http.model.ResponseBase;
 import com.easyapp.sample.BuildConfig;
 import com.easyapp.sample.http.entity.EntityDiscuss;
 import com.easyapp.sample.http.entity.EntityLogin;
-import com.easyapp.easyhttp.BaseApiTool;
-import com.easyapp.easyhttp.listener.EasyApiCallback;
+import com.easyapp.http.BaseApiTool;
+import com.easyapp.http.listener.EasyApiCallback;
 import com.orhanobut.logger.Logger;
 
 import java.io.File;
@@ -21,7 +20,6 @@ import java.util.List;
 import okhttp3.MediaType;
 import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
-import retrofit2.Call;
 
 /**
  * Created by easyapp_jim on 2016/6/13.

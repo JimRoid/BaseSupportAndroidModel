@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <metadata>
-  <groupId>com.easyapp.easyhttp</groupId>
+  <groupId>com.easyapp.http</groupId>
   <artifactId>EasyHttp</artifactId>
   <versioning>
     <release>1.3</release>

@@ -1,10 +1,11 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
-    <string name="folder_all">All Images</string>
-    <string name="preview">Preview</string>
-    <string name="msg_no_camera">No system camera found</string>
-    <string name="msg_amount_limit">Select images amount is limit</string>
-    <string name="action_done">Done</string>
-    <string name="photo_unit">Shot</string>
-    <string name="tip_take_photo">Take photo</string>
+
+    <string name="folder_all">所有照片</string>
+    <string name="preview">預覽</string>
+    <string name="msg_no_camera">沒有系統相機</string>
+    <string name="msg_amount_limit">已經達到最高選擇數量</string>
+    <string name="action_done">完成</string>
+    <string name="photo_unit">張</string>
+    <string name="tip_take_photo">拍攝照片</string>
 
 </resources>

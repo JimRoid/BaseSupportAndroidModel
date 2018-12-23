@@ -17,9 +17,4 @@
     <string name="cancel">關閉</string>
     <string name="accept">確定</string>
     <string name="understand">了解</string>
-
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
-
-
 </resources>

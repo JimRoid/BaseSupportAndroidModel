@@ -7,7 +7,7 @@ import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.TextView;
 
-import com.easyapp.easyhttp.listener.EasyApiCallback;
+import com.easyapp.http.listener.EasyApiCallback;
 import com.easyapp.lib.recyclerView.BaseList;
 import com.easyapp.lib.recyclerView.BaseRecyclerViewAdapter;
 import com.easyapp.lib.widget.viewPager.EasyImageViewPagerAdapter;

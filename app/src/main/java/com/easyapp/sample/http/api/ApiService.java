@@ -1,7 +1,7 @@
 package com.easyapp.sample.http.api;
 
 
-import com.easyapp.easyhttp.model.ResponseBase;
+import com.easyapp.http.model.ResponseBase;
 import com.easyapp.sample.http.entity.EntityDiscuss;
 import com.easyapp.sample.http.entity.EntityLogin;
 

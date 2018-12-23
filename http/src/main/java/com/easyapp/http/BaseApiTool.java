@@ -1,11 +1,11 @@
-package com.easyapp.easyhttp;
+package com.easyapp.http;
 
 import android.content.Context;
 import android.util.Log;
 import android.widget.Toast;
 
-import com.easyapp.easyhttp.listener.EasyApiCallback;
-import com.easyapp.easyhttp.model.ResponseBase;
+import com.easyapp.http.listener.EasyApiCallback;
+import com.easyapp.http.model.ResponseBase;
 import com.google.gson.Gson;
 
 import java.io.IOException;
@@ -160,7 +160,9 @@ public abstract class BaseApiTool<TServices> {
         call.enqueue(new initCallback<>(easyApiCallback));
     }
 
-    private class initCallback<T> implements retrofit2.Callback<T> {
+
+
+    protected class initCallback<T> implements retrofit2.Callback<T> {
 
         private EasyApiCallback<T> easyApiCallback;
 
