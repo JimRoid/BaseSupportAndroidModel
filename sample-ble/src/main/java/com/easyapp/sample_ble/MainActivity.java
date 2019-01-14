@@ -2,9 +2,9 @@ package com.easyapp.sample_ble;
 
 import android.content.Intent;
 
-import com.easyapp.lib.activity.BaseMainActivity;
+import com.easyapp.lib.activity.BaseToolbarActivity;
 
-public class MainActivity extends BaseMainActivity {
+public class MainActivity extends BaseToolbarActivity {
 
 
     @Override

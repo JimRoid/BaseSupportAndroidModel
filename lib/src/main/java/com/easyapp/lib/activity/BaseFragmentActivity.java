@@ -14,7 +14,7 @@ import com.easyapp.lib.callback.iFragmentTransactionListener;
 /**
  * * 簡單可支援fragment 切換的 activity
  */
-public abstract class BaseSupportActivity extends BaseActivity implements iFragmentTransactionListener {
+public abstract class BaseFragmentActivity extends BaseLoadingActivity implements iFragmentTransactionListener {
 
     protected final static String FADE = "FADE";
     protected final static String SLIDE = "SLIDE";

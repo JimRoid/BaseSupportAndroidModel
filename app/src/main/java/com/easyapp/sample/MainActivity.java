@@ -7,7 +7,7 @@ import com.easyapp.sample.screen.DiscussList;
 /**
  *
  */
-//public class MainActivity extends BaseMainActivity {
+//public class MainActivity extends BaseToolbarActivity {
 public class MainActivity extends BaseDrawerMainActivity {
 
     @Override

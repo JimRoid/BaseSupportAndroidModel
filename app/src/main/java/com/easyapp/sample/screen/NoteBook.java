@@ -29,13 +29,13 @@ public class NoteBook extends BaseList<NoteBook.ViewHolder, Note> {
 
     @Override
     protected void init() {
-        showFab();
-        getFab().setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                AddFragment(NoteCreate.instance());
-            }
-        });
+//        showFab();
+//        getFab().setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                AddFragment(NoteCreate.instance());
+//            }
+//        });
     }
 
     @Override

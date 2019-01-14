@@ -15,7 +15,7 @@ import com.easyapp.lib.tool.Utils;
  * 基本的啟動activity
  */
 
-public abstract class BaseAppLauncherActivity extends BaseActivity {
+public abstract class BaseAppLauncherActivity extends BaseLoadingActivity {
 
     private Handler repeatHandler;
     private boolean isRunnable = false;

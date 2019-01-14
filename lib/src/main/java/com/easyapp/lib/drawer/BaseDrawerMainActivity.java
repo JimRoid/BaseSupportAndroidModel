@@ -2,20 +2,18 @@ package com.easyapp.lib.drawer;
 
 
 import android.support.design.widget.NavigationView;
-import android.support.v4.app.Fragment;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
-import android.view.View;
 
 import com.easyapp.lib.R;
-import com.easyapp.lib.activity.BaseMainActivity;
+import com.easyapp.lib.activity.BaseToolbarActivity;
 import com.easyapp.lib.callback.iDrawerCallback;
 
 /**
  * 基本的側邊欄activity
  */
-public abstract class BaseDrawerMainActivity extends BaseMainActivity implements iDrawerCallback {
+public abstract class BaseDrawerMainActivity extends BaseToolbarActivity implements iDrawerCallback {
 
     protected DrawerLayout drawerLayout;
     protected NavigationView navView;

@@ -34,15 +34,15 @@ public class DiscussList extends BaseList<DiscussList.ViewHolder, EntityDiscuss.
         cancelHideToolbar();
         setTitle("討論區");
         apiTool = new ApiTool(getContext());
-        showFab();
-        getFab().setImageResource(R.drawable.ic_add_white);
-        getFab().setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Logger.d("hello");
-                AddFragment(new DiscussCreate());
-            }
-        });
+//        showFab();
+//        getFab().setImageResource(R.drawable.ic_add_white);
+//        getFab().setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                Logger.d("hello");
+//                AddFragment(new DiscussCreate());
+//            }
+//        });
     }
 
     @Override

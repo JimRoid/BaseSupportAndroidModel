@@ -14,9 +14,8 @@ import com.easyapp.lib.callback.iLoading;
 /**
  * @author jim
  */
-public abstract class BaseActivity extends AppCompatActivity implements iLoading {
+public abstract class BaseLoadingActivity extends AppCompatActivity implements iLoading {
     protected Toast toast;
-    protected View progressLoading;
     protected Loading loading;
 
 
@@ -26,43 +25,20 @@ public abstract class BaseActivity extends AppCompatActivity implements iLoading
         loading = Loading.newInstance();
     }
 
-    protected void setProgressLoading(View progressView) {
-        progressLoading = progressView;
-        progressLoading.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-            }
-        });
-    }
 
     @Override
     public void showLoading() {
-        if (progressLoading == null) {
-            if (loading == null) {
-                return;
-            }
 
-            if (!loading.isAdded()) {
-                loading.show(getSupportFragmentManager(), null);
-            }
-            return;
+        if (!loading.isAdded()) {
+            loading.show(getSupportFragmentManager(), null);
         }
-        progressLoading.setVisibility(View.VISIBLE);
     }
 
     @Override
     public void cancelLoading() {
-        if (progressLoading == null) {
-            if (loading == null) {
-                return;
-            }
-            if (loading.isAdded()) {
-                loading.dismiss();
-            }
-            return;
+        if (loading.isAdded()) {
+            loading.dismiss();
         }
-        progressLoading.setVisibility(View.GONE);
     }
 
 
