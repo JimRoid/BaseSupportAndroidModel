@@ -14,6 +14,7 @@ import com.easyapp.lib.widget.viewPager.EasyImageViewPagerAdapter;
 import com.easyapp.sample.R;
 import com.easyapp.sample.http.api.ApiTool;
 import com.easyapp.sample.http.entity.EntityDiscuss;
+import com.google.gson.Gson;
 import com.orhanobut.logger.Logger;
 
 import java.util.Collections;
@@ -66,6 +67,7 @@ public class DiscussList extends BaseList<DiscussList.ViewHolder, EntityDiscuss.
 
             @Override
             public void onCallback(EntityDiscuss entityDiscuss) {
+                Logger.d(new Gson().toJson(entityDiscuss));
                 showToast(entityDiscuss.getMessage(), true);
                 addAll(entityDiscuss.getData());
             }
