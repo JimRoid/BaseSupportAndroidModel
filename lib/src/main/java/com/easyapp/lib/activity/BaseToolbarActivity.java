@@ -10,6 +10,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.easyapp.lib.R;
+import com.easyapp.lib.backpressHelper.BackHandlerHelper;
 import com.easyapp.lib.callback.iToolbarCallback;
 
 /**
@@ -105,6 +106,11 @@ public abstract class BaseToolbarActivity extends BaseFragmentActivity implement
     }
 
     @Override
+    public void OnReplaceFragment() {
+        showBack(false);
+    }
+
+    @Override
     public void clearRightMenu() {
         flRight.removeAllViews();
     }
@@ -140,16 +146,19 @@ public abstract class BaseToolbarActivity extends BaseFragmentActivity implement
         toolbar.setVisibility(View.GONE);
     }
 
+
     @Override
     public void onBackPressed() {
-        cancelLoading();
-        if (getSupportFragmentManager().getBackStackEntryCount() > 0) {
-            if (getSupportFragmentManager().getBackStackEntryCount() == 1) {
-                showBack(false);
+        if (!BackHandlerHelper.handleBackPress(this)) {
+            cancelLoading();
+            if (getSupportFragmentManager().getBackStackEntryCount() > 0) {
+                if (getSupportFragmentManager().getBackStackEntryCount() == 1) {
+                    showBack(false);
+                }
+                super.onBackPressed();
+            } else {
+                super.onBackPressed();
             }
-            super.onBackPressed();
-        } else {
-            super.onBackPressed();
         }
     }
 }

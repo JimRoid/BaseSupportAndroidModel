@@ -5,6 +5,7 @@ import com.easyapp.lib.activity.BaseToolbarActivity;
 import com.easyapp.lib.drawer.BaseDrawerMainActivity;
 import com.easyapp.sample.loginView.Login;
 import com.easyapp.sample.screen.DiscussList;
+import com.easyapp.sample.screen.NoteBook;
 
 /**
  *
@@ -16,8 +17,8 @@ public class MainActivity extends BaseToolbarActivity {
     protected void initial() {
 
 //        ReplaceFragment(new Login());
-//        ReplaceFragment(NoteBook.instance());
-        ReplaceFragment(new DiscussList());
+        ReplaceFragment(NoteBook.instance());
+//        ReplaceFragment(new DiscussList());
 //        ReplaceFragment(new DiscussPager());
 //        ReplaceFragment(new DiscussCreate());
     }

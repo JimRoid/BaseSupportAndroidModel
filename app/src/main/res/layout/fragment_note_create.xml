@@ -37,7 +37,12 @@
             android:hint="請輸入內文"
             android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
 
-
     </LinearLayout>
+
+    <Button
+        android:id="@+id/btSend"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="送出" />
 
 </FrameLayout>

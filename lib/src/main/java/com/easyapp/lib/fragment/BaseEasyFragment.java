@@ -6,12 +6,13 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 
+import com.easyapp.lib.backpressHelper.FragmentBackHandler;
 import com.easyapp.lib.callback.iFragmentTransactionListener;
 
 /**
  * 簡單可支援fragment 切換的base
  */
-public abstract class BaseEasyFragment extends BaseFragment {
+public abstract class BaseEasyFragment extends BaseFragment implements FragmentBackHandler {
 
     protected iFragmentTransactionListener onFragmentTransactionListener;
 
@@ -93,4 +94,6 @@ public abstract class BaseEasyFragment extends BaseFragment {
             return frag.getChildFragmentManager();
         }
     }
+
+
 }

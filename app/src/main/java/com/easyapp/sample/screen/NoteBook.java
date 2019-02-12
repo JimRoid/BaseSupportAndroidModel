@@ -29,13 +29,15 @@ public class NoteBook extends BaseList<NoteBook.ViewHolder, Note> {
 
     @Override
     protected void init() {
-//        showFab();
-//        getFab().setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                AddFragment(NoteCreate.instance());
-//            }
-//        });
+        final MenuView menuView = new MenuView(getContext());
+        menuView.setMenuText("新增");
+        menuView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                AddFragment(NoteCreate.instance());
+            }
+        });
+        getRightMenu().addView(menuView.getMenu());
     }
 
     @Override

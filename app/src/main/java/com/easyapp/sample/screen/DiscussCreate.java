@@ -46,7 +46,6 @@ public class DiscussCreate extends BaseToolbarFragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_discuss_create, container, false);
-        cancelHideToolbar();
         initMenu();
         unbinder = ButterKnife.bind(this, view);
         imagePath = new ArrayList<>();

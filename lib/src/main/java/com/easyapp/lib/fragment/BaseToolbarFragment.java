@@ -10,7 +10,7 @@ import com.easyapp.lib.callback.iToolbarCallback;
 /**
  * 基本toolbar fragment
  */
-public class BaseToolbarFragment extends BaseEasyFragment {
+public abstract class BaseToolbarFragment extends BaseEasyFragment {
 
     protected iToolbarCallback toolbarCallback;
 
@@ -35,14 +35,9 @@ public class BaseToolbarFragment extends BaseEasyFragment {
         clearMenu();
     }
 
-    protected void autoHideToolbar() {
-        AppBarLayout.LayoutParams params = (AppBarLayout.LayoutParams) getToolbar().getLayoutParams();
-        params.setScrollFlags(AppBarLayout.LayoutParams.SCROLL_FLAG_SCROLL | AppBarLayout.LayoutParams.SCROLL_FLAG_ENTER_ALWAYS);
-    }
-
-    protected void cancelHideToolbar() {
-        AppBarLayout.LayoutParams params = (AppBarLayout.LayoutParams) getToolbar().getLayoutParams();
-        params.setScrollFlags(0);
+    @Override
+    public boolean onBackPressed() {
+        return false;
     }
 
     protected Toolbar getToolbar() {
