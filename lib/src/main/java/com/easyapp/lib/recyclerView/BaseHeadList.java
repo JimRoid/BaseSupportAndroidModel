@@ -188,7 +188,6 @@ public abstract class BaseHeadList<
         swipeRefreshLayout.setRefreshing(false);
         baseRecycleViewAdapter.addAll(arrayList);
         baseRecycleViewAdapter.notifyDataSetChanged();
-        showEmpty();
     }
 
     protected void addHead(THead head) {
