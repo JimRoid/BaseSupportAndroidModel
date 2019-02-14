@@ -149,15 +149,16 @@ public abstract class BaseHeadList<
     @Override
     public void onRefresh() {
         getAdapter().clear();
+        hideEmpty();
         onLoad();
     }
 
-    protected void emptyViewShow() {
-        if (getSize() == 0) {
-            emptyView.setVisibility(View.VISIBLE);
-        } else {
-            emptyView.setVisibility(View.GONE);
-        }
+    protected void showEmpty() {
+        emptyView.setVisibility(View.VISIBLE);
+    }
+
+    protected void hideEmpty() {
+        emptyView.setVisibility(View.GONE);
     }
 
     protected abstract void onLoad();
@@ -187,7 +188,7 @@ public abstract class BaseHeadList<
         swipeRefreshLayout.setRefreshing(false);
         baseRecycleViewAdapter.addAll(arrayList);
         baseRecycleViewAdapter.notifyDataSetChanged();
-        emptyViewShow();
+        showEmpty();
     }
 
     protected void addHead(THead head) {

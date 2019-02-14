@@ -21,6 +21,7 @@ public class BaseRecyclerViewAdapter<VHead extends BaseRecyclerViewAdapter.ViewH
     private List<ViewHolderData<THead, T>> viewHolderDataList;
     private Context context;
     private RecyclerOnScrollListener recyclerOnScrollListener;
+    private RecyclerViewTypeListener recyclerViewTypeListener;
     private OnBindViewHolder<VHead, VH, THead, T> onBindViewHolder;
     private OnCreateViewHolder<VHead, VH> onCreateViewHolder;
     private OnViewHolderLayout onViewHolderLayout;
@@ -143,12 +144,16 @@ public class BaseRecyclerViewAdapter<VHead extends BaseRecyclerViewAdapter.ViewH
         return viewHolderDataList.size();
     }
 
+    public void setItemViewType(RecyclerViewTypeListener recyclerViewTypeListener) {
+        this.recyclerViewTypeListener = recyclerViewTypeListener;
+    }
+
     @Override
     public int getItemViewType(int position) {
-        if (position == 0) {
-            return TYPE_HEADER;
+        if (recyclerViewTypeListener == null) {
+            return 1;
         } else {
-            return TYPE_CONTENT;
+            return recyclerViewTypeListener.getItemViewType(position);
         }
     }
 
@@ -170,7 +175,7 @@ public class BaseRecyclerViewAdapter<VHead extends BaseRecyclerViewAdapter.ViewH
     @SuppressWarnings("unchecked")
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         if (onBindViewHolder != null) {
-            if (holder.getItemViewType() == TYPE_HEADER) {
+            if (getItemViewType(position) == TYPE_HEADER) {
                 THead tHead = getHead(position);
                 if (tHead == null) {
                     tHead = (THead) getItem(position);
@@ -205,8 +210,6 @@ public class BaseRecyclerViewAdapter<VHead extends BaseRecyclerViewAdapter.ViewH
         public ViewHolder(View itemView) {
             super(itemView);
         }
-
-
     }
 
 
