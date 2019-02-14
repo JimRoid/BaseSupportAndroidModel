@@ -16,7 +16,7 @@
             android:id="@+id/ivEmpty"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/ic_empty" />
+            android:src="@mipmap/ic_oops" />
 
         <TextView
             android:id="@+id/tvEmpty"

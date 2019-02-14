@@ -5,7 +5,7 @@
 
 
     <!-- common text -->
-    <string name="not_found">目前沒有資料</string>
+    <string name="not_found">目前沒有資料，請重新整理</string>
 
     <!-- network tool -->
     <string name="network_message_title">網路</string>

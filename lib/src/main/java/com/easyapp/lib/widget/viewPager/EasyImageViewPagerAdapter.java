@@ -96,7 +96,7 @@ public class EasyImageViewPagerAdapter extends PagerAdapter {
         Glide.with(context)
                 .load(urls.get(position))
                 .apply(new RequestOptions()
-                        .centerCrop().error(R.drawable.ic_empty))
+                        .centerCrop().error(R.mipmap.ic_empty))
                 .into(new DrawableImageViewTarget(imageView) {
                     @Override
                     public void onResourceReady(@NonNull Drawable resource, @Nullable Transition<? super Drawable> transition) {

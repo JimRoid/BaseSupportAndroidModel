@@ -60,12 +60,12 @@ public class FragmentTouchView extends Fragment {
 
         String path = bundle.getString("PATH", "");
         if (path == null) {
-            touchImageView.setImageResource(R.drawable.ic_empty);
+            touchImageView.setImageResource(R.mipmap.ic_empty);
             return;
         }
         showLoading();
         if (path.contains("http") || path.contains("/storage")) {
-            Glide.with(this).load(path).apply(new RequestOptions().error(R.drawable.ic_empty)).into(new DrawableImageViewTarget(touchImageView) {
+            Glide.with(this).load(path).apply(new RequestOptions().error(R.mipmap.ic_empty)).into(new DrawableImageViewTarget(touchImageView) {
                 @Override
                 public void onResourceReady(@NonNull Drawable resource, @Nullable Transition<? super Drawable> transition) {
                     super.onResourceReady(resource, transition);
@@ -75,7 +75,7 @@ public class FragmentTouchView extends Fragment {
                 @Override
                 public void onLoadFailed(@Nullable Drawable errorDrawable) {
                     cancelLoading();
-                    getView().setImageResource(R.drawable.ic_empty);
+                    getView().setImageResource(R.mipmap.ic_empty);
                 }
             });
         } else {
