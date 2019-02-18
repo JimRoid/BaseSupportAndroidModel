@@ -21,11 +21,6 @@ android {
             buildConfigField("String", "ApiDomain", '"https://test2.easyapp.com.tw/easy-chat/api/"')
         }
     }
-
-    compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_7
-        targetCompatibility JavaVersion.VERSION_1_7
-    }
 }
 
 dependencies {
@@ -42,7 +37,7 @@ dependencies {
     implementation "com.google.code.gson:gson:${project.ext.GSON_VERSION}"
     implementation "com.jakewharton:butterknife:${project.ext.BUTTERKNIFE_VERSION}"
     annotationProcessor "com.jakewharton:butterknife-compiler:${project.ext.BUTTERKNIFE_VERSION}"
-    implementation 'com.google.code.gson:gson:2.8.4'
+    implementation "com.google.code.gson:gson:${project.ext.GSON_VERSION}"
     implementation project(':lib')
     implementation project(':file')
     implementation project(':http')

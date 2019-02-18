@@ -38,7 +38,10 @@ public class Loading extends DialogFragment {
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
+        setCancelable(false);
         return inflater.inflate(R.layout.layout_loading, container, false);
     }
+
+
 
 }

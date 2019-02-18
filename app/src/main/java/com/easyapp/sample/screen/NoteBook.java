@@ -1,6 +1,7 @@
 package com.easyapp.sample.screen;
 
 
+import android.os.Handler;
 import android.view.View;
 import android.widget.TextView;
 
@@ -23,12 +24,15 @@ import butterknife.ButterKnife;
  */
 public class NoteBook extends BaseList<NoteBook.ViewHolder, Note> {
 
+    Handler handler;
+
     public static NoteBook instance() {
         return new NoteBook();
     }
 
     @Override
     protected void init() {
+        handler = new Handler();
         final MenuView menuView = new MenuView(getContext());
         menuView.setMenuText("新增");
         menuView.setOnClickListener(new View.OnClickListener() {
@@ -43,7 +47,13 @@ public class NoteBook extends BaseList<NoteBook.ViewHolder, Note> {
     @Override
     protected void onLoad() {
         ArrayList<Note> notes = new ArrayList<>();
-
+        showLoading();
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                cancelLoading();
+            }
+        }, 1000 * 10);
     }
 
     @Override
