@@ -32,6 +32,9 @@ public class NoteBook extends BaseList<NoteBook.ViewHolder, Note> {
 
     @Override
     protected void init() {
+        Logger.d("note book");
+//        showLoading();
+//        showLoading();
         handler = new Handler();
         final MenuView menuView = new MenuView(getContext());
         menuView.setMenuText("新增");

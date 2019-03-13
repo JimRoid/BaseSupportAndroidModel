@@ -28,8 +28,12 @@ public abstract class BaseLoadingActivity extends AppCompatActivity implements i
 
     @Override
     public void showLoading() {
-        if (!loading.isAdded() && !loading.isVisible() && !loading.isRemoving()) {
-            loading.show(getSupportFragmentManager(), null);
+        if (loading.isAdded()) {
+            return;
+        }
+        getSupportFragmentManager().executePendingTransactions();
+        if (!loading.isAdded()) {
+            loading.show(getSupportFragmentManager(), "load");
         }
     }
 

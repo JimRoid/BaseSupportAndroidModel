@@ -6,6 +6,7 @@ import com.easyapp.lib.drawer.BaseDrawerMainActivity;
 import com.easyapp.sample.loginView.Login;
 import com.easyapp.sample.screen.DiscussList;
 import com.easyapp.sample.screen.NoteBook;
+import com.orhanobut.logger.Logger;
 
 /**
  *
@@ -15,7 +16,9 @@ public class MainActivity extends BaseToolbarActivity {
 
     @Override
     protected void initial() {
-
+        Logger.d("initial");
+        showLoading();
+        showLoading();
 //        ReplaceFragment(new Login());
         ReplaceFragment(NoteBook.instance());
 //        ReplaceFragment(new DiscussList());
