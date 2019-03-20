@@ -145,5 +145,10 @@
     <orderEntry type="module" module-name="file" />
     <orderEntry type="module" module-name="database" />
     <orderEntry type="module" module-name="lib" />
+    <orderEntry type="module" module-name="ble" />
+    <orderEntry type="module" module-name="image" />
+    <orderEntry type="module" module-name="file" />
+    <orderEntry type="module" module-name="database" />
+    <orderEntry type="module" module-name="lib" />
   </component>
 </module>
