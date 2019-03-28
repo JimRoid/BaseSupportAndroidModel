@@ -5,6 +5,7 @@ import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.DialogFragment;
+import android.support.v4.app.FragmentManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -42,6 +43,13 @@ public class Loading extends DialogFragment {
         return inflater.inflate(R.layout.layout_loading, container, false);
     }
 
-
+    public void show(FragmentManager manager, String tag) {
+        try {
+            manager.beginTransaction().remove(this).commit();
+            super.show(manager, tag);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 
 }

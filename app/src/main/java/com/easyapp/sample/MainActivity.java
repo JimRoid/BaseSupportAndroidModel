@@ -19,6 +19,10 @@ public class MainActivity extends BaseToolbarActivity {
         Logger.d("initial");
         showLoading();
         showLoading();
+        showLoading();
+        showLoading();
+        showLoading();
+        showLoading();
 //        ReplaceFragment(new Login());
         ReplaceFragment(NoteBook.instance());
 //        ReplaceFragment(new DiscussList());
