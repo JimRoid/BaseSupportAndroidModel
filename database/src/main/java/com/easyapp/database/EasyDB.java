@@ -33,7 +33,7 @@ public final class EasyDB {
         return applicationWeakReference.get();
     }
 
-    public void clear() {
+    public static void clear() {
         sharedPreferences.edit().clear().apply();
     }
 

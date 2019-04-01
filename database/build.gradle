@@ -3,7 +3,7 @@ apply plugin: 'maven'
 
 project.ext {
     versionCode = 10
-    versionName = "4.7"
+    versionName = "4.8"
     groupId = "com.easyapp.database"
     artifactId = "easy-database"
 }
@@ -17,9 +17,7 @@ android {
         targetSdkVersion project.ext.targetSdkVersion
         versionCode project.ext.versionCode
         versionName project.ext.versionName
-
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
-
     }
 
     buildTypes {
