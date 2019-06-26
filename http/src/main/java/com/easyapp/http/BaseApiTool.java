@@ -7,6 +7,7 @@ import android.widget.Toast;
 import com.easyapp.http.listener.EasyApiCallback;
 import com.easyapp.http.model.ResponseBase;
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 
 import java.io.IOException;
 import java.util.concurrent.TimeUnit;
@@ -40,10 +41,11 @@ public abstract class BaseApiTool<TServices> {
         initHttpClient();
         Utils.validateServiceInterface(typeClass);
 
+        Gson gson = new GsonBuilder().serializeNulls().create();
         retrofit = new Retrofit.Builder()
                 .baseUrl(initUrl())
                 .client(getOkHttpClient())
-                .addConverterFactory(GsonConverterFactory.create())
+                .addConverterFactory(GsonConverterFactory.create(gson))
                 .addConverterFactory(ScalarsConverterFactory.create())
                 .build();
         services = retrofit.create(typeClass);
