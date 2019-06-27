@@ -30,12 +30,6 @@ public abstract class BaseToolbarFragment extends BaseEasyFragment {
     }
 
     @Override
-    public void onDestroyView() {
-        super.onDestroyView();
-        clearMenu();
-    }
-
-    @Override
     public boolean onBackPressed() {
         return false;
     }

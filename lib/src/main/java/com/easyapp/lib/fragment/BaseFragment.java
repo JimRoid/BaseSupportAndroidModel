@@ -12,8 +12,8 @@ import com.easyapp.lib.callback.iLoading;
  * 基本fragment
  */
 public abstract class BaseFragment extends Fragment {
-    private Toast toast;
-    private iLoading loading;
+    protected Toast toast;
+    protected iLoading loading;
 
     @Override
     public void onAttach(Context context) {

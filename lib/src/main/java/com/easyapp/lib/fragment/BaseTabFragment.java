@@ -23,7 +23,7 @@ import com.easyapp.lib.R;
  */
 public abstract class BaseTabFragment extends BaseToolbarFragment {
 
-    private View view;
+    protected View view;
     protected TabLayout tabLayout;
     protected ViewPager viewPager;
     protected EasyPagerAdapter pagerAdapter;

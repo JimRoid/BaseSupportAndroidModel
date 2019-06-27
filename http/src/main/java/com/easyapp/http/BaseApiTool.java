@@ -28,11 +28,11 @@ import retrofit2.converter.scalars.ScalarsConverterFactory;
  */
 public abstract class BaseApiTool<TServices> {
 
-    private Context context;
-    private Retrofit retrofit;
-    private OkHttpClient.Builder httpClient;
-    private TServices services;
-    private Class<TServices> typeClass;
+    protected Context context;
+    protected Retrofit retrofit;
+    protected OkHttpClient.Builder httpClient;
+    protected TServices services;
+    protected Class<TServices> typeClass;
 
     public BaseApiTool(Context context, Class<TServices> typeClass) {
         super();

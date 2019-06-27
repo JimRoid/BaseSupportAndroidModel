@@ -17,8 +17,8 @@ import com.easyapp.lib.tool.Utils;
 
 public abstract class BaseAppLauncherActivity extends BaseLoadingActivity {
 
-    private Handler repeatHandler;
-    private boolean isRunnable = false;
+    protected Handler repeatHandler;
+    protected boolean isRunnable = false;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
