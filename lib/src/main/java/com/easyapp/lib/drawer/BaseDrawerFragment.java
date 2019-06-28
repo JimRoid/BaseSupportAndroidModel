@@ -12,7 +12,7 @@ import com.easyapp.lib.callback.iDrawerCallback;
  */
 public abstract class BaseDrawerFragment extends BaseToolbarFragment {
 
-    private iDrawerCallback drawerCallback;
+    protected iDrawerCallback drawerCallback;
 
     protected void setDrawerCallback(Context context) {
         if (context instanceof BaseDrawerMainActivity) {

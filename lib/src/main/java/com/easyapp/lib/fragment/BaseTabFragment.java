@@ -39,7 +39,7 @@ public abstract class BaseTabFragment extends BaseToolbarFragment {
         return view;
     }
 
-    private void hideAppbarElevation() {
+    protected void hideAppbarElevation() {
         StateListAnimator stateListAnimator = new StateListAnimator();
         stateListAnimator.addState(new int[0], ObjectAnimator.ofFloat(view, "elevation", 0));
         getAppBarLayout().setStateListAnimator(stateListAnimator);
@@ -53,7 +53,7 @@ public abstract class BaseTabFragment extends BaseToolbarFragment {
         super.onDestroyView();
     }
 
-    private void initialView() {
+    protected void initialView() {
         tabLayout = view.findViewById(R.id.tabLayout);
         viewPager = view.findViewById(R.id.viewpager);
 
@@ -67,10 +67,10 @@ public abstract class BaseTabFragment extends BaseToolbarFragment {
         tabLayout.addOnTabSelectedListener(new TabLayout.ViewPagerOnTabSelectedListener(viewPager));
     }
 
-    abstract public void initialAdapter();
+    abstract protected void initialAdapter();
 
 
-    public EasyPagerAdapter getPagerAdapter() {
+    protected EasyPagerAdapter getPagerAdapter() {
         return pagerAdapter;
     }
 
