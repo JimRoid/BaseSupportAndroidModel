@@ -11,13 +11,6 @@
       <module fileurl="file://$PROJECT_DIR$/image/image.iml" filepath="$PROJECT_DIR$/image/image.iml" />
       <module fileurl="file://$PROJECT_DIR$/lib/lib.iml" filepath="$PROJECT_DIR$/lib/lib.iml" />
       <module fileurl="file://$PROJECT_DIR$/sample-ble/sample-ble.iml" filepath="$PROJECT_DIR$/sample-ble/sample-ble.iml" />
-      <module fileurl="file://$PROJECT_DIR$/sample-bottom/sample-bottom.iml" filepath="$PROJECT_DIR$/sample-bottom/sample-bottom.iml" />
-      <module fileurl="file://$PROJECT_DIR$/sample-detail/sample-detail.iml" filepath="$PROJECT_DIR$/sample-detail/sample-detail.iml" />
-      <module fileurl="file://$PROJECT_DIR$/sample-drawer/sample-drawer.iml" filepath="$PROJECT_DIR$/sample-drawer/sample-drawer.iml" />
-      <module fileurl="file://$PROJECT_DIR$/sample-login/sample-login.iml" filepath="$PROJECT_DIR$/sample-login/sample-login.iml" />
-      <module fileurl="file://$PROJECT_DIR$/sample-pager/sample-pager.iml" filepath="$PROJECT_DIR$/sample-pager/sample-pager.iml" />
-      <module fileurl="file://$PROJECT_DIR$/sample-toolbar/sample-toolbar.iml" filepath="$PROJECT_DIR$/sample-toolbar/sample-toolbar.iml" />
-      <module fileurl="file://$PROJECT_DIR$/soap/soap.iml" filepath="$PROJECT_DIR$/soap/soap.iml" />
     </modules>
   </component>
 </project>

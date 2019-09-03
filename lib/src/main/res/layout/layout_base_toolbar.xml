@@ -7,14 +7,14 @@
     android:orientation="vertical">
 
     <!-- Appbar -->
-    <android.support.design.widget.AppBarLayout
+    <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/appBar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
         <include layout="@layout/layout_toolbar" />
 
-    </android.support.design.widget.AppBarLayout>
+    </com.google.android.material.appbar.AppBarLayout>
     <!-- Fragments Container -->
 
     <include layout="@layout/layout_main_content" />

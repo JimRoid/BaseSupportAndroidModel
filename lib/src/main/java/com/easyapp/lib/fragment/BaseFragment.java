@@ -2,9 +2,10 @@ package com.easyapp.lib.fragment;
 
 
 import android.content.Context;
-import android.support.v4.app.Fragment;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Toast;
+
+import androidx.fragment.app.Fragment;
 
 import com.easyapp.lib.callback.iLoading;
 

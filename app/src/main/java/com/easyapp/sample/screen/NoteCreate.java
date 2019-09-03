@@ -2,13 +2,13 @@ package com.easyapp.sample.screen;
 
 
 import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+
+import androidx.annotation.NonNull;
 
 import com.easyapp.lib.backpressHelper.BackHandlerHelper;
 import com.easyapp.lib.fragment.BaseToolbarFragment;
@@ -21,7 +21,7 @@ import butterknife.OnClick;
 import butterknife.Unbinder;
 
 /**
- * A simple {@link Fragment} subclass.
+ *
  */
 public class NoteCreate extends BaseToolbarFragment {
 

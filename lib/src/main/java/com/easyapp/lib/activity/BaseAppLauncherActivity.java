@@ -4,7 +4,9 @@ import android.content.DialogInterface;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
-import android.support.annotation.Nullable;
+
+
+import androidx.annotation.Nullable;
 
 import com.easyapp.lib.R;
 import com.easyapp.lib.dialogFactory.SimpleDialog;

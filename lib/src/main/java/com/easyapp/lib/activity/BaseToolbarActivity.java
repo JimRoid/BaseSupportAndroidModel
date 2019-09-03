@@ -1,17 +1,18 @@
 package com.easyapp.lib.activity;
 
 import android.os.Bundle;
-import android.support.design.widget.AppBarLayout;
-import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import androidx.appcompat.widget.Toolbar;
+
 import com.easyapp.lib.R;
 import com.easyapp.lib.backpressHelper.BackHandlerHelper;
 import com.easyapp.lib.callback.iToolbarCallback;
+import com.google.android.material.appbar.AppBarLayout;
 
 /**
  * 提供一般 基本 toolbar main activity layout

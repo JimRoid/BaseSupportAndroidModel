@@ -1,8 +1,7 @@
 package com.easyapp.lib.callback;
 
 
-import android.support.v4.app.Fragment;
-
+import androidx.fragment.app.Fragment;
 
 /**
  * Created by easyapp_jim on 15/9/3.

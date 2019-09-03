@@ -2,7 +2,7 @@ package com.easyapp.ble;
 
 import android.Manifest;
 import android.content.Context;
-import android.support.annotation.NonNull;
+
 
 import com.easyapp.ble.connect.listener.BleConnectStatusListener;
 import com.easyapp.ble.connect.listener.BluetoothStateListener;

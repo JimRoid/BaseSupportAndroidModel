@@ -2,7 +2,8 @@ package com.easyapp.lib.drawer;
 
 
 import android.content.Context;
-import android.support.v7.app.ActionBarDrawerToggle;
+
+import androidx.appcompat.app.ActionBarDrawerToggle;
 
 import com.easyapp.lib.fragment.BaseToolbarFragment;
 import com.easyapp.lib.callback.iDrawerCallback;

@@ -9,12 +9,12 @@ project.ext {
 }
 
 android {
-    compileSdkVersion project.ext.COMPILE_SDK_VERSION
-    buildToolsVersion project.ext.BUILD_TOOLS_VERSION
+    compileSdkVersion 28
+    buildToolsVersion '28.0.3'
 
     defaultConfig {
-        minSdkVersion project.ext.minSdkVersion
-        targetSdkVersion project.ext.targetSdkVersion
+        minSdkVersion 21
+        targetSdkVersion 28
         versionCode project.ext.versionCode
         versionName project.ext.versionName
     }
@@ -27,9 +27,9 @@ android {
 }
 
 dependencies {
-    implementation "com.squareup.retrofit2:retrofit:${project.ext.RETROFIT_VERSION}"
-    implementation "com.squareup.retrofit2:converter-scalars:${project.ext.RETROFIT_VERSION}"
-    implementation "com.squareup.retrofit2:converter-gson:${project.ext.RETROFIT_VERSION}"
+    implementation 'com.squareup.retrofit2:retrofit:2.6.1'
+    implementation 'com.squareup.retrofit2:converter-scalars:2.6.1'
+    implementation 'com.squareup.retrofit2:converter-gson:2.6.1'
 }
 
 def repo = new File(rootDir, "")

@@ -1,11 +1,11 @@
 package com.easyapp.sample.screen;
 
-import android.support.design.widget.TabLayout;
-import android.support.v4.view.ViewPager;
-import android.support.v7.widget.CardView;
 import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.TextView;
+
+import androidx.cardview.widget.CardView;
+import androidx.viewpager.widget.ViewPager;
 
 import com.easyapp.http.listener.EasyApiCallback;
 import com.easyapp.lib.recyclerView.BaseList;
@@ -14,6 +14,7 @@ import com.easyapp.lib.widget.viewPager.EasyImageViewPagerAdapter;
 import com.easyapp.sample.R;
 import com.easyapp.sample.http.api.ApiTool;
 import com.easyapp.sample.http.entity.EntityDiscuss;
+import com.google.android.material.tabs.TabLayout;
 import com.google.gson.Gson;
 import com.orhanobut.logger.Logger;
 

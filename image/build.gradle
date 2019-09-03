@@ -9,12 +9,12 @@ project.ext {
 }
 
 android {
-    compileSdkVersion project.ext.COMPILE_SDK_VERSION
-    buildToolsVersion project.ext.BUILD_TOOLS_VERSION
+    compileSdkVersion 28
+    buildToolsVersion '28.0.3'
 
     defaultConfig {
-        minSdkVersion project.ext.minSdkVersion
-        targetSdkVersion project.ext.targetSdkVersion
+        minSdkVersion 21
+        targetSdkVersion 28
         versionCode project.ext.versionCode
         versionName project.ext.versionName
 
@@ -33,8 +33,8 @@ android {
 
 dependencies {
     implementation 'pub.devrel:easypermissions:2.0.0'
-    implementation "com.github.bumptech.glide:glide:${project.ext.GLIDE_VERSION}"
-    annotationProcessor "com.github.bumptech.glide:compiler:${project.ext.GLIDE_VERSION}"
+    implementation 'com.github.bumptech.glide:glide:4.9.0'
+    annotationProcessor 'com.github.bumptech.glide:compiler:4.9.0'
 }
 
 def repo = new File(rootDir, "")

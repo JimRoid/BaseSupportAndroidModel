@@ -9,12 +9,12 @@ project.ext {
 }
 
 android {
-    compileSdkVersion project.ext.COMPILE_SDK_VERSION
-    buildToolsVersion project.ext.BUILD_TOOLS_VERSION
+    compileSdkVersion 28
+    buildToolsVersion '28.0.3'
 
     defaultConfig {
-        minSdkVersion project.ext.minSdkVersion
-        targetSdkVersion project.ext.targetSdkVersion
+        minSdkVersion 21
+        targetSdkVersion 28
         versionCode project.ext.versionCode
         versionName project.ext.versionName
     }
@@ -29,13 +29,15 @@ android {
 
 
 dependencies {
-    implementation "com.android.support:appcompat-v7:${project.ext.ANDROID_SUPPORT_VERSION}"
-    implementation "com.android.support:cardview-v7:${project.ext.ANDROID_SUPPORT_VERSION}"
-    implementation "com.android.support:support-v4:${project.ext.ANDROID_SUPPORT_VERSION}"
-    implementation "com.android.support:design:${project.ext.ANDROID_SUPPORT_VERSION}"
-    implementation "com.orhanobut:logger:${project.ext.LOGGER_VERSION}"
-    implementation "com.github.bumptech.glide:glide:${project.ext.GLIDE_VERSION}"
-    annotationProcessor "com.github.bumptech.glide:compiler:${project.ext.GLIDE_VERSION}"
+
+    implementation "androidx.cardview:cardview:1.0.0"
+    implementation "androidx.appcompat:appcompat:1.0.2"
+    implementation "androidx.legacy:legacy-support-v4:1.0.0"
+    implementation 'com.google.android.material:material:1.0.0'
+
+    implementation "com.orhanobut:logger:2.2.0"
+    implementation 'com.github.bumptech.glide:glide:4.9.0'
+    annotationProcessor 'com.github.bumptech.glide:compiler:4.9.0'
 }
 
 def repo = new File(rootDir, "")

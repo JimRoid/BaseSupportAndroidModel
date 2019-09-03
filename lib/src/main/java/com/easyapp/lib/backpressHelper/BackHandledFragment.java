@@ -17,8 +17,9 @@
 
 package com.easyapp.lib.backpressHelper;
 
-import android.support.v4.app.Fragment;
-import android.support.v4.view.ViewPager;
+
+import androidx.fragment.app.Fragment;
+import androidx.viewpager.widget.ViewPager;
 
 public abstract class BackHandledFragment extends Fragment implements FragmentBackHandler {
     public BackHandledFragment() {

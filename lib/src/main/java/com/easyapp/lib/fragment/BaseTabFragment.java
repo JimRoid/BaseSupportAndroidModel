@@ -5,18 +5,18 @@ import android.animation.ObjectAnimator;
 import android.animation.StateListAnimator;
 import android.content.Context;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
-import android.support.design.widget.TabLayout;
-import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import androidx.annotation.NonNull;
+import androidx.viewpager.widget.ViewPager;
 
 import com.easyapp.lib.tool.DisplayUtil;
 import com.easyapp.lib.tool.Utils;
 import com.easyapp.lib.widget.viewPager.EasyPagerAdapter;
 import com.easyapp.lib.R;
+import com.google.android.material.tabs.TabLayout;
 
 /**
  * tab fragment

@@ -1,11 +1,12 @@
 package com.easyapp.lib.fragment;
 
 import android.content.Context;
-import android.support.design.widget.AppBarLayout;
-import android.support.v7.widget.Toolbar;
 import android.view.ViewGroup;
 
+import androidx.appcompat.widget.Toolbar;
+
 import com.easyapp.lib.callback.iToolbarCallback;
+import com.google.android.material.appbar.AppBarLayout;
 
 /**
  * 基本toolbar fragment

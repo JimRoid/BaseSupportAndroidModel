@@ -1,13 +1,14 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion project.ext.COMPILE_SDK_VERSION
-    buildToolsVersion project.ext.BUILD_TOOLS_VERSION
+    compileSdkVersion 28
+    buildToolsVersion '28.0.3'
+
 
     defaultConfig {
         applicationId "com.easyapp.sample"
-        minSdkVersion project.ext.minSdkVersion
-        targetSdkVersion project.ext.targetSdkVersion
+        minSdkVersion 21
+        targetSdkVersion 28
         versionCode 1
         versionName "1.0"
     }
@@ -21,23 +22,32 @@ android {
             buildConfigField("String", "ApiDomain", '"https://test2.easyapp.com.tw/easy-chat/api/"')
         }
     }
+    compileOptions {
+        sourceCompatibility = 1.8
+        targetCompatibility = 1.8
+    }
 }
 
+
 dependencies {
-    implementation "com.android.support:appcompat-v7:${project.ext.ANDROID_SUPPORT_VERSION}"
-    implementation "com.android.support:cardview-v7:${project.ext.ANDROID_SUPPORT_VERSION}"
-    implementation "com.android.support:support-v4:${project.ext.ANDROID_SUPPORT_VERSION}"
-    implementation "com.android.support:design:${project.ext.ANDROID_SUPPORT_VERSION}"
-    implementation "com.orhanobut:logger:${project.ext.LOGGER_VERSION}"
-    implementation "com.github.bumptech.glide:glide:${project.ext.GLIDE_VERSION}"
-    annotationProcessor "com.github.bumptech.glide:compiler:${project.ext.GLIDE_VERSION}"
-    implementation "com.squareup.retrofit2:retrofit:${project.ext.RETROFIT_VERSION}"
-    implementation "com.squareup.retrofit2:converter-scalars:${project.ext.RETROFIT_VERSION}"
-    implementation "com.squareup.retrofit2:converter-gson:${project.ext.RETROFIT_VERSION}"
-    implementation "com.google.code.gson:gson:${project.ext.GSON_VERSION}"
-    implementation "com.jakewharton:butterknife:${project.ext.BUTTERKNIFE_VERSION}"
-    annotationProcessor "com.jakewharton:butterknife-compiler:${project.ext.BUTTERKNIFE_VERSION}"
-    implementation "com.google.code.gson:gson:${project.ext.GSON_VERSION}"
+    implementation "androidx.cardview:cardview:1.0.0"
+    implementation "androidx.appcompat:appcompat:1.0.2"
+    implementation "androidx.legacy:legacy-support-v4:1.0.0"
+    implementation 'com.google.android.material:material:1.0.0'
+
+    implementation "com.orhanobut:logger:2.2.0"
+
+    implementation 'com.github.bumptech.glide:glide:4.9.0'
+    annotationProcessor 'com.github.bumptech.glide:compiler:4.9.0'
+
+    implementation 'com.squareup.retrofit2:retrofit:2.6.1'
+    implementation 'com.squareup.retrofit2:converter-scalars:2.6.1'
+    implementation 'com.squareup.retrofit2:converter-gson:2.6.1'
+
+    implementation 'com.jakewharton:butterknife:10.1.0'
+    annotationProcessor 'com.jakewharton:butterknife-compiler:10.1.0'
+
+    implementation "com.google.code.gson:gson:2.8.5"
     implementation project(':lib')
     implementation project(':file')
     implementation project(':http')

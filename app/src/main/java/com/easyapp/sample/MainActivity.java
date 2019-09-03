@@ -12,8 +12,8 @@ import com.orhanobut.logger.Logger;
 /**
  *
  */
-public class MainActivity extends BaseToolbarActivity {
-//public class MainActivity extends BaseDrawerMainActivity {
+//public class MainActivity extends BaseToolbarActivity {
+public class MainActivity extends BaseDrawerMainActivity {
 
     @Override
     protected void initial() {
