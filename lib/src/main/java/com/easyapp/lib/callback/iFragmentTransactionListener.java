@@ -13,25 +13,15 @@ public interface iFragmentTransactionListener {
 
     void AddFragment(Fragment fragment);
 
-    void AddFragment(Fragment fragment, int container);
-
     void AddFragment(Fragment fragment, String anim);
-
-    void AddFragment(Fragment fragment, int container, String anim);
-
-    void AddFragmentZoom(Fragment fragment, int container);
 
     void AddFragmentUp(Fragment fragment);
 
-    void AddFragmentUp(Fragment fragment, int container);
+    void AddFragmentZoom(Fragment fragment);
 
     void ReplaceFragment(Fragment fragment);
 
-    void ReplaceFragment(Fragment fragment, int container);
-
     void ReplaceFragment(Fragment fragment, String anim);
-
-    void ReplaceFragment(Fragment fragment, int container, String anim);
 
     void PopBackStack();
 

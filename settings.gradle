@@ -1,1 +1,1 @@
-include ':lib', ':app', ':file', ':http', ':image', ':database', ':ble', ':sample-ble'
+include ':lib', ':app', ':file', ':http', ':image', ':database', ':ble', ':sample-ble', ':app-tab'

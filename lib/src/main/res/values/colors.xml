@@ -6,7 +6,9 @@
 
     <color name="black">#000</color>
     <color name="white">#FFF</color>
+
     <color name="transparent">#00ffffff</color>
+    <color name="black_25_transparent">#40000000</color>
     <color name="transparentHalfBlack">#55000000</color>
     <color name="toolbarTitleColor">#fff</color>
     <color name="lightBlue">#6BBEE5</color>

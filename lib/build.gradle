@@ -2,8 +2,8 @@ apply plugin: 'com.android.library'
 apply plugin: 'maven'
 
 project.ext {
-    versionCode = 271
-    versionName = "26.8"
+    versionCode = 272
+    versionName = "27.0"
     groupId = 'com.easyapp.lib'
     artifactId = 'easy-lib'
 }
@@ -30,7 +30,7 @@ android {
 
 dependencies {
     implementation "androidx.cardview:cardview:1.0.0"
-    implementation "androidx.appcompat:appcompat:1.0.2"
+    implementation "androidx.appcompat:appcompat:1.1.0"
     implementation "androidx.legacy:legacy-support-v4:1.0.0"
     implementation 'com.google.android.material:material:1.0.0'
 

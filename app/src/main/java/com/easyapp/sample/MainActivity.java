@@ -18,12 +18,12 @@ public class MainActivity extends BaseDrawerMainActivity {
     @Override
     protected void initial() {
         Logger.d("initial");
-        showLoading();
-        showLoading();
-        showLoading();
-        showLoading();
-        showLoading();
-        showLoading();
+//        showLoading();
+//        showLoading();
+//        showLoading();
+//        showLoading();
+//        showLoading();
+//        showLoading();
 //        ReplaceFragment(new Login());
 //        ReplaceFragment(NoteBook.instance());
 //        ReplaceFragment(new DiscussList());

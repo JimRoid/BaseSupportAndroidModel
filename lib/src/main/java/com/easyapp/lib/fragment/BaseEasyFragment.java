@@ -37,14 +37,6 @@ public abstract class BaseEasyFragment extends BaseFragment implements FragmentB
         onFragmentTransactionListener.AddFragment(fragment, anim);
     }
 
-    protected void AddFragment(Fragment fragment, int container) {
-        onFragmentTransactionListener.AddFragment(fragment, container);
-    }
-
-    protected void AddFragmentFade(Fragment fragment, int container) {
-        onFragmentTransactionListener.AddFragmentZoom(fragment, container);
-    }
-
     protected void AddFragmentUp(Fragment fragment, Bundle bundle) {
         fragment.setArguments(bundle);
         AddFragmentUp(fragment);
@@ -54,24 +46,13 @@ public abstract class BaseEasyFragment extends BaseFragment implements FragmentB
         onFragmentTransactionListener.AddFragmentUp(fragment);
     }
 
-    protected void AddFragmentUp(Fragment fragment, int container) {
-        onFragmentTransactionListener.AddFragmentUp(fragment, container);
-    }
-
     protected void ReplaceFragment(Fragment fragment) {
         onFragmentTransactionListener.ReplaceFragment(fragment);
     }
 
-    protected void ReplaceFragment(Fragment fragment, int container) {
-        onFragmentTransactionListener.ReplaceFragment(fragment, container);
-    }
 
     protected void ReplaceFragment(Fragment fragment, String anim) {
         onFragmentTransactionListener.ReplaceFragment(fragment, anim);
-    }
-
-    protected void ReplaceFragment(Fragment fragment, int container, String anim) {
-        onFragmentTransactionListener.ReplaceFragment(fragment, container, anim);
     }
 
     protected void PopBackStack() {

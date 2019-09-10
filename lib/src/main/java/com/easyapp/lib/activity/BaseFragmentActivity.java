@@ -39,23 +39,13 @@ public abstract class BaseFragmentActivity extends BaseLoadingActivity implement
 
     @Override
     public void AddFragment(Fragment fragment) {
-        AddFragment(fragment, containerId, SLIDE);
-    }
-
-    @Override
-    public void AddFragment(Fragment fragment, int container) {
-        AddFragment(fragment, container, SLIDE);
+        AddFragment(fragment, SLIDE);
     }
 
 
     @Override
     public void AddFragment(Fragment fragment, String anim) {
-        AddFragment(fragment, containerId, anim);
-    }
-
-    @Override
-    public void AddFragment(Fragment fragment, int container, String anim) {
-        if (container == 0) {
+        if (containerId == 0) {
             Toast.makeText(this, "Please Set containerId ID", Toast.LENGTH_SHORT).show();
             return;
         }
@@ -76,35 +66,30 @@ public abstract class BaseFragmentActivity extends BaseLoadingActivity implement
         } else if (anim.equals("")) {
 
         }
-        fragmentTransaction.replace(container, fragment, "main").addToBackStack("main_interface").commitAllowingStateLoss();
+        fragmentTransaction.replace(containerId, fragment, "main").addToBackStack("main_interface").commitAllowingStateLoss();
         OnAddFragment();
     }
 
     @Override
-    public void AddFragmentZoom(Fragment fragment, int container) {
-        fragmentManager.beginTransaction().setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE).replace(container, fragment, "main").addToBackStack("main_interface").commitAllowingStateLoss();
+    public void AddFragmentZoom(Fragment fragment) {
+        fragmentManager.beginTransaction().setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE).replace(containerId, fragment, "main").addToBackStack("main_interface").commitAllowingStateLoss();
         OnAddFragment();
     }
 
     @Override
     public void AddFragmentUp(Fragment fragment) {
-        AddFragmentUp(fragment, containerId);
-    }
-
-    @Override
-    public void AddFragmentUp(Fragment fragment, int container) {
-        if (container == 0) {
+        if (containerId == 0) {
             Toast.makeText(this, "Please Set containerId ID", Toast.LENGTH_SHORT).show();
             return;
         }
-        Fragment originalFragment = fragmentManager.findFragmentById(container);
+        Fragment originalFragment = fragmentManager.findFragmentById(containerId);
         if (!fragment.getClass().equals(originalFragment.getClass())) {
             fragmentManager.beginTransaction().setCustomAnimations(
                     R.animator.slide_fragment_in,
                     R.animator.slide_fragment_out,
                     R.animator.slide_fragment_in,
                     R.animator.slide_fragment_out)
-                    .replace(container, fragment, "main")
+                    .replace(containerId, fragment, "main")
                     .addToBackStack("main_interface").commitAllowingStateLoss();
         }
         OnAddFragment();
@@ -113,23 +98,13 @@ public abstract class BaseFragmentActivity extends BaseLoadingActivity implement
 
     @Override
     public void ReplaceFragment(Fragment fragment) {
-        ReplaceFragment(fragment, containerId, SLIDE);
+        ReplaceFragment(fragment, SLIDE);
     }
+
 
     @Override
     public void ReplaceFragment(Fragment fragment, String anim) {
-        ReplaceFragment(fragment, containerId, anim);
-    }
-
-
-    @Override
-    public void ReplaceFragment(Fragment fragment, int container) {
-        ReplaceFragment(fragment, container, SLIDE);
-    }
-
-    @Override
-    public void ReplaceFragment(Fragment fragment, int container, String anim) {
-        if (container == 0) {
+        if (containerId == 0) {
             Toast.makeText(this, "Please Set containerId ID", Toast.LENGTH_SHORT).show();
             return;
         }
@@ -152,7 +127,7 @@ public abstract class BaseFragmentActivity extends BaseLoadingActivity implement
         } else if (anim.equals("")) {
 
         }
-        fragmentTransaction.replace(container, fragment, "main").disallowAddToBackStack().commitAllowingStateLoss();
+        fragmentTransaction.replace(containerId, fragment, "main").disallowAddToBackStack().commitAllowingStateLoss();
         OnReplaceFragment();
     }
 
@@ -188,7 +163,6 @@ public abstract class BaseFragmentActivity extends BaseLoadingActivity implement
     public void OnReplaceFragment() {
         //..切換 fragment後要執行的動作
     }
-
 
 
 }

@@ -3,7 +3,6 @@ package com.easyapp.lib.fragment;
 
 import android.animation.ObjectAnimator;
 import android.animation.StateListAnimator;
-import android.content.Context;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,7 +12,6 @@ import androidx.annotation.NonNull;
 import androidx.viewpager.widget.ViewPager;
 
 import com.easyapp.lib.tool.DisplayUtil;
-import com.easyapp.lib.tool.Utils;
 import com.easyapp.lib.widget.viewPager.EasyPagerAdapter;
 import com.easyapp.lib.R;
 import com.google.android.material.tabs.TabLayout;
@@ -21,7 +19,7 @@ import com.google.android.material.tabs.TabLayout;
 /**
  * tab fragment
  */
-public abstract class BaseTabFragment extends BaseToolbarFragment {
+public abstract class BaseTabPagerFragment extends BaseToolbarFragment {
 
     protected View view;
     protected TabLayout tabLayout;
@@ -32,7 +30,7 @@ public abstract class BaseTabFragment extends BaseToolbarFragment {
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         hideAppbarElevation();
-        view = inflater.inflate(R.layout.layout_base_tab, container, false);
+        view = inflater.inflate(R.layout.layout_base_tab_pager, container, false);
         pagerAdapter = new EasyPagerAdapter(getChildFragmentManager());
         initialAdapter();
         initialView();
