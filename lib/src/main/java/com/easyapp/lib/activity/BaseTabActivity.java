@@ -1,6 +1,7 @@
 package com.easyapp.lib.activity;
 
 import android.os.Bundle;
+import android.view.View;
 
 import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
@@ -80,6 +81,14 @@ public abstract class BaseTabActivity extends BaseToolbarActivity implements Fra
     protected void addTab(String title, Fragment fragment) {
         TabLayout.Tab tab = tabLayout.newTab();
         tab.setText(title);
+        tabLayout.addTab(tab);
+        TABS.add(title);
+        fragments.add(fragment);
+    }
+
+    protected void addTab(String title, View view, Fragment fragment) {
+        TabLayout.Tab tab = tabLayout.newTab();
+        tab.setCustomView(view);
         tabLayout.addTab(tab);
         TABS.add(title);
         fragments.add(fragment);

@@ -10,7 +10,7 @@ public class MainActivity extends BaseTabActivity {
         addTab("2", new BlankFragment2());
         addTab("3", new BlankFragment3());
         addTab("4", new BlankFragment1());
-        addTab("5", new BlankFragment1());
+//        addTab("5", new BlankFragment1());
     }
 
 }
