@@ -30,11 +30,15 @@ public abstract class BaseTabPagerFragment extends BaseToolbarFragment {
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         hideAppbarElevation();
-        view = inflater.inflate(R.layout.layout_base_tab_pager, container, false);
+        view = inflater.inflate(getLayoutId(), container, false);
         pagerAdapter = new EasyPagerAdapter(getChildFragmentManager());
         initialAdapter();
         initialView();
         return view;
+    }
+
+    protected int getLayoutId() {
+        return R.layout.layout_base_tab_pager;
     }
 
     protected void hideAppbarElevation() {
