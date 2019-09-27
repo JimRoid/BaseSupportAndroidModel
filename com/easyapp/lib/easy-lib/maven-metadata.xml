@@ -3,7 +3,7 @@
   <groupId>com.easyapp.lib</groupId>
   <artifactId>easy-lib</artifactId>
   <versioning>
-    <release>27.2</release>
+    <release>27.3</release>
     <versions>
       <version>14.0</version>
       <version>14.1</version>
@@ -52,7 +52,8 @@
       <version>27.0</version>
       <version>27.1</version>
       <version>27.2</version>
+      <version>27.3</version>
     </versions>
-    <lastUpdated>20190920042833</lastUpdated>
+    <lastUpdated>20190927031144</lastUpdated>
   </versioning>
 </metadata>
