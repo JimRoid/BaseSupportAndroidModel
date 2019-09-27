@@ -32,6 +32,7 @@ public abstract class BaseHeadList<
 
     protected View view;
     protected View emptyView;
+    protected View tvEmpty;
     protected RecyclerView recyclerView;
     protected SwipeRefreshLayout swipeRefreshLayout;
     protected BaseRecyclerViewAdapter<VHead, VH, THead, T> baseRecycleViewAdapter;
@@ -78,6 +79,7 @@ public abstract class BaseHeadList<
      */
     protected void initEmptyView() {
         emptyView = view.findViewById(R.id.flEmpty);
+        tvEmpty = view.findViewById(R.id.tvEmpty);
     }
 
     protected void initData() {
