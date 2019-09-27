@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -32,7 +33,7 @@ public abstract class BaseHeadList<
 
     protected View view;
     protected View emptyView;
-    protected View tvEmpty;
+    protected TextView tvEmpty;
     protected RecyclerView recyclerView;
     protected SwipeRefreshLayout swipeRefreshLayout;
     protected BaseRecyclerViewAdapter<VHead, VH, THead, T> baseRecycleViewAdapter;
