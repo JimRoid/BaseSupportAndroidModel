@@ -1,14 +1,16 @@
 package com.easyapp.sample.storage;
 
-import com.easyapp.database.SingleModel;
+import com.easyapp.database.Model;
 import com.google.gson.annotations.SerializedName;
 
-public class Note extends SingleModel<Note> {
+public class Notes extends Model {
 
     @Override
-    public String getSingleKey() {
-        return "Note";
+    public String getListKey() {
+        return "Notes";
     }
+
+
 
     @SerializedName("title")
     private String title;
@@ -16,11 +18,6 @@ public class Note extends SingleModel<Note> {
     @SerializedName("content")
     private String content;
 
-
-    @Override
-    public <Note extends SingleModel> Note getStore() {
-        return super.getStore();
-    }
 
     public String getTitle() {
         return title;

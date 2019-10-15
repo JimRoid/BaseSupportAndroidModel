@@ -2,6 +2,7 @@ package com.easyapp.database;
 
 import com.google.gson.Gson;
 
+import java.io.Serializable;
 import java.lang.reflect.Type;
 
 /**
@@ -10,7 +11,7 @@ import java.lang.reflect.Type;
  * 並不會出現列表
  */
 
-public abstract class SingleModel {
+public abstract class SingleModel<T extends SingleModel> implements Serializable {
 
     public abstract String getSingleKey();
 
@@ -23,17 +24,7 @@ public abstract class SingleModel {
         return gson.toJson(this);
     }
 
-//    public static <T extends SingleModel> T restore(Context context) {
-//        T t = null;
-//        EasyDB easyDB = new EasyDB(context);
-//        String value = easyDB.getStringValue(t.getSingleKey());
-//        Gson gson = new Gson();
-//        Class classOfT = t.getClass();
-//        t = gson.fromJson(value, (Type) classOfT);
-//        return t;
-//    }
-
-    final public <T extends SingleModel> T getStore() {
+    public T getStore() {
         String value = EasyDB.getString(getSingleKey());
         Gson gson = new Gson();
         Class classOfT = getClass();

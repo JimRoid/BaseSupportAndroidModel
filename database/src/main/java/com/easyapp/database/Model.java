@@ -1,7 +1,5 @@
 package com.easyapp.database;
 
-import android.content.Context;
-
 import com.google.gson.Gson;
 import com.google.gson.annotations.SerializedName;
 
@@ -12,7 +10,7 @@ import java.util.ArrayList;
 /**
  * 基本的database model
  */
-public abstract class Model implements Serializable {
+public abstract class Model<T extends Model> implements Serializable {
 
     public abstract String getListKey();
 
@@ -30,7 +28,6 @@ public abstract class Model implements Serializable {
         this.uniqueId = uniqueId;
     }
 
-
     public String getGson() {
         Gson gson = new Gson();
         return gson.toJson(this);
@@ -45,7 +42,7 @@ public abstract class Model implements Serializable {
     /**
      * 取回所有項目
      */
-    final public <T extends Model> ArrayList<T> getAll() {
+    final public ArrayList<T> getList() {
         ArrayList<String> arrayList = EasyDB.getList(getListKey());
         ArrayList<T> items = new ArrayList<>();
         Gson gson = new Gson();
@@ -56,6 +53,34 @@ public abstract class Model implements Serializable {
             items.add(t);
         }
         return items;
+    }
+
+    public T get(String value) {
+        T t = null;
+        Gson gson = new Gson();
+        ArrayList<String> arrayList = EasyDB.getList(getListKey());
+        for (int i = 0; i < arrayList.size(); i++) {
+            if (arrayList.get(i).contains(value)) {
+                Class classOfT = getClass();
+                t = gson.fromJson(arrayList.get(i), (Type) classOfT);
+                return t;
+            }
+        }
+        return t;
+    }
+
+    public ArrayList<T> select(String value) {
+        ArrayList<T> list = new ArrayList<>();
+        Gson gson = new Gson();
+        ArrayList<String> arrayList = EasyDB.getList(getListKey());
+        for (int i = 0; i < arrayList.size(); i++) {
+            if (arrayList.get(i).contains(value)) {
+                Class classOfT = getClass();
+                T t = gson.fromJson(arrayList.get(i), (Type) classOfT);
+                list.add(t);
+            }
+        }
+        return list;
     }
 
 
