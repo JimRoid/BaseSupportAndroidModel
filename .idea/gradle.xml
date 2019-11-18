@@ -3,29 +3,21 @@
   <component name="GradleSettings">
     <option name="linkedExternalProjectsSettings">
       <GradleProjectSettings>
-        <compositeConfiguration>
-          <compositeBuild compositeDefinitionSource="SCRIPT" />
-        </compositeConfiguration>
         <option name="distributionType" value="DEFAULT_WRAPPED" />
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
         <option name="modules">
           <set>
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/app" />
+            <option value="$PROJECT_DIR$/app-tab" />
             <option value="$PROJECT_DIR$/ble" />
             <option value="$PROJECT_DIR$/database" />
             <option value="$PROJECT_DIR$/file" />
             <option value="$PROJECT_DIR$/http" />
             <option value="$PROJECT_DIR$/image" />
+            <option value="$PROJECT_DIR$/kotlin-sample" />
             <option value="$PROJECT_DIR$/lib" />
             <option value="$PROJECT_DIR$/sample-ble" />
-            <option value="$PROJECT_DIR$/sample-bottom" />
-            <option value="$PROJECT_DIR$/sample-detail" />
-            <option value="$PROJECT_DIR$/sample-drawer" />
-            <option value="$PROJECT_DIR$/sample-login" />
-            <option value="$PROJECT_DIR$/sample-pager" />
-            <option value="$PROJECT_DIR$/sample-toolbar" />
-            <option value="$PROJECT_DIR$/soap" />
           </set>
         </option>
         <option name="resolveModulePerSourceSet" value="false" />

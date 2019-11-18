@@ -16,12 +16,6 @@ public class Note extends SingleModel<Note> {
     @SerializedName("content")
     private String content;
 
-
-    @Override
-    public <Note extends SingleModel> Note getStore() {
-        return super.getStore();
-    }
-
     public String getTitle() {
         return title;
     }

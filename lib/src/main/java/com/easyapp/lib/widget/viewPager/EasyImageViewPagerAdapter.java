@@ -95,7 +95,8 @@ public class EasyImageViewPagerAdapter extends PagerAdapter {
 
         progressView.setVisibility(View.VISIBLE);
         Glide.with(context)
-                .load(urls.get(position))
+//                .load(urls.get(position))
+                .load("https://wusanto.magicnet.com.tw/upload/introseries/45/S__35430483.jpg")
                 .apply(new RequestOptions()
                         .centerCrop().error(R.mipmap.ic_empty))
                 .into(new DrawableImageViewTarget(imageView) {
