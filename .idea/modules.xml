@@ -6,6 +6,7 @@
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
       <module fileurl="file://$PROJECT_DIR$/app-tab/app-tab.iml" filepath="$PROJECT_DIR$/app-tab/app-tab.iml" />
       <module fileurl="file://$PROJECT_DIR$/ble/ble.iml" filepath="$PROJECT_DIR$/ble/ble.iml" />
+      <module fileurl="file://$PROJECT_DIR$/ble-spp/ble-spp.iml" filepath="$PROJECT_DIR$/ble-spp/ble-spp.iml" />
       <module fileurl="file://$PROJECT_DIR$/database/database.iml" filepath="$PROJECT_DIR$/database/database.iml" />
       <module fileurl="file://$PROJECT_DIR$/file/file.iml" filepath="$PROJECT_DIR$/file/file.iml" />
       <module fileurl="file://$PROJECT_DIR$/http/http.iml" filepath="$PROJECT_DIR$/http/http.iml" />
@@ -13,6 +14,7 @@
       <module fileurl="file://$PROJECT_DIR$/kotlin-sample/kotlin-sample.iml" filepath="$PROJECT_DIR$/kotlin-sample/kotlin-sample.iml" />
       <module fileurl="file://$PROJECT_DIR$/lib/lib.iml" filepath="$PROJECT_DIR$/lib/lib.iml" />
       <module fileurl="file://$PROJECT_DIR$/sample-ble/sample-ble.iml" filepath="$PROJECT_DIR$/sample-ble/sample-ble.iml" />
+      <module fileurl="file://$PROJECT_DIR$/sample-ble-spp/sample-ble-spp.iml" filepath="$PROJECT_DIR$/sample-ble-spp/sample-ble-spp.iml" />
     </modules>
   </component>
 </project>

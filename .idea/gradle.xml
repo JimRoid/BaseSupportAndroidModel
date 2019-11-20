@@ -11,6 +11,7 @@
             <option value="$PROJECT_DIR$/app" />
             <option value="$PROJECT_DIR$/app-tab" />
             <option value="$PROJECT_DIR$/ble" />
+            <option value="$PROJECT_DIR$/ble-spp" />
             <option value="$PROJECT_DIR$/database" />
             <option value="$PROJECT_DIR$/file" />
             <option value="$PROJECT_DIR$/http" />
@@ -18,6 +19,7 @@
             <option value="$PROJECT_DIR$/kotlin-sample" />
             <option value="$PROJECT_DIR$/lib" />
             <option value="$PROJECT_DIR$/sample-ble" />
+            <option value="$PROJECT_DIR$/sample-ble-spp" />
           </set>
         </option>
         <option name="resolveModulePerSourceSet" value="false" />
