@@ -1,16 +1,14 @@
 package com.easyapp.lib.drawer;
 
-
-
-
+import android.view.View;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
-
 import com.easyapp.lib.R;
 import com.easyapp.lib.activity.BaseToolbarActivity;
 import com.easyapp.lib.callback.iDrawerCallback;
 import com.google.android.material.navigation.NavigationView;
+import com.orhanobut.logger.Logger;
 
 /**
  * 基本的側邊欄activity
@@ -31,29 +29,38 @@ public abstract class BaseDrawerMainActivity extends BaseToolbarActivity impleme
         super.initView();
         drawerLayout = findViewById(R.id.drawerLayout);
         navView = findViewById(R.id.navView);
-
         actionBarDrawerToggle = new ActionBarDrawerToggle(
                 this, drawerLayout, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawerLayout.addDrawerListener(actionBarDrawerToggle);
         actionBarDrawerToggle.syncState();
-        actionBarDrawerToggle.setDrawerIndicatorEnabled(true);
+        Logger.d("initView");
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Logger.d("setNavigationOnClickListener");
+                Logger.d("getSupportFragmentManager().getBackStackEntryCount():" + getSupportFragmentManager().getBackStackEntryCount());
+                if (getSupportFragmentManager().getBackStackEntryCount() >= 1) {
+                    onBackPressed();
+                } else {
+                    openDrawer(GravityCompat.START);
+                }
+            }
+        });
     }
 
     @Override
     public void onBackPressed() {
-        DrawerLayout drawer = findViewById(R.id.drawerLayout);
-        if (drawer.isDrawerOpen(GravityCompat.START)) {
-            drawer.closeDrawer(GravityCompat.START);
-        } else {
-            super.onBackPressed();
+        if (drawerLayout.isDrawerOpen(GravityCompat.START)) {
+            closeDrawer(GravityCompat.START);
+            return;
         }
+        super.onBackPressed();
     }
 
     @Override
     public ActionBarDrawerToggle getDrawerToggle() {
         return actionBarDrawerToggle;
     }
-
 
     @Override
     public void setDrawerLock() {
@@ -78,5 +85,13 @@ public abstract class BaseDrawerMainActivity extends BaseToolbarActivity impleme
     @Override
     public void closeDrawer(int gravity) {
         drawerLayout.closeDrawer(gravity);
+    }
+
+    @Override
+    public void showBack(boolean value) {
+        super.showBack(value);
+        if (!value) {
+            actionBarDrawerToggle.syncState();
+        }
     }
 }

@@ -11,12 +11,12 @@ public class MainActivity extends BaseTabActivity {
 
     @Override
     protected void initTab() {
-        AppBarLayout appLayoutHead = findViewById(R.id.appLayoutHead);
+//        AppBarLayout appLayoutHead = findViewById(R.id.appLayoutHead);
 
         ImageView imageView = new ImageView(this);
         imageView.setImageResource(R.drawable.picture1);
 
-        appLayoutHead.addView(imageView);
+//        appLayoutHead.addView(imageView);
 
         addTab("1", new BlankFragment1());
         addTab("2", new BlankFragment2());
