@@ -140,6 +140,24 @@ public class OpenData {
         Bundle bundle = new Bundle();
         bundle.putStringArrayList("PATH", path);
         bundle.putInt("POSITION", position);
+        bundle.putBoolean("isShowDownload", false);
+        intent.putExtras(bundle);
+        StartActivity(context, intent);
+    }
+
+    /**
+     * 開啟可放大縮小圖片
+     *
+     * @param context
+     * @param path
+     */
+    public static void OpenTouchImage(Context context, ArrayList<String> path, int position, boolean isShowDownload) {
+
+        Intent intent = new Intent(context, TouchViewActivity.class);
+        Bundle bundle = new Bundle();
+        bundle.putStringArrayList("PATH", path);
+        bundle.putInt("POSITION", position);
+        bundle.putBoolean("isShowDownload", isShowDownload);
         intent.putExtras(bundle);
         StartActivity(context, intent);
     }
@@ -157,6 +175,24 @@ public class OpenData {
         Bundle bundle = new Bundle();
         bundle.putStringArrayList("PATH", arrayList);
         bundle.putInt("POSITION", 0);
+        intent.putExtras(bundle);
+        StartActivity(context, intent);
+    }
+
+    /**
+     * 開啟可放大縮小圖片
+     *
+     * @param context
+     * @param path
+     */
+    public static void OpenTouchImage(Context context, String path, boolean isShowDownload) {
+        ArrayList<String> arrayList = new ArrayList<>();
+        arrayList.add(path);
+        Intent intent = new Intent(context, TouchViewActivity.class);
+        Bundle bundle = new Bundle();
+        bundle.putStringArrayList("PATH", arrayList);
+        bundle.putInt("POSITION", 0);
+        bundle.putBoolean("isShowDownload", isShowDownload);
         intent.putExtras(bundle);
         StartActivity(context, intent);
     }

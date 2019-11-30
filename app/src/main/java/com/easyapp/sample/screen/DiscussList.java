@@ -10,6 +10,7 @@ import androidx.viewpager.widget.ViewPager;
 import com.easyapp.http.listener.EasyApiCallback;
 import com.easyapp.lib.recyclerView.BaseList;
 import com.easyapp.lib.recyclerView.BaseRecyclerViewAdapter;
+import com.easyapp.lib.tool.OpenData;
 import com.easyapp.lib.widget.viewPager.EasyImageViewPagerAdapter;
 import com.easyapp.sample.R;
 import com.easyapp.sample.http.api.ApiTool;
@@ -18,6 +19,7 @@ import com.google.android.material.tabs.TabLayout;
 import com.google.gson.Gson;
 import com.orhanobut.logger.Logger;
 
+import java.util.ArrayList;
 import java.util.Collections;
 
 import butterknife.BindView;
@@ -58,7 +60,6 @@ public class DiscussList extends BaseList<DiscussList.ViewHolder, EntityDiscuss.
 
             @Override
             public void onCallback(EntityDiscuss entityDiscuss) {
-                Logger.d(new Gson().toJson(entityDiscuss));
                 showToast(entityDiscuss.getMessage(), true);
                 addAll(entityDiscuss.getData());
             }
@@ -94,10 +95,22 @@ public class DiscussList extends BaseList<DiscussList.ViewHolder, EntityDiscuss.
 
         if (dataBean.getPicture().size() > 0) {
             holder.frameLayout.setVisibility(View.VISIBLE);
-            EasyImageViewPagerAdapter.initial(getActivity(),
-                    dataBean.getPicture(),
-                    holder.viewPager,
-                    holder.tabLayout);
+            EasyImageViewPagerAdapter easyImageViewPagerAdapter = new EasyImageViewPagerAdapter(getActivity());
+            ArrayList<String> pic = new ArrayList<>();
+            pic.add("https://www.northguan-nsa.gov.tw/att/pic/11003190.JPG");
+            pic.add("https://www.northguan-nsa.gov.tw/att/pic/11003190.JPG");
+            pic.add("https://cdn.clm02.com/ezvivi.com/266528/1499736713_90.jpg");
+            pic.add("https://i.imgur.com/6D4iRNd.jpg");
+//            easyImageViewPagerAdapter.setData(dataBean.getPicture());
+            easyImageViewPagerAdapter.setData(pic);
+            easyImageViewPagerAdapter.initView(holder.viewPager, holder.tabLayout);
+            easyImageViewPagerAdapter.setItemClickListener(new EasyImageViewPagerAdapter.OnItemClickListener() {
+                @Override
+                public void onClick(int position) {
+                    OpenData.OpenTouchImage(getContext(), pic, 0, true);
+                }
+            });
+
         } else {
             holder.frameLayout.setVisibility(View.GONE);
         }

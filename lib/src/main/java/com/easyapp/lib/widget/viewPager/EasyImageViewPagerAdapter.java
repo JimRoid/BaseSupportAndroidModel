@@ -2,22 +2,20 @@ package com.easyapp.lib.widget.viewPager;
 
 import android.app.Activity;
 import android.content.Context;
-import android.graphics.drawable.Drawable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.viewpager.widget.PagerAdapter;
 import androidx.viewpager.widget.ViewPager;
 
-import com.bumptech.glide.Glide;
+import com.bumptech.glide.Priority;
 import com.bumptech.glide.request.RequestOptions;
-import com.bumptech.glide.request.target.DrawableImageViewTarget;
-import com.bumptech.glide.request.transition.Transition;
 import com.easyapp.lib.R;
+import com.easyapp.lib.glide.GlideImageLoader;
 import com.easyapp.lib.tool.OpenData;
 import com.google.android.material.tabs.TabLayout;
 
@@ -34,7 +32,7 @@ public class EasyImageViewPagerAdapter extends PagerAdapter {
 
     private int layout = R.layout.layout_image_view;
     private int imageViewLayoutId = R.id.ivPicture;
-    private int layoutLoad = R.id.progressView;
+    private int layoutLoad = R.id.progressBar;
 
     public static void initial(Activity activity,
                                Collection<? extends String> collection,
@@ -54,20 +52,19 @@ public class EasyImageViewPagerAdapter extends PagerAdapter {
         itemClickListener = new OnItemClickListener() {
             @Override
             public void onClick(int position) {
-                OpenData.OpenTouchImage(activity, urls, position);
+                OpenData.OpenTouchImage(activity, urls, position, false);
             }
         };
+    }
+
+    public void initView(ViewPager viewPager, TabLayout tabLayout) {
+        viewPager.setAdapter(this);
+        tabLayout.setupWithViewPager(viewPager);
     }
 
     public void setData(final Collection<? extends String> collection) {
         urls.clear();
         urls.addAll(collection);
-    }
-
-
-    public void setLayout(int layout, int imageViewLayoutId) {
-        this.layout = layout;
-        this.imageViewLayoutId = imageViewLayoutId;
     }
 
     /**
@@ -91,28 +88,9 @@ public class EasyImageViewPagerAdapter extends PagerAdapter {
         int rootLayout = layout;
         View currentView = inflater.inflate(rootLayout, container, false);
         final ImageView imageView = currentView.findViewById(imageViewLayoutId);
-        final View progressView = currentView.findViewById(layoutLoad);
+        final ProgressBar progressView = currentView.findViewById(layoutLoad);
 
-        progressView.setVisibility(View.VISIBLE);
-        Glide.with(context)
-//                .load(urls.get(position))
-                .load("https://wusanto.magicnet.com.tw/upload/introseries/45/S__35430483.jpg")
-                .apply(new RequestOptions()
-                        .centerCrop().error(R.mipmap.ic_empty))
-                .into(new DrawableImageViewTarget(imageView) {
-                    @Override
-                    public void onResourceReady(@NonNull Drawable resource, @Nullable Transition<? super Drawable> transition) {
-                        super.onResourceReady(resource, transition);
-                        progressView.setVisibility(View.GONE);
-                    }
-
-                    @Override
-                    public void onLoadFailed(@Nullable Drawable errorDrawable) {
-                        super.onLoadFailed(errorDrawable);
-                        progressView.setVisibility(View.GONE);
-                        getView().setScaleType(ImageView.ScaleType.FIT_CENTER);
-                    }
-                });
+        new GlideImageLoader(imageView, progressView).load(urls.get(position));
 
         currentView.setOnClickListener(new View.OnClickListener() {
             @Override

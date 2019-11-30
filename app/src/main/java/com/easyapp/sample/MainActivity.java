@@ -17,7 +17,6 @@ public class MainActivity extends BaseDrawerMainActivity {
 
     @Override
     protected void initial() {
-        Logger.d("initial");
 //        showLoading();
 //        showLoading();
 //        showLoading();

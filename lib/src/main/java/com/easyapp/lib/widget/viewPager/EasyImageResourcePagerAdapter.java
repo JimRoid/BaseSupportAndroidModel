@@ -35,7 +35,7 @@ public class EasyImageResourcePagerAdapter extends PagerAdapter {
 
     private int layout = R.layout.layout_image_view;
     private int imageViewLayoutId = R.id.ivPicture;
-    private int layoutLoad = R.id.progressView;
+    private int layoutLoad = R.id.progressBar;
 
     public static void initial(Activity activity,
                                Collection<? extends Integer> collection,

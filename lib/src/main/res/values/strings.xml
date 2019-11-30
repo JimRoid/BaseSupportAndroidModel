@@ -3,7 +3,7 @@
     <string name="navigation_drawer_open">open</string>
     <string name="navigation_drawer_close">close</string>
 
-
+    <string name="downloading">下載中</string>
     <!-- common text -->
     <string name="not_found">目前沒有資料，請重新整理</string>
 

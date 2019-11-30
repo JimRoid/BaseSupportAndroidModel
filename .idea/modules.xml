@@ -5,6 +5,7 @@
       <module fileurl="file://$PROJECT_DIR$/BaseSupportAndroidModel.iml" filepath="$PROJECT_DIR$/BaseSupportAndroidModel.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
       <module fileurl="file://$PROJECT_DIR$/app-drawer/app-drawer.iml" filepath="$PROJECT_DIR$/app-drawer/app-drawer.iml" />
+      <module fileurl="file://$PROJECT_DIR$/app-http/app-http.iml" filepath="$PROJECT_DIR$/app-http/app-http.iml" />
       <module fileurl="file://$PROJECT_DIR$/app-tab/app-tab.iml" filepath="$PROJECT_DIR$/app-tab/app-tab.iml" />
       <module fileurl="file://$PROJECT_DIR$/ble/ble.iml" filepath="$PROJECT_DIR$/ble/ble.iml" />
       <module fileurl="file://$PROJECT_DIR$/ble-spp/ble-spp.iml" filepath="$PROJECT_DIR$/ble-spp/ble-spp.iml" />

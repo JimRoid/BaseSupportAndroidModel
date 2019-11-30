@@ -2,7 +2,8 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/black">
 
     <com.easyapp.lib.touchView.TouchImageView
         android:id="@+id/ivTouch"
@@ -10,13 +11,32 @@
         android:layout_height="match_parent"
         android:layout_gravity="center" />
 
-    <com.easyapp.lib.widget.anim.CircularProgressView
-        android:id="@+id/loading"
-        android:layout_width="48dp"
-        android:layout_height="48dp"
+    <ProgressBar
+        android:id="@+id/progressBar"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
         android:layout_gravity="center"
-        app:cpv_animAutostart="true"
-        app:cpv_color="@color/lightBlue"
-        app:cpv_indeterminate="true" />
+        android:background="@drawable/circle_shape"
+        android:indeterminate="false"
+        android:max="100"
+        android:progressDrawable="@drawable/circular_progress_bar" />
+
+    <FrameLayout
+        android:id="@+id/flMenu"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:layout_gravity="top"
+        android:background="#55EEEEEE">
+
+        <ImageView
+            android:id="@+id/ivDownload"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_gravity="end|center_vertical"
+            android:layout_marginEnd="@dimen/activity_horizontal_margin"
+            android:src="@drawable/ic_download" />
+
+    </FrameLayout>
 
 </FrameLayout>

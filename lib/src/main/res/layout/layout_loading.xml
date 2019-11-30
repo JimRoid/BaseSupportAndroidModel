@@ -7,13 +7,10 @@
     android:background="@null">
 
 
-    <com.easyapp.lib.widget.anim.CircularProgressView
+    <ProgressBar
         android:id="@+id/progressView"
         android:layout_width="60dp"
         android:layout_height="60dp"
-        android:layout_gravity="center"
-        app:cpv_animAutostart="true"
-        app:cpv_color="@color/white"
-        app:cpv_indeterminate="true" />
+        android:layout_gravity="center" />
 
 </FrameLayout>
