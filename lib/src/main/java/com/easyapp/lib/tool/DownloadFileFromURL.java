@@ -3,6 +3,8 @@ package com.easyapp.lib.tool;
 
 import android.app.Activity;
 import android.app.ProgressDialog;
+import android.content.Intent;
+import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Environment;
 
@@ -28,6 +30,7 @@ public class DownloadFileFromURL extends AsyncTask<String, String, String> {
 
     private WeakReference<Activity> activityWeakReference;
     private ProgressDialog mDialog;
+    private File file;
 
     public static void Download(Activity activity, String url) {
         new DownloadFileFromURL(activity).execute(url);
@@ -81,7 +84,7 @@ public class DownloadFileFromURL extends AsyncTask<String, String, String> {
             InputStream input = new BufferedInputStream(urs.openStream(), 8192);
 
             // Output stream to write file
-            File file = new File(DIR + filename);
+            file = new File(DIR + filename);
 
             if (file.exists()) {
                 file.delete();
@@ -152,6 +155,10 @@ public class DownloadFileFromURL extends AsyncTask<String, String, String> {
     protected void onPostExecute(String file_url) {
         try {
             mDialog.dismiss();
+            Intent intent = new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE);
+            Uri uri = Uri.fromFile(file);
+            intent.setData(uri);
+            activityWeakReference.get().sendBroadcast(intent);
         } catch (Exception e) {
             e.printStackTrace();
         }
