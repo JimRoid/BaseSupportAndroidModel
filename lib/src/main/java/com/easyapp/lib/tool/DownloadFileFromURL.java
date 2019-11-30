@@ -24,7 +24,7 @@ import java.net.URLConnection;
 public class DownloadFileFromURL extends AsyncTask<String, String, String> {
 
     private final static String SDCard = Environment.getExternalStorageDirectory().getPath() + "/";
-    private final static String DIR = SDCard + "/Download";
+    private final static String DIR = SDCard + "Download/";
 
     private WeakReference<Activity> activityWeakReference;
     private ProgressDialog mDialog;
@@ -124,7 +124,6 @@ public class DownloadFileFromURL extends AsyncTask<String, String, String> {
      */
     protected void onProgressUpdate(String... progress) {
         try {
-            //TODO 測試用的
             if (mDialog == null) {
                 mDialog = new ProgressDialog(activityWeakReference.get());
             }
