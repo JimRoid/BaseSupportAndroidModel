@@ -23,6 +23,11 @@
             android:progress="50"
             android:progressDrawable="@drawable/circular_progress_bar" />
 
+        <TextView
+            android:id="@+id/tvProgress"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
         <Button
             android:id="@+id/btSelect"
             android:layout_width="wrap_content"

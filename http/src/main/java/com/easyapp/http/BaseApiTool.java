@@ -2,10 +2,14 @@ package com.easyapp.http;
 
 import android.content.Context;
 import android.util.Log;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.easyapp.http.listener.EasyApiCallback;
 import com.easyapp.http.model.ResponseBase;
+import com.easyapp.http.upload.OnUploadListener;
+import com.easyapp.http.upload.ProgressInfo;
+import com.easyapp.http.upload.UploadInterceptor;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
@@ -33,22 +37,53 @@ public abstract class BaseApiTool<TServices> {
     protected OkHttpClient.Builder httpClient;
     protected TServices services;
     protected Class<TServices> typeClass;
+    protected ProgressBar progressBar;
+    protected OnUploadListener uploadListener;
 
     public BaseApiTool(Context context, Class<TServices> typeClass) {
         super();
         setContext(context);
         setTypeClass(typeClass);
-        initHttpClient();
+        initProgress();
         Utils.validateServiceInterface(typeClass);
+
+
+        httpClient = new OkHttpClient.Builder();
+        // 重跑 api 的初始化
+        httpClient.addInterceptor(new RetryInterceptor(getTotalRetries()));
+        //設定timeout 值
+        httpClient.connectTimeout(getConnectTimeOutSeconds(), TimeUnit.SECONDS);
+        httpClient.readTimeout(getConnectTimeOutSeconds(), TimeUnit.SECONDS);
+        //上傳timeout 值
+        httpClient.writeTimeout(getWriteTimeOutSeconds(), TimeUnit.SECONDS);
+        httpClient.addNetworkInterceptor(new UploadInterceptor(new OnUploadListener() {
+            @Override
+            public void onUpLoadProgress(ProgressInfo info) {
+                if (uploadListener != null) {
+                    uploadListener.onUpLoadProgress(info);
+                }
+            }
+
+            @Override
+            public void onUploadGetContentLengthFail(ProgressInfo info) {
+                if (uploadListener != null) {
+                    uploadListener.onUploadGetContentLengthFail(info);
+                }
+            }
+        }));
 
         Gson gson = new GsonBuilder().serializeNulls().create();
         retrofit = new Retrofit.Builder()
                 .baseUrl(initUrl())
-                .client(getOkHttpClient())
+                .client(httpClient.build())
                 .addConverterFactory(GsonConverterFactory.create(gson))
                 .addConverterFactory(ScalarsConverterFactory.create())
                 .build();
         services = retrofit.create(typeClass);
+    }
+
+    private void initProgress() {
+        progressBar = new ProgressBar(getContext());
     }
 
     public void setServices(TServices services) {
@@ -100,28 +135,12 @@ public abstract class BaseApiTool<TServices> {
         }
     }
 
-    /**
-     * 初始化ok http
-     */
-    private void initHttpClient() {
-        httpClient = new OkHttpClient.Builder();
-        // 重跑 api 的初始化
-        httpClient.addInterceptor(new RetryInterceptor(getTotalRetries()));
-
-        //設定timeout 值
-        httpClient.connectTimeout(getConnectTimeOutSeconds(), TimeUnit.SECONDS);
-        httpClient.readTimeout(getConnectTimeOutSeconds(), TimeUnit.SECONDS);
-
-        //上傳timeout 值
-        httpClient.writeTimeout(getWriteTimeOutSeconds(), TimeUnit.SECONDS);
+    public OnUploadListener getUploadListener() {
+        return uploadListener;
     }
 
-    private OkHttpClient getOkHttpClient() {
-        return httpClient.build();
-    }
-
-    protected OkHttpClient.Builder getHttpClient() {
-        return httpClient;
+    public void setUploadListener(OnUploadListener uploadListener) {
+        this.uploadListener = uploadListener;
     }
 
     /**
@@ -161,7 +180,6 @@ public abstract class BaseApiTool<TServices> {
     protected <T> void runCall(Call<T> call, EasyApiCallback<T> easyApiCallback) {
         call.enqueue(new initCallback<>(easyApiCallback));
     }
-
 
 
     protected class initCallback<T> implements retrofit2.Callback<T> {
