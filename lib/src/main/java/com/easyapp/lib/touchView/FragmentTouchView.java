@@ -102,7 +102,7 @@ public class FragmentTouchView extends Fragment {
         }
 
         if (path.contains("http") || path.contains("/storage")) {
-            new GlideImageLoader(touchImageView, progressBar).load(path);
+            new GlideImageLoader(touchImageView, progressBar).load(path, new RequestOptions());
             if (path.contains("http")) {
                 ivDownload.setOnClickListener(new View.OnClickListener() {
                     @Override

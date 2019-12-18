@@ -12,6 +12,7 @@ import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.bumptech.glide.Glide;
+import com.easyapp.http.VersionAPI;
 import com.easyapp.http.listener.EasyApiCallback;
 import com.easyapp.http.upload.OnUploadListener;
 import com.easyapp.http.upload.ProgressInfo;
@@ -29,6 +30,7 @@ public class MainActivity extends AppCompatActivity {
     private ImageView imageView;
     private TextView tvProgress;
     private Button btUpload;
+    private Button btVersionCheck;
     private Button btSelect;
     private ProgressBar progressBar;
     private ApiTool apiTool;
@@ -52,6 +54,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        btVersionCheck = findViewById(R.id.btVersionCheck);
         tvProgress = findViewById(R.id.tvProgress);
         progressBar = findViewById(R.id.progressBar);
         imageView = findViewById(R.id.ivPicture);
@@ -68,6 +71,12 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 onUpload();
+            }
+        });
+        btVersionCheck.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                CheckVersion.Check(MainActivity.this, "com.pearlabyss.blackdesertm.tw2");
             }
         });
     }

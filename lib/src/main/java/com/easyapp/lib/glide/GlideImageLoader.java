@@ -32,8 +32,8 @@ public class GlideImageLoader {
 
     public void load(final String url) {
         RequestOptions options = new RequestOptions()
-                .centerCrop()
-                .priority(Priority.HIGH);
+                .centerCrop();
+//                .priority(Priority.HIGH);
         load(url, options);
     }
 
