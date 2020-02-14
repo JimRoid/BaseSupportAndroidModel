@@ -518,7 +518,12 @@ public class MultiImageSelectorFragment extends Fragment implements EasyPermissi
                         }
                         if (!hasFolderGened) {
                             // 取得文件名稱
-                            File folderFile = new File(path).getParentFile();
+                            File folderFile = null;
+                            try {
+                                folderFile = new File(path).getParentFile();
+                            } catch (Exception e) {
+                                e.printStackTrace();
+                            }
                             if (folderFile != null && folderFile.exists()) {
                                 String fp = folderFile.getAbsolutePath();
                                 Folder f = getFolderByPath(fp);

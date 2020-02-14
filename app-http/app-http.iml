@@ -144,8 +144,5 @@
     <orderEntry type="module" module-name="lib" />
     <orderEntry type="module" module-name="http" />
     <orderEntry type="module" module-name="image" />
-    <orderEntry type="module" module-name="lib" />
-    <orderEntry type="module" module-name="http" />
-    <orderEntry type="module" module-name="image" />
   </component>
 </module>
