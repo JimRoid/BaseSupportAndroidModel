@@ -1,12 +1,9 @@
 package com.easyapp.lib.menu;
 
-import android.app.Activity;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.easyapp.lib.R;
@@ -17,9 +14,9 @@ import com.easyapp.lib.R;
  */
 public class MenuView {
 
-    private View menu;
-    private ImageView imageView;
-    private TextView textView;
+    protected View menu;
+    protected ImageView imageView;
+    protected TextView textView;
     protected Context context;
 
     public MenuView(Context context) {
@@ -64,4 +61,23 @@ public class MenuView {
         return menu;
     }
 
+    public void setMenu(View menu) {
+        this.menu = menu;
+    }
+
+    public ImageView getImageView() {
+        return imageView;
+    }
+
+    public void setImageView(ImageView imageView) {
+        this.imageView = imageView;
+    }
+
+    public TextView getTextView() {
+        return textView;
+    }
+
+    public void setTextView(TextView textView) {
+        this.textView = textView;
+    }
 }

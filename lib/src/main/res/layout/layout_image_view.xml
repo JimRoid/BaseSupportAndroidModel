@@ -4,15 +4,6 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
-    <!--    <com.easyapp.lib.widget.anim.CircularProgressView-->
-    <!--        android:id="@+id/progressView"-->
-    <!--        android:layout_width="48dp"-->
-    <!--        android:layout_height="48dp"-->
-    <!--        android:layout_gravity="center"-->
-    <!--        app:cpv_animAutostart="true"-->
-    <!--        app:cpv_color="@color/lightBlue"-->
-    <!--        app:cpv_indeterminate="true" />-->
-
     <ImageView
         android:id="@+id/ivPicture"
         android:layout_width="match_parent"

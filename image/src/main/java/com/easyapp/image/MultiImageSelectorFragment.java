@@ -256,7 +256,8 @@ public class MultiImageSelectorFragment extends Fragment implements EasyPermissi
                         mFolderPopupWindow.dismiss();
 
                         if (index == 0) {
-                            getActivity().getSupportLoaderManager().restartLoader(LOADER_ALL, null, mLoaderCallback);
+                            LoaderManager.getInstance(MultiImageSelectorFragment.this).restartLoader(LOADER_ALL, null, mLoaderCallback);
+//                            getActivity().getSupportLoaderManager().restartLoader(LOADER_ALL, null, mLoaderCallback);
                             mCategoryText.setText(R.string.folder_all);
                             if (mIsShowCamera) {
                                 mImageAdapter.setShowCamera(true);
@@ -306,8 +307,8 @@ public class MultiImageSelectorFragment extends Fragment implements EasyPermissi
             return;
         }
         // 首次載入所有圖片
-        //new LoadImageTask().execute();
-        getActivity().getSupportLoaderManager().initLoader(LOADER_ALL, null, mLoaderCallback);
+//        getActivity().getSupportLoaderManager().initLoader(LOADER_ALL, null, mLoaderCallback);
+        LoaderManager.getInstance(this).initLoader(LOADER_ALL, null, mLoaderCallback);
     }
 
     @Override
@@ -472,14 +473,18 @@ public class MultiImageSelectorFragment extends Fragment implements EasyPermissi
 
         @Override
         public Loader<Cursor> onCreateLoader(int id, Bundle args) {
+            if (getContext() == null) {
+                return null;
+            }
+
             if (id == LOADER_ALL) {
-                CursorLoader cursorLoader = new CursorLoader(getActivity(),
+                CursorLoader cursorLoader = new CursorLoader(getContext(),
                         MediaStore.Images.Media.EXTERNAL_CONTENT_URI, IMAGE_PROJECTION,
                         IMAGE_PROJECTION[4] + ">0 AND " + IMAGE_PROJECTION[3] + "=? OR " + IMAGE_PROJECTION[3] + "=? ",
                         new String[]{"image/jpeg", "image/png"}, IMAGE_PROJECTION[2] + " DESC");
                 return cursorLoader;
             } else if (id == LOADER_CATEGORY) {
-                CursorLoader cursorLoader = new CursorLoader(getActivity(),
+                CursorLoader cursorLoader = new CursorLoader(getContext(),
                         MediaStore.Images.Media.EXTERNAL_CONTENT_URI, IMAGE_PROJECTION,
                         IMAGE_PROJECTION[4] + ">0 AND " + IMAGE_PROJECTION[0] + " like '%" + args.getString("path") + "%'",
                         null, IMAGE_PROJECTION[2] + " DESC");

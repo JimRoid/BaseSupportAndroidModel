@@ -12,7 +12,6 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 
 import com.easyapp.image.MultiImageSelectorActivity;
-import com.easyapp.lib.fragment.BaseFragment;
 import com.easyapp.lib.fragment.BaseToolbarFragment;
 import com.easyapp.lib.menu.MenuView;
 import com.easyapp.sample.R;

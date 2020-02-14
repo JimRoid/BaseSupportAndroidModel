@@ -8,14 +8,12 @@ import android.widget.ProgressBar;
 import androidx.annotation.Nullable;
 
 import com.bumptech.glide.Glide;
-import com.bumptech.glide.Priority;
 import com.bumptech.glide.load.DataSource;
 import com.bumptech.glide.load.engine.GlideException;
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions;
 import com.bumptech.glide.request.RequestListener;
 import com.bumptech.glide.request.RequestOptions;
 import com.bumptech.glide.request.target.Target;
-import com.orhanobut.logger.Logger;
 
 
 public class GlideImageLoader {
@@ -47,10 +45,7 @@ public class GlideImageLoader {
             @Override
             public void onProgress(long bytesRead, long expectedLength) {
                 if (mProgressBar != null) {
-                    Logger.d("progress:" + (int) (100 * bytesRead / expectedLength));
                     mProgressBar.setProgress((int) (100 * bytesRead / expectedLength));
-                } else {
-                    Logger.d("mProgressBar == null");
                 }
             }
 
@@ -63,7 +58,6 @@ public class GlideImageLoader {
         Glide.with(mImageView.getContext())
                 .load(url)
                 .transition(DrawableTransitionOptions.withCrossFade())
-                .apply(options.skipMemoryCache(true))
                 .listener(new RequestListener<Drawable>() {
 
                     @Override
