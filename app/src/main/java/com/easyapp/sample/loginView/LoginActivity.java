@@ -8,6 +8,6 @@ import com.easyapp.lib.activity.BaseToolbarActivity;
 public class LoginActivity extends BaseToolbarActivity {
     @Override
     protected void initial() {
-        ReplaceFragment(new Login(), "");
+        replaceFragment(new Login());
     }
 }

@@ -13,21 +13,11 @@ import com.google.android.material.tabs.TabLayout;
 
 import java.util.ArrayList;
 
-public abstract class BaseTabActivity extends BaseToolbarActivity implements FragNavController.TransactionListener, FragNavController.RootFragmentListener {
-
-    protected FragmentHistory fragmentHistory;
-    protected FragNavController fragNavController;
+public abstract class BaseTabActivity extends BaseToolbarActivity  {
 
     protected TabLayout tabLayout;
-
     protected ArrayList<String> TABS;
-    protected ArrayList<Fragment> fragments;
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        initVar(savedInstanceState);
-    }
 
     @Override
     protected int getLayoutId() {
@@ -37,7 +27,6 @@ public abstract class BaseTabActivity extends BaseToolbarActivity implements Fra
     @Override
     protected void initial() {
         TABS = new ArrayList<>();
-        fragments = new ArrayList<>();
         tabLayout = findViewById(R.id.tabLayout);
         initTab();
         initTabListener();
@@ -70,13 +59,6 @@ public abstract class BaseTabActivity extends BaseToolbarActivity implements Fra
         fragNavController.switchTab(position);
     }
 
-    protected void initVar(Bundle savedInstanceState) {
-        fragmentHistory = new FragmentHistory();
-        fragNavController = FragNavController.newBuilder(savedInstanceState, getSupportFragmentManager(), containerId)
-                .transactionListener(this)
-                .rootFragmentListener(this, TABS.size())
-                .build();
-    }
 
     protected void addTab(String title, Fragment fragment) {
         TabLayout.Tab tab = tabLayout.newTab();
@@ -162,19 +144,10 @@ public abstract class BaseTabActivity extends BaseToolbarActivity implements Fra
     }
 
     @Override
-    public void AddFragment(Fragment fragment, String anim) {
-        if (fragNavController != null) {
-            fragNavController.pushFragment(fragment);
-        }
-    }
-
-    @Override
     public void onBackPressed() {
-
         if (!fragNavController.isRootFragment()) {
             fragNavController.popFragment();
         } else {
-
             if (fragmentHistory.isEmpty()) {
                 super.onBackPressed();
             } else {
@@ -195,7 +168,6 @@ public abstract class BaseTabActivity extends BaseToolbarActivity implements Fra
                     fragmentHistory.emptyStack();
                 }
             }
-
         }
     }
 }

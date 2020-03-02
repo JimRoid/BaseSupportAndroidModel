@@ -29,7 +29,7 @@ public class DiscussList extends BaseList<DiscussList.ViewHolder, EntityDiscuss.
 
     private ApiTool apiTool;
 
-    public static DiscussList instance() {
+    public static DiscussList getInstance() {
         return new DiscussList();
     }
 
@@ -55,7 +55,6 @@ public class DiscussList extends BaseList<DiscussList.ViewHolder, EntityDiscuss.
             @Override
             public void onComplete() {
                 cancelLoading();
-                addAll(Collections.<EntityDiscuss.DataBean>emptyList());
             }
 
             @Override
@@ -90,6 +89,8 @@ public class DiscussList extends BaseList<DiscussList.ViewHolder, EntityDiscuss.
             @Override
             public void onClick(View v) {
                 Logger.d("TEST CARD VIEW ONCLICK");
+                addFragment(DiscussList.getInstance());
+//                addFragment(BlankFragmentText.getInstance(holder.getAdapterPosition()));
             }
         });
 

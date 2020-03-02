@@ -8,10 +8,12 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.appcompat.widget.Toolbar;
+import androidx.fragment.app.Fragment;
 
 import com.easyapp.lib.R;
 import com.easyapp.lib.backpressHelper.BackHandlerHelper;
 import com.easyapp.lib.callback.iToolbarCallback;
+import com.easyapp.lib.tab.FragNavController;
 import com.google.android.material.appbar.AppBarLayout;
 
 /**
@@ -31,9 +33,33 @@ public abstract class BaseToolbarActivity extends BaseFragmentActivity implement
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(getLayoutId());
-        setContainer(R.id.container);
         initView();
         initial();
+    }
+
+    @Override
+    protected int getNumberOfTabs() {
+        return 1;
+    }
+
+    @Override
+    public Fragment getRootFragment(int index) {
+        return new Fragment();
+    }
+
+    @Override
+    public void onTabTransaction(Fragment fragment, int index) {
+
+    }
+
+    @Override
+    public void onFragmentTransaction(Fragment fragment, FragNavController.TransactionType transactionType) {
+
+    }
+
+    @Override
+    protected int getContainerId() {
+        return R.id.container;
     }
 
     protected int getLayoutId() {
@@ -56,7 +82,7 @@ public abstract class BaseToolbarActivity extends BaseFragmentActivity implement
             }
         });
 
-        container = findViewById(containerId);
+        container = findViewById(getContainerId());
         ivTitle = toolbar.findViewById(R.id.ivTitle);
         tvTitle = toolbar.findViewById(R.id.tvTitle);
         flRight = toolbar.findViewById(R.id.flRight);
@@ -102,12 +128,12 @@ public abstract class BaseToolbarActivity extends BaseFragmentActivity implement
     }
 
     @Override
-    public void OnAddFragment() {
+    public void onAddFragment() {
         showBack(true);
     }
 
     @Override
-    public void OnReplaceFragment() {
+    public void onReplaceFragment() {
         showBack(false);
     }
 
@@ -146,6 +172,7 @@ public abstract class BaseToolbarActivity extends BaseFragmentActivity implement
     public void hideToolbar() {
         toolbar.setVisibility(View.GONE);
     }
+
 
 
     @Override

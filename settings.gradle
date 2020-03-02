@@ -1,1 +1,1 @@
-include ':lib', ':app', ':file', ':http', ':image', ':database', ':ble', ':sample-ble', ':app-tab', ':kotlin-sample', ':ble-spp', ':sample-ble-spp', ':app-drawer', ':app-http'
+include ':lib', ':app', ':file', ':http', ':image', ':database', ':ble', ':sample-ble', ':app-tab', ':ble-spp', ':sample-ble-spp', ':app-drawer', ':app-http'

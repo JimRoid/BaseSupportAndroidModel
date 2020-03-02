@@ -2,21 +2,20 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/BaseSupportAndroidModel.iml" filepath="$PROJECT_DIR$/BaseSupportAndroidModel.iml" />
-      <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
-      <module fileurl="file://$PROJECT_DIR$/app-drawer/app-drawer.iml" filepath="$PROJECT_DIR$/app-drawer/app-drawer.iml" />
-      <module fileurl="file://$PROJECT_DIR$/app-http/app-http.iml" filepath="$PROJECT_DIR$/app-http/app-http.iml" />
-      <module fileurl="file://$PROJECT_DIR$/app-tab/app-tab.iml" filepath="$PROJECT_DIR$/app-tab/app-tab.iml" />
-      <module fileurl="file://$PROJECT_DIR$/ble/ble.iml" filepath="$PROJECT_DIR$/ble/ble.iml" />
-      <module fileurl="file://$PROJECT_DIR$/ble-spp/ble-spp.iml" filepath="$PROJECT_DIR$/ble-spp/ble-spp.iml" />
-      <module fileurl="file://$PROJECT_DIR$/database/database.iml" filepath="$PROJECT_DIR$/database/database.iml" />
-      <module fileurl="file://$PROJECT_DIR$/file/file.iml" filepath="$PROJECT_DIR$/file/file.iml" />
-      <module fileurl="file://$PROJECT_DIR$/http/http.iml" filepath="$PROJECT_DIR$/http/http.iml" />
-      <module fileurl="file://$PROJECT_DIR$/image/image.iml" filepath="$PROJECT_DIR$/image/image.iml" />
-      <module fileurl="file://$PROJECT_DIR$/kotlin-sample/kotlin-sample.iml" filepath="$PROJECT_DIR$/kotlin-sample/kotlin-sample.iml" />
-      <module fileurl="file://$PROJECT_DIR$/lib/lib.iml" filepath="$PROJECT_DIR$/lib/lib.iml" />
-      <module fileurl="file://$PROJECT_DIR$/sample-ble/sample-ble.iml" filepath="$PROJECT_DIR$/sample-ble/sample-ble.iml" />
-      <module fileurl="file://$PROJECT_DIR$/sample-ble-spp/sample-ble-spp.iml" filepath="$PROJECT_DIR$/sample-ble-spp/sample-ble-spp.iml" />
+      <module fileurl="file://$PROJECT_DIR$/BaseSupportAndroidModel.iml" filepath="$PROJECT_DIR$/BaseSupportAndroidModel.iml" group="BaseSupportAndroidModel" />
+      <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" group="BaseSupportAndroidModel/app" />
+      <module fileurl="file://$PROJECT_DIR$/app-drawer/app-drawer.iml" filepath="$PROJECT_DIR$/app-drawer/app-drawer.iml" group="BaseSupportAndroidModel/app-drawer" />
+      <module fileurl="file://$PROJECT_DIR$/app-http/app-http.iml" filepath="$PROJECT_DIR$/app-http/app-http.iml" group="BaseSupportAndroidModel/app-http" />
+      <module fileurl="file://$PROJECT_DIR$/app-tab/app-tab.iml" filepath="$PROJECT_DIR$/app-tab/app-tab.iml" group="BaseSupportAndroidModel/app-tab" />
+      <module fileurl="file://$PROJECT_DIR$/ble/ble.iml" filepath="$PROJECT_DIR$/ble/ble.iml" group="BaseSupportAndroidModel/ble" />
+      <module fileurl="file://$PROJECT_DIR$/ble-spp/ble-spp.iml" filepath="$PROJECT_DIR$/ble-spp/ble-spp.iml" group="BaseSupportAndroidModel/ble-spp" />
+      <module fileurl="file://$PROJECT_DIR$/database/database.iml" filepath="$PROJECT_DIR$/database/database.iml" group="BaseSupportAndroidModel/database" />
+      <module fileurl="file://$PROJECT_DIR$/file/file.iml" filepath="$PROJECT_DIR$/file/file.iml" group="BaseSupportAndroidModel/file" />
+      <module fileurl="file://$PROJECT_DIR$/http/http.iml" filepath="$PROJECT_DIR$/http/http.iml" group="BaseSupportAndroidModel/http" />
+      <module fileurl="file://$PROJECT_DIR$/image/image.iml" filepath="$PROJECT_DIR$/image/image.iml" group="BaseSupportAndroidModel/image" />
+      <module fileurl="file://$PROJECT_DIR$/lib/lib.iml" filepath="$PROJECT_DIR$/lib/lib.iml" group="BaseSupportAndroidModel/lib" />
+      <module fileurl="file://$PROJECT_DIR$/sample-ble/sample-ble.iml" filepath="$PROJECT_DIR$/sample-ble/sample-ble.iml" group="BaseSupportAndroidModel/sample-ble" />
+      <module fileurl="file://$PROJECT_DIR$/sample-ble-spp/sample-ble-spp.iml" filepath="$PROJECT_DIR$/sample-ble-spp/sample-ble-spp.iml" group="BaseSupportAndroidModel/sample-ble-spp" />
     </modules>
   </component>
 </project>

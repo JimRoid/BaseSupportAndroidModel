@@ -3,166 +3,97 @@ package com.easyapp.lib.activity;
 
 import android.os.Bundle;
 
-import android.widget.Toast;
-
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
 
-import com.easyapp.lib.R;
-import com.easyapp.lib.callback.iFragmentTransactionListener;
+import com.easyapp.lib.event.MessageAddFragment;
+import com.easyapp.lib.event.MessageReplaceFragment;
+import com.easyapp.lib.tab.FragNavController;
+import com.easyapp.lib.tab.FragmentHistory;
+
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
+
+import java.util.ArrayList;
 
 /**
  * * 簡單可支援fragment 切換的 activity
  */
-public abstract class BaseFragmentActivity extends BaseLoadingActivity implements iFragmentTransactionListener {
+public abstract class BaseFragmentActivity extends BaseLoadingActivity implements FragNavController.TransactionListener, FragNavController.RootFragmentListener {
 
-    protected final static String FADE = "FADE";
-    protected final static String SLIDE = "SLIDE";
-    protected final static String SLIDE_UP = "SLIDE_UP";
-
-
-    protected int containerId = 0;
-    protected FragmentManager fragmentManager;
+    protected FragmentHistory fragmentHistory;
+    protected FragNavController fragNavController;
+    protected ArrayList<Fragment> fragments;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        fragmentManager = getSupportFragmentManager();
+        initVar(savedInstanceState);
     }
-
-    protected void setContainer(int container_id) {
-        this.containerId = container_id;
-    }
-
 
     @Override
-    public void AddFragment(Fragment fragment) {
-        AddFragment(fragment, SLIDE);
+    protected void onStart() {
+        super.onStart();
+        EventBus.getDefault().register(this);
     }
 
-
     @Override
-    public void AddFragment(Fragment fragment, String anim) {
-        if (containerId == 0) {
-            Toast.makeText(this, "Please Set containerId ID", Toast.LENGTH_SHORT).show();
-            return;
+    protected void onStop() {
+        super.onStop();
+        EventBus.getDefault().unregister(this);
+    }
+
+    //fragment 切換id
+    protected abstract int getContainerId();
+
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void onMessageAddFragment(MessageAddFragment event) {
+        addFragment(event.getFragment());
+    }
+
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void onMessageReplaceFragment(MessageReplaceFragment event) {
+        replaceFragment(event.getFragment());
+    }
+
+    protected void initVar(Bundle savedInstanceState) {
+        fragments = new ArrayList<>();
+        fragmentHistory = new FragmentHistory();
+        fragNavController = FragNavController.newBuilder(savedInstanceState, getSupportFragmentManager(), getContainerId())
+                .transactionListener(this)
+                .rootFragmentListener(this, getNumberOfTabs())
+                .build();
+    }
+
+    protected abstract int getNumberOfTabs();
+
+    protected void addFragment(Fragment fragment) {
+        if (fragNavController != null) {
+            fragNavController.pushFragment(fragment);
         }
-        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        onAddFragment();
+    }
 
-        if (anim.equals(SLIDE)) {
-            fragmentTransaction.setCustomAnimations(
-                    R.animator.fragment_slide_left_enter,
-                    R.animator.fragment_slide_left_exit,
-                    R.animator.fragment_slide_right_enter,
-                    R.animator.fragment_slide_right_exit);
-        } else if (anim.equals(SLIDE_UP)) {
-            fragmentTransaction.setCustomAnimations(
-                    R.animator.slide_fragment_in,
-                    R.animator.slide_fragment_out);
-        } else if (anim.equals(FADE)) {
-            fragmentTransaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
-        } else if (anim.equals("")) {
-
+    protected void replaceFragment(Fragment fragment) {
+        if (fragNavController != null) {
+            fragNavController.clearStack();
+            fragNavController.replaceFragment(fragment);
         }
-        fragmentTransaction.replace(containerId, fragment, "main").addToBackStack("main_interface").commitAllowingStateLoss();
-        OnAddFragment();
+        onReplaceFragment();
     }
 
-    @Override
-    public void AddFragmentZoom(Fragment fragment) {
-        fragmentManager.beginTransaction().setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE).replace(containerId, fragment, "main").addToBackStack("main_interface").commitAllowingStateLoss();
-        OnAddFragment();
-    }
+    public abstract void onAddFragment();
+
+    public abstract void onReplaceFragment();
 
     @Override
-    public void AddFragmentUp(Fragment fragment) {
-        if (containerId == 0) {
-            Toast.makeText(this, "Please Set containerId ID", Toast.LENGTH_SHORT).show();
-            return;
-        }
-        Fragment originalFragment = fragmentManager.findFragmentById(containerId);
-        if (!fragment.getClass().equals(originalFragment.getClass())) {
-            fragmentManager.beginTransaction().setCustomAnimations(
-                    R.animator.slide_fragment_in,
-                    R.animator.slide_fragment_out,
-                    R.animator.slide_fragment_in,
-                    R.animator.slide_fragment_out)
-                    .replace(containerId, fragment, "main")
-                    .addToBackStack("main_interface").commitAllowingStateLoss();
-        }
-        OnAddFragment();
-    }
-
-
-    @Override
-    public void ReplaceFragment(Fragment fragment) {
-        ReplaceFragment(fragment, SLIDE);
-    }
-
-
-    @Override
-    public void ReplaceFragment(Fragment fragment, String anim) {
-        if (containerId == 0) {
-            Toast.makeText(this, "Please Set containerId ID", Toast.LENGTH_SHORT).show();
-            return;
-        }
-        PopAllBackStack();
-        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-        if (anim.equals(SLIDE)) {
-            fragmentTransaction.setCustomAnimations(
-                    R.animator.fragment_slide_left_enter,
-                    R.animator.fragment_slide_left_exit,
-                    R.animator.fragment_slide_right_exit,
-                    R.animator.fragment_slide_right_enter);
-        } else if (anim.equals(SLIDE_UP)) {
-            fragmentTransaction.setCustomAnimations(
-                    R.animator.slide_fragment_in,
-                    R.animator.slide_fragment_out,
-                    R.animator.slide_fragment_in,
-                    R.animator.slide_fragment_out);
-        } else if (anim.equals(FADE)) {
-            fragmentTransaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
-        } else if (anim.equals("")) {
-
-        }
-        fragmentTransaction.replace(containerId, fragment, "main").disallowAddToBackStack().commitAllowingStateLoss();
-        OnReplaceFragment();
-    }
-
-
-    @Override
-    public void PopBackStack() {
-        fragmentManager.popBackStack();
-    }
-
-    @Override
-    public void PopBackStack(int i) {
-        for (int j = 0; j < i; j++) {
-            int backStackId = fragmentManager.getBackStackEntryAt(j).getId();
-            fragmentManager.popBackStack(backStackId, FragmentManager.POP_BACK_STACK_INCLUSIVE);
+    public void onBackPressed() {
+        if (!fragNavController.isRootFragment()) {
+            fragNavController.popFragment();
+        } else {
+            super.onBackPressed();
         }
     }
-
-    @Override
-    public void PopAllBackStack() {
-        int backStackCount = fragmentManager.getBackStackEntryCount();
-        for (int i = 0; i < backStackCount; i++) {
-            int backStackId = fragmentManager.getBackStackEntryAt(i).getId();
-            fragmentManager.popBackStack(backStackId, FragmentManager.POP_BACK_STACK_INCLUSIVE);
-        }
-    }
-
-    @Override
-    public void OnAddFragment() {
-        //..加入 fragment後要執行的動作
-    }
-
-    @Override
-    public void OnReplaceFragment() {
-        //..切換 fragment後要執行的動作
-    }
-
 
 }

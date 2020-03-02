@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="GradleMigrationSettings" migrationVersion="1" />
   <component name="GradleSettings">
     <option name="linkedExternalProjectsSettings">
       <GradleProjectSettings>
-        <compositeConfiguration>
-          <compositeBuild compositeDefinitionSource="SCRIPT" />
-        </compositeConfiguration>
+        <option name="delegatedBuild" value="false" />
+        <option name="testRunner" value="PLATFORM" />
         <option name="distributionType" value="DEFAULT_WRAPPED" />
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
         <option name="modules">
@@ -13,6 +13,7 @@
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/app" />
             <option value="$PROJECT_DIR$/app-drawer" />
+            <option value="$PROJECT_DIR$/app-http" />
             <option value="$PROJECT_DIR$/app-tab" />
             <option value="$PROJECT_DIR$/ble" />
             <option value="$PROJECT_DIR$/ble-spp" />
@@ -20,14 +21,12 @@
             <option value="$PROJECT_DIR$/file" />
             <option value="$PROJECT_DIR$/http" />
             <option value="$PROJECT_DIR$/image" />
-            <option value="$PROJECT_DIR$/kotlin-sample" />
             <option value="$PROJECT_DIR$/lib" />
             <option value="$PROJECT_DIR$/sample-ble" />
             <option value="$PROJECT_DIR$/sample-ble-spp" />
           </set>
         </option>
         <option name="resolveModulePerSourceSet" value="false" />
-        <option name="testRunner" value="PLATFORM" />
       </GradleProjectSettings>
     </option>
   </component>

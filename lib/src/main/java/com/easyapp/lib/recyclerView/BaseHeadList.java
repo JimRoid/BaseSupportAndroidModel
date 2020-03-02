@@ -39,6 +39,7 @@ public abstract class BaseHeadList<
     protected BaseRecyclerViewAdapter<VHead, VH, THead, T> baseRecycleViewAdapter;
     protected GridLayoutManager gridLayoutManager;
 
+
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, @Nullable Bundle savedInstanceState) {
         view = inflater.inflate(getLayoutId(), container, false);
@@ -48,7 +49,6 @@ public abstract class BaseHeadList<
         onRefresh();
         return view;
     }
-
 
     protected int getLayoutId() {
         return R.layout.layout_recycler_view;

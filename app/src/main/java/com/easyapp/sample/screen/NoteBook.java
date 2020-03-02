@@ -41,7 +41,7 @@ public class NoteBook extends BaseList<NoteBook.ViewHolder, Note> {
         menuView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                AddFragment(NoteCreate.instance());
+                addFragment(NoteCreate.instance());
             }
         });
         getRightMenu().addView(menuView.getMenu());
