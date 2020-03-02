@@ -7,6 +7,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import com.easyapp.lib.event.MessageAddFragment;
+import com.easyapp.lib.event.MessagePopFragment;
 import com.easyapp.lib.event.MessageReplaceFragment;
 import com.easyapp.lib.tab.FragNavController;
 import com.easyapp.lib.tab.FragmentHistory;
@@ -55,6 +56,11 @@ public abstract class BaseFragmentActivity extends BaseLoadingActivity implement
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void onMessageReplaceFragment(MessageReplaceFragment event) {
         replaceFragment(event.getFragment());
+    }
+
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void onMessagePopFragment(MessagePopFragment event) {
+        fragNavController.popFragments(event.getDepth());
     }
 
     protected void initVar(Bundle savedInstanceState) {

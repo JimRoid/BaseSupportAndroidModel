@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment;
 
 import com.easyapp.lib.backpressHelper.FragmentBackHandler;
 import com.easyapp.lib.event.MessageAddFragment;
+import com.easyapp.lib.event.MessagePopFragment;
 import com.easyapp.lib.event.MessageReplaceFragment;
 
 import org.greenrobot.eventbus.EventBus;
@@ -21,6 +22,10 @@ public abstract class BaseEasyFragment extends BaseFragment implements FragmentB
 
     protected void replaceFragment(Fragment fragment) {
         EventBus.getDefault().post(new MessageReplaceFragment(fragment));
+    }
+
+    protected void popFragment(int depth) {
+        EventBus.getDefault().post(new MessagePopFragment(depth));
     }
 
 
