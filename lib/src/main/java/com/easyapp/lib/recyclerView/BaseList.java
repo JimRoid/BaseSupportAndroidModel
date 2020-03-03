@@ -42,6 +42,8 @@ public abstract class BaseList<VH extends BaseRecyclerViewAdapter.ViewHolder, T>
         initView();
         initEmptyView();
         initScrollListener();
+        onViewCreated();
+        onRequestData();
         onRefresh();
         return view;
     }
