@@ -29,11 +29,10 @@ public class NoteCreate extends BaseToolbarFragment {
     EditText etTitle;
     @BindView(R.id.etContent)
     EditText etContent;
-    Unbinder unbinder;
     @BindView(R.id.btSend)
     Button btSend;
     private boolean backHandled = true;
-
+    Unbinder unbinder;
     public static NoteCreate instance() {
         return new NoteCreate();
     }
@@ -46,6 +45,8 @@ public class NoteCreate extends BaseToolbarFragment {
         unbinder = ButterKnife.bind(this, view);
         return view;
     }
+
+
 
     @Override
     public boolean onBackPressed() {

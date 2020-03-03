@@ -15,16 +15,14 @@ import java.util.List;
 /**
  * Recycler View Adapter
  */
-public class BaseRecyclerViewAdapter<VHead extends BaseRecyclerViewAdapter.ViewHolder, VH extends BaseRecyclerViewAdapter.ViewHolder, THead, T> extends RecyclerView.Adapter<BaseRecyclerViewAdapter.ViewHolder> {
+public class BaseRecyclerViewAdapter<VH extends BaseRecyclerViewAdapter.ViewHolder, T> extends RecyclerView.Adapter<VH> {
 
-    private final static int TYPE_HEADER = 0;
-    private final static int TYPE_CONTENT = 1;
-    private List<ViewHolderData<THead, T>> viewHolderDataList;
+    private List<ViewHolderData<T>> viewHolderDataList;
     private Context context;
     private RecyclerOnScrollListener recyclerOnScrollListener;
     private RecyclerViewTypeListener recyclerViewTypeListener;
-    private OnBindViewHolder<VHead, VH, THead, T> onBindViewHolder;
-    private OnCreateViewHolder<VHead, VH> onCreateViewHolder;
+    private OnBindViewHolder<VH, T> onBindViewHolder;
+    private OnCreateViewHolder<VH> onCreateViewHolder;
     private OnViewHolderLayout onViewHolderLayout;
 
 
@@ -45,7 +43,7 @@ public class BaseRecyclerViewAdapter<VHead extends BaseRecyclerViewAdapter.ViewH
         return onBindViewHolder;
     }
 
-    public void setOnBindViewHolder(OnBindViewHolder<VHead, VH, THead, T> onBindViewHolder) {
+    public void setOnBindViewHolder(OnBindViewHolder<VH, T> onBindViewHolder) {
         this.onBindViewHolder = onBindViewHolder;
     }
 
@@ -53,7 +51,7 @@ public class BaseRecyclerViewAdapter<VHead extends BaseRecyclerViewAdapter.ViewH
         return onCreateViewHolder;
     }
 
-    public void setOnCreateViewHolder(OnCreateViewHolder<VHead, VH> onCreateViewHolder) {
+    public void setOnCreateViewHolder(OnCreateViewHolder<VH> onCreateViewHolder) {
         this.onCreateViewHolder = onCreateViewHolder;
     }
 
@@ -77,7 +75,7 @@ public class BaseRecyclerViewAdapter<VHead extends BaseRecyclerViewAdapter.ViewH
 
 
     public void set(int position, T t) {
-        ViewHolderData<THead, T> viewHolderData = new ViewHolderData<>();
+        ViewHolderData<T> viewHolderData = new ViewHolderData<>();
         viewHolderData.setT(t);
         viewHolderDataList.set(position, viewHolderData);
         notifyItemChanged(position);
@@ -85,29 +83,22 @@ public class BaseRecyclerViewAdapter<VHead extends BaseRecyclerViewAdapter.ViewH
 
     public void addAll(List<T> data) {
         for (int i = 0; i < data.size(); i++) {
-            ViewHolderData<THead, T> viewHolderData = new ViewHolderData<>();
+            ViewHolderData<T> viewHolderData = new ViewHolderData<>();
             viewHolderData.setT(data.get(i));
             viewHolderDataList.add(viewHolderData);
         }
         notifyDataSetChanged();
     }
 
-    public void addHead(THead head) {
-        ViewHolderData<THead, T> viewHolderData = new ViewHolderData<>();
-        viewHolderData.setHead(head);
-        viewHolderDataList.add(viewHolderData);
-        notifyDataSetChanged();
-    }
-
     public void add(T t) {
-        ViewHolderData<THead, T> viewHolderData = new ViewHolderData<>();
+        ViewHolderData<T> viewHolderData = new ViewHolderData<>();
         viewHolderData.setT(t);
         viewHolderDataList.add(viewHolderData);
         notifyDataSetChanged();
     }
 
     public void add(int pos, T t) {
-        ViewHolderData<THead, T> viewHolderData = new ViewHolderData<>();
+        ViewHolderData<T> viewHolderData = new ViewHolderData<>();
         viewHolderData.setT(t);
         viewHolderDataList.add(pos, viewHolderData);
         notifyDataSetChanged();
@@ -128,18 +119,13 @@ public class BaseRecyclerViewAdapter<VHead extends BaseRecyclerViewAdapter.ViewH
         return getDataSize();
     }
 
-    public List<? extends ViewHolderData<THead, T>> getData() {
+    public List<? extends ViewHolderData<T>> getData() {
         return viewHolderDataList;
-    }
-
-    public THead getHead(int position) {
-        return getData().get(position).getHead();
     }
 
     public T getItem(int position) {
         return getData().get(position).getT();
     }
-
 
     public int getDataSize() {
         return viewHolderDataList.size();
@@ -160,50 +146,30 @@ public class BaseRecyclerViewAdapter<VHead extends BaseRecyclerViewAdapter.ViewH
 
     @Override
     @NonNull
-    public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public VH onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View contactView;
-        if (viewType == BaseRecyclerViewAdapter.TYPE_HEADER) {
-            contactView = LayoutInflater.from(context).inflate(onViewHolderLayout.onViewHolderLayoutHead(), parent, false);
-            return onCreateViewHolder.onCreateViewHolderHead(contactView);
-        } else {
-            contactView = LayoutInflater.from(context).inflate(onViewHolderLayout.onViewHolderLayoutContent(), parent, false);
-            return onCreateViewHolder.onCreateViewHolderContent(contactView);
-        }
+        contactView = LayoutInflater.from(context).inflate(onViewHolderLayout.onViewHolderLayoutContent(), parent, false);
+        return onCreateViewHolder.onCreateViewHolderContent(contactView);
     }
 
 
     @Override
-    @SuppressWarnings("unchecked")
-    public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull VH holder, int position) {
         if (onBindViewHolder != null) {
-            if (getItemViewType(position) == TYPE_HEADER) {
-                THead tHead = getHead(position);
-                if (tHead == null) {
-                    tHead = (THead) getItem(position);
-                }
-                onBindViewHolder.onBindViewHolderHead((VHead) holder, tHead);
-            } else {
-                onBindViewHolder.onBindViewHolderContent((VH) holder, getItem(position));
-            }
+            onBindViewHolder.onBindViewHolderContent(holder, getItem(position));
         }
     }
 
 
     public interface OnViewHolderLayout {
-        int onViewHolderLayoutHead();
-
         int onViewHolderLayoutContent();
     }
 
-    public interface OnCreateViewHolder<VHead extends BaseRecyclerViewAdapter.ViewHolder, VH extends BaseRecyclerViewAdapter.ViewHolder> {
-        VHead onCreateViewHolderHead(View view);
-
+    public interface OnCreateViewHolder<VH extends BaseRecyclerViewAdapter.ViewHolder> {
         VH onCreateViewHolderContent(View view);
     }
 
-    public interface OnBindViewHolder<VHead extends BaseRecyclerViewAdapter.ViewHolder, VH extends BaseRecyclerViewAdapter.ViewHolder, THead, T> {
-        void onBindViewHolderHead(VHead vHead, THead tHead);
-
+    public interface OnBindViewHolder<VH extends BaseRecyclerViewAdapter.ViewHolder, T> {
         void onBindViewHolderContent(VH vh, T t);
     }
 

@@ -15,7 +15,6 @@ import org.greenrobot.eventbus.EventBus;
  */
 public abstract class BaseEasyFragment extends BaseFragment implements FragmentBackHandler {
 
-
     protected void addFragment(Fragment fragment) {
         EventBus.getDefault().post(new MessageAddFragment(fragment));
     }

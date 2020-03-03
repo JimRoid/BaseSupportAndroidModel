@@ -34,7 +34,7 @@ public class DiscussList extends BaseList<DiscussList.ViewHolder, EntityDiscuss.
     }
 
     @Override
-    protected void init() {
+    public void onViewCreated() {
         setTitle("討論區");
         apiTool = new ApiTool(getContext());
     }

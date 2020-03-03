@@ -35,6 +35,8 @@ public abstract class BaseToolbarFragment extends BaseEasyFragment {
         return false;
     }
 
+
+
     protected Toolbar getToolbar() {
         if (toolbarCallback == null) {
             return null;

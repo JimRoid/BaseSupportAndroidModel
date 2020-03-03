@@ -7,12 +7,13 @@ import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
 
+import com.easyapp.lib.life.iView;
 import com.easyapp.lib.callback.iLoading;
 
 /**
  * 基本fragment
  */
-public abstract class BaseFragment extends Fragment {
+public abstract class BaseFragment extends Fragment implements iView {
     protected Toast toast;
     protected iLoading loading;
 

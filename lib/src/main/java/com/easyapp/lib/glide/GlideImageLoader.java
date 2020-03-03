@@ -30,7 +30,8 @@ public class GlideImageLoader {
 
     public void load(final String url) {
         RequestOptions options = new RequestOptions()
-                .centerCrop();
+                .optionalCenterCrop();
+//                .centerCrop();
 //                .priority(Priority.HIGH);
         load(url, options);
     }
@@ -59,7 +60,6 @@ public class GlideImageLoader {
                 .load(url)
                 .transition(DrawableTransitionOptions.withCrossFade())
                 .listener(new RequestListener<Drawable>() {
-
                     @Override
                     public boolean onLoadFailed(@Nullable GlideException e, Object model, Target<Drawable> target, boolean isFirstResource) {
                         ProgressAppGlideModule.forget(url);
