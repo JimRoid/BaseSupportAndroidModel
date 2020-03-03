@@ -39,7 +39,7 @@ public class BlankFragmentText extends BaseToolbarFragment {
         textView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                addFragment(BlankFragmentText.getInstance(getStringValue() + 1));
+                addFragment(BlankFragmentText.getInstance(getStringValue() + 1));
 //                addFragment(DiscussList.getInstance(getStringValue() + 1));
 //                AddFragment();
             }

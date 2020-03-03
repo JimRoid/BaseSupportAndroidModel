@@ -174,16 +174,15 @@ public abstract class BaseToolbarActivity extends BaseFragmentActivity implement
     }
 
 
-
     @Override
     public void onBackPressed() {
         if (!BackHandlerHelper.handleBackPress(this)) {
             cancelLoading();
-            if (getSupportFragmentManager().getBackStackEntryCount() > 0) {
-                if (getSupportFragmentManager().getBackStackEntryCount() == 1) {
+            if (!fragNavController.isRootFragment()) {
+                fragNavController.popFragment();
+                if (fragNavController.isRootFragment()) {
                     showBack(false);
                 }
-                super.onBackPressed();
             } else {
                 super.onBackPressed();
             }

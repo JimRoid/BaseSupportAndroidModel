@@ -147,6 +147,9 @@ public abstract class BaseTabActivity extends BaseToolbarActivity  {
     public void onBackPressed() {
         if (!fragNavController.isRootFragment()) {
             fragNavController.popFragment();
+            if (fragNavController.isRootFragment()) {
+                showBack(false);
+            }
         } else {
             if (fragmentHistory.isEmpty()) {
                 super.onBackPressed();
