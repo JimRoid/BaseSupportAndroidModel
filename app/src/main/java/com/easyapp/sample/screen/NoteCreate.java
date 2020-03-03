@@ -13,6 +13,7 @@ import androidx.annotation.NonNull;
 import com.easyapp.lib.backpressHelper.BackHandlerHelper;
 import com.easyapp.lib.fragment.BaseToolbarFragment;
 import com.easyapp.sample.R;
+import com.easyapp.sample.base.BaseAppFragment;
 import com.orhanobut.logger.Logger;
 
 import butterknife.BindView;
@@ -23,7 +24,7 @@ import butterknife.Unbinder;
 /**
  *
  */
-public class NoteCreate extends BaseToolbarFragment {
+public class NoteCreate extends BaseAppFragment {
 
     @BindView(R.id.etTitle)
     EditText etTitle;

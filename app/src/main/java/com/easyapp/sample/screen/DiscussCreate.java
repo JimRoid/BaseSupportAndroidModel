@@ -15,6 +15,7 @@ import com.easyapp.image.MultiImageSelectorActivity;
 import com.easyapp.lib.fragment.BaseToolbarFragment;
 import com.easyapp.lib.menu.MenuView;
 import com.easyapp.sample.R;
+import com.easyapp.sample.base.BaseAppFragment;
 import com.orhanobut.logger.Logger;
 
 import java.util.ArrayList;
@@ -26,7 +27,7 @@ import butterknife.Unbinder;
 /**
  * 討論區
  */
-public class DiscussCreate extends BaseToolbarFragment {
+public class DiscussCreate extends BaseAppFragment {
 
     private final int REQUEST_IMAGE = 1001;
 

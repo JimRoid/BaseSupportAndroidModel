@@ -42,10 +42,13 @@ public abstract class BaseList<VH extends BaseRecyclerViewAdapter.ViewHolder, T>
         initView();
         initEmptyView();
         initScrollListener();
-        onViewCreated();
-        onRequestData();
-        onRefresh();
         return view;
+    }
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        onRefresh();
     }
 
     protected int getLayoutId() {
@@ -107,7 +110,7 @@ public abstract class BaseList<VH extends BaseRecyclerViewAdapter.ViewHolder, T>
             }
 
         };
-        baseRecycleViewAdapter = new BaseRecyclerViewAdapter<>();
+        baseRecycleViewAdapter = new BaseRecyclerViewAdapter<VH, T>();
         baseRecycleViewAdapter.setContext(getContext());
         baseRecycleViewAdapter.setRecyclerOnScrollListener(endlessRecyclerOnScrollListener);
         baseRecycleViewAdapter.setOnViewHolderLayout(this);

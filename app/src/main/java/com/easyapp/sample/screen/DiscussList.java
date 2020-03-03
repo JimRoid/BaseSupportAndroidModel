@@ -13,6 +13,7 @@ import com.easyapp.lib.recyclerView.BaseRecyclerViewAdapter;
 import com.easyapp.lib.tool.OpenData;
 import com.easyapp.lib.widget.viewPager.EasyImageViewPagerAdapter;
 import com.easyapp.sample.R;
+import com.easyapp.sample.base.BaseAppList;
 import com.easyapp.sample.http.api.ApiTool;
 import com.easyapp.sample.http.entity.EntityDiscuss;
 import com.google.android.material.tabs.TabLayout;
@@ -25,7 +26,7 @@ import java.util.Collections;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class DiscussList extends BaseList<DiscussList.ViewHolder, EntityDiscuss.DataBean> {
+public class DiscussList extends BaseAppList<DiscussList.ViewHolder, EntityDiscuss.DataBean> {
 
     private ApiTool apiTool;
 

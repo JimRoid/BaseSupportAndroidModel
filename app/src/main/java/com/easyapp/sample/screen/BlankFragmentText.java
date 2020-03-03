@@ -11,9 +11,10 @@ import android.widget.TextView;
 
 import com.easyapp.lib.fragment.BaseToolbarFragment;
 import com.easyapp.sample.R;
+import com.easyapp.sample.base.BaseAppFragment;
 
 //
-public class BlankFragmentText extends BaseToolbarFragment {
+public class BlankFragmentText extends BaseAppFragment {
 
     public static BlankFragmentText getInstance(int i) {
         Bundle bundle = new Bundle();

@@ -9,5 +9,13 @@ public class DiscussPager extends BaseTabPagerFragment {
         getPagerAdapter().addFragment(DiscussList.getInstance(), "我的發問");
     }
 
+    @Override
+    public void onViewCreated() {
 
+    }
+
+    @Override
+    public void onRequestData() {
+
+    }
 }

@@ -10,6 +10,7 @@ import com.easyapp.lib.menu.MenuView;
 import com.easyapp.lib.recyclerView.BaseList;
 import com.easyapp.lib.recyclerView.BaseRecyclerViewAdapter;
 import com.easyapp.sample.R;
+import com.easyapp.sample.base.BaseAppList;
 import com.easyapp.sample.http.entity.EntityDiscuss;
 import com.easyapp.sample.storage.Note;
 import com.orhanobut.logger.Logger;
@@ -22,7 +23,7 @@ import butterknife.ButterKnife;
 /**
  * 筆記本
  */
-public class NoteBook extends BaseList<NoteBook.ViewHolder, Note> {
+public class NoteBook extends BaseAppList<NoteBook.ViewHolder, Note> {
 
     Handler handler;
 
