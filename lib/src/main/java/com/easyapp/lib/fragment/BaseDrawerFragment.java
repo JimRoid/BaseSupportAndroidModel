@@ -1,11 +1,11 @@
-package com.easyapp.lib.drawer;
+package com.easyapp.lib.fragment;
 
 
 import android.content.Context;
 
 import androidx.appcompat.app.ActionBarDrawerToggle;
 
-import com.easyapp.lib.fragment.BaseToolbarFragment;
+import com.easyapp.lib.activity.BaseDrawerActivity;
 import com.easyapp.lib.callback.iDrawerCallback;
 
 /**
@@ -16,7 +16,7 @@ public abstract class BaseDrawerFragment extends BaseToolbarFragment {
     protected iDrawerCallback drawerCallback;
 
     protected void setDrawerCallback(Context context) {
-        if (context instanceof BaseDrawerMainActivity) {
+        if (context instanceof BaseDrawerActivity) {
             try {
                 drawerCallback = (iDrawerCallback) context;
             } catch (ClassCastException e) {

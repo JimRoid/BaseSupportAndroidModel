@@ -1,9 +1,11 @@
-package com.easyapp.lib.drawer;
+package com.easyapp.lib.activity;
 
 import android.view.View;
+
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
+
 import com.easyapp.lib.R;
 import com.easyapp.lib.activity.BaseToolbarActivity;
 import com.easyapp.lib.callback.iDrawerCallback;
@@ -13,7 +15,7 @@ import com.orhanobut.logger.Logger;
 /**
  * 基本的側邊欄activity
  */
-public abstract class BaseDrawerMainActivity extends BaseToolbarActivity implements iDrawerCallback {
+public abstract class BaseDrawerActivity extends BaseToolbarActivity implements iDrawerCallback {
 
     protected DrawerLayout drawerLayout;
     protected NavigationView navView;
@@ -36,13 +38,7 @@ public abstract class BaseDrawerMainActivity extends BaseToolbarActivity impleme
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Logger.d("setNavigationOnClickListener");
-                Logger.d("getSupportFragmentManager().getBackStackEntryCount():" + getSupportFragmentManager().getBackStackEntryCount());
-                if (getSupportFragmentManager().getBackStackEntryCount() >= 1) {
-                    onBackPressed();
-                } else {
-                    openDrawer(GravityCompat.START);
-                }
+                onBackPressed();
             }
         });
     }

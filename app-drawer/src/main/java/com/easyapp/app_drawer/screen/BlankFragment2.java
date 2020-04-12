@@ -10,7 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.easyapp.app_drawer.R;
-import com.easyapp.lib.drawer.BaseDrawerFragment;
+import com.easyapp.lib.fragment.BaseDrawerFragment;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -22,6 +22,15 @@ public class BlankFragment2 extends BaseDrawerFragment {
         return new BlankFragment2();
     }
 
+    @Override
+    public void onViewCreated() {
+
+    }
+
+    @Override
+    public void onRequestData() {
+
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,

@@ -18,6 +18,7 @@ import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.widget.Toolbar;
 import androidx.drawerlayout.widget.DrawerLayout;
 
+//模糊側邊欄
 public class BlurActionBarDrawerToggle extends ActionBarDrawerToggle {
 
     private Context context;
@@ -40,7 +41,6 @@ public class BlurActionBarDrawerToggle extends ActionBarDrawerToggle {
     /**
      * Default Blur Radius
      */
-
     public static int DEFAULT_BLUR_RADIUS = 5;
 
     /**
@@ -116,7 +116,7 @@ public class BlurActionBarDrawerToggle extends ActionBarDrawerToggle {
             isOpening = true;
 
         render();
-        setAlpha(mBlurredImageView, slideOffset, 100);
+        setAlpha(mBlurredImageView, slideOffset);
     }
 
 
@@ -145,18 +145,16 @@ public class BlurActionBarDrawerToggle extends ActionBarDrawerToggle {
      */
 
     private void render() {
-
         if (prepareToRender) {
             prepareToRender = false;
 
             Bitmap bitmap = loadBitmapFromView(mDrawerLayout);
             bitmap = scaleBitmap(bitmap);
-            bitmap = Blur.fastblur(context, bitmap, mBlurRadius, false);
+            bitmap = Blur.fastblur(context, bitmap, mBlurRadius);
 
             mBlurredImageView.setVisibility(View.VISIBLE);
             mBlurredImageView.setImageBitmap(bitmap);
         }
-
     }
 
     public void setRadius(int radius) {
@@ -167,15 +165,8 @@ public class BlurActionBarDrawerToggle extends ActionBarDrawerToggle {
         mDownScaleFactor = downScaleFactor < 1 ? 1 : downScaleFactor;
     }
 
-    private void setAlpha(View view, float alpha, long durationMillis) {
-        if (Build.VERSION.SDK_INT < 11) {
-            final AlphaAnimation animation = new AlphaAnimation(alpha, alpha);
-            animation.setDuration(durationMillis);
-            animation.setFillAfter(true);
-            view.startAnimation(animation);
-        } else {
-            view.setAlpha(alpha);
-        }
+    private void setAlpha(View view, float alpha) {
+        view.setAlpha(alpha);
     }
 
 
@@ -206,13 +197,13 @@ public class BlurActionBarDrawerToggle extends ActionBarDrawerToggle {
 
     private void handleRecycle() {
         Drawable drawable = mBlurredImageView.getDrawable();
-
         if (drawable instanceof BitmapDrawable) {
             BitmapDrawable bitmapDrawable = ((BitmapDrawable) drawable);
             Bitmap bitmap = bitmapDrawable.getBitmap();
 
-            if (bitmap != null)
+            if (bitmap != null) {
                 bitmap.recycle();
+            }
 
             mBlurredImageView.setImageBitmap(null);
         }

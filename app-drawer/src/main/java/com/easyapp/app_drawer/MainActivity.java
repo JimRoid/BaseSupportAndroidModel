@@ -1,10 +1,11 @@
 package com.easyapp.app_drawer;
 
 import android.os.Bundle;
-import com.easyapp.app_drawer.screen.BlankFragment1;
-import com.easyapp.lib.drawer.BaseDrawerMainActivity;
 
-public class MainActivity extends BaseDrawerMainActivity {
+import com.easyapp.app_drawer.screen.BlankFragment1;
+import com.easyapp.lib.activity.BaseDrawerActivity;
+
+public class MainActivity extends BaseDrawerActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -13,7 +14,7 @@ public class MainActivity extends BaseDrawerMainActivity {
 
     @Override
     protected void initial() {
-        ReplaceFragment(BlankFragment1.getInstance());
+        replaceFragment(BlankFragment1.getInstance());
     }
 
 

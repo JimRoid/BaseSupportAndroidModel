@@ -13,7 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.easyapp.lib.R;
-import com.easyapp.lib.drawer.BaseDrawerFragment;
+import com.easyapp.lib.fragment.BaseDrawerFragment;
 
 import java.util.List;
 

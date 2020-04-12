@@ -2,14 +2,7 @@ package com.easyapp.sample;
 
 
 import com.easyapp.lib.activity.BaseToolbarActivity;
-import com.easyapp.lib.drawer.BaseDrawerMainActivity;
-import com.easyapp.sample.loginView.Login;
-import com.easyapp.sample.screen.BlankFragmentText;
-import com.easyapp.sample.screen.DiscussCreate;
 import com.easyapp.sample.screen.DiscussList;
-import com.easyapp.sample.screen.DiscussPager;
-import com.easyapp.sample.screen.NoteBook;
-import com.orhanobut.logger.Logger;
 
 /**
  *
