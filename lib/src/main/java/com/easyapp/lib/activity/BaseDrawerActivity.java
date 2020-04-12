@@ -38,7 +38,11 @@ public abstract class BaseDrawerActivity extends BaseToolbarActivity implements 
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                onBackPressed();
+                if (fragNavController.isRootFragment()) {
+                    openDrawer(GravityCompat.START);
+                } else {
+                    onBackPressed();
+                }
             }
         });
     }
