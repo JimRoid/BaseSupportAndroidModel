@@ -71,17 +71,17 @@ public abstract class BaseFragmentActivity extends BaseLoadingActivity implement
 
     protected void addFragment(Fragment fragment) {
         if (fragNavController != null) {
+            onAddFragment();
             fragNavController.pushFragment(fragment);
         }
-        onAddFragment();
     }
 
     protected void replaceFragment(Fragment fragment) {
         if (fragNavController != null) {
+            onReplaceFragment();
             fragNavController.clearStack();
             fragNavController.replaceFragment(fragment);
         }
-        onReplaceFragment();
     }
 
     public abstract void onAddFragment();
