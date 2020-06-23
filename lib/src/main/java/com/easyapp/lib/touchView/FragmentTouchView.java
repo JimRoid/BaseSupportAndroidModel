@@ -130,8 +130,10 @@ public class FragmentTouchView extends Fragment {
             byte[] decodedString = Base64Tool.decodeBase64(getPath());
             Bitmap decodedByte = BitmapFactory.decodeByteArray(decodedString, 0, decodedString.length);
             touchImageView.setImageBitmap(decodedByte);
+            progressBar.setVisibility(View.GONE);
         } else if (getType().equals("resource")) {
             touchImageView.setImageResource(getResource());
+            progressBar.setVisibility(View.GONE);
         }
     }
 }
