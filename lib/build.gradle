@@ -2,15 +2,15 @@ apply plugin: 'com.android.library'
 apply plugin: 'maven'
 
 project.ext {
-    versionCode = 293
-    versionName = "29.9"
+    versionCode = 294
+    versionName = "30.0"
     groupId = 'com.easyapp.lib'
     artifactId = 'easy-lib'
 }
 
 android {
-    compileSdkVersion 28
-    buildToolsVersion '28.0.3'
+    compileSdkVersion 29
+    buildToolsVersion '29.0.3'
 
     defaultConfig {
         minSdkVersion 21

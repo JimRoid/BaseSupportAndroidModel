@@ -100,7 +100,7 @@ public class TouchViewActivity extends AppCompatActivity implements EasyPermissi
             return;
         }
         for (String resource : data) {
-            adapter.addFragment(FragmentTouchView.getInstance(resource, isShowDownload));
+            adapter.addFragment(FragmentTouchView.getInstance("http", resource, isShowDownload));
         }
 
         viewPager.setAdapter(adapter);

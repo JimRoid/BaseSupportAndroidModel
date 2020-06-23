@@ -1,9 +1,14 @@
 package com.easyapp.sample.screen;
 
+import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.FrameLayout;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.cardview.widget.CardView;
 import androidx.viewpager.widget.ViewPager;
 
@@ -35,7 +40,14 @@ public class DiscussList extends BaseAppList<DiscussList.ViewHolder, EntityDiscu
     }
 
     @Override
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, @Nullable Bundle savedInstanceState) {
+        Logger.d("onCreateView");
+        return super.onCreateView(inflater, container, savedInstanceState);
+    }
+
+    @Override
     public void onViewCreated() {
+        Logger.d("onViewCreated");
         setTitle("討論區");
         apiTool = new ApiTool(getContext());
     }
@@ -90,8 +102,8 @@ public class DiscussList extends BaseAppList<DiscussList.ViewHolder, EntityDiscu
             @Override
             public void onClick(View v) {
                 Logger.d("TEST CARD VIEW ONCLICK");
-                addFragment(DiscussList.getInstance());
-//                addFragment(BlankFragmentText.getInstance(holder.getAdapterPosition()));
+//                addFragment(DiscussList.getInstance());
+                addFragment(BlankFragmentText.getInstance(holder.getAdapterPosition()));
             }
         });
 
@@ -109,7 +121,7 @@ public class DiscussList extends BaseAppList<DiscussList.ViewHolder, EntityDiscu
             easyImageViewPagerAdapter.setItemClickListener(new EasyImageViewPagerAdapter.OnItemClickListener() {
                 @Override
                 public void onClick(int position) {
-                    OpenData.OpenTouchImage(getContext(), pic, 0, true);
+//                    OpenData.OpenTouchImage(getContext(), pic, 0, true);
                 }
             });
 

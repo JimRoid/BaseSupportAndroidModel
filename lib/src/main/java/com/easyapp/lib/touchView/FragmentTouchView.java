@@ -49,14 +49,42 @@ public class FragmentTouchView extends Fragment {
         return fragmentTouchView;
     }
 
-    public static FragmentTouchView getInstance(String path, boolean isShowDownload) {
+    public static FragmentTouchView getInstance(String type, String path, boolean isShowDownload) {
         FragmentTouchView fragmentTouchView = new FragmentTouchView();
         Bundle bundle = new Bundle();
-        bundle.putString("PATH", path);
+        bundle.putString("type", type);
+        bundle.putString("path", path);
         bundle.putBoolean("isShowDownload", isShowDownload);
 
         fragmentTouchView.setArguments(bundle);
         return fragmentTouchView;
+    }
+
+    public static FragmentTouchView getInstance(String type, int path, boolean isShowDownload) {
+        FragmentTouchView fragmentTouchView = new FragmentTouchView();
+        Bundle bundle = new Bundle();
+        bundle.putString("type", type);
+        bundle.putInt("resource", path);
+        bundle.putBoolean("isShowDownload", isShowDownload);
+
+        fragmentTouchView.setArguments(bundle);
+        return fragmentTouchView;
+    }
+
+    private boolean isShowDownload() {
+        return getArguments().getBoolean("isShowDownload", false);
+    }
+
+    private int getResource() {
+        return getArguments().getInt("resource", 0);
+    }
+
+    private String getPath() {
+        return getArguments().getString("path", "");
+    }
+
+    private String getType() {
+        return getArguments().getString("type", "");
     }
 
     @Override
@@ -95,26 +123,26 @@ public class FragmentTouchView extends Fragment {
             flMenu.setVisibility(View.GONE);
         }
 
-        final String path = bundle.getString("PATH", "");
-        if (path == null) {
+
+        if (getPath().equals("") && getResource() == 0) {
             touchImageView.setImageResource(R.mipmap.ic_empty);
             return;
         }
 
-        if (path.contains("http") || path.contains("/storage")) {
-            new GlideImageLoader(touchImageView, progressBar).load(path, new RequestOptions());
-            if (path.contains("http")) {
-                ivDownload.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        DownloadFileFromURL.Download(getActivity(), path);
-                    }
-                });
-            }
-        } else {
-            byte[] decodedString = Base64Tool.decodeBase64(path);
+        if (getType().equals("http")) {
+            new GlideImageLoader(touchImageView, progressBar).load(getPath(), new RequestOptions());
+            ivDownload.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    DownloadFileFromURL.Download(getActivity(), getPath());
+                }
+            });
+        } else if (getType().equals("sd")) {
+            byte[] decodedString = Base64Tool.decodeBase64(getPath());
             Bitmap decodedByte = BitmapFactory.decodeByteArray(decodedString, 0, decodedString.length);
             touchImageView.setImageBitmap(decodedByte);
+        } else if (getType().equals("resource")) {
+            touchImageView.setImageResource(getResource());
         }
     }
 }

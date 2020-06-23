@@ -21,6 +21,15 @@ public class BlankFragment2 extends BaseToolbarFragment {
         // Required empty public constructor
     }
 
+    @Override
+    public void onViewCreated() {
+
+    }
+
+    @Override
+    public void onRequestData() {
+
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -31,7 +40,7 @@ public class BlankFragment2 extends BaseToolbarFragment {
         textView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                AddFragment(new BlankFragment1());
+                addFragment(new BlankFragment1());
             }
         });
         return textView;
