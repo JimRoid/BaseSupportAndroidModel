@@ -1,6 +1,9 @@
 package com.easyapp.lib.touchView;
 
 import android.Manifest;
+import android.content.ActivityNotFoundException;
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 
 
@@ -25,6 +28,40 @@ import pub.devrel.easypermissions.EasyPermissions;
  */
 public class TouchViewActivity extends AppCompatActivity implements EasyPermissions.PermissionCallbacks {
 
+
+    public static void startActivity(Context context, int position, String type, ArrayList<String> path, boolean isShowDownload) {
+        ArrayList<String> arrayList = new ArrayList<>(path);
+        Intent intent = new Intent(context, TouchViewActivity.class);
+        Bundle bundle = new Bundle();
+        bundle.putString("type", type);
+        bundle.putStringArrayList("path", arrayList);
+        bundle.putInt("position", position);
+        bundle.putBoolean("isShowDownload", isShowDownload);
+        intent.putExtras(bundle);
+        try {
+            context.startActivity(intent);
+        } catch (ActivityNotFoundException var3) {
+            var3.printStackTrace();
+        }
+    }
+
+    public static void startActivity(Context context, int position, String type, String path, boolean isShowDownload) {
+        ArrayList<String> arrayList = new ArrayList<>();
+        arrayList.add(path);
+        Intent intent = new Intent(context, TouchViewActivity.class);
+        Bundle bundle = new Bundle();
+        bundle.putString("type", type);
+        bundle.putStringArrayList("path", arrayList);
+        bundle.putInt("position", position);
+        bundle.putBoolean("isShowDownload", isShowDownload);
+        intent.putExtras(bundle);
+        try {
+            context.startActivity(intent);
+        } catch (ActivityNotFoundException var3) {
+            var3.printStackTrace();
+        }
+    }
+
     /**
      * permission request code
      */
@@ -42,6 +79,22 @@ public class TouchViewActivity extends AppCompatActivity implements EasyPermissi
             getSupportActionBar().hide();
         }
         initView();
+    }
+
+    private String getType() {
+        return getIntent().getExtras().getString("type", "http");
+    }
+
+    private boolean isShowDownload() {
+        return getIntent().getExtras().getBoolean("isShowDownload", false);
+    }
+
+    private int getPosition() {
+        return getIntent().getExtras().getInt("position", 0);
+    }
+
+    private ArrayList<String> getPath() {
+        return getIntent().getExtras().getStringArrayList("path");
     }
 
     @AfterPermissionGranted(WRITE_EXTERNAL_STORAGE)
@@ -85,29 +138,19 @@ public class TouchViewActivity extends AppCompatActivity implements EasyPermissi
     }
 
     private void initData() {
-        Bundle bundle = getIntent().getExtras();
-        if (bundle == null) {
-            return;
-        }
-        boolean isShowDownload = bundle.getBoolean("isShowDownload", false);
-        int position = bundle.getInt("POSITION", 0);
-        if (bundle.getStringArrayList("PATH") == null) {
-            return;
-        }
-        ArrayList<String> data = bundle.getStringArrayList("PATH");
         EasyPagerAdapter adapter = new EasyPagerAdapter(getSupportFragmentManager());
-        if (data == null) {
+        if (getPath() == null) {
             return;
         }
-        for (String resource : data) {
-            adapter.addFragment(FragmentTouchView.getInstance("http", resource, isShowDownload));
+        for (String resource : getPath()) {
+            adapter.addFragment(FragmentTouchView.getInstance(getType(), resource, isShowDownload()));
         }
 
         viewPager.setAdapter(adapter);
-        if (position >= adapter.getCount()) {
+        if (getPosition() >= adapter.getCount()) {
             viewPager.setCurrentItem(0);
         } else {
-            viewPager.setCurrentItem(position);
+            viewPager.setCurrentItem(getPosition());
         }
     }
 

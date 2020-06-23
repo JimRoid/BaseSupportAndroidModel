@@ -38,17 +38,6 @@ public class FragmentTouchView extends Fragment {
     private FrameLayout flMenu;
     private ProgressBar progressBar;
 
-    public static FragmentTouchView getInstance(String path) {
-        FragmentTouchView fragmentTouchView = new FragmentTouchView();
-
-        Bundle bundle = new Bundle();
-        bundle.putString("PATH", path);
-        bundle.putBoolean("isShowDownload", false);
-
-        fragmentTouchView.setArguments(bundle);
-        return fragmentTouchView;
-    }
-
     public static FragmentTouchView getInstance(String type, String path, boolean isShowDownload) {
         FragmentTouchView fragmentTouchView = new FragmentTouchView();
         Bundle bundle = new Bundle();
@@ -116,7 +105,7 @@ public class FragmentTouchView extends Fragment {
             return;
         }
 
-        boolean isShowDownload = bundle.getBoolean("isShowDownload");
+        boolean isShowDownload = isShowDownload();
         if (isShowDownload) {
             flMenu.setVisibility(View.VISIBLE);
         } else {

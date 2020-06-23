@@ -17,6 +17,7 @@ import com.bumptech.glide.request.RequestOptions;
 import com.easyapp.lib.R;
 import com.easyapp.lib.glide.GlideImageLoader;
 import com.easyapp.lib.tool.OpenData;
+import com.easyapp.lib.touchView.TouchViewActivity;
 import com.google.android.material.tabs.TabLayout;
 
 import java.util.ArrayList;
@@ -52,7 +53,7 @@ public class EasyImageViewPagerAdapter extends PagerAdapter {
         itemClickListener = new OnItemClickListener() {
             @Override
             public void onClick(int position) {
-                OpenData.OpenTouchImage(activity, urls, position, false);
+                TouchViewActivity.startActivity(activity, position, "http", urls, false);
             }
         };
     }
