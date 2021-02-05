@@ -48,6 +48,9 @@ public class NoteBook extends BaseAppList<NoteBook.ViewHolder, Note> {
 
     @Override
     protected void onLoad() {
+        Note note = new Note();
+        note.getStore();
+
         ArrayList<Note> notes = new ArrayList<>();
         showLoading();
         handler.postDelayed(new Runnable() {

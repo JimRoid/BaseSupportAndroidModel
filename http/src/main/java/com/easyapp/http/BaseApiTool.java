@@ -237,27 +237,27 @@ public abstract class BaseApiTool<TServices> {
         }
     }
 
-    /**
-     * 重試interceptor
-     */
-    public class RetryInterceptor implements Interceptor {
+    private static class RetryInterceptor implements Interceptor {
 
-        private int maxRetry;
-        private int retryNum = 0;
+        private int RETRY_MAX_COUNT = 3;
 
-        RetryInterceptor(int maxRetry) {
-            this.maxRetry = maxRetry;
+        public RetryInterceptor(int count) {
+            super();
+            RETRY_MAX_COUNT = count;
         }
 
         @Override
         public okhttp3.Response intercept(Chain chain) throws IOException {
+            int retryCount = 0;
             Request request = chain.request();
-
             okhttp3.Response response = chain.proceed(request);
-
-            while (!response.isSuccessful() && retryNum < maxRetry) {
-                retryNum++;
+            while (!response.isSuccessful() && retryCount < RETRY_MAX_COUNT - 1) {
+                retryCount++;
+                response.close();
                 response = chain.proceed(request);
+            }
+            if (retryCount > 0) {
+
             }
             return response;
         }

@@ -2,19 +2,19 @@ apply plugin: 'com.android.library'
 apply plugin: 'maven'
 
 project.ext {
-    versionCode = 22
-    versionName = "6.4"
+    versionCode = 23
+    versionName = "6.5"
     groupId = 'com.easyapp.http'
     artifactId = 'easy-http'
 }
 
 android {
-    compileSdkVersion 28
-    buildToolsVersion '28.0.3'
+    compileSdkVersion 29
+    buildToolsVersion '29.0.3'
 
     defaultConfig {
         minSdkVersion 21
-        targetSdkVersion 28
+        targetSdkVersion 29
         versionCode project.ext.versionCode
         versionName project.ext.versionName
     }
@@ -32,13 +32,13 @@ android {
 }
 
 dependencies {
-    implementation ('com.squareup.retrofit2:retrofit:2.6.2'){
+    implementation ('com.squareup.retrofit2:retrofit:2.9.0'){
         exclude group: 'com.squareup.okhttp3:okhttp'
     }
     implementation "org.jsoup:jsoup:1.11.3"
-    implementation 'com.squareup.okhttp3:okhttp:3.13.1'
-    implementation 'com.squareup.retrofit2:converter-scalars:2.6.2'
-    implementation 'com.squareup.retrofit2:converter-gson:2.6.2'
+    implementation 'com.squareup.okhttp3:okhttp:3.14.9'
+    implementation 'com.squareup.retrofit2:converter-scalars:2.9.0'
+    implementation 'com.squareup.retrofit2:converter-gson:2.9.0'
 }
 
 def repo = new File(rootDir, "")

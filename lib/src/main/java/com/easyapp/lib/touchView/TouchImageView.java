@@ -21,12 +21,15 @@ import android.view.MotionEvent;
 import android.view.ScaleGestureDetector;
 import android.view.View;
 import android.view.animation.AccelerateDecelerateInterpolator;
+
 import android.widget.ImageView;
 import android.widget.OverScroller;
 import android.widget.Scroller;
 
+import androidx.appcompat.widget.AppCompatImageView;
 
-public class TouchImageView extends ImageView {
+
+public class TouchImageView extends AppCompatImageView {
 
     private static final String DEBUG = "DEBUG";
 	

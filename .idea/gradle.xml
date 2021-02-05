@@ -6,6 +6,7 @@
       <GradleProjectSettings>
         <option name="delegatedBuild" value="false" />
         <option name="testRunner" value="PLATFORM" />
+        <option name="disableWrapperSourceDistributionNotification" value="true" />
         <option name="distributionType" value="DEFAULT_WRAPPED" />
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
         <option name="modules">
@@ -22,6 +23,7 @@
             <option value="$PROJECT_DIR$/http" />
             <option value="$PROJECT_DIR$/image" />
             <option value="$PROJECT_DIR$/lib" />
+            <option value="$PROJECT_DIR$/lib-kotlin" />
             <option value="$PROJECT_DIR$/sample-ble" />
             <option value="$PROJECT_DIR$/sample-ble-spp" />
           </set>

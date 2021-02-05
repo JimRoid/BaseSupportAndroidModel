@@ -11,7 +11,7 @@ import java.lang.reflect.Type;
  * 並不會出現列表
  */
 
-public abstract class SingleModel<T extends SingleModel> implements Serializable {
+public abstract class SingleModel<T> implements Serializable {
 
     public abstract String getSingleKey();
 

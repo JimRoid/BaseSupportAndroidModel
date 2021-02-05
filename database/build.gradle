@@ -1,4 +1,5 @@
 apply plugin: 'com.android.library'
+apply plugin: 'kotlin-android'
 apply plugin: 'maven'
 
 project.ext {
@@ -9,12 +10,12 @@ project.ext {
 }
 
 android {
-    compileSdkVersion 28
-    buildToolsVersion '28.0.3'
+    compileSdkVersion 30
+    buildToolsVersion '29.0.3'
 
     defaultConfig {
         minSdkVersion 21
-        targetSdkVersion 28
+        targetSdkVersion 29
         versionCode project.ext.versionCode
         versionName project.ext.versionName
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
@@ -30,7 +31,9 @@ android {
 }
 
 dependencies {
-    implementation "com.google.code.gson:gson:2.8.5"
+    implementation "com.google.code.gson:gson:2.8.6"
+    implementation "androidx.core:core-ktx:+"
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
 }
 
 def repo = new File(rootDir, "")
@@ -44,4 +47,7 @@ uploadArchives {
             pom.artifactId = project.ext.artifactId
         }
     }
+}
+repositories {
+    mavenCentral()
 }
