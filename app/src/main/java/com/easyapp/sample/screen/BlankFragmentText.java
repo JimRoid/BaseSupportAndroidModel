@@ -12,6 +12,7 @@ import android.widget.TextView;
 import com.easyapp.lib.fragment.BaseToolbarFragment;
 import com.easyapp.sample.R;
 import com.easyapp.sample.base.BaseAppFragment;
+import com.orhanobut.logger.Logger;
 
 //
 public class BlankFragmentText extends BaseAppFragment {
@@ -41,10 +42,12 @@ public class BlankFragmentText extends BaseAppFragment {
             @Override
             public void onClick(View v) {
                 addFragment(BlankFragmentText.getInstance(getStringValue() + 1));
+//                replaceFragment(BlankFragmentText.getInstance(getStringValue() + 1));
 //                addFragment(DiscussList.getInstance(getStringValue() + 1));
 //                AddFragment();
             }
         });
+        Logger.e("show:" + getStringValue());
         return textView;
     }
 }

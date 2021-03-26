@@ -4,6 +4,7 @@ package com.easyapp.sample;
 import com.easyapp.lib.activity.BaseToolbarActivity;
 import com.easyapp.sample.screen.DiscussCreate;
 import com.easyapp.sample.screen.DiscussList;
+import com.easyapp.sample.screen.DiscussPager;
 
 /**
  *
@@ -22,8 +23,8 @@ public class MainActivity extends BaseToolbarActivity {
 //        ReplaceFragment(new Login());
 //        ReplaceFragment(NoteBook.instance());
 //        replaceFragment(DiscussList.getInstance());
-//        ReplaceFragment(new DiscussPager(/));
-        replaceFragment(new DiscussCreate());
+        replaceFragment(new DiscussPager());
+//        replaceFragment(new DiscussCreate());
 //        replaceFragment(BlankFragmentText.getInstance(0));
     }
 }

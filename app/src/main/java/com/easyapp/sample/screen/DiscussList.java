@@ -104,6 +104,7 @@ public class DiscussList extends BaseAppList<DiscussList.ViewHolder, EntityDiscu
                 Logger.d("TEST CARD VIEW ONCLICK");
 //                addFragment(DiscussList.getInstance());
                 addFragment(BlankFragmentText.getInstance(holder.getAdapterPosition()));
+//                replaceFragment(BlankFragmentText.getInstance(holder.getAdapterPosition()));
             }
         });
 

@@ -59,6 +59,8 @@ public class FragNavController {
     private TransactionListener mTransactionListener;
     private boolean mExecutingTransaction;
 
+    protected boolean isShowHideMode = false;
+
     //region Construction and setup
 
     private FragNavController(Builder builder, @Nullable Bundle savedInstanceState) {
@@ -87,6 +89,14 @@ public class FragNavController {
 
     public static Builder newBuilder(@Nullable Bundle savedInstanceState, FragmentManager fragmentManager, int containerId) {
         return new Builder(savedInstanceState, fragmentManager, containerId);
+    }
+
+    public boolean isShowHideMode() {
+        return isShowHideMode;
+    }
+
+    public void setShowHideMode(boolean showHideMode) {
+        isShowHideMode = showHideMode;
     }
 
     //endregion
@@ -558,7 +568,11 @@ public class FragNavController {
         if (!fragmentStack.isEmpty()) {
             fragment = mFragmentManager.findFragmentByTag(fragmentStack.peek().getTag());
             if (fragment != null) {
-                ft.show(fragment);
+                if (isShowHideMode) {
+                    ft.show(fragment);
+                } else {
+                    ft.attach(fragment);
+                }
             }
         }
         return fragment;
@@ -572,7 +586,11 @@ public class FragNavController {
     private void detachCurrentFragment(@NonNull FragmentTransaction ft) {
         Fragment oldFrag = getCurrentFrag();
         if (oldFrag != null) {
-            ft.hide(oldFrag);
+            if (isShowHideMode) {
+                ft.hide(oldFrag);
+            } else {
+                ft.detach(oldFrag);
+            }
         }
     }
 
