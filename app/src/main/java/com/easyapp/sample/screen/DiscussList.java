@@ -35,6 +35,7 @@ public class DiscussList extends BaseAppList<DiscussList.ViewHolder, EntityDiscu
 
     private ApiTool apiTool;
 
+
     public static DiscussList getInstance() {
         return new DiscussList();
     }
@@ -83,14 +84,16 @@ public class DiscussList extends BaseAppList<DiscussList.ViewHolder, EntityDiscu
         return 1;
     }
 
-    @Override
+
     public int onViewHolderLayoutContent() {
         return R.layout.card_discuss;
     }
 
     @Override
-    public ViewHolder onCreateViewHolderContent(View view) {
-        return new ViewHolder(view);
+    public ViewHolder onCreateViewHolderContent(ViewGroup viewGroup, int viewType) {
+        LayoutInflater mInflater = LayoutInflater.from(viewGroup.getContext());
+        View view = mInflater.inflate(R.layout.card_discuss, viewGroup, false);
+        return new ViewHolder(view, viewType);
     }
 
     @Override
@@ -148,8 +151,8 @@ public class DiscussList extends BaseAppList<DiscussList.ViewHolder, EntityDiscu
         @BindView(R.id.frameLayout)
         FrameLayout frameLayout;
 
-        ViewHolder(View view) {
-            super(view);
+        public ViewHolder(View view, int type) {
+            super(view, type);
             ButterKnife.bind(this, view);
         }
     }

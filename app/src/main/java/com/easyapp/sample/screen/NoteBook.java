@@ -2,18 +2,16 @@ package com.easyapp.sample.screen;
 
 
 import android.os.Handler;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.easyapp.database.EasyDB;
 import com.easyapp.lib.menu.MenuView;
-import com.easyapp.lib.recyclerView.BaseList;
 import com.easyapp.lib.recyclerView.BaseRecyclerViewAdapter;
 import com.easyapp.sample.R;
 import com.easyapp.sample.base.BaseAppList;
-import com.easyapp.sample.http.entity.EntityDiscuss;
 import com.easyapp.sample.storage.Note;
-import com.orhanobut.logger.Logger;
 
 import java.util.ArrayList;
 
@@ -30,7 +28,6 @@ public class NoteBook extends BaseAppList<NoteBook.ViewHolder, Note> {
     public static NoteBook instance() {
         return new NoteBook();
     }
-
 
     @Override
     public void onViewCreated() {
@@ -73,13 +70,10 @@ public class NoteBook extends BaseAppList<NoteBook.ViewHolder, Note> {
     }
 
     @Override
-    public ViewHolder onCreateViewHolderContent(View view) {
-        return new ViewHolder(view);
-    }
-
-    @Override
-    public int onViewHolderLayoutContent() {
-        return R.layout.item_note_book;
+    public ViewHolder onCreateViewHolderContent(ViewGroup viewGroup, int viewType) {
+        LayoutInflater mInflater = LayoutInflater.from(viewGroup.getContext());
+        View view = mInflater.inflate(R.layout.item_note_book, viewGroup, false);
+        return new ViewHolder(view, viewType);
     }
 
     static class ViewHolder extends BaseRecyclerViewAdapter.ViewHolder {
@@ -88,9 +82,9 @@ public class NoteBook extends BaseAppList<NoteBook.ViewHolder, Note> {
         @BindView(R.id.tvContent)
         TextView tvContent;
 
-        ViewHolder(View view) {
-            super(view);
-            ButterKnife.bind(this, view);
+        public ViewHolder(View itemView, int type) {
+            super(itemView, type);
+            ButterKnife.bind(this, itemView);
         }
     }
 }

@@ -24,8 +24,7 @@ public abstract class BaseList<VH extends BaseRecyclerViewAdapter.ViewHolder, T>
         implements
         SwipeRefreshLayout.OnRefreshListener,
         BaseRecyclerViewAdapter.OnBindViewHolder<VH, T>,
-        BaseRecyclerViewAdapter.OnCreateViewHolder<VH>,
-        BaseRecyclerViewAdapter.OnViewHolderLayout {
+        BaseRecyclerViewAdapter.OnCreateViewHolder<VH> {
 
     protected View view;
     protected View emptyView;
@@ -113,7 +112,6 @@ public abstract class BaseList<VH extends BaseRecyclerViewAdapter.ViewHolder, T>
         baseRecycleViewAdapter = new BaseRecyclerViewAdapter<VH, T>();
         baseRecycleViewAdapter.setContext(getContext());
         baseRecycleViewAdapter.setRecyclerOnScrollListener(endlessRecyclerOnScrollListener);
-        baseRecycleViewAdapter.setOnViewHolderLayout(this);
         baseRecycleViewAdapter.setOnBindViewHolder(this);
         baseRecycleViewAdapter.setOnCreateViewHolder(this);
         recyclerView.setAdapter(baseRecycleViewAdapter);

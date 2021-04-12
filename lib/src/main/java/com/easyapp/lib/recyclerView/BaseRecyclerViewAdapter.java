@@ -23,7 +23,6 @@ public class BaseRecyclerViewAdapter<VH extends BaseRecyclerViewAdapter.ViewHold
     private RecyclerViewTypeListener recyclerViewTypeListener;
     private OnBindViewHolder<VH, T> onBindViewHolder;
     private OnCreateViewHolder<VH> onCreateViewHolder;
-    private OnViewHolderLayout onViewHolderLayout;
 
 
     BaseRecyclerViewAdapter() {
@@ -53,14 +52,6 @@ public class BaseRecyclerViewAdapter<VH extends BaseRecyclerViewAdapter.ViewHold
 
     public void setOnCreateViewHolder(OnCreateViewHolder<VH> onCreateViewHolder) {
         this.onCreateViewHolder = onCreateViewHolder;
-    }
-
-    public OnViewHolderLayout getOnViewHolderLayout() {
-        return onViewHolderLayout;
-    }
-
-    public void setOnViewHolderLayout(OnViewHolderLayout onViewHolderLayout) {
-        this.onViewHolderLayout = onViewHolderLayout;
     }
 
     public void setRecyclerOnScrollListener(RecyclerOnScrollListener recyclerOnScrollListener) {
@@ -147,9 +138,7 @@ public class BaseRecyclerViewAdapter<VH extends BaseRecyclerViewAdapter.ViewHold
     @Override
     @NonNull
     public VH onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View contactView;
-        contactView = LayoutInflater.from(context).inflate(onViewHolderLayout.onViewHolderLayoutContent(), parent, false);
-        return onCreateViewHolder.onCreateViewHolderContent(contactView);
+        return onCreateViewHolder.onCreateViewHolderContent(parent, viewType);
     }
 
 
@@ -160,13 +149,8 @@ public class BaseRecyclerViewAdapter<VH extends BaseRecyclerViewAdapter.ViewHold
         }
     }
 
-
-    public interface OnViewHolderLayout {
-        int onViewHolderLayoutContent();
-    }
-
     public interface OnCreateViewHolder<VH extends BaseRecyclerViewAdapter.ViewHolder> {
-        VH onCreateViewHolderContent(View view);
+        VH onCreateViewHolderContent(ViewGroup viewGroup, int viewType);
     }
 
     public interface OnBindViewHolder<VH extends BaseRecyclerViewAdapter.ViewHolder, T> {
@@ -174,8 +158,20 @@ public class BaseRecyclerViewAdapter<VH extends BaseRecyclerViewAdapter.ViewHold
     }
 
     public static abstract class ViewHolder extends RecyclerView.ViewHolder {
-        public ViewHolder(View itemView) {
+
+        protected int type;
+
+        public ViewHolder(View itemView, int type) {
             super(itemView);
+            setType(type);
+        }
+
+        public int getType() {
+            return type;
+        }
+
+        public void setType(int type) {
+            this.type = type;
         }
     }
 

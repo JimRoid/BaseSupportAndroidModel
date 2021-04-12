@@ -10,7 +10,7 @@ project.ext {
 }
 
 android {
-    compileSdkVersion 30
+    compileSdkVersion 29
     buildToolsVersion '29.0.3'
 
     defaultConfig {

@@ -2,8 +2,8 @@ apply plugin: 'com.android.library'
 apply plugin: 'maven'
 
 project.ext {
-    versionCode = 296
-    versionName = "30.3"
+    versionCode = 297
+    versionName = "30.4"
     groupId = 'com.easyapp.lib'
     artifactId = 'easy-lib'
 }
@@ -14,7 +14,7 @@ android {
 
     defaultConfig {
         minSdkVersion 21
-        targetSdkVersion 28
+        targetSdkVersion 29
         versionCode project.ext.versionCode
         versionName project.ext.versionName
     }
@@ -33,7 +33,7 @@ dependencies {
     implementation "androidx.cardview:cardview:1.0.0"
     implementation "androidx.appcompat:appcompat:1.2.0"
     implementation "androidx.legacy:legacy-support-v4:1.0.0"
-    implementation 'com.google.android.material:material:1.0.0'
+    implementation 'com.google.android.material:material:1.2.1'
 
     annotationProcessor 'androidx.annotation:annotation:1.1.0'
     implementation 'pub.devrel:easypermissions:3.0.0'
