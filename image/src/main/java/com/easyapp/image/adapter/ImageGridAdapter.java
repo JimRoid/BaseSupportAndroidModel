@@ -2,6 +2,7 @@ package com.easyapp.image.adapter;
 
 import android.content.Context;
 import android.graphics.Point;
+import android.net.Uri;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -215,16 +216,20 @@ public class ImageGridAdapter extends BaseAdapter {
             } else {
                 indicator.setVisibility(View.GONE);
             }
+
+//            Uri photoUri = Uri.parse(new File(data.getPath()));
             File imageFile = new File(data.path);
             if (imageFile.exists()) {
-                // 顯示圖片
+                Log.d("image", "顯示圖片");
+                Log.d("image", data.path);
                 Glide.with(mContext)
-                        .load(data.path)
+                        .load(data.uri)
                         .apply(new RequestOptions()
                                 .placeholder(R.drawable.default_error)
                                 .centerCrop())
                         .into(image);
             } else {
+                Log.d("image", "不顯示圖片");
                 image.setImageResource(R.drawable.default_error);
             }
         }

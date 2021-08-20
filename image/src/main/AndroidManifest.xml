@@ -1,7 +1,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.easyapp.image">
 
-    <application>
+    <application android:requestLegacyExternalStorage="true">
 
         <activity android:name=".MultiImageSelectorActivity" />
 
@@ -16,6 +16,7 @@
         </provider>
 
     </application>
+
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 

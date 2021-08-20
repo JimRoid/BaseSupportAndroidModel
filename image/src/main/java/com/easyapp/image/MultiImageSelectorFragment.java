@@ -2,6 +2,7 @@ package com.easyapp.image;
 
 import android.Manifest;
 import android.app.Activity;
+import android.content.ContentUris;
 import android.content.Context;
 import android.content.Intent;
 import android.content.res.Configuration;
@@ -508,12 +509,17 @@ public class MultiImageSelectorFragment extends Fragment implements EasyPermissi
                     List<Image> images = new ArrayList<>();
                     data.moveToFirst();
                     do {
+                        Uri imageUri =
+                                ContentUris
+                                        .withAppendedId(MediaStore.Images.Media.EXTERNAL_CONTENT_URI,
+                                                data.getInt(data.getColumnIndex(MediaStore.Images.ImageColumns._ID)));
+
                         String path = data.getString(data.getColumnIndexOrThrow(IMAGE_PROJECTION[0]));
                         String name = data.getString(data.getColumnIndexOrThrow(IMAGE_PROJECTION[1]));
                         long dateTime = data.getLong(data.getColumnIndexOrThrow(IMAGE_PROJECTION[2]));
                         Image image = null;
                         if (fileExist(path)) {
-                            image = new Image(path, name, dateTime);
+                            image = new Image(imageUri, path, name, dateTime);
                             images.add(image);
                         }
                         if (!hasFolderGened) {

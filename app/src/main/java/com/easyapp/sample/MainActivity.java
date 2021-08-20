@@ -23,8 +23,8 @@ public class MainActivity extends BaseToolbarActivity {
 //        ReplaceFragment(new Login());
 //        ReplaceFragment(NoteBook.instance());
 //        replaceFragment(DiscussList.getInstance());
-        replaceFragment(new DiscussPager());
-//        replaceFragment(new DiscussCreate());
+//        replaceFragment(new DiscussPager());
+        replaceFragment(new DiscussCreate());
 //        replaceFragment(BlankFragmentText.getInstance(0));
     }
 }
